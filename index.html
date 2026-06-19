@@ -52,7 +52,7 @@
   .card p{margin:0;color:var(--muted);font-size:14.5px}
   .card .k{color:var(--teal);font-weight:700}
   /* glass demo strip */
-  pre.term{background:#05media;background:#060b16;border:1px solid var(--line);
+  pre.term{background:#060b16;border:1px solid var(--line);
        border-radius:12px;padding:18px 20px;overflow:auto;font-size:12.5px;
        color:#bfe9e4;font-family:'JetBrains Mono',ui-monospace,Menlo,Consolas,monospace;line-height:1.5}
   pre.term .c{color:#5f7596}
@@ -72,11 +72,15 @@
 <body>
 
 <nav><div class="wrap">
-  <img src="choupo-lockup.svg" alt="Choupo">
+  <a href="/" style="display:flex;align-items:center;gap:8px;text-decoration:none">
+    <img src="logo2-mark.png" alt="" style="height:32px;width:auto;display:block">
+    <span style="font-weight:800;letter-spacing:.3px;color:var(--ink);font-size:18px">CHOUPO</span>
+  </a>
   <div class="links">
     <a href="#why">Why</a>
     <a href="#glass">Glass-box</a>
     <a href="#do">What it does</a>
+    <a href="https://github.com/choupo-admin/choupo" target="_blank" rel="noopener">Code</a>
     <a class="btn sm" href="#run">Run Choupo</a>
   </div>
 </div></nav>
@@ -94,7 +98,7 @@
   <div class="cta">
     <a class="btn" href="/app/?workspace=explore" target="choupo-app" rel="noopener">🔬 Explore properties — in your browser</a>
     <a class="btn ghost" href="#run">▶ Run the simulator</a>
-    <a class="btn ghost" href="#why">What is this?</a>
+    <a class="btn ghost" href="https://github.com/choupo-admin/choupo" target="_blank" rel="noopener">⌨ View the source</a>
   </div>
   <div class="pillrow">GPL-3.0-or-later · C++17, zero heavy dependencies · <b>no install, no licence key</b></div>
   <p style="font-size:13px;color:var(--muted);margin:16px 0 0">Created by
@@ -178,11 +182,9 @@
 
 <section><div class="wrap">
   <h2>Built for students, researchers, and engineers</h2>
-  <p class="sub" style="max-width:780px">Choupo is open-source and funded by adoption, papers, and
-     standing — not licence fees. A student can <em>read</em> it, a researcher can <em>extend</em> it,
-     and anyone can <em>run</em> it for free — to design better, cleaner, more efficient processes.</p>
-  <p class="sub" style="max-width:780px;color:var(--teal);font-weight:600">Democratizing process
-     simulation is not a convenience — it is infrastructure for a cleaner industry.</p>
+  <p class="sub" style="max-width:780px">Choupo is open-source and free — no licence fees.
+     A student can <em>read</em> it, a researcher can <em>extend</em> it, and anyone can
+     <em>run</em> it for free.</p>
   <p class="closer">If you cannot see the equation, you are not learning the process — you are
      trusting the box. Choupo has no box.</p>
 </div></section>
@@ -192,7 +194,11 @@
   <p class="sub" style="max-width:780px">Contribute models, tutorials, tests, documentation, validation
      data, or new unit operations. Choupo is made for students, researchers, and engineers who want
      process simulation to be open, inspectable, and useful.</p>
-  <p class="pillrow">Public source, contribution guide, and a community forum — <b>coming soon</b>.</p>
+  <p class="pillrow">The full source is on
+     <a href="https://github.com/choupo-admin/choupo" target="_blank" rel="noopener"><b>GitHub</b></a>
+     under GPL-3.0 ·
+     <a href="https://github.com/choupo-admin/choupo/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener">contribution guide</a>
+     · a community forum is <b>coming soon</b>.</p>
 </div></section>
 
 <section id="about"><div class="wrap">
@@ -211,6 +217,8 @@
   <div>Created and maintained by
      <a href="https://www.linkedin.com/in/vítor-geraldes-4625b8a" target="_blank" rel="noopener"
         style="color:var(--teal);text-decoration:none">Vítor Geraldes</a>
+     · <a href="https://github.com/choupo-admin/choupo" target="_blank" rel="noopener">Source on GitHub</a>
+     · <a href="/docs/userGuide.pdf" target="_blank" rel="noopener">User Guide</a>
      · GPL-3.0-or-later · Independent open-source project</div>
   <div><b>CHOUPO™</b> is a trademark of TalentGround Lda. — an independent open-source project.</div>
 </div></footer>
