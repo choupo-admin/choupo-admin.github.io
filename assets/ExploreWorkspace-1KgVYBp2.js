@@ -1,4 +1,4 @@
-import{ae as Ye,bc as Qe,aS as Ze,bp as Se,aJ as e,aK as tn,aQ as cn,bf as Ha,b9 as gn,b2 as d,a as qn,W as Pn,G as k,B as bn,at as le,Z as S,a_ as fn,V as Ue,a0 as en,d as En,q as ia,_ as _a,f as de,U as yt,c as nn,a3 as ra,g as Tt,i as Pt,y as vt,Q as w,A as ve,L as ze,X as D,al as St,o as Ot,b5 as Aa,b8 as Ht,av as _t,aW as Gn,aU as je,R as ce,p as At,h as Et,bn as xt,l as Nt,m as kt,k as wt}from"./index-CRb7U-as.js";import{b as Mt,d as Rt}from"./CsvAutoPlot-Btjp2LN1.js";import{G as Kt}from"./GibbsMapPanel-BO7eAEmK.js";import{P as I,e as rn,c as Xe,a as no}from"./plotly-D_UFCiH4.js";import{S as la,p as qt,M as Jt}from"./exploreMccabePopOut-CAxAi-A_.js";import{S as Ho}from"./Slider-DRkM1Iy8.js";import{S as Tn}from"./Select-CNlg0ae5.js";import{C as Eo}from"./Collapse-DprDTphD.js";import{D as sa}from"./Divider-BigTogdb.js";import{C as It}from"./CopyButton-BC376vLp.js";import"./InputsGroupFieldset-BV_kYaus.js";/**
+import{ae as Ye,bc as Qe,aS as Ze,bp as Se,aJ as e,aK as tn,aQ as cn,bf as Ha,b9 as gn,b2 as d,a as qn,W as Pn,G as k,B as bn,at as le,Z as S,a_ as fn,V as Ue,a0 as en,d as En,q as ia,_ as _a,f as de,U as yt,c as nn,a3 as ra,g as Tt,i as Pt,y as vt,Q as w,A as ve,L as ze,X as D,al as St,o as Ot,b5 as Aa,b8 as Ht,av as _t,aW as Gn,aU as je,R as ce,p as At,h as Et,bn as xt,l as Nt,m as kt,k as wt}from"./index-CH8jRXdc.js";import{b as Mt,d as Rt}from"./CsvAutoPlot-CPFihwbz.js";import{G as Kt}from"./GibbsMapPanel-DPEZ7zjU.js";import{P as I,e as rn,c as Xe,a as no}from"./plotly-D5KDLm53.js";import{S as la,p as qt,M as Jt}from"./exploreMccabePopOut-vWo5Q1c9.js";import{S as Ho}from"./Slider-CaTwnFhJ.js";import{S as Tn}from"./Select-CcizlvuM.js";import{C as Eo}from"./Collapse-ltgmev-b.js";import{D as sa}from"./Divider-B9mjnttN.js";import{C as It}from"./CopyButton-DsiTVqvb.js";import"./InputsGroupFieldset-CkbJKuZ0.js";/**
  * @license @tabler/icons-react v3.44.0 - MIT
  *
  * This source code is licensed under the MIT license.
@@ -6166,8 +6166,11 @@ cosmo
 }
 `,ll=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: Acetic Acid  (CH3COOH, C2H4O2, CAS 64-19-7)
-  Note: vapour-phase dimerisation is neglected here (would require
-        a chemical-association EoS).  Adequate for LLE tutorial.
+  Note: vapour-phase dimerisation is not a pure-component property and is
+        therefore not declared in this component record.  Reactive VLE
+        formulations may activate the curated vapour-association
+        equilibrium from chemistry/ (aceticAcid-dissolution.dat's
+        vapourDimerisation block).
   Sources: critical constants (Tc/Pc/omega/Tb/HvapTb/Vliq), Antoine
            coefficients (marked 'individual literature value' at the block),
            Cp polynomials and the ideal-gas formation datum -- primary
