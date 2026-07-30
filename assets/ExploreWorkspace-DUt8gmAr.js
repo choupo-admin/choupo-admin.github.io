@@ -1,4 +1,4 @@
-import{ae as Ye,bc as Qe,aS as Ze,bp as Se,aJ as e,aK as tn,aQ as cn,bf as Ha,b9 as gn,b2 as d,a as qn,W as vn,G as k,B as bn,at as le,Z as S,a_ as fn,V as Ue,a0 as en,d as En,q as ia,_ as _a,f as de,U as yt,c as nn,a3 as ra,g as Tt,i as vt,y as Pt,Q as w,A as Pe,L as ze,X as D,al as St,o as Ot,b5 as Aa,b8 as Ht,av as _t,aW as Gn,aU as je,R as ce,p as At,h as Et,bn as xt,l as Nt,m as kt,k as wt}from"./index-C2NxRSeV.js";import{b as Mt,d as Rt}from"./CsvAutoPlot-Dyvf-6EC.js";import{G as Kt}from"./GibbsMapPanel-6jLikLcU.js";import{P as I,e as rn,c as Xe,a as no}from"./plotly-DtF8STsr.js";import{S as la,p as qt,M as Jt}from"./exploreMccabePopOut-torheK_U.js";import{S as Ho}from"./Slider-CJEGZrqX.js";import{S as Tn}from"./Select-Btj9pRmN.js";import{C as Eo}from"./Collapse-Dw2mE5Zl.js";import{D as sa}from"./Divider-TiF870Nn.js";import{C as It}from"./CopyButton-D31RVzKq.js";import"./InputsGroupFieldset-Xs-P4uU-.js";/**
+import{ae as Ye,bc as Qe,aS as Ze,bp as Se,aJ as e,aK as tn,aQ as cn,bf as Ha,b9 as gn,b2 as d,a as qn,W as vn,G as k,B as bn,at as le,Z as S,a_ as fn,V as Ue,a0 as en,d as En,q as ia,_ as _a,f as de,U as yt,c as nn,a3 as ra,g as Tt,i as vt,y as Pt,Q as w,A as Pe,L as ze,X as D,al as St,o as Ot,b5 as Aa,b8 as Ht,av as _t,aW as Gn,aU as je,R as ce,p as At,h as Et,bn as xt,l as Nt,m as kt,k as wt}from"./index-DqxjXyXM.js";import{b as Mt,d as Rt}from"./CsvAutoPlot-BYconu0-.js";import{G as Kt}from"./GibbsMapPanel-DL1ZJEUl.js";import{P as I,e as rn,c as Xe,a as no}from"./plotly-BMx3SxyT.js";import{S as la,p as qt,M as Jt}from"./exploreMccabePopOut-CuN5wNKj.js";import{S as Ho}from"./Slider-CkRQgPfk.js";import{S as Tn}from"./Select-BgivP0uv.js";import{C as Eo}from"./Collapse-Zha1O2on.js";import{D as sa}from"./Divider-DZW8koZ4.js";import{C as It}from"./CopyButton-AVA0QRv2.js";import"./InputsGroupFieldset-Caswg-Lm.js";/**
  * @license @tabler/icons-react v3.44.0 - MIT
  *
  * This source code is licensed under the MIT license.
@@ -7155,8 +7155,11 @@ standardThermochemistry
     s_298     297.39;        // J/(mol.K) third-law absolute [NASA-TM4513]
 }
 
-groups { joback ( { group rCH2; count 6; } ); }
-
+groups
+{
+    joback ( { group rCH2; count 6; } );
+    unifac ( { group CH2; count 6; } );
+}
 provenance
 {
     constants      "CoolProp 7.2.0 -- Zhou-JPCRD-2014";
@@ -7167,12 +7170,6 @@ provenance
     preserved      "from prior proposal (NOT CoolProp): standardThermochemistry, groups";
     standardThermochemistry "NASA TM-4513 (McBride-Gordon-Reno 1993), H0/S0(298.15) from NASA-7 poly";
 }
-
-groups
-{
-    unifac ( { group CH2; count 6; } );
-}
-
 cosmo
 {
     VT2005
@@ -7410,8 +7407,11 @@ standardThermochemistry
     s_298     323.091;      // J/(mol*K) third-law [DERIVED: (dHf-dGf)/T + CODATA element S]
 }
 
-groups { joback ( { group CH3; count 2; } { group CH2; count 2; } { group ether; count 1; } ); }
-
+groups
+{
+    joback ( { group CH3; count 2; } { group CH2; count 2; } { group ether; count 1; } );
+    unifac ( { group CH3; count 2; } { group CH2; count 1; } { group CH2O; count 1; } );
+}
 provenance
 {
     dHf_298
@@ -7431,12 +7431,6 @@ provenance
     triplePoint    "CoolProp reference EOS triple-point T,P";
     preserved      "from prior proposal (NOT CoolProp): standardThermochemistry, groups";
 }
-
-groups
-{
-    unifac ( { group CH3; count 2; } { group CH2; count 1; } { group CH2O; count 1; } );
-}
-
 cosmo
 {
     VT2005
@@ -9102,8 +9096,11 @@ standardThermochemistry
     s_298     380.191;      // J/(mol*K) third-law [DERIVED: (dHf-dGf)/T + CODATA element S]
 }
 
-groups { joback ( { group CH3; count 3; } { group CH2; count 2; } { group CH; count 1; } ); }
-
+groups
+{
+    joback ( { group CH3; count 3; } { group CH2; count 2; } { group CH; count 1; } );
+    unifac ( { group CH3; count 3; } { group CH2; count 2; } { group CH; count 1; } );
+}
 provenance
 {
     dHf_298
@@ -9123,12 +9120,6 @@ provenance
     triplePoint    "CoolProp reference EOS triple-point T,P";
     preserved      "from prior proposal (NOT CoolProp): standardThermochemistry, groups";
 }
-
-groups
-{
-    unifac ( { group CH3; count 3; } { group CH2; count 2; } { group CH; count 1; } );
-}
-
 cosmo
 {
     VT2005
@@ -9197,8 +9188,11 @@ standardThermochemistry
     s_298     343.74;        // J/(mol.K) third-law absolute [NASA-TM4513]
 }
 
-groups { joback ( { group CH3; count 3; } { group CH2; count 1; } { group CH; count 1; } ); }
-
+groups
+{
+    joback ( { group CH3; count 3; } { group CH2; count 1; } { group CH; count 1; } );
+    unifac ( { group CH3; count 3; } { group CH2; count 1; } { group CH; count 1; } );
+}
 provenance
 {
     constants      "CoolProp 7.2.0 -- Lemmon-JCED-2006";
@@ -9209,12 +9203,6 @@ provenance
     preserved      "from prior proposal (NOT CoolProp): standardThermochemistry, groups";
     standardThermochemistry "NASA TM-4513 (McBride-Gordon-Reno 1993), H0/S0(298.15) from NASA-7 poly";
 }
-
-groups
-{
-    unifac ( { group CH3; count 3; } { group CH2; count 1; } { group CH; count 1; } );
-}
-
 cosmo
 {
     VT2005
@@ -9468,8 +9456,11 @@ standardThermochemistry
     s_298     355.03;      // J/(mol*K) third-law [DERIVED: (dHf-dGf)/T + CODATA element S]
 }
 
-groups { joback ( { group CH3; count 2; } { group arCH; count 4; } { group arC; count 2; } ); }
-
+groups
+{
+    joback ( { group CH3; count 2; } { group arCH; count 4; } { group arC; count 2; } );
+    unifac ( { group ACH; count 4; } { group ACCH3; count 2; } );
+}
 provenance
 {
     dHf_298
@@ -9489,12 +9480,6 @@ provenance
     triplePoint    "CoolProp reference EOS triple-point T,P";
     preserved      "from prior proposal (NOT CoolProp): standardThermochemistry, groups";
 }
-
-groups
-{
-    unifac ( { group ACH; count 4; } { group ACCH3; count 2; } );
-}
-
 cosmo
 {
     VT2005
@@ -10424,8 +10409,11 @@ standardThermochemistry
     s_298     545.526;      // J/(mol*K) third-law [DERIVED: (dHf-dGf)/T + CODATA element S]
 }
 
-groups { joback ( { group CH3; count 2; } { group CH2; count 8; } ); }
-
+groups
+{
+    joback ( { group CH3; count 2; } { group CH2; count 8; } );
+    unifac ( { group CH3; count 2; } { group CH2; count 8; } );
+}
 provenance
 {
     dHf_298
@@ -10445,12 +10433,6 @@ provenance
     triplePoint    "CoolProp reference EOS triple-point T,P";
     preserved      "from prior proposal (NOT CoolProp): standardThermochemistry, groups";
 }
-
-groups
-{
-    unifac ( { group CH3; count 2; } { group CH2; count 8; } );
-}
-
 cosmo
 {
     VT2005
@@ -10610,8 +10592,11 @@ standardThermochemistry
     s_298     428.09;        // J/(mol.K) third-law absolute [NASA-TM4513]
 }
 
-groups { joback ( { group CH3; count 2; } { group CH2; count 5; } ); }
-
+groups
+{
+    joback ( { group CH3; count 2; } { group CH2; count 5; } );
+    unifac ( { group CH3; count 2; } { group CH2; count 5; } );
+}
 provenance
 {
     constants      "CoolProp 7.2.0 -- Span-IJT-2003B";
@@ -10622,12 +10607,6 @@ provenance
     preserved      "from prior proposal (NOT CoolProp): standardThermochemistry, groups";
     standardThermochemistry "NASA TM-4513 (McBride-Gordon-Reno 1993), H0/S0(298.15) from NASA-7 poly";
 }
-
-groups
-{
-    unifac ( { group CH3; count 2; } { group CH2; count 5; } );
-}
-
 cosmo
 {
     VT2005
@@ -10772,8 +10751,11 @@ standardThermochemistry
     s_298     506.573;      // J/(mol*K) third-law [DERIVED: (dHf-dGf)/T + CODATA element S]
 }
 
-groups { joback ( { group CH3; count 2; } { group CH2; count 7; } ); }
-
+groups
+{
+    joback ( { group CH3; count 2; } { group CH2; count 7; } );
+    unifac ( { group CH3; count 2; } { group CH2; count 7; } );
+}
 provenance
 {
     dHf_298
@@ -10793,12 +10775,6 @@ provenance
     triplePoint    "CoolProp reference EOS triple-point T,P";
     preserved      "from prior proposal (NOT CoolProp): standardThermochemistry, groups";
 }
-
-groups
-{
-    unifac ( { group CH3; count 2; } { group CH2; count 7; } );
-}
-
 cosmo
 {
     VT2005
@@ -10932,8 +10908,11 @@ standardThermochemistry
     s_298     349.49;        // J/(mol.K) third-law absolute [NASA-TM4513]
 }
 
-groups { joback ( { group CH3; count 2; } { group CH2; count 3; } ); }
-
+groups
+{
+    joback ( { group CH3; count 2; } { group CH2; count 3; } );
+    unifac ( { group CH3; count 2; } { group CH2; count 3; } );
+}
 provenance
 {
     constants      "CoolProp 7.2.0 -- Thol-FPE-2019-alkanes-pentane";
@@ -10944,12 +10923,6 @@ provenance
     preserved      "from prior proposal (NOT CoolProp): standardThermochemistry, groups";
     standardThermochemistry "NASA TM-4513 (McBride-Gordon-Reno 1993), H0/S0(298.15) from NASA-7 poly";
 }
-
-groups
-{
-    unifac ( { group CH3; count 2; } { group CH2; count 3; } );
-}
-
 cosmo
 {
     VT2005
@@ -11192,8 +11165,11 @@ standardThermochemistry
     s_298     311.891;      // J/(mol*K) third-law [DERIVED: (dHf-dGf)/T + CODATA element S]
 }
 
-groups { joback ( { group CH3; count 4; } { group C; count 1; } ); }
-
+groups
+{
+    joback ( { group CH3; count 4; } { group C; count 1; } );
+    unifac ( { group CH3; count 4; } { group C; count 1; } );
+}
 provenance
 {
     dHf_298
@@ -11213,12 +11189,6 @@ provenance
     triplePoint    "CoolProp reference EOS triple-point T,P";
     preserved      "from prior proposal (NOT CoolProp): standardThermochemistry, groups";
 }
-
-groups
-{
-    unifac ( { group CH3; count 4; } { group C; count 1; } );
-}
-
 cosmo
 {
     VT2005
@@ -11391,8 +11361,11 @@ standardThermochemistry
     s_298     355.03;      // J/(mol*K) third-law [DERIVED: (dHf-dGf)/T + CODATA element S]
 }
 
-groups { joback ( { group CH3; count 2; } { group arCH; count 4; } { group arC; count 2; } ); }
-
+groups
+{
+    joback ( { group CH3; count 2; } { group arCH; count 4; } { group arC; count 2; } );
+    unifac ( { group ACH; count 4; } { group ACCH3; count 2; } );
+}
 provenance
 {
     dHf_298
@@ -11412,12 +11385,6 @@ provenance
     triplePoint    "CoolProp reference EOS triple-point T,P";
     preserved      "from prior proposal (NOT CoolProp): standardThermochemistry, groups";
 }
-
-groups
-{
-    unifac ( { group ACH; count 4; } { group ACCH3; count 2; } );
-}
-
 cosmo
 {
     VT2005
@@ -11487,8 +11454,11 @@ standardThermochemistry
     s_298     355.03;      // J/(mol*K) third-law [DERIVED: (dHf-dGf)/T + CODATA element S]
 }
 
-groups { joback ( { group CH3; count 2; } { group arCH; count 4; } { group arC; count 2; } ); }
-
+groups
+{
+    joback ( { group CH3; count 2; } { group arCH; count 4; } { group arC; count 2; } );
+    unifac ( { group ACH; count 4; } { group ACCH3; count 2; } );
+}
 provenance
 {
     dHf_298
@@ -11508,12 +11478,6 @@ provenance
     triplePoint    "CoolProp reference EOS triple-point T,P";
     preserved      "from prior proposal (NOT CoolProp): standardThermochemistry, groups";
 }
-
-groups
-{
-    unifac ( { group ACH; count 4; } { group ACCH3; count 2; } );
-}
-
 cosmo
 {
     VT2005
