@@ -1,4 +1,4 @@
-import{ae as Ye,bc as Qe,aS as Ze,bp as Se,aJ as e,aK as tn,aQ as cn,bf as Aa,b9 as gn,b2 as d,a as qn,W as vn,G as N,B as bn,at as se,Z as S,a_ as fn,V as Ue,a0 as en,d as En,q as ia,_ as Ha,f as de,U as yt,c as nn,a3 as ra,g as Tt,i as vt,y as Pt,Q as R,A as Pe,L as ze,X as D,al as St,o as Ot,b5 as _a,b8 as At,av as Ht,aW as Gn,aU as Le,R as ce,p as _t,h as Et,bn as wt,l as xt,m as Nt,k as Rt}from"./index-Dwi_1tJQ.js";import{b as kt,d as Mt}from"./CsvAutoPlot-MUMCPapi.js";import{G as Kt}from"./GibbsMapPanel-BD8onDu5.js";import{P as J,e as rn,c as Xe,a as no}from"./plotly-Bmgcf0A_.js";import{S as sa,p as qt,M as It}from"./exploreMccabePopOut-BZPhhLnX.js";import{S as Ao}from"./Slider-D2ywJVfP.js";import{S as Tn}from"./Select-DZH13jBZ.js";import{C as Eo}from"./Collapse-CLPhF8vf.js";import{D as la}from"./Divider-jAMeWaLr.js";import{C as Jt}from"./CopyButton-DEH8CsmK.js";import"./InputsGroupFieldset-DE0A1dJM.js";/**
+import{ae as Ye,bc as Qe,aS as Ze,bp as Se,aJ as e,aK as tn,aQ as cn,bf as Aa,b9 as gn,b2 as d,a as qn,W as vn,G as N,B as bn,at as se,Z as S,a_ as fn,V as Ue,a0 as en,d as En,q as ia,_ as Ha,f as de,U as yt,c as nn,a3 as ra,g as Tt,i as vt,y as Pt,Q as R,A as Pe,L as ze,X as D,al as St,o as Ot,b5 as _a,b8 as At,av as Ht,aW as Gn,aU as Le,R as ce,p as _t,h as Et,bn as wt,l as xt,m as Nt,k as Rt}from"./index-d6diWuwK.js";import{b as kt,d as Mt}from"./CsvAutoPlot-Ds85mebK.js";import{G as Kt}from"./GibbsMapPanel-DzEjwWvQ.js";import{P as J,e as rn,c as Xe,a as no}from"./plotly-Cx2au4CU.js";import{S as sa,p as qt,M as It}from"./exploreMccabePopOut-SD5r3tf8.js";import{S as Ao}from"./Slider-D6VntznQ.js";import{S as Tn}from"./Select-D83JIImZ.js";import{C as Eo}from"./Collapse-B2Xkg_kh.js";import{D as la}from"./Divider-C7Xuwgte.js";import{C as Jt}from"./CopyButton-DOWmioPu.js";import"./InputsGroupFieldset-AbZsX1RO.js";/**
  * @license @tabler/icons-react v3.44.0 - MIT
  *
  * This source code is licensed under the MIT license.
@@ -7985,7 +7985,17 @@ liquidHeatCapacity
     // Converted to molar: multiply by MW/1000 = 0.1658 kg/mol
     model         polynomial;
     coefficients  (112.9   0.5036);
-    Trange        (285  670);
+    //  NARROWED to the fit this record documents (AP7, 2026-08-05).  The
+    //  header states "Cp polynomial good to ~5 % across 373-673 K (the Dow
+    //  TDS range)" while the field claimed (285 670) -- over-claiming 88 K
+    //  at the bottom.
+    //
+    //  A CATEGORY CONFUSION, not a typo: line 15 gives the fluid's usable
+    //  LIQUID range as 285-650 K, and 285 leaked from there into the Cp
+    //  VALIDITY field.  Two different properties, one number.  Being liquid
+    //  at 285 K says nothing about whether a Cp fitted from 373 K upward
+    //  describes it there.
+    Trange        (373  673);
 }
 `,Is=`/*--------------------------------*- Choupo -*-----------------------*\\
   Mineral: enstatite (MgSiO3) -- unified substance file.
@@ -9105,7 +9115,19 @@ liquidHeatCapacity
     //   Cp [J/mol·K] = 507.4 - 0.9468*T + 6.33e-4*T^2
     model         polynomial;
     coefficients  (507.4   -0.9468   6.33e-4);
-    Trange        (415  810);
+    //  NARROWED to the fit this record documents (AP7, 2026-08-05).  The
+    //  field claimed (415 810) while the header above states the Cp fit as
+    //  "range 426-776 K, +/-5 % (Janz 1981 quadratic)" -- a validity claim
+    //  WIDER than the regression that supports it, at both ends.
+    //
+    //  This was inert until the engine began READING the window the same
+    //  day (PolynomialCp had parsed and discarded it), and then it became
+    //  worse than the original defect: a too-wide window keeps the
+    //  extrapolation announcement SILENT exactly where it should fire.
+    //
+    //  Not a new number -- the record's own documented range.  You cannot be
+    //  valid outside your fit, so narrowing is the conservative direction.
+    Trange        (426  776);
 }
 `,il=`/*--------------------------------*- Choupo -*-----------------------*\\
   Mineral: huntite (CaMg3(CO3)4) -- unified substance file.
