@@ -1,4 +1,4 @@
-import{ae as Ye,bc as Qe,aS as Ze,bp as Se,aJ as e,aK as tn,aQ as cn,bf as Aa,b9 as gn,b2 as d,a as qn,W as vn,G as N,B as bn,at as se,Z as S,a_ as fn,V as Ue,a0 as en,d as En,q as ia,_ as Ha,f as de,U as yt,c as nn,a3 as ra,g as Tt,i as vt,y as Pt,Q as R,A as Pe,L as ze,X as D,al as St,o as Ot,b5 as _a,b8 as At,av as Ht,aW as Gn,aU as Le,R as ce,p as _t,h as Et,bn as wt,l as xt,m as Nt,k as Rt}from"./index-D9GLqEZJ.js";import{b as kt,d as Mt}from"./CsvAutoPlot-IHv23Qzz.js";import{G as Kt}from"./GibbsMapPanel-D-aTUXXN.js";import{P as J,e as rn,c as Xe,a as no}from"./plotly-DxdviHXi.js";import{S as sa,p as qt,M as It}from"./exploreMccabePopOut-DlAf8iGE.js";import{S as Ao}from"./Slider-DbHEsEiL.js";import{S as Tn}from"./Select-LdEg7Oax.js";import{C as Eo}from"./Collapse-B_X0AGgI.js";import{D as la}from"./Divider-DjSpx6cP.js";import{C as Jt}from"./CopyButton-Bh_chEGc.js";import"./InputsGroupFieldset-DjCCBSB4.js";/**
+import{ae as Ye,bc as Qe,aS as Ze,bp as Se,aJ as e,aK as tn,aQ as cn,bf as Aa,b9 as gn,b2 as d,a as qn,W as vn,G as N,B as bn,at as se,Z as S,a_ as fn,V as Ue,a0 as en,d as En,q as ia,_ as Ha,f as de,U as yt,c as nn,a3 as ra,g as Tt,i as vt,y as Pt,Q as R,A as Pe,L as ze,X as D,al as St,o as Ot,b5 as _a,b8 as At,av as Ht,aW as Gn,aU as Le,R as ce,p as _t,h as Et,bn as wt,l as xt,m as Nt,k as Rt}from"./index-FFZhSaUF.js";import{b as kt,d as Mt}from"./CsvAutoPlot-Ck2LGyp0.js";import{G as Kt}from"./GibbsMapPanel-Ch5iAaJQ.js";import{P as J,e as rn,c as Xe,a as no}from"./plotly-1ZYQpU9J.js";import{S as sa,p as qt,M as It}from"./exploreMccabePopOut-BNaebcIg.js";import{S as Ao}from"./Slider-DjR3Zyy3.js";import{S as Tn}from"./Select-gIcXfF7i.js";import{C as Eo}from"./Collapse-Bu2A5g6t.js";import{D as la}from"./Divider-CAajIFQz.js";import{C as Jt}from"./CopyButton-3bV7Ybiv.js";import"./InputsGroupFieldset-D-FLwVMn.js";/**
  * @license @tabler/icons-react v3.44.0 - MIT
  *
  * This source code is licensed under the MIT license.
@@ -1497,7 +1497,14 @@ liquidHeatCapacity
     model         polynomial;
     // Cp_liq [J/(mol.K)]   -- fitted to CoolProp saturated-liquid cp
     coefficients  (-9.84095  3.74245  -0.162912  0.00296184);
-    Trange        (24  24);
+        //  \`unknown\` is a DECLARED absence, not a guess (AP3, 2026-08-05).
+    //  This window used to read \`(24  24)\`, which is not an interval --
+    //  a four-term CoolProp liquid-Cp fit cannot have been regressed
+    //  over it.  The true domain was not recoverable from the record,
+    //  and INVENTING a plausible one would be a false claim about
+    //  where the correlation holds.  Declared honestly instead; the
+    //  engine announces it on every run.
+    Trange        unknown;
 }
 
 triplePoint
@@ -4014,7 +4021,14 @@ liquidHeatCapacity
     model         polynomial;
     // Cp_liq [J/(mol.K)]   -- fitted to CoolProp saturated-liquid cp
     coefficients  (-10.4615  3.84138  -0.168247  0.00305982);
-    Trange        (24  24);
+        //  \`unknown\` is a DECLARED absence, not a guess (AP3, 2026-08-05).
+    //  This window used to read \`(24  24)\`, which is not an interval --
+    //  a four-term CoolProp liquid-Cp fit cannot have been regressed
+    //  over it.  The true domain was not recoverable from the record,
+    //  and INVENTING a plausible one would be a false claim about
+    //  where the correlation holds.  Declared honestly instead; the
+    //  engine announces it on every run.
+    Trange        unknown;
 }
 
 triplePoint
@@ -4289,7 +4303,14 @@ liquidHeatCapacity
     model         polynomial;
     // Cp_liq [J/(mol.K)]   -- fitted to CoolProp saturated-liquid cp
     coefficients  (-8.93587  3.59119  -0.154304  0.0027952);
-    Trange        (24  24);
+        //  \`unknown\` is a DECLARED absence, not a guess (AP3, 2026-08-05).
+    //  This window used to read \`(24  24)\`, which is not an interval --
+    //  a four-term CoolProp liquid-Cp fit cannot have been regressed
+    //  over it.  The true domain was not recoverable from the record,
+    //  and INVENTING a plausible one would be a false claim about
+    //  where the correlation holds.  Declared honestly instead; the
+    //  engine announces it on every run.
+    Trange        unknown;
 }
 
 triplePoint
@@ -6288,7 +6309,14 @@ liquidHeatCapacity
     model         polynomial;
     // Cp_liq [J/(mol.K)]   -- fitted to CoolProp saturated-liquid cp
     coefficients  (60.8815  -0.177491  0.000160726  1.9086e-06);
-    Trange        (166  165);
+        //  \`unknown\` is a DECLARED absence, not a guess (AP3, 2026-08-05).
+    //  This window used to read \`(166  165)\`, which is not an interval --
+    //  a four-term CoolProp liquid-Cp fit cannot have been regressed
+    //  over it.  The true domain was not recoverable from the record,
+    //  and INVENTING a plausible one would be a false claim about
+    //  where the correlation holds.  Declared honestly instead; the
+    //  engine announces it on every run.
+    Trange        unknown;
 }
 
 triplePoint
@@ -9650,7 +9678,14 @@ liquidHeatCapacity
     model         polynomial;
     // Cp_liq [J/(mol.K)]   -- fitted to CoolProp saturated-liquid cp
     coefficients  (49.8025  -0.0579953  -0.000875149  7.71766e-06);
-    Trange        (121  120);
+        //  \`unknown\` is a DECLARED absence, not a guess (AP3, 2026-08-05).
+    //  This window used to read \`(121  120)\`, which is not an interval --
+    //  a four-term CoolProp liquid-Cp fit cannot have been regressed
+    //  over it.  The true domain was not recoverable from the record,
+    //  and INVENTING a plausible one would be a false claim about
+    //  where the correlation holds.  Declared honestly instead; the
+    //  engine announces it on every run.
+    Trange        unknown;
 }
 
 triplePoint
@@ -11505,7 +11540,14 @@ liquidHeatCapacity
     model         polynomial;
     // Cp_liq [J/(mol.K)]   -- fitted to CoolProp saturated-liquid cp
     coefficients  (3.84893  4.09926  -0.181721  0.00284984);
-    Trange        (30  27);
+        //  \`unknown\` is a DECLARED absence, not a guess (AP3, 2026-08-05).
+    //  This window used to read \`(30  27)\`, which is not an interval --
+    //  a four-term CoolProp liquid-Cp fit cannot have been regressed
+    //  over it.  The true domain was not recoverable from the record,
+    //  and INVENTING a plausible one would be a false claim about
+    //  where the correlation holds.  Declared honestly instead; the
+    //  engine announces it on every run.
+    Trange        unknown;
 }
 
 triplePoint
