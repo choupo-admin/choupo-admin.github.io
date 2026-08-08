@@ -1,6 +1,7 @@
 {
-  "release": "Choupo-2607",
-  "releasedAt": "2026-07-14",
+  "line": "Choupo-dev",
+  "latestRelease": "Choupo-2607",
+  "latestReleasedAt": "2026-07-14",
   "catalogue": {
     "components": 247,
     "aqueousSpecies": 52,
@@ -10,7 +11,6 @@
     "henryPairs": 205,
     "pitzerPairs": 55,
     "enrtlPairs": 3,
-    "propertyMethods": 0,
     "materials": 4,
     "membranes": 4,
     "adsorbents": 3,
@@ -21,8 +21,8 @@
     "engines": 4
   },
   "tutorials": {
-    "runnableCases": 332,
-    "regressionChecks": 297
+    "runnableCases": 334,
+    "regressionChecks": 300
   },
   "totals": {
     "mixtureParameterRecords": 268
