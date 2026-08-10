@@ -1,4 +1,4 @@
-import{d as i}from"./plotly-DE1uEvFb.js";import{aZ as s,aO as c}from"./index-LVzGFbQI.js";async function u(a){const t=document.querySelector(".js-plotly-plot");if(!t){alert("No plot currently rendered.  Press Run and select a plot view first.");return}await d(t,a)}async function d(a,t){let n;try{n=await i.toImage(a,{format:"png",width:1600,height:1e3,scale:2})}catch(r){alert("Failed to render the plot to PNG: "+r.message);return}const o=p(t),e=s(),l=`<!doctype html><html lang="en"><head>
+import{d as i}from"./plotly-Bf0BT4Ll.js";import{aZ as s,aO as c}from"./index-C1gV-u3Y.js";async function u(a){const t=document.querySelector(".js-plotly-plot");if(!t){alert("No plot currently rendered.  Press Run and select a plot view first.");return}await d(t,a)}async function d(a,t){let n;try{n=await i.toImage(a,{format:"png",width:1600,height:1e3,scale:2})}catch(r){alert("Failed to render the plot to PNG: "+r.message);return}const o=p(t),e=s(),l=`<!doctype html><html lang="en"><head>
 <meta charset="utf-8">
 <title>Choupo — ${o}</title>
 <style>
