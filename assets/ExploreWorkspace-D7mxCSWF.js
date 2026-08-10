@@ -1,4 +1,4 @@
-import{ae as Ye,bc as Qe,aS as Ze,bp as Se,aJ as e,aK as tn,aQ as cn,bf as Aa,b9 as gn,b2 as d,a as qn,W as vn,G as x,B as bn,at as se,Z as S,a_ as fn,V as Ue,a0 as en,d as En,q as ia,_ as Ha,f as de,U as yt,c as nn,a3 as ra,g as Tt,i as vt,y as Pt,Q as R,A as Pe,L as ze,X as D,al as St,o as Ot,b5 as _a,b8 as At,av as Ht,aW as Gn,aU as Le,R as ce,p as _t,h as Et,bn as wt,l as Nt,m as xt,k as Rt}from"./index-DEwvL2kZ.js";import{b as kt,d as Mt}from"./CsvAutoPlot-DTd53ctz.js";import{G as Kt}from"./GibbsMapPanel-B4y5YtV5.js";import{P as J,e as rn,c as Xe,a as no}from"./plotly-BXYLzphA.js";import{S as sa,p as qt,M as It}from"./exploreMccabePopOut-BXIYPSfO.js";import{S as Ao}from"./Slider-BGNj8dyH.js";import{S as Tn}from"./Select-0BDGLNhI.js";import{C as Eo}from"./Collapse-DjYg7pEe.js";import{D as la}from"./Divider-CnDolCe7.js";import{C as Jt}from"./CopyButton-CFqT0nQH.js";import"./InputsGroupFieldset-DlM_pSU5.js";/**
+import{ae as Ye,bc as Qe,aS as Ze,bp as Se,aJ as e,aK as tn,aQ as cn,bf as Aa,b9 as gn,b2 as d,a as qn,W as vn,G as x,B as bn,at as se,Z as S,a_ as fn,V as Ue,a0 as en,d as En,q as ia,_ as Ha,f as de,U as yt,c as nn,a3 as ra,g as Tt,i as vt,y as Pt,Q as R,A as Pe,L as ze,X as D,al as St,o as Ot,b5 as _a,b8 as At,av as Ht,aW as Gn,aU as Le,R as ce,p as _t,h as Et,bn as wt,l as Nt,m as xt,k as Rt}from"./index-CKad2Dhl.js";import{b as kt,d as Mt}from"./CsvAutoPlot-BavqT2zY.js";import{G as Kt}from"./GibbsMapPanel-D1RhKCCV.js";import{P as J,e as rn,c as Xe,a as no}from"./plotly-L-r848zW.js";import{S as sa,p as qt,M as It}from"./exploreMccabePopOut-DfJU53mj.js";import{S as Ao}from"./Slider-Cfv_bjky.js";import{S as Tn}from"./Select-gyyEeua_.js";import{C as Eo}from"./Collapse-CDgz2V2F.js";import{D as la}from"./Divider-D7TK25zM.js";import{C as Jt}from"./CopyButton-D5pwu8BU.js";import"./InputsGroupFieldset-CVUYCt_C.js";/**
  * @license @tabler/icons-react v3.44.0 - MIT
  *
  * This source code is licensed under the MIT license.
@@ -10754,6 +10754,14 @@ groups
     joback ( { group CH3; count 1; } { group CH2; count 3; } { group OH; count 1; } );
     unifac ( { group CH3; count 1; } { group CH2; count 3; } { group OH; count 1; } );
 }
+
+// ---- Aqueous-speciation FACTS (substance-level, classifier-read) ----
+// Curated fact: 1-butanol does NOT participate in the aqueous speciation
+// network at this thermodynamic level (alcohol pKa ~ 16 -- negligible,
+// the same class of fact ethanol.dat records).  This says nothing about
+// aqueous reactions in general; those belong to reaction sets, not to
+// equilibrium speciation.
+aqueousSpeciation  none;
 
 cosmo
 {
