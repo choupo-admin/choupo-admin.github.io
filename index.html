@@ -452,7 +452,8 @@ energy balance      <span class="hot">reported</span></pre>
         <div class="score"><strong>Provenance</strong><span>measured, regressed, estimated and assumed data remain distinguishable</span></div>
       </div>
       <div class="evidence-copy">
-        <p>Every tutorial ships an <code>expected</code> golden-master file. <code>bin/runTests</code> re-runs the whole suite and flags any KPI drift or NaN/inf, so a regression is caught the moment it appears — across all <span data-inv="engines">4</span> engines.</p>
+        <p>Most tutorial cases ship an <code>expected</code> golden-master file (<strong data-inv="regressionChecks">255</strong> of <strong data-inv="runnableCases">288</strong> in this release); the rest are sweeps, deliberate refusal cases and composite sub-sectors, which are still run and still guarded against NaN/inf. <code>bin/runTests</code> re-runs the whole suite and flags any KPI drift, across all <span data-inv="engines">4</span> engines.</p>
+        <p>A passing golden proves an answer <em>has not moved</em>, never that it is right. Agreement with published measurement is claimed only where a case carries an explicit <code>anchor</code> row citing its primary source — a separate and much smaller set.</p>
         <p class="caution">Choupo is educational and research software, not certified process-design or safety software. Engineering use requires independent validation of models, data and results.</p>
       </div>
     </div>
