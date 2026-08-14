@@ -1,24 +1,4 @@
-import{ae as Ye,bd as Qe,aT as Ze,bq as Se,aJ as e,aK as tn,aR as cn,bg as Aa,ba as gn,b3 as d,a as qn,W as vn,G as x,B as bn,at as se,Z as S,a$ as fn,V as Ue,a0 as en,d as En,q as ia,_ as Ha,f as de,U as yt,c as nn,a3 as ra,g as Tt,i as vt,y as Pt,Q as R,A as Pe,L as ze,X as D,al as St,o as Ot,b6 as _a,b9 as At,av as Ht,aX as Gn,aV as Le,R as ce,p as _t,h as Et,bo as wt,l as Nt,m as xt,k as Rt}from"./index-DPVqNrvB.js";import{b as kt,d as Mt}from"./CsvAutoPlot-BZuBSbAz.js";import{G as Kt}from"./GibbsMapPanel-DJ6ZC8Nn.js";import{P as J,e as rn,c as Xe,a as no}from"./plotly-CzFLAkan.js";import{S as sa,p as qt,M as It}from"./exploreMccabePopOut-DKMmUfOK.js";import{S as Ao}from"./Slider-Dc0FQP-D.js";import{S as Tn}from"./Select-B3FKbIBJ.js";import{C as Eo}from"./Collapse-qv3dAZyk.js";import{D as la}from"./Divider-DELh_Qbc.js";import{C as Jt}from"./CopyButton-Dy-V3kDu.js";import"./InputsGroupFieldset-Cqeazpv1.js";/**
- * @license @tabler/icons-react v3.44.0 - MIT
- *
- * This source code is licensed under the MIT license.
- * See the LICENSE file in the root directory of this source tree.
- */const Vt=[["path",{d:"M12 6a2 2 0 1 0 4 0a2 2 0 1 0 -4 0",key:"svg-0"}],["path",{d:"M4 6l8 0",key:"svg-1"}],["path",{d:"M16 6l4 0",key:"svg-2"}],["path",{d:"M6 12a2 2 0 1 0 4 0a2 2 0 1 0 -4 0",key:"svg-3"}],["path",{d:"M4 12l2 0",key:"svg-4"}],["path",{d:"M10 12l10 0",key:"svg-5"}],["path",{d:"M15 18a2 2 0 1 0 4 0a2 2 0 1 0 -4 0",key:"svg-6"}],["path",{d:"M4 18l11 0",key:"svg-7"}],["path",{d:"M19 18l1 0",key:"svg-8"}]],Dt=Ye("outline","adjustments-horizontal","AdjustmentsHorizontal",Vt);/**
- * @license @tabler/icons-react v3.44.0 - MIT
- *
- * This source code is licensed under the MIT license.
- * See the LICENSE file in the root directory of this source tree.
- */const Ft=[["path",{d:"M3 19a9 9 0 0 1 9 0a9 9 0 0 1 9 0",key:"svg-0"}],["path",{d:"M3 6a9 9 0 0 1 9 0a9 9 0 0 1 9 0",key:"svg-1"}],["path",{d:"M3 6l0 13",key:"svg-2"}],["path",{d:"M12 6l0 13",key:"svg-3"}],["path",{d:"M21 6l0 13",key:"svg-4"}]],Gt=Ye("outline","book","Book",Ft);/**
- * @license @tabler/icons-react v3.44.0 - MIT
- *
- * This source code is licensed under the MIT license.
- * See the LICENSE file in the root directory of this source tree.
- */const Lt=[["path",{d:"M12 5l0 14",key:"svg-0"}],["path",{d:"M5 12l14 0",key:"svg-1"}]],jt=Ye("outline","plus","Plus",Lt);/**
- * @license @tabler/icons-react v3.44.0 - MIT
- *
- * This source code is licensed under the MIT license.
- * See the LICENSE file in the root directory of this source tree.
- */const Bt=[["path",{d:"M4 7l16 0",key:"svg-0"}],["path",{d:"M10 11l0 6",key:"svg-1"}],["path",{d:"M14 11l0 6",key:"svg-2"}],["path",{d:"M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12",key:"svg-3"}],["path",{d:"M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3",key:"svg-4"}]],Wt=Ye("outline","trash","Trash",Bt),On="explore.csv";function ve(n){if(n.estimate){const p=n.estimate;return{propsDict:{operations:[{name:"estimate",type:"estimateComponent",component:p.component,model:p.estimator??"Joback",groups:p.groups.map(q=>({group:q.group,count:q.count})),...p.reference&&Object.keys(p.reference).length>0?{reference:{...p.reference}}:{},...p.polymer&&(p.polymer.packing!==void 0||p.polymer.state!==void 0)?{polymer:{...p.polymer.packing!==void 0?{packing:p.polymer.packing}:{},...p.polymer.state!==void 0?{state:p.polymer.state}:{}}}:{},output:{proposal:"auto"}}]},thermoPackage:{recordType:"thermophysicalPropertySystem",schemaVersion:2,components:["water"],equilibrium:{formulation:"gammaPhi",liquid:{activityModel:{model:"ideal"},standardState:"pureLiquid"},vapour:{fugacityModel:"idealGas"}}},controlDict:{application:"choupoProps",description:"Property Explorer -- estimate a new component (ephemeral)",verbosity:2}}}const t={composition:{...n.state.composition}};n.state.P!==void 0&&(t.P=n.state.P),n.state.T!==void 0&&(t.T=n.state.T);const o={};n.state.P!==void 0&&(o.P=n.state.P),n.state.T!==void 0&&(o.T=n.state.T);const i=n.ternary?{name:"explore",type:"propertyScanTernary",mode:n.ternary.mode,state:o,grid:{n:n.ternary.n},...n.ternary.tieStride!==void 0?{tieStride:n.ternary.tieStride}:{},...n.ternary.shard?{shard:{k:n.ternary.shard.k,n:n.ternary.shard.n}}:{},output:{file:On}}:null,r=n.binaryLle?{name:"explore",type:"propertyScanBinary",state:o,grid:{n:n.binaryLle.n},output:{file:On}}:null,s=n.phaseDiagram?{name:"explore",type:"purePhaseDiagram",grid:{n:n.phaseDiagram.grid},...n.phaseDiagram.solid?{solid:{...n.phaseDiagram.solid}}:{},output:{file:On}}:null,m=n.psychrometry?{name:"explore",type:"psychrometricChart",carrier:n.psychrometry.carrier,condensable:n.psychrometry.condensable,P:n.psychrometry.P,TminC:n.psychrometry.TminC,TmaxC:n.psychrometry.TmaxC,grid:{n:n.psychrometry.gridN},relativeHumidity:[...n.psychrometry.rh],wetBulb:[...n.psychrometry.wetBulb],output:{file:On}}:null,l=n.scaling?{name:"explore",type:"scalingScan",...n.scaling.activityModel==="pitzer"?{activityModel:"pitzer"}:{},totals:Object.fromEntries(Object.entries(n.scaling.totals).map(([p,O])=>[p,`${O} mol/kg`])),pH:n.scaling.pH,...n.scaling.pCO2atm!==void 0?{atmosphere:{pCO2:`${n.scaling.pCO2atm} atm`}}:{},...n.scaling.T!==void 0?{temperature:n.scaling.T}:{},...n.scaling.equilibrate&&n.scaling.equilibrate.length>0?{equilibrate:{minerals:[...n.scaling.equilibrate]}}:{},...n.scaling.equilibrate&&n.scaling.equilibrate.length>0&&n.scaling.feedFlowM3h!==void 0?{feedFlow:`${n.scaling.feedFlowM3h} m3/h`}:{},recovery:{from:n.scaling.from,to:n.scaling.to,n:n.scaling.n},output:{file:On}}:null,f=n.gibbsmap?{name:"explore",type:"gibbsMap",elements:[...n.gibbsmap.elements],species:n.gibbsmap.species.map(p=>({name:p.name,atoms:[...p.atoms]})),feed:{...n.gibbsmap.feed},Tgrid:{from:n.gibbsmap.Tfrom,to:n.gibbsmap.Tto,n:n.gibbsmap.nT},Pgrid:{from:n.gibbsmap.Pfrom,to:n.gibbsmap.Pto,n:n.gibbsmap.nP,...n.gibbsmap.logP?{log:"true"}:{}},...n.gibbsmap.deltaT?{temperatureApproach:n.gibbsmap.deltaT}:{},metric:{...n.gibbsmap.metric},output:{file:On}}:null,c=n.steam?{name:"explore",type:"steamTables",...n.steam.mode==="saturation"?{saturation:{from:n.steam.from,to:n.steam.to,n:n.steam.n}}:{isobar:{P:n.steam.P??1e5,from:n.steam.from,to:n.steam.to,n:n.steam.n}},output:{file:On}}:null,C={operations:[s??m??i??r??l??f??c??{name:"explore",type:"propertyScan1D",vary:{variable:n.axis.variable,from:n.axis.from,to:n.axis.to,n:n.axis.n},state:t,properties:[...n.properties],output:{file:On}}]},y=()=>n.binaryLle!==void 0||n.ternary?.mode==="lle"||n.activityModel?.model==="UNIFAC"?{model:"UNIFAC"}:n.activityModel??{model:"ideal"},g=(()=>{const p=n.transport;if(!p)return null;const O={};p.model&&(O.viscosity={model:p.model}),p.thermalConductivity&&(O.thermalConductivity={model:p.thermalConductivity}),p.diffusivity&&(O.diffusivity={model:p.diffusivity});const N={};p.liquidViscosity&&(N.viscosity={model:p.liquidViscosity}),p.liquidConductivity&&(N.thermalConductivity={model:p.liquidConductivity});const W={};return Object.keys(O).length&&(W.vapour=O),Object.keys(N).length&&(W.liquid=N),Object.keys(W).length?W:null})(),v=n.ternary?.mode==="lle"||n.binaryLle||n.vleTwoLiquid?{recordType:"thermophysicalPropertySystem",schemaVersion:2,components:[...n.components],equilibrium:{formulation:"gammaGamma",liquidPhases:[{name:"liquid1",activityModel:y()},{name:"liquid2",activityModel:y()}],vapour:{fugacityModel:"idealGas"}}}:n.scaling?{recordType:"thermophysicalPropertySystem",schemaVersion:2,components:[...n.components],aqueousProperties:{solvent:"water",activityCoefficients:{model:"Davies",referenceBasis:"aqueousMolality"}}}:{recordType:"thermophysicalPropertySystem",schemaVersion:2,components:[...n.components],equilibrium:{formulation:"gammaPhi",liquid:{activityModel:n.activityModel??{model:"ideal"},standardState:"pureLiquid"},vapour:{fugacityModel:String((n.equationOfState??{model:"idealGas"}).model)}},...g?{transport:g}:{}},H={application:"choupoProps",description:`Property Explorer (interactive; ephemeral -- never written to disk)${n.mode==="pure"?" -- pure-component curves (composition has no effect)":n.mode==="mixture"?" -- mixture property at the stated composition":""}`,verbosity:2},E={propsDict:C,thermoPackage:v,controlDict:H};return n.componentFiles&&Object.keys(n.componentFiles).length>0&&(E.extraFiles={...n.componentFiles}),E}const Ut=`/*--------------------------------*- Choupo -*-----------------------*\\
+import{be as G,aU as F,b4 as j,aK as o,X as M,G as w,_ as m,d as q,I as z,V as Q,Y as l,h as x,c as B,q as Y,p as Z,a1 as $,B as X}from"./index-C1FbNKxI.js";import{C as nn}from"./Collapse-DNIeEQx-.js";import{D as en}from"./Divider-DqHeUN68.js";const on=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: 1Butene  (C4H8, CAS 106-98-9)
   PROPOSAL TIER -- UNVERIFIED.  Imported from CoolProp 7.2.0 (MIT);
   pure-fluid properties from the published reference EOS below.
@@ -107,7 +87,7 @@ cosmo
         installed   false;                 // install your own copy: bin/choupo-import-cosmo (-> data/local/cosmo/VT2005/)
     }
 }
-`,zt=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,an=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: Argon  (Ar, CAS 7440-37-1)
 
   Monatomic noble gas; ~0.93 % of air by mole.  Inert dilutent in
@@ -152,7 +132,7 @@ idealGasHeatCapacity
     coefficients  (20.79   0.0   0.0   0.0);
     Trange        (250  6000);
 }
-`,$t=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,tn=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: Atomic carbon (gas phase; relevant in very high-T sooting flames)
   Generated by bin/import_nasa.py from NASA-7 polynomial data
   (Burcat 2005 / JANAF).  No liquid phase at process conditions ---
@@ -181,7 +161,7 @@ idealGasHeatCapacity
     coefficients  (2.087274e+01   -1.512880e-04   5.778594e-08   1.026483e-13);
     Trange        (250  3000);
 }
-`,Yt=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,rn=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: Ethynyl radical (acetylene chain; soot-precursor chemistry)
   Generated by bin/import_nasa.py from NASA-7 polynomial data
   (GRI-Mech Version 3.0 Thermodynamics released 7/30/99).  No liquid phase at process conditions ---
@@ -210,7 +190,7 @@ idealGasHeatCapacity
     coefficients  (3.736422e+01   1.550725e-02   1.779219e-06   -1.627248e-09);
     Trange        (250  3000);
 }
-`,Qt=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,sn=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: Vinyl radical (ethylene oxidation; C2 chain carrier)
   Generated by bin/import_nasa.py from NASA-7 polynomial data
   (GRI-Mech Version 3.0 Thermodynamics released 7/30/99).  No liquid phase at process conditions ---
@@ -239,7 +219,7 @@ idealGasHeatCapacity
     coefficients  (1.334361e+01   1.166587e-01   -6.461380e-05   1.438098e-08);
     Trange        (250  3000);
 }
-`,Zt=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,ln=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: Ethyl radical (ethane/LPG oxidation entry channel)
   Generated by bin/import_nasa.py from NASA-7 polynomial data
   (GRI-Mech Version 3.0 Thermodynamics released 7/30/99).  No liquid phase at process conditions ---
@@ -268,7 +248,7 @@ idealGasHeatCapacity
     coefficients  (1.018531e+01   1.538585e-01   -6.726510e-05   1.097442e-08);
     Trange        (250  3000);
 }
-`,Xt=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,dn=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: Dicarbon monoxide radical (ketenyl decomposition)
   Generated by bin/import_nasa.py from NASA-7 polynomial data
   (BURCAT.THR).  No liquid phase at process conditions ---
@@ -297,7 +277,7 @@ idealGasHeatCapacity
     coefficients  (3.011259e+01   5.401806e-02   -3.704679e-05   9.667082e-09);
     Trange        (250  3000);
 }
-`,ni=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,cn=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: PROPARGYL radical -- THE soot gateway (C3H3 + C3H3 -> benzene ring)
   Generated by bin/import_nasa.py from NASA-7 polynomial data
   (BURCAT.THR).  No liquid phase at process conditions ---
@@ -326,7 +306,7 @@ idealGasHeatCapacity
     coefficients  (4.835286e+00   1.871185e-01   -1.227798e-04   3.093975e-08);
     Trange        (250  3000);
 }
-`,ei=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,pn=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: ALLYL radical (resonance-stabilised; propene oxidation)
   Generated by bin/import_nasa.py from NASA-7 polynomial data
   (BURCAT.THR).  No liquid phase at process conditions ---
@@ -355,7 +335,7 @@ idealGasHeatCapacity
     coefficients  (-1.516251e+01   2.897404e-01   -1.868262e-04   4.603796e-08);
     Trange        (250  3000);
 }
-`,oi=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,mn=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: n-Propyl radical (propane oxidation entry; GRI-Mech C3H7)
   Generated by bin/import_nasa.py from NASA-7 polynomial data
   (GRI-Mech Version 3.0 Thermodynamics released 7/30/99).  No liquid phase at process conditions ---
@@ -384,7 +364,7 @@ idealGasHeatCapacity
     coefficients  (-4.231040e-01   2.851245e-01   -1.612818e-04   3.576627e-08);
     Trange        (250  3000);
 }
-`,ai=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,un=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: Diacetylene (polyyne soot precursor)
   Generated by bin/import_nasa.py from NASA-7 polynomial data
   (BURCAT.THR).  No liquid phase at process conditions ---
@@ -413,7 +393,7 @@ idealGasHeatCapacity
     coefficients  (3.535365e+01   1.623116e-01   -1.197469e-04   3.346349e-08);
     Trange        (250  3000);
 }
-`,ti=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,hn=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: Vinylacetylene (C4 soot-growth intermediate)
   Generated by bin/import_nasa.py from NASA-7 polynomial data
   (BURCAT.THR).  No liquid phase at process conditions ---
@@ -454,7 +434,7 @@ cosmo
         installed   false;                 // install your own copy: bin/choupo-import-cosmo (-> data/local/cosmo/VT2005/)
     }
 }
-`,ii=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,Cn=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: CYCLOPENTADIENYL radical (aromatic-ring chemistry; Burcat cyPentadiene card -- the file's first C5H5 card is the LINEAR isomer)
   Generated by bin/import_nasa.py from NASA-7 polynomial data
   (CYCLOPENTADIENYL card (cyPentadiene, T05/10) hand-selected from).  No liquid phase at process conditions ---
@@ -483,7 +463,7 @@ idealGasHeatCapacity
     coefficients  (-1.789062e+01   3.969983e-01   -2.751466e-04   7.140120e-08);
     Trange        (250  3000);
 }
-`,ri=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,fn=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: PHENYL radical -- the aromatic growth radical (HACA); Burcat phenyl card, not the chain isomer
   Generated by bin/import_nasa.py from NASA-7 polynomial data
   (Cards hand-selected from BURCAT.THR (Goos, Burcat & Ruscic, ReSpecTh).  No liquid phase at process conditions ---
@@ -512,7 +492,7 @@ idealGasHeatCapacity
     coefficients  (-3.855596e+01   4.790385e-01   -3.286651e-04   8.359505e-08);
     Trange        (250  3000);
 }
-`,si=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,gn=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: Methylidyne radical (prompt-NOx initiator CH + N2; C1 chain)
   Generated by bin/import_nasa.py from NASA-7 polynomial data
   (GRI-Mech Version 3.0 Thermodynamics released 7/30/99).  No liquid phase at process conditions ---
@@ -541,7 +521,7 @@ idealGasHeatCapacity
     coefficients  (3.047126e+01   -8.260186e-03   1.443093e-05   -4.376441e-09);
     Trange        (250  3000);
 }
-`,li=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,bn=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: Triplet methylene (ground state; C1 combustion intermediate)
   Generated by bin/import_nasa.py from NASA-7 polynomial data
   (GRI-Mech Version 3.0 Thermodynamics released 7/30/99).  No liquid phase at process conditions ---
@@ -570,7 +550,7 @@ idealGasHeatCapacity
     coefficients  (3.085175e+01   1.385332e-02   1.326322e-06   -1.456827e-09);
     Trange        (250  3000);
 }
-`,di=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,Tn=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: Ketene (stable C2 intermediate of acetylene/acetyl chemistry)
   Generated by bin/import_nasa.py from NASA-7 polynomial data
   (GRI-Mech Version 3.0 Thermodynamics released 7/30/99).  No liquid phase at process conditions ---
@@ -611,7 +591,7 @@ cosmo
         installed   false;                 // install your own copy: bin/choupo-import-cosmo (-> data/local/cosmo/VT2005/)
     }
 }
-`,ci=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,yn=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: Hydroxymethyl radical (methanol oxidation, H-abstraction at C)
   Generated by bin/import_nasa.py from NASA-7 polynomial data
   (GRI-Mech Version 3.0 Thermodynamics released 7/30/99).  No liquid phase at process conditions ---
@@ -640,7 +620,7 @@ idealGasHeatCapacity
     coefficients  (2.795417e+01   7.857906e-02   -3.578698e-05   6.658555e-09);
     Trange        (250  3000);
 }
-`,pi=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,Pn=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: SINGLET methylene, GRI-Mech name CH2(S) -- an excited electronic state of CH2, kept as a separate kinetic species (fast insertion chemistry); no own CAS (electronic state)
   Generated by bin/import_nasa.py from NASA-7 polynomial data
   (GRI-Mech Version 3.0 Thermodynamics released 7/30/99).  No liquid phase at process conditions ---
@@ -669,7 +649,7 @@ idealGasHeatCapacity
     coefficients  (3.139709e+01   3.511753e-03   1.631868e-05   -7.054022e-09);
     Trange        (250  3000);
 }
-`,mi=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,vn=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: Methyl radical (dominant intermediate in CH4 / CH3OH oxidation)
   Generated by bin/import_nasa.py from NASA-7 polynomial data
   (Burcat 2005 / JANAF).  No liquid phase at process conditions ---
@@ -698,7 +678,7 @@ idealGasHeatCapacity
     coefficients  (2.773898e+01   3.717719e-02   -4.310241e-06   -1.759106e-09);
     Trange        (250  3000);
 }
-`,ui=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,Sn=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: Acetyl radical (acetaldehyde oxidation)
   Generated by bin/import_nasa.py from NASA-7 polynomial data
   (BURCAT.THR).  No liquid phase at process conditions ---
@@ -727,7 +707,7 @@ idealGasHeatCapacity
     coefficients  (1.592709e+01   1.352284e-01   -6.657100e-05   1.214190e-08);
     Trange        (250  3000);
 }
-`,hi=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,On=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: Methoxy radical (methanol oxidation, H-abstraction at O; CH3O/CH2OH branching)
   Generated by bin/import_nasa.py from NASA-7 polynomial data
   (GRI-Mech Version 3.0 Thermodynamics released 7/30/99).  No liquid phase at process conditions ---
@@ -756,7 +736,7 @@ idealGasHeatCapacity
     coefficients  (1.024754e+01   1.036636e-01   -4.129684e-05   4.945472e-09);
     Trange        (250  3000);
 }
-`,Ci=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,An=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: Methylperoxy radical (LOW-T autoignition chain; RO2 chemistry entry)
   Generated by bin/import_nasa.py from NASA-7 polynomial data
   (BURCAT.THR).  No liquid phase at process conditions ---
@@ -785,7 +765,7 @@ idealGasHeatCapacity
     coefficients  (1.553443e+01   1.436627e-01   -7.533988e-05   1.509157e-08);
     Trange        (250  3000);
 }
-`,fi=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,Hn=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: Methane  (CH4, CAS 74-82-8)
   Permanent gas at process temperatures (Tc = 190.56 K).  The Antoine
   block is carried for schema compliance; in practice CH4 only ever
@@ -864,7 +844,7 @@ pcsaft
 // dissolved methane is a NEUTRAL master (no aqueous
 // equilibria beyond dissolution); role solute carries the Henry route.
 aqueousSpeciation  none;
-`,gi=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,_n=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: Cyano radical (fuel-N and prompt-NOx chemistry)
   Generated by bin/import_nasa.py from NASA-7 polynomial data
   (GRI-Mech Version 3.0 Thermodynamics released 7/30/99).  No liquid phase at process conditions ---
@@ -893,7 +873,7 @@ idealGasHeatCapacity
     coefficients  (2.823603e+01   6.730521e-04   7.892078e-06   -3.486907e-09);
     Trange        (250  3000);
 }
-`,bi=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,En=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: Carbon monoxide  (CO, CAS 630-08-0)
   Permanent gas at any process-relevant temperature.  Antoine and Vliq
   carried for schema compliance only; Tc=132.85 K means we never see
@@ -953,7 +933,7 @@ cosmo
         installed   false;                 // install your own copy: bin/choupo-import-cosmo (-> data/local/cosmo/VT2005/)
     }
 }
-`,yi=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,Rn=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: Carbon dioxide  (CO2, CAS 124-38-9)
   Above its triple point (216.55 K, 5.18 bar) CO2 has a normal liquid
   range only up to Tc = 304.13 K.  In process work above ambient T it
@@ -1024,7 +1004,7 @@ aliases ( carbonDioxide );
 // set, master HCO3.
 aqueousSpeciation  carbonate;
 aqueousMapping ( { species HCO3; nu 1; } { species H; nu 1; } );
-`,Ti=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,Nn=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: Carbon monosulfide (CS2 oxidation intermediate)
   Generated by bin/import_nasa.py from NASA-7 polynomial data
   (BURCAT.THR).  No liquid phase at process conditions ---
@@ -1053,7 +1033,7 @@ idealGasHeatCapacity
     coefficients  (2.447785e+01   2.127918e-02   -1.292525e-05   2.770169e-09);
     Trange        (250  3000);
 }
-`,vi=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,kn=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: Carbon disulfide (viscose/xanthate solvent; sulfur combustion fuel)
   Generated by bin/import_nasa.py from NASA-7 polynomial data
   (BURCAT.THR).  No liquid phase at process conditions ---
@@ -1099,7 +1079,7 @@ cosmo
         installed   false;                 // install your own copy: bin/choupo-import-cosmo (-> data/local/cosmo/VT2005/)
     }
 }
-`,Pi=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,Kn=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: Calcium carbonate (CaCO3), CALCITE polymorph.  CAS 471-34-1.
 
   A NON-VOLATILE crystalline mineral solid: it never enters the vapour
@@ -1169,7 +1149,7 @@ solidPhases
         equilibrium { logK25 1.879; dH -28078.8; analytic ( 40.0171 -0.01928451 -5151.79 -8.66815 563713.9 ); validC ( 0 300 ); source "USGS PHREEQC phreeqc.dat (public domain); lit: 0 - 300 C, Ellis, 1959, Plummer and Busenberg, 1982"; }
     }
 }
-`,Si=`/*--------------------------------*- Choupo -*--------------------------------*\\
+`,Mn=`/*--------------------------------*- Choupo -*--------------------------------*\\
   Component: Calcium chloride (CaCl2, CAS 10043-52-4)
 
   Reference-state-layout native #2 (forum 2026-06-11).  Strong 2:1 electrolyte
@@ -1206,7 +1186,7 @@ dissociatesTo  { Ca 1; Cl 2; }   // ion stoichiometry (formula-like identity)
 // solid                            // SLOT: rho_p / k_v / Hf_298(s) + the
 // {                                //   hydrate \`forms\` (CaCl2.6H2O) -- fill
 // }                                //   with open primary data when needed.
-`,Oi=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,wn=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: Calcium oxide (CaO), LIME.  CAS 1305-78-8.
 
   A NON-VOLATILE refractory crystalline oxide: never enters the vapour
@@ -1258,7 +1238,7 @@ provenance
     solidHeatCapacity { origin literature; method "Wagman et al. NBS Tables 1982 (Cp298, carried constant)"; }
     rho_p { origin literature; method "lime crystal density ~3.34 g/cm3"; }
 }
-`,Ai=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,qn=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: Calcium sulfate (CaSO4), ANHYDRITE.  CAS 7778-18-9.
 
   A NON-VOLATILE crystalline mineral salt: never enters the vapour (K = 0).
@@ -1327,7 +1307,7 @@ solidPhases
         equilibrium { logK25 -4.25; dH -22400; analytic ( 5.725 -0.02478 -790.4 ); validC ( 50 160 ); source "USGS PHREEQC phreeqc.dat (public domain); lit: 50 - 160oC, 1 - 1e3 atm, anhydrite dissolution, Blount and Dickson, 1973, Am. Mineral. 58, 323"; }
     }
 }
-`,Hi=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,Jn=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: Atomic chlorine (chlorination chain carrier)
   Generated by bin/import_nasa.py from NASA-7 polynomial data
   (BURCAT.THR).  No liquid phase at process conditions ---
@@ -1356,7 +1336,7 @@ idealGasHeatCapacity
     coefficients  (1.917217e+01   1.321756e-02   -1.507334e-05   4.965445e-09);
     Trange        (250  3000);
 }
-`,_i=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,In=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: Chlorine  (Cl2, CAS 7782-50-5)
 
   Chlor-alkali product; widely used as a water-disinfection oxidiser
@@ -1421,7 +1401,7 @@ cosmo
         installed   false;                 // install your own copy: bin/choupo-import-cosmo (-> data/local/cosmo/VT2005/)
     }
 }
-`,Ei=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,Dn=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: Chlorine monoxide radical (Deacon/chlorination chemistry)
   Generated by bin/import_nasa.py from NASA-7 polynomial data
   (BURCAT.THR).  No liquid phase at process conditions ---
@@ -1450,7 +1430,7 @@ idealGasHeatCapacity
     coefficients  (2.885581e+01   2.187232e-02   -1.863745e-05   5.524575e-09);
     Trange        (250  3000);
 }
-`,wi=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,Vn=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: D2  (D2, CAS 7782-39-0)
   PROPOSAL TIER -- UNVERIFIED.  Imported from CoolProp 7.2.0 (MIT);
   pure-fluid properties from the published reference EOS below.
@@ -1528,7 +1508,7 @@ provenance
     triplePoint    "CoolProp reference EOS triple-point T,P";
     standardThermochemistry "NASA TM-4513 (McBride-Gordon-Reno 1993), H0/S0(298.15) from NASA-7 poly";
 }
-`,Ni=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,xn=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: Dichloroethane  (C2Cl2H4, CAS 107-06-2)
   PROPOSAL TIER -- UNVERIFIED.  Imported from CoolProp 7.2.0 (MIT);
   pure-fluid properties from the published reference EOS below.
@@ -1605,7 +1585,7 @@ cosmo
         installed   false;                 // install your own copy: bin/choupo-import-cosmo (-> data/local/cosmo/VT2005/)
     }
 }
-`,xi=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,Gn=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: Atomic hydrogen radical (combustion chain carrier)
   Generated by bin/import_nasa.py from NASA-7 polynomial data
   (Burcat 2005 / JANAF).  No liquid phase at process conditions ---
@@ -1634,7 +1614,7 @@ idealGasHeatCapacity
     coefficients  (2.078616e+01   -6.555412e-14   8.098801e-17   -3.010227e-20);
     Trange        (250  3000);
 }
-`,Ri=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,Fn=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: Hydrogen  (H2, CAS 1333-74-0)
   Element in its standard state -- by convention dHf_298 = 0 and the
   third-law entropy s_298 is the only absolute thermodynamic anchor.
@@ -1696,7 +1676,7 @@ cosmo
 // ---- Aqueous-speciation FACT (substance-level, classifier-read) ----
 // dissolved hydrogen: neutral master, no aqueous equilibria.
 aqueousSpeciation  none;
-`,ki=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,Bn=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: Hydrogen peroxide (oxidant; thermal decomposition product H2O2 -> 2 OH governs LT ignition delay)
   Generated by bin/import_nasa.py from NASA-7 polynomial data
   (Burcat 2005 / JANAF, public domain); dHf_298 and s_298 computed
@@ -1753,7 +1733,7 @@ cosmo
         installed   false;                 // install your own copy: bin/choupo-import-cosmo (-> data/local/cosmo/VT2005/)
     }
 }
-`,Mi=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,Ln=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: Hydrogen sulfide  (H2S, CAS 7783-06-4)
 
   Sour-gas contaminant in natural gas and biogas.  Removed by amine
@@ -1806,7 +1786,7 @@ idealGasHeatCapacity
 // H2S(aq) = HS- + H+: the sulfide set, master HS.
 aqueousSpeciation  sulfide;
 aqueousMapping ( { species HS; nu 1; } { species H; nu 1; } );
-`,Ki=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,Wn=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: Sulfuric acid (H2SO4), pure liquid.  CAS 7664-93-9.
 
   THE archetypal strong mineral acid.  This is the MOLECULAR component
@@ -1853,7 +1833,7 @@ provenance
     liquidHeatCapacity { origin literature; method "Wagman et al. NBS Tables 1982 (Cp298, carried constant)"; }
     Vliq { origin literature; method "pure-liquid density ~1.830 g/cm3 at 25 C"; }
 }
-`,qi=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,Un=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: Phosphoric acid (H3PO4, orthophosphoric).  CAS 7664-38-2.
 
   A triprotic mineral acid.  Pure H3PO4 MELTS at ~42 C, so at the 25 C
@@ -1915,7 +1895,7 @@ cosmo
         installed   false;                 // install your own copy: bin/choupo-import-cosmo (-> data/local/cosmo/VT2005/)
     }
 }
-`,Ii=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,jn=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: Ketenyl radical (acetylene oxidation backbone)
   Generated by bin/import_nasa.py from NASA-7 polynomial data
   (GRI-Mech Version 3.0 Thermodynamics released 7/30/99).  No liquid phase at process conditions ---
@@ -1944,7 +1924,7 @@ idealGasHeatCapacity
     coefficients  (2.779499e+01   8.633596e-02   -6.044055e-05   1.605766e-08);
     Trange        (250  3000);
 }
-`,Ji=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,zn=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: Formaldehyde  (HCHO / methanal, CAS 50-00-0)
 
   Largest-volume C1 oxygenate after methanol; intermediate in partial
@@ -1998,7 +1978,7 @@ cosmo
         installed   false;                 // install your own copy: bin/choupo-import-cosmo (-> data/local/cosmo/VT2005/)
     }
 }
-`,Vi=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,Qn=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: Hydrogen cyanide  (HCN, CAS 74-90-8)
 
   Produced industrially by the Andrussow process (CH4 + NH3 + 3/2 O2 ->
@@ -2053,7 +2033,7 @@ cosmo
         installed   false;                 // install your own copy: bin/choupo-import-cosmo (-> data/local/cosmo/VT2005/)
     }
 }
-`,Di=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,Yn=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: Formyl radical (the CO-formation gateway in all hydrocarbon flames)
   Generated by bin/import_nasa.py from NASA-7 polynomial data
   (GRI-Mech Version 3.0 Thermodynamics released 7/30/99).  No liquid phase at process conditions ---
@@ -2082,7 +2062,7 @@ idealGasHeatCapacity
     coefficients  (2.762661e+01   2.297074e-02   7.647011e-07   -3.379524e-09);
     Trange        (250  3000);
 }
-`,Fi=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,Zn=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: Hydrogen chloride  (HCl, CAS 7647-01-0)
 
   Combustion product of Cl-bearing fuels (PVC, etc.); waste-incinerator
@@ -2140,7 +2120,7 @@ cosmo
         installed   false;                 // install your own copy: bin/choupo-import-cosmo (-> data/local/cosmo/VT2005/)
     }
 }
-`,Gi=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,$n=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: Nitroxyl (HNO; NOx recombination chemistry)
   Generated by bin/import_nasa.py from NASA-7 polynomial data
   (GRI-Mech Version 3.0 Thermodynamics released 7/30/99).  No liquid phase at process conditions ---
@@ -2169,7 +2149,7 @@ idealGasHeatCapacity
     coefficients  (2.811561e+01   1.726685e-02   6.345158e-06   -3.928920e-09);
     Trange        (250  3000);
 }
-`,Li=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,Xn=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: Nitric acid (HNO3), pure liquid.  CAS 7697-37-2.
 
   A strong mineral acid.  This is the MOLECULAR component -- pure-liquid
@@ -2226,7 +2206,7 @@ cosmo
         installed   false;                 // install your own copy: bin/choupo-import-cosmo (-> data/local/cosmo/VT2005/)
     }
 }
-`,ji=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,ne=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: Hydroperoxyl radical (key chain carrier in low- and intermediate-T oxidation)
   Generated by bin/import_nasa.py from NASA-7 polynomial data
   (Burcat 2005 / JANAF).  No liquid phase at process conditions ---
@@ -2255,7 +2235,7 @@ idealGasHeatCapacity
     coefficients  (2.521790e+01   3.782100e-02   -1.994109e-05   4.480144e-09);
     Trange        (250  3000);
 }
-`,Bi=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,ee=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: Hypochlorous acid, gas (chlorine hydrolysis)
   Generated by bin/import_nasa.py from NASA-7 polynomial data
   (BURCAT.THR).  No liquid phase at process conditions ---
@@ -2284,7 +2264,7 @@ idealGasHeatCapacity
     coefficients  (2.663726e+01   4.422482e-02   -3.046322e-05   8.219116e-09);
     Trange        (250  3000);
 }
-`,Wi=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,oe=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: Nitrous acid, gas (NOx reservoir; deNOx chemistry)
   Generated by bin/import_nasa.py from NASA-7 polynomial data
   (BURCAT.THR).  No liquid phase at process conditions ---
@@ -2313,7 +2293,7 @@ idealGasHeatCapacity
     coefficients  (2.131731e+01   9.723497e-02   -6.786569e-05   1.775672e-08);
     Trange        (250  3000);
 }
-`,Ui=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,ae=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: HSO radical (H2S oxidation intermediate)
   Generated by bin/import_nasa.py from NASA-7 polynomial data
   (BURCAT.THR).  No liquid phase at process conditions ---
@@ -2342,7 +2322,7 @@ idealGasHeatCapacity
     coefficients  (2.348997e+01   4.804606e-02   -2.627570e-05   5.161921e-09);
     Trange        (250  3000);
 }
-`,zi=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,te=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: HO-SO2 radical (SO3 hydration path)
   Generated by bin/import_nasa.py from NASA-7 polynomial data
   (BURCAT.THR).  No liquid phase at process conditions ---
@@ -2371,7 +2351,7 @@ idealGasHeatCapacity
     coefficients  (3.173142e+01   1.291033e-01   -9.736731e-05   2.659097e-08);
     Trange        (250  3000);
 }
-`,$i=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,ie=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: Helium  (He, CAS 7440-59-7)
 
   Monatomic noble gas; the lowest-Tc substance on the periodic table
@@ -2416,7 +2396,7 @@ idealGasHeatCapacity
     coefficients  (20.79   0.0   0.0   0.0);
     Trange        (250  6000);
 }
-`,Yi=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,re=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: Potassium sulfate (K2SO4), ARCANITE.  CAS 7778-80-5.
 
   A NON-VOLATILE crystalline salt: never enters the vapour (K = 0).
@@ -2471,7 +2451,7 @@ solidPhases
         equilibrium { logK25 -1.776; dH 20920; analytic ( 674.142 0.30423 -18037 -280.236 0 -0.000144055 ); source "USGS PHREEQC phreeqc.dat (public domain); lit: ref. 3"; }
     }
 }
-`,Qi=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,se=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: Potassium chloride (KCl, CAS 7447-40-7)
 
   A non-volatile, fully-dissociating 1-1 salt (K+ + Cl-).  Highly soluble
@@ -2538,7 +2518,7 @@ solidPhases
         crystal { rho_p 1988.0; k_v 1.0; habit cube; }
     }
 }
-`,Zi=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,le=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: Potassium hydroxide (KOH), CAUSTIC POTASH.  CAS 1310-58-3.
 
   A NON-VOLATILE strong base (the potassium analogue of NaOH): never enters
@@ -2592,7 +2572,7 @@ provenance
     solidHeatCapacity { origin literature; method "Wagman et al. NBS Tables 1982 (Cp298, carried constant)"; }
     rho_p { origin literature; method "KOH crystal density ~2.04 g/cm3"; }
 }
-`,Xi=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,de=`/*--------------------------------*- Choupo -*-----------------------*\\
   Substance: Lithium chloride (LiCl, CAS 7447-41-8)
 
   UNIFIED substance file.  A non-volatile, fully-dissociating 1-1 salt
@@ -2631,7 +2611,7 @@ liquidHeatCapacity
     origin        asserted;
     why           "temporary energy-closure proxy; solid-lattice Dulong-Petit 6R value reused; not a physical liquid-LiCl Cp model";
 }
-`,nr=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,ce=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: MD3M  (C12H36O4Si5, CAS 141-63-9)
   PROPOSAL TIER -- UNVERIFIED.  Imported from CoolProp 7.2.0 (MIT);
   pure-fluid properties from the published reference EOS below.
@@ -2696,7 +2676,7 @@ provenance
     liquidCp       "polynomial fitted to CoolProp sat-liquid cp, maxerr 0.01%";
     triplePoint    "CoolProp reference EOS triple-point T,P";
 }
-`,er=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,pe=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: MD4M  (C14H42O5Si6, CAS 107-52-8)
   PROPOSAL TIER -- UNVERIFIED.  Imported from CoolProp 7.2.0 (MIT);
   pure-fluid properties from the published reference EOS below.
@@ -2761,7 +2741,7 @@ provenance
     liquidCp       "polynomial fitted to CoolProp sat-liquid cp, maxerr 0.02%";
     triplePoint    "CoolProp reference EOS triple-point T,P";
 }
-`,or=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,me=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: MDM  (C8H24O2Si3, CAS 107-51-7)
   PROPOSAL TIER -- UNVERIFIED.  Imported from CoolProp 7.2.0 (MIT);
   pure-fluid properties from the published reference EOS below.
@@ -2826,7 +2806,7 @@ provenance
     liquidCp       "polynomial fitted to CoolProp sat-liquid cp, maxerr 0.03%";
     triplePoint    "CoolProp reference EOS triple-point T,P";
 }
-`,ar=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,ue=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: Magnesium sulphate (MgSO4, CAS 7487-88-9)
 
   Divalent 1-1 electrolyte (Mg²⁺ + SO₄²⁻) --- a useful contrast to
@@ -2865,7 +2845,7 @@ dissociation   2;              // fully dissociated 1-1 (one Mg²⁺ + one SO₄
 // before any MgSO4 energy/heat-of-solution balance is run.  Until then this
 // solute is dissolved-only for NF rejection (captured via the membrane B_s,
 // not bulk thermo), and no energy balance consumes a MgSO4 formation number.
-`,tr=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,he=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: Atomic nitrogen radical (Zeldovich chain carrier for thermal NOx)
   Generated by bin/import_nasa.py from NASA-7 polynomial data
   (Burcat 2005 / JANAF).  No liquid phase at process conditions ---
@@ -2894,7 +2874,7 @@ idealGasHeatCapacity
     coefficients  (2.081025e+01   -1.107112e-04   1.354367e-07   -4.105201e-11);
     Trange        (250  3000);
 }
-`,ir=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,Ce=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: Nitrogen  (N2, CAS 7727-37-9)
   Element in its standard state -- dHf_298 = 0; s_298 is the only
   thermodynamic anchor.  Carries over as the (nearly) inert diluent in
@@ -2958,7 +2938,7 @@ aliases ( nitrogen );
 // ---- Aqueous-speciation FACT (substance-level, classifier-read) ----
 // dissolved nitrogen: neutral master, no aqueous equilibria.
 aqueousSpeciation  none;
-`,rr=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,fe=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: Diazene/diimide (NH2 recombination; DeNOx ladder)
   Generated by bin/import_nasa.py from NASA-7 polynomial data
   (BURCAT.THR).  No liquid phase at process conditions ---
@@ -2987,7 +2967,7 @@ idealGasHeatCapacity
     coefficients  (2.188419e+01   4.722296e-02   -3.956598e-06   -4.199167e-09);
     Trange        (250  3000);
 }
-`,sr=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,ge=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: Hydrazyl radical (hydrazine decomposition chain)
   Generated by bin/import_nasa.py from NASA-7 polynomial data
   (BURCAT.THR).  No liquid phase at process conditions ---
@@ -3016,7 +2996,7 @@ idealGasHeatCapacity
     coefficients  (1.633106e+01   1.028363e-01   -5.416946e-05   1.175937e-08);
     Trange        (250  3000);
 }
-`,lr=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,be=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: Hydrazine, GAS phase (monopropellant; Burcat gas card -- the file's first N2H4 cards are the liquid)
   Generated by bin/import_nasa.py from NASA-7 polynomial data
   (Cards hand-selected from BURCAT.THR (Goos, Burcat & Ruscic, ReSpecTh).  No liquid phase at process conditions ---
@@ -3057,7 +3037,7 @@ cosmo
         installed   false;                 // install your own copy: bin/choupo-import-cosmo (-> data/local/cosmo/VT2005/)
     }
 }
-`,dr=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,Te=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: Nitrous oxide  (N2O, CAS 10024-97-2)
 
   Greenhouse gas; emitted from agriculture (denitrification) and from
@@ -3101,7 +3081,7 @@ idealGasHeatCapacity
     coefficients  (21.62   7.281e-2   -5.778e-5   1.830e-8);
     Trange        (250  1500);
 }
-`,cr=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,ye=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: Isocyanato radical (fuel-N to NO conversion)
   Generated by bin/import_nasa.py from NASA-7 polynomial data
   (GRI-Mech Version 3.0 Thermodynamics released 7/30/99).  No liquid phase at process conditions ---
@@ -3130,7 +3110,7 @@ idealGasHeatCapacity
     coefficients  (2.499436e+01   6.210755e-02   -4.130526e-05   9.984720e-09);
     Trange        (250  3000);
 }
-`,pr=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,Pe=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: Imidogen radical (chain carrier in NH3 oxidation; intermediate in thermal-NOx chemistry)
   Generated by bin/import_nasa.py from NASA-7 polynomial data
   (Burcat 2005 / JANAF).  No liquid phase at process conditions ---
@@ -3159,7 +3139,7 @@ idealGasHeatCapacity
     coefficients  (3.046565e+01   -7.456692e-03   1.192632e-05   -3.670636e-09);
     Trange        (250  3000);
 }
-`,mr=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,ve=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: Amidogen radical (intermediate in fuel-NOx and SCR pathways)
   Generated by bin/import_nasa.py from NASA-7 polynomial data
   (Burcat 2005 / JANAF).  No liquid phase at process conditions ---
@@ -3188,7 +3168,7 @@ idealGasHeatCapacity
     coefficients  (3.212948e+01   1.216084e-03   1.661541e-05   -6.493001e-09);
     Trange        (250  3000);
 }
-`,ur=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,Se=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: Ammonia  (NH3, CAS 7664-41-7)
 
   The Haber-Bosch product (N2 + 3 H2 -> 2 NH3); a Choupo GibbsReactor
@@ -3294,7 +3274,7 @@ cosmo
 // the family total in the PHREEQC master convention, NH3 = NH4+ - H+.
 aqueousSpeciation  ammonia;
 aqueousMapping ( { species NH4; nu 1; } { species H; nu -1; } );
-`,hr=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,Oe=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: Ammonium chloride (NH4Cl), SAL AMMONIAC.  CAS 12125-02-9.
 
   A NON-VOLATILE crystalline salt at ambient conditions: never enters the
@@ -3353,7 +3333,7 @@ solidPhases
         equilibrium { logK25 1.2364; dH 14800; source "logK25 CALIBRATED to the measured pure-NH4Cl solubility 7.35 mol/kg at 298.15 K (Farelo, Fernandes & Avelino, J. Chem. Eng. Data 50 (2005) 1470) via Pitzer-HMW gamma_pm=0.565 at saturation; dH=+14.8 kJ/mol dissolution enthalpy (NH4Cl.dat solid datum vs ions.dat hfAq)"; }
     }
 }
-`,Cr=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,Ae=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: NNH radical (the NNH thermal-NOx route, N2 + H)
   Generated by bin/import_nasa.py from NASA-7 polynomial data
   (GRI-Mech Version 3.0 Thermodynamics released 7/30/99).  No liquid phase at process conditions ---
@@ -3382,7 +3362,7 @@ idealGasHeatCapacity
     coefficients  (2.588183e+01   3.230527e-02   -1.097568e-05   7.006435e-10);
     Trange        (250  3000);
 }
-`,fr=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,He=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: Nitric oxide  (NO, CAS 10102-43-9)
   The principal thermal-NOx pollutant from high-temperature combustion.
   Formed via the Zeldovich mechanism (N2 + O <-> NO + N, then
@@ -3425,7 +3405,7 @@ idealGasHeatCapacity
     coefficients  (29.35   -9.378e-4   9.747e-6   -4.187e-9);
     Trange        (250  1500);
 }
-`,gr=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,_e=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: Nitrogen dioxide  (NO2, CAS 10102-44-0)
 
   Combustion-NOx tail end (NO is the kinetic product of the Zeldovich
@@ -3469,7 +3449,7 @@ idealGasHeatCapacity
     coefficients  (24.23   0.04836   -2.080e-5   -1.000e-9);
     Trange        (250  1500);
 }
-`,br=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,Ee=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: Nitrate radical (night-time NOx; N2O5 chemistry)
   Generated by bin/import_nasa.py from NASA-7 polynomial data
   (BURCAT.THR).  No liquid phase at process conditions ---
@@ -3498,7 +3478,7 @@ idealGasHeatCapacity
     coefficients  (9.808650e+00   1.610657e-01   -1.309750e-04   3.669168e-08);
     Trange        (250  3000);
 }
-`,yr=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,Re=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: Sodium carbonate (Na2CO3), SODA ASH (anhydrous).  CAS 497-19-8.
 
   A NON-VOLATILE crystalline salt: never enters the vapour (K = 0).  Soda-ash
@@ -3543,7 +3523,7 @@ provenance
     solidHeatCapacity { origin literature; method "Wagman et al. NBS Tables 1982 (Cp298, carried constant)"; }
     rho_p { origin literature; method "anhydrous Na2CO3 density ~2.54 g/cm3"; }
 }
-`,Tr=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,Ne=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: Sodium sulfate (Na2SO4), THENARDITE (anhydrous).  CAS 7757-82-6.
 
   A NON-VOLATILE crystalline salt: never enters the vapour (K = 0).  Kraft
@@ -3602,7 +3582,7 @@ solidPhases
         equilibrium { logK25 0.65; dH -23100; analytic ( 159.849 0.01699 -5000 -59.6073 ); source "USGS PHREEQC phreeqc.dat (public domain); lit: ref. 3"; }
     }
 }
-`,vr=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,ke=`/*--------------------------------*- Choupo -*-----------------------*\\
   Substance: Sodium chloride (NaCl, CAS 7647-14-5)
 
   UNIFIED substance file (proposal docs/architecture/proposals/
@@ -3691,7 +3671,7 @@ solidPhases
         }
     }
 }
-`,Pr=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,Ke=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: Sodium bicarbonate (NaHCO3), BAKING SODA.  CAS 144-55-8.
 
   A NON-VOLATILE crystalline salt: never enters the vapour (K = 0).
@@ -3747,7 +3727,7 @@ solidPhases
         equilibrium { logK25 -0.413; dH -14899.2; source "USGS PHREEQC pitzer.dat/phreeqc.dat (public domain); reaction re-expressed to Choupo master basis from Nahcolite"; }
     }
 }
-`,Sr=`/*--------------------------------*- Choupo -*--------------------------------*\\
+`,Me=`/*--------------------------------*- Choupo -*--------------------------------*\\
   Component: Sodium hydroxide (NaOH, CAS 1310-73-2)
 
   THE FIRST reference-state-layout native (forum 2026-06-11): data grouped by
@@ -3810,7 +3790,7 @@ solidPhases
         crystal { rho_p 2130.0; k_v 0.5235987756; habit sphere; }
     }
 }
-`,Or=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,we=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: Atomic oxygen radical (combustion chain carrier; reaches ~5% in stoichiometric flames near 2400 K)
   Generated by bin/import_nasa.py from NASA-7 polynomial data
   (Burcat 2005 / JANAF).  No liquid phase at process conditions ---
@@ -3839,7 +3819,7 @@ idealGasHeatCapacity
     coefficients  (2.349486e+01   -7.234569e-03   6.712592e-06   -2.062152e-09);
     Trange        (250  3000);
 }
-`,Ar=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,qe=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: Oxygen  (O2, CAS 7782-44-7)
   Element in its standard state -- dHf_298 = 0 by definition; the
   third-law absolute entropy is the only thermodynamic anchor.
@@ -3892,7 +3872,7 @@ aliases ( oxygen );
 // dissolved oxygen: neutral master, no aqueous equilibria
 // in the standard network.
 aqueousSpeciation  none;
-`,Hr=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,Je=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: Ozone (atmospheric oxidant; also used as a strong industrial oxidiser in cold-flame chemistry)
   Generated by bin/import_nasa.py from NASA-7 polynomial data
   (Burcat 2005 / JANAF; NASA TM-4513, McBride-Gordon-Reno 1993).
@@ -3933,7 +3913,7 @@ idealGasHeatCapacity
     coefficients  (1.766102e+01   9.422683e-02   -8.017863e-05   2.365359e-08);
     Trange        (250  1500);
 }
-`,_r=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,Ie=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: Hydroxyl radical  (OH, CAS 3352-57-6)
 
   The dominant chain-carrier in any high-temperature combustion;
@@ -3974,7 +3954,7 @@ idealGasHeatCapacity
     coefficients  (30.05   -1.124e-2   1.793e-5   -7.000e-9);
     Trange        (250  3000);
 }
-`,Er=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,De=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: OrthoDeuterium  (N/A, CAS 7782-39-0o)
   PROPOSAL TIER -- UNVERIFIED.  Imported from CoolProp 7.2.0 (MIT);
   pure-fluid properties from the published reference EOS below.
@@ -4045,7 +4025,7 @@ provenance
     liquidCp       "polynomial fitted to CoolProp sat-liquid cp, maxerr 0.00%";
     triplePoint    "CoolProp reference EOS triple-point T,P";
 }
-`,wr=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,Ve=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: OrthoHydrogen  (N/A, CAS 1333-74-0o)
   PROPOSAL TIER -- UNVERIFIED.  Imported from CoolProp 7.2.0 (MIT);
   pure-fluid properties from the published reference EOS below.
@@ -4121,7 +4101,7 @@ cosmo
         installed   false;                 // install your own copy: bin/choupo-import-cosmo (-> data/local/cosmo/VT2005/)
     }
 }
-`,Nr=`/*--------------------------------*- Choupo -*--------------------------------*\\
+`,xe=`/*--------------------------------*- Choupo -*--------------------------------*\\
   Component: Poly(ethylene terephthalate)
 
   A commodity polymer as a NONVOLATILE pseudo-component (Pareto over the Polymer
@@ -4166,7 +4146,7 @@ provenance
 
 // Solid polymer: no gas/liquid transport correlations apply (empty by design).
 
-`,xr=`/*--------------------------------*- Choupo -*--------------------------------*\\
+`,Ge=`/*--------------------------------*- Choupo -*--------------------------------*\\
   Component: Poly(methyl methacrylate)
 
   A commodity polymer as a NONVOLATILE pseudo-component (Pareto over the Polymer
@@ -4211,7 +4191,7 @@ provenance
 
 // Solid polymer: no gas/liquid transport correlations apply (empty by design).
 
-`,Rr=`/*--------------------------------*- Choupo -*--------------------------------*\\
+`,Fe=`/*--------------------------------*- Choupo -*--------------------------------*\\
   Component: Poly(vinyl chloride), rigid
 
   A commodity polymer as a NONVOLATILE pseudo-component (Pareto over the Polymer
@@ -4256,7 +4236,7 @@ provenance
 
 // Solid polymer: no gas/liquid transport correlations apply (empty by design).
 
-`,kr=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,Be=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: ParaDeuterium  (N/A, CAS 7782-39-0p)
   PROPOSAL TIER -- UNVERIFIED.  Imported from CoolProp 7.2.0 (MIT);
   pure-fluid properties from the published reference EOS below.
@@ -4327,7 +4307,7 @@ provenance
     liquidCp       "polynomial fitted to CoolProp sat-liquid cp, maxerr 0.00%";
     triplePoint    "CoolProp reference EOS triple-point T,P";
 }
-`,Mr=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,Le=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: ParaHydrogen  (N/A, CAS 1333-74-0p)
   PROPOSAL TIER -- UNVERIFIED.  Imported from CoolProp 7.2.0 (MIT);
   pure-fluid properties from the published reference EOS below.
@@ -4403,7 +4383,7 @@ cosmo
         installed   false;                 // install your own copy: bin/choupo-import-cosmo (-> data/local/cosmo/VT2005/)
     }
 }
-`,Kr=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,We=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: R11  (C1Cl3F1, CAS 75-69-4)
   PROPOSAL TIER -- UNVERIFIED.  Imported from CoolProp 7.2.0 (MIT);
   pure-fluid properties from the published reference EOS below.
@@ -4500,7 +4480,7 @@ cosmo
         installed   false;                 // install your own copy: bin/choupo-import-cosmo (-> data/local/cosmo/VT2005/)
     }
 }
-`,qr=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,Ue=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: R113  (C2Cl3F3, CAS 76-13-1)
   PROPOSAL TIER -- UNVERIFIED.  Imported from CoolProp 7.2.0 (MIT);
   pure-fluid properties from the published reference EOS below.
@@ -4597,7 +4577,7 @@ cosmo
         installed   false;                 // install your own copy: bin/choupo-import-cosmo (-> data/local/cosmo/VT2005/)
     }
 }
-`,Ir=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,je=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: R12  (C1Cl2F2, CAS 75-71-8)
   PROPOSAL TIER -- UNVERIFIED.  Imported from CoolProp 7.2.0 (MIT);
   pure-fluid properties from the published reference EOS below.
@@ -4694,7 +4674,7 @@ cosmo
         installed   false;                 // install your own copy: bin/choupo-import-cosmo (-> data/local/cosmo/VT2005/)
     }
 }
-`,Jr=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,ze=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: R1234yf  (C3F4H2, CAS 754-12-1)
   PROPOSAL TIER -- UNVERIFIED.  Imported from CoolProp 7.2.0 (MIT);
   pure-fluid properties from the published reference EOS below.
@@ -4779,7 +4759,7 @@ provenance
     triplePoint    "CoolProp reference EOS triple-point T,P";
     preserved      "from prior proposal (NOT CoolProp): standardThermochemistry, groups";
 }
-`,Vr=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,Qe=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: R1234zeE  (C3F4H2, CAS 29118-24-9)
   PROPOSAL TIER -- UNVERIFIED.  Imported from CoolProp 7.2.0 (MIT);
   pure-fluid properties from the published reference EOS below.
@@ -4864,7 +4844,7 @@ provenance
     triplePoint    "CoolProp reference EOS triple-point T,P";
     preserved      "from prior proposal (NOT CoolProp): standardThermochemistry, groups";
 }
-`,Dr=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,Ye=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: R1234zeZ  (C3F4H2, CAS 29118-25-0)
   PROPOSAL TIER -- UNVERIFIED.  Imported from CoolProp 7.2.0 (MIT);
   pure-fluid properties from the published reference EOS below.
@@ -4949,7 +4929,7 @@ provenance
     triplePoint    "CoolProp reference EOS triple-point T,P";
     preserved      "from prior proposal (NOT CoolProp): standardThermochemistry, groups";
 }
-`,Fr=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,Ze=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: R134a  (C2F4H2, CAS 811-97-2)
   PROPOSAL TIER -- UNVERIFIED.  Imported from CoolProp 7.2.0 (MIT);
   pure-fluid properties from the published reference EOS below.
@@ -5046,7 +5026,7 @@ cosmo
         installed   false;                 // install your own copy: bin/choupo-import-cosmo (-> data/local/cosmo/VT2005/)
     }
 }
-`,Gr=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,$e=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: R13I1  (C1F3I1, CAS 2314-97-8)
   PROPOSAL TIER -- UNVERIFIED.  Imported from CoolProp 7.2.0 (MIT);
   pure-fluid properties from the published reference EOS below.
@@ -5131,7 +5111,7 @@ provenance
     triplePoint    "CoolProp reference EOS triple-point T,P";
     preserved      "from prior proposal (NOT CoolProp): standardThermochemistry, groups";
 }
-`,Lr=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,Xe=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: R143a  (C2F3H3, CAS 420-46-2)
   PROPOSAL TIER -- UNVERIFIED.  Imported from CoolProp 7.2.0 (MIT);
   pure-fluid properties from the published reference EOS below.
@@ -5228,7 +5208,7 @@ cosmo
         installed   false;                 // install your own copy: bin/choupo-import-cosmo (-> data/local/cosmo/VT2005/)
     }
 }
-`,jr=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,no=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: R21  (C1Cl2F1H1, CAS 75-43-4)
   PROPOSAL TIER -- UNVERIFIED.  Imported from CoolProp 7.2.0 (MIT);
   pure-fluid properties from the published reference EOS below.
@@ -5325,7 +5305,7 @@ cosmo
         installed   false;                 // install your own copy: bin/choupo-import-cosmo (-> data/local/cosmo/VT2005/)
     }
 }
-`,Br=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,eo=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: R218  (C3F8, CAS 76-19-7)
   PROPOSAL TIER -- UNVERIFIED.  Imported from CoolProp 7.2.0 (MIT);
   pure-fluid properties from the published reference EOS below.
@@ -5422,7 +5402,7 @@ cosmo
         installed   false;                 // install your own copy: bin/choupo-import-cosmo (-> data/local/cosmo/VT2005/)
     }
 }
-`,Wr=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,oo=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: R22  (C1Cl1F2H1, CAS 75-45-6)
   PROPOSAL TIER -- UNVERIFIED.  Imported from CoolProp 7.2.0 (MIT);
   pure-fluid properties from the published reference EOS below.
@@ -5519,7 +5499,7 @@ cosmo
         installed   false;                 // install your own copy: bin/choupo-import-cosmo (-> data/local/cosmo/VT2005/)
     }
 }
-`,Ur=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,ao=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: R236EA  (C3F6H2, CAS 431-63-0)
   PROPOSAL TIER -- UNVERIFIED.  Imported from CoolProp 7.2.0 (MIT);
   pure-fluid properties from the published reference EOS below.
@@ -5616,7 +5596,7 @@ cosmo
         installed   false;                 // install your own copy: bin/choupo-import-cosmo (-> data/local/cosmo/VT2005/)
     }
 }
-`,zr=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,to=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: R245fa  (C3F5H3, CAS 460-73-1)
   PROPOSAL TIER -- UNVERIFIED.  Imported from CoolProp 7.2.0 (MIT);
   pure-fluid properties from the published reference EOS below.
@@ -5701,7 +5681,7 @@ provenance
     triplePoint    "CoolProp reference EOS triple-point T,P";
     preserved      "from prior proposal (NOT CoolProp): standardThermochemistry, groups";
 }
-`,$r=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,io=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: R32  (C1F2H2, CAS 75-10-5)
   PROPOSAL TIER -- UNVERIFIED.  Imported from CoolProp 7.2.0 (MIT);
   pure-fluid properties from the published reference EOS below.
@@ -5798,7 +5778,7 @@ cosmo
         installed   false;                 // install your own copy: bin/choupo-import-cosmo (-> data/local/cosmo/VT2005/)
     }
 }
-`,Yr=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,ro=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: R365MFC  (C4F5H5, CAS 406-58-6)
   PROPOSAL TIER -- UNVERIFIED.  Imported from CoolProp 7.2.0 (MIT);
   pure-fluid properties from the published reference EOS below.
@@ -5883,7 +5863,7 @@ provenance
     triplePoint    "CoolProp reference EOS triple-point T,P";
     preserved      "from prior proposal (NOT CoolProp): standardThermochemistry, groups";
 }
-`,Qr=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,so=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: RC318  (C4F8, CAS 115-25-3)
   PROPOSAL TIER -- UNVERIFIED.  Imported from CoolProp 7.2.0 (MIT);
   pure-fluid properties from the published reference EOS below.
@@ -5993,7 +5973,7 @@ cosmo
         installed   false;                 // install your own copy: bin/choupo-import-cosmo (-> data/local/cosmo/VT2005/)
     }
 }
-`,Zr=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,lo=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: Atomic sulfur (H2S/Claus combustion chain)
   Generated by bin/import_nasa.py from NASA-7 polynomial data
   (BURCAT.THR).  No liquid phase at process conditions ---
@@ -6022,7 +6002,7 @@ idealGasHeatCapacity
     coefficients  (2.575614e+01   -8.338141e-03   5.098220e-06   -1.047269e-09);
     Trange        (250  3000);
 }
-`,Xr=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,co=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: Disulfur (sulfur vapour dimer; Claus furnace)
   Generated by bin/import_nasa.py from NASA-7 polynomial data
   (BURCAT.THR).  No liquid phase at process conditions ---
@@ -6051,7 +6031,7 @@ idealGasHeatCapacity
     coefficients  (2.668876e+01   2.577297e-02   -2.184278e-05   6.847438e-09);
     Trange        (250  3000);
 }
-`,ns=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,po=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: SF6  (F6S1, CAS 2551-62-4)
   PROPOSAL TIER -- UNVERIFIED.  Imported from CoolProp 7.2.0 (MIT);
   pure-fluid properties from the published reference EOS below.
@@ -6114,7 +6094,7 @@ provenance
     liquidCp       "polynomial fitted to CoolProp sat-liquid cp, maxerr 0.03%";
     triplePoint    "CoolProp reference EOS triple-point T,P";
 }
-`,es=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,mo=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: Mercapto radical (H2S oxidation chain carrier)
   Generated by bin/import_nasa.py from NASA-7 polynomial data
   (BURCAT.THR).  No liquid phase at process conditions ---
@@ -6143,7 +6123,7 @@ idealGasHeatCapacity
     coefficients  (3.681202e+01   -2.181727e-02   2.603521e-05   -8.282050e-09);
     Trange        (250  3000);
 }
-`,os=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,uo=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: Sulfur monoxide radical (SO2 formation gateway)
   Generated by bin/import_nasa.py from NASA-7 polynomial data
   (BURCAT.THR).  No liquid phase at process conditions ---
@@ -6172,7 +6152,7 @@ idealGasHeatCapacity
     coefficients  (2.406302e+01   2.550582e-02   -1.842887e-05   4.948120e-09);
     Trange        (250  3000);
 }
-`,as=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,ho=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: Sulfur dioxide  (SO2, CAS 7446-09-5)
 
   Primary product of combusting S-bearing fuels; feedstock for
@@ -6233,7 +6213,7 @@ cosmo
         installed   false;                 // install your own copy: bin/choupo-import-cosmo (-> data/local/cosmo/VT2005/)
     }
 }
-`,ts=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,Co=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: Sulfur trioxide (SO2 oxidation; acid dew point)
   Generated by bin/import_nasa.py from NASA-7 polynomial data
   (BURCAT.THR).  No liquid phase at process conditions ---
@@ -6262,7 +6242,7 @@ idealGasHeatCapacity
     coefficients  (2.165909e+01   1.233941e-01   -9.445575e-05   2.536505e-08);
     Trange        (250  3000);
 }
-`,is=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,fo=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: Xe  (Xe1, CAS 7440-63-3)
   PROPOSAL TIER -- UNVERIFIED.  Imported from CoolProp 7.2.0 (MIT);
   pure-fluid properties from the published reference EOS below.
@@ -6333,7 +6313,7 @@ provenance
     liquidCp       "polynomial fitted to CoolProp sat-liquid cp, maxerr 0.00%";
     triplePoint    "CoolProp reference EOS triple-point T,P";
 }
-`,rs=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,go=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: Acetaldehyde CH3CHO (partial-oxidation intermediate; GAS-PHASE combustion entry -- liquid/Psat blocks pending curation for process use)
   Generated by bin/import_nasa.py from NASA-7 polynomial data
   (GRI-Mech Version 3.0 Thermodynamics released 7/30/99).  No liquid phase at process conditions ---
@@ -6379,7 +6359,7 @@ cosmo
         installed   false;                 // install your own copy: bin/choupo-import-cosmo (-> data/local/cosmo/VT2005/)
     }
 }
-`,ss=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,bo=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: Acetic Acid  (CH3COOH, C2H4O2, CAS 64-19-7)
   Note: vapour-phase dimerisation is not a pure-component property and is
         therefore not declared in this component record.  Reactive VLE
@@ -6465,7 +6445,7 @@ cosmo
 // bridge delivers the acetate family total, HAc = Acetate- + H+.
 aqueousSpeciation  aceticAcid;
 aqueousMapping ( { species Acetate; nu 1; } { species H; nu 1; } );
-`,ls=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,To=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: Acetone  (C3H6O, CAS 67-64-1)
   Sources:   constants + vapour pressure cross-checked against CoolProp
              7.2.0 (MIT) within ~1%.  Ideal-gas formation properties and
@@ -6545,7 +6525,7 @@ cosmo
         installed   false;                 // install your own copy: bin/choupo-import-cosmo (-> data/local/cosmo/VT2005/)
     }
 }
-`,ds=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,yo=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: Acetylene  (C2H2, CAS 74-86-2)
 
   Triple bond C=C; the lightest endothermic hydrocarbon
@@ -6608,7 +6588,7 @@ cosmo
         installed   false;                 // install your own copy: bin/choupo-import-cosmo (-> data/local/cosmo/VT2005/)
     }
 }
-`,cs=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,Po=`/*--------------------------------*- Choupo -*-----------------------*\\
   Mineral: akermanite (Ca2MgSi2O7) -- unified substance file.
   One canonical record per chemical identity; the solid-phase dissolution
   equilibrium (Ksp) lives here as a typed solidPhase (roadmap Phase D).
@@ -6625,7 +6605,7 @@ solidPhases
         equilibrium { logK25 45.23; dH -289000; source "USGS PHREEQC pitzer.dat/phreeqc.dat (public domain); reaction re-expressed to Choupo master basis from Akermanite"; }
     }
 }
-`,ps=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,vo=`/*--------------------------------*- Choupo -*-----------------------*\\
   Mineral: anthophyllite (Mg7Si8O22(OH)2) -- unified substance file.
   One canonical record per chemical identity; the solid-phase dissolution
   equilibrium (Ksp) lives here as a typed solidPhase (roadmap Phase D).
@@ -6642,7 +6622,7 @@ solidPhases
         equilibrium { logK25 66.8; dH -483000; source "USGS PHREEQC pitzer.dat/phreeqc.dat (public domain); reaction re-expressed to Choupo master basis from Anthophyllite"; }
     }
 }
-`,ms=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,So=`/*--------------------------------*- Choupo -*-----------------------*\\
   Mineral: artinite (Mg2CO3(OH)2:3H2O) -- unified substance file.
   One canonical record per chemical identity; the solid-phase dissolution
   equilibrium (Ksp) lives here as a typed solidPhase (roadmap Phase D).
@@ -6659,7 +6639,7 @@ solidPhases
         equilibrium { logK25 19.66; dH -130000; source "USGS PHREEQC pitzer.dat/phreeqc.dat (public domain); reaction re-expressed to Choupo master basis from Artinite"; }
     }
 }
-`,us=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,Oo=`/*--------------------------------*- Choupo -*-----------------------*\\
   Mineral: barite (BaSO4) -- unified substance file.
   One canonical record per chemical identity; the solid-phase dissolution
   equilibrium (Ksp) lives here as a typed solidPhase (roadmap Phase D).
@@ -6683,7 +6663,7 @@ solidPhases
         }
     }
 }
-`,hs=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,Ao=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: Benzene  (C6H6, CAS 71-43-2)
   Sources:   constants (Tc/Pc/omega/MW/Tb) + vapour pressure cross-checked
              against CoolProp 7.2.0 (MIT); ideal-gas formation enthalpy/
@@ -6772,7 +6752,7 @@ cosmo
         installed   false;                 // install your own copy: bin/choupo-import-cosmo (-> data/local/cosmo/VT2005/)
     }
 }
-`,Cs=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,Ho=`/*--------------------------------*- Choupo -*-----------------------*\\
   Mineral: bischofite (MgCl2:6H2O) -- unified substance file.
   One canonical record per chemical identity; the solid-phase dissolution
   equilibrium (Ksp) lives here as a typed solidPhase (roadmap Phase D).
@@ -6789,7 +6769,7 @@ solidPhases
         equilibrium { logK25 4.455; dH 0; analytic ( 7.526 -0.01114 115.7 0 0 0 ); validC ( 0 200 ); source "USGS PHREEQC pitzer.dat/phreeqc.dat (public domain); reaction re-expressed to Choupo master basis from Bischofite"; }
     }
 }
-`,fs=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,_o=`/*--------------------------------*- Choupo -*-----------------------*\\
   Mineral: bloedite (Na2Mg(SO4)2:4H2O) -- unified substance file.
   One canonical record per chemical identity; the solid-phase dissolution
   equilibrium (Ksp) lives here as a typed solidPhase (roadmap Phase D).
@@ -6806,7 +6786,7 @@ solidPhases
         equilibrium { logK25 -2.347; dH 0; source "USGS PHREEQC pitzer.dat/phreeqc.dat (public domain); reaction re-expressed to Choupo master basis from Bloedite"; }
     }
 }
-`,gs=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,Eo=`/*--------------------------------*- Choupo -*-----------------------*\\
   Mineral: burkeite (Na6CO3(SO4)2) -- unified substance file.
   One canonical record per chemical identity; the solid-phase dissolution
   equilibrium (Ksp) lives here as a typed solidPhase (roadmap Phase D).
@@ -6823,7 +6803,7 @@ solidPhases
         equilibrium { logK25 9.557; dH -14899.2; source "USGS PHREEQC pitzer.dat/phreeqc.dat (public domain); reaction re-expressed to Choupo master basis from Burkeite"; }
     }
 }
-`,bs=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,Ro=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: Calcium hydroxide (Ca(OH)2), PORTLANDITE.  CAS 1305-62-0.
 
   A NON-VOLATILE crystalline base: it never enters the vapour (K = 0) and
@@ -6897,7 +6877,7 @@ solidPhases
         equilibrium { logK25 22.81; dH -112800; source "USGS PHREEQC pitzer.dat/phreeqc.dat (public domain); reaction re-expressed to Choupo master basis from Portlandite"; }
     }
 }
-`,ys=`/*--------------------------------*- Choupo -*--------------------------------*\\
+`,No=`/*--------------------------------*- Choupo -*--------------------------------*\\
   Component: Calcium tartrate (CaC4H4O6).  CAS 3164-34-9.  MW 188.15 g/mol.
 
   The SPARINGLY-SOLUBLE calcium salt of the natural (wine) route to tartaric
@@ -6953,7 +6933,7 @@ liquidHeatCapacity
     coefficients  ( 210.0  0.0  0.0 );
     Trange        ( 298  400 );
 }
-`,Ts=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,ko=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: carbonylSulfide  (C1O1S1, CAS 463-58-1)
   PROPOSAL TIER -- UNVERIFIED.  Imported from CoolProp 7.2.0 (MIT);
   pure-fluid properties from the published reference EOS below.
@@ -7030,7 +7010,7 @@ cosmo
         installed   false;                 // install your own copy: bin/choupo-import-cosmo (-> data/local/cosmo/VT2005/)
     }
 }
-`,vs=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,Ko=`/*--------------------------------*- Choupo -*-----------------------*\\
   Mineral: carnallite (KMgCl3:6H2O) -- unified substance file.
   One canonical record per chemical identity; the solid-phase dissolution
   equilibrium (Ksp) lives here as a typed solidPhase (roadmap Phase D).
@@ -7047,7 +7027,7 @@ solidPhases
         equilibrium { logK25 4.35; dH 1170; analytic ( 24.06 -0.0311 -3090 0 0 0 ); validC ( 0 200 ); source "USGS PHREEQC pitzer.dat/phreeqc.dat (public domain); reaction re-expressed to Choupo master basis from Carnallite"; }
     }
 }
-`,Ps=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,Mo=`/*--------------------------------*- Choupo -*-----------------------*\\
   Mineral: celestite (SrSO4) -- unified substance file.
   One canonical record per chemical identity; the solid-phase dissolution
   equilibrium (Ksp) lives here as a typed solidPhase (roadmap Phase D).
@@ -7071,7 +7051,7 @@ solidPhases
         }
     }
 }
-`,Ss=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,wo=`/*--------------------------------*- Choupo -*-----------------------*\\
   Mineral: chrysotile (Mg3Si2O5(OH)4) -- unified substance file.
   One canonical record per chemical identity; the solid-phase dissolution
   equilibrium (Ksp) lives here as a typed solidPhase (roadmap Phase D).
@@ -7088,7 +7068,7 @@ solidPhases
         equilibrium { logK25 32.2; dH -195811; analytic ( 13.248 0 10217.1 -6.1894 0 0 ); validC ( 0 200 ); source "USGS PHREEQC pitzer.dat/phreeqc.dat (public domain); reaction re-expressed to Choupo master basis from Chrysotile"; }
     }
 }
-`,Os=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,qo=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: cis2Butene  (C4H8, CAS 590-18-1)
   PROPOSAL TIER -- UNVERIFIED.  Imported from CoolProp 7.2.0 (MIT);
   pure-fluid properties from the published reference EOS below.
@@ -7185,7 +7165,7 @@ cosmo
         installed   false;                 // install your own copy: bin/choupo-import-cosmo (-> data/local/cosmo/VT2005/)
     }
 }
-`,As=`/*---------------------------------------------------------------------------*\\
+`,Jo=`/*---------------------------------------------------------------------------*\\
   Component: compA  -- synthetic PSEUDO-component for VLLE algorithm audit.
   Antoine tuned so Psat ≈ 5 bar at 350 K (the "very volatile" component
   that will preferentially go to vapour in the audit test).
@@ -7232,7 +7212,20 @@ liquidHeatCapacity
     coefficients  (120.0);
     Trange        (300  400);
 }
-`,Hs=`/*---------------------------------------------------------------------------*\\
+
+//  DECLARED, not left to a comment.  The header above has always said "NOT A
+//  REAL SUBSTANCE"; the parser discards comments, so nothing downstream could
+//  know it.  A student browsing the catalogue met 'compA' between two real
+//  compounds with no way to tell.  \`source synthetic\` is the value the
+//  ThermoML fixture already uses -- no new vocabulary, and it sits on the axis
+//  that answers "where did the data come from" (five-axis contract,
+//  docs/design/provenance-semantics-five-axes.md).
+provenance
+{
+    source      synthetic;
+    reason      "numerical stand-in for an algorithm audit; no physical primary exists";
+}
+`,Io=`/*---------------------------------------------------------------------------*\\
   Component: compB  -- synthetic PSEUDO-component for VLLE algorithm audit.
   Antoine giving Psat ≈ 0.5 bar at 350 K (the less-volatile audit partner).
   Pedagogically only --- NOT A REAL SUBSTANCE (formula "B", CAS 00-00-0).
@@ -7278,7 +7271,20 @@ liquidHeatCapacity
     coefficients  (120.0);
     Trange        (300  400);
 }
-`,_s=`/*---------------------------------------------------------------------------*\\
+
+//  DECLARED, not left to a comment.  The header above has always said "NOT A
+//  REAL SUBSTANCE"; the parser discards comments, so nothing downstream could
+//  know it.  A student browsing the catalogue met 'compB' between two real
+//  compounds with no way to tell.  \`source synthetic\` is the value the
+//  ThermoML fixture already uses -- no new vocabulary, and it sits on the axis
+//  that answers "where did the data come from" (five-axis contract,
+//  docs/design/provenance-semantics-five-axes.md).
+provenance
+{
+    source      synthetic;
+    reason      "numerical stand-in for an algorithm audit; no physical primary exists";
+}
+`,Do=`/*---------------------------------------------------------------------------*\\
   Component: compC  -- synthetic PSEUDO-component for VLLE algorithm audit.
   Antoine giving Psat ≈ 0.5 bar at 350 K but with a smaller B-coefficient
   than compB (a third audit partner, distinct from compA/compB).
@@ -7325,7 +7331,20 @@ liquidHeatCapacity
     coefficients  (120.0);
     Trange        (300  400);
 }
-`,Es=`/*--------------------------------*- Choupo -*-----------------------*\\
+
+//  DECLARED, not left to a comment.  The header above has always said "NOT A
+//  REAL SUBSTANCE"; the parser discards comments, so nothing downstream could
+//  know it.  A student browsing the catalogue met 'compC' between two real
+//  compounds with no way to tell.  \`source synthetic\` is the value the
+//  ThermoML fixture already uses -- no new vocabulary, and it sits on the axis
+//  that answers "where did the data come from" (five-axis contract,
+//  docs/design/provenance-semantics-five-axes.md).
+provenance
+{
+    source      synthetic;
+    reason      "numerical stand-in for an algorithm audit; no physical primary exists";
+}
+`,Vo=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: cyclohexane  (C6H12, CAS 110-82-7)
   PROPOSAL TIER -- UNVERIFIED.  Imported from CoolProp 7.2.0 (MIT);
   pure-fluid properties from the published reference EOS below.
@@ -7414,7 +7433,7 @@ cosmo
         installed   false;                 // install your own copy: bin/choupo-import-cosmo (-> data/local/cosmo/VT2005/)
     }
 }
-`,ws=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,xo=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: cyclopentane  (C5H10, CAS 287-92-3)
   PROPOSAL TIER -- UNVERIFIED.  Imported from CoolProp 7.2.0 (MIT);
   pure-fluid properties from the published reference EOS below.
@@ -7509,7 +7528,7 @@ cosmo
         installed   false;                 // install your own copy: bin/choupo-import-cosmo (-> data/local/cosmo/VT2005/)
     }
 }
-`,Ns=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,Go=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: cyclopropane  (C3H6, CAS 75-19-4)
   PROPOSAL TIER -- UNVERIFIED.  Imported from CoolProp 7.2.0 (MIT);
   pure-fluid properties from the published reference EOS below.
@@ -7590,7 +7609,7 @@ provenance
     triplePoint    "CoolProp reference EOS triple-point T,P";
     preserved      "from prior proposal (NOT CoolProp): standardThermochemistry, groups";
 }
-`,xs=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,Fo=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: diethylEther  (C4H10O1, CAS 60-29-7)
   PROPOSAL TIER -- UNVERIFIED.  Imported from CoolProp 7.2.0 (MIT);
   pure-fluid properties from the published reference EOS below.
@@ -7689,7 +7708,7 @@ cosmo
         installed   false;                 // install your own copy: bin/choupo-import-cosmo (-> data/local/cosmo/VT2005/)
     }
 }
-`,Rs=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,Bo=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: dimethylCarbonate  (C3H6O3, CAS 616-38-6)
   PROPOSAL TIER -- UNVERIFIED.  Imported from CoolProp 7.2.0 (MIT);
   pure-fluid properties from the published reference EOS below.
@@ -7766,7 +7785,7 @@ cosmo
         installed   false;                 // install your own copy: bin/choupo-import-cosmo (-> data/local/cosmo/VT2005/)
     }
 }
-`,ks=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,Lo=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: dimethylEther  (C2H6O1, CAS 115-10-6)
   PROPOSAL TIER -- UNVERIFIED.  Imported from CoolProp 7.2.0 (MIT);
   pure-fluid properties from the published reference EOS below.
@@ -7863,7 +7882,7 @@ cosmo
         installed   false;                 // install your own copy: bin/choupo-import-cosmo (-> data/local/cosmo/VT2005/)
     }
 }
-`,Ms=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,Wo=`/*--------------------------------*- Choupo -*-----------------------*\\
   Mineral: diopside (CaMgSi2O6) -- unified substance file.
   One canonical record per chemical identity; the solid-phase dissolution
   equilibrium (Ksp) lives here as a typed solidPhase (roadmap Phase D).
@@ -7880,7 +7899,7 @@ solidPhases
         equilibrium { logK25 20.96; dH -134000; source "USGS PHREEQC pitzer.dat/phreeqc.dat (public domain); reaction re-expressed to Choupo master basis from Diopside"; }
     }
 }
-`,Ks=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,Uo=`/*--------------------------------*- Choupo -*-----------------------*\\
   Substance: Dolomite (CaMg(CO3)2)
 
   UNIFIED substance file -- the MULTI-ION proof case (ratified 2026-07-14).
@@ -7952,7 +7971,7 @@ solidPhases
         }
     }
 }
-`,qs=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,jo=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: Dowtherm A  (eutectic of 73.5 wt% diphenyl oxide + 26.5 wt% biphenyl)
   Pseudo-component for use as a high-temperature liquid heat-transfer fluid.
 
@@ -8025,7 +8044,7 @@ liquidHeatCapacity
     //  describes it there.
     Trange        (373  673);
 }
-`,Is=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,zo=`/*--------------------------------*- Choupo -*-----------------------*\\
   Mineral: enstatite (MgSiO3) -- unified substance file.
   One canonical record per chemical identity; the solid-phase dissolution
   equilibrium (Ksp) lives here as a typed solidPhase (roadmap Phase D).
@@ -8042,7 +8061,7 @@ solidPhases
         equilibrium { logK25 11.33; dH -83000; source "USGS PHREEQC pitzer.dat/phreeqc.dat (public domain); reaction re-expressed to Choupo master basis from Enstatite"; }
     }
 }
-`,Js=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,Qo=`/*--------------------------------*- Choupo -*-----------------------*\\
   Mineral: epsomite (MgSO4:7H2O) -- unified substance file.
   One canonical record per chemical identity; the solid-phase dissolution
   equilibrium (Ksp) lives here as a typed solidPhase (roadmap Phase D).
@@ -8066,7 +8085,7 @@ solidPhases
         }
     }
 }
-`,Vs=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,Yo=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: Ethane  (C2H6, CAS 74-84-0)
 
   Second-largest component of natural gas after methane.  The classic
@@ -8130,7 +8149,7 @@ cosmo
         installed   false;                 // install your own copy: bin/choupo-import-cosmo (-> data/local/cosmo/VT2005/)
     }
 }
-`,Ds=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,Zo=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: Ethanol  (C2H6O, CAS 64-17-5)
   Sources: critical constants (Tc/Pc/omega/Tb/HvapTb/Vliq), Antoine
            coefficients, Cp polynomials and the ideal-gas formation datum
@@ -8240,7 +8259,7 @@ cosmo
 // says nothing about aqueous reactions in general (esterification etc.
 // belong to reaction sets, not to equilibrium speciation).
 aqueousSpeciation  none;
-`,Fs=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,$o=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: Ethyl Acetate  (C4H8O2, CAS 141-78-6)
   Sources: critical constants (Tc/Pc/omega/Tb/HvapTb/Vliq), Antoine
            coefficients, Cp polynomials and the ideal-gas formation datum
@@ -8304,7 +8323,7 @@ cosmo
         installed   false;                 // install your own copy: bin/choupo-import-cosmo (-> data/local/cosmo/VT2005/)
     }
 }
-`,Gs=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,Xo=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: ethylBenzene  (C8H10, CAS 100-41-4)
   PROPOSAL TIER -- UNVERIFIED.  Imported from CoolProp 7.2.0 (MIT);
   pure-fluid properties from the published reference EOS below.
@@ -8401,7 +8420,7 @@ cosmo
         installed   false;                 // install your own copy: bin/choupo-import-cosmo (-> data/local/cosmo/VT2005/)
     }
 }
-`,Ls=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,na=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: Ethylene  (C2H4, CAS 74-85-1)
 
   Largest-volume organic feedstock worldwide --- the building block of
@@ -8465,7 +8484,7 @@ cosmo
         installed   false;                 // install your own copy: bin/choupo-import-cosmo (-> data/local/cosmo/VT2005/)
     }
 }
-`,js=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,ea=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: ethyleneOxide  (C2H4O1, CAS 75-21-8)
   PROPOSAL TIER -- UNVERIFIED.  Imported from CoolProp 7.2.0 (MIT);
   pure-fluid properties from the published reference EOS below.
@@ -8560,7 +8579,7 @@ cosmo
         installed   false;                 // install your own copy: bin/choupo-import-cosmo (-> data/local/cosmo/VT2005/)
     }
 }
-`,Bs=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,oa=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: fluorine  (F2, CAS 7782-41-4)
   PROPOSAL TIER -- UNVERIFIED.  Imported from CoolProp 7.2.0 (MIT);
   pure-fluid properties from the published reference EOS below.
@@ -8654,7 +8673,7 @@ cosmo
         installed   false;                 // install your own copy: bin/choupo-import-cosmo (-> data/local/cosmo/VT2005/)
     }
 }
-`,Ws=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,aa=`/*--------------------------------*- Choupo -*-----------------------*\\
   Mineral: fluorite (CaF2) -- unified substance file.
   One canonical record per chemical identity; the solid-phase dissolution
   equilibrium (Ksp) lives here as a typed solidPhase (roadmap Phase D).
@@ -8678,7 +8697,7 @@ solidPhases
         }
     }
 }
-`,Us=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,ta=`/*--------------------------------*- Choupo -*-----------------------*\\
   Mineral: forsterite (Mg2SiO4) -- unified substance file.
   One canonical record per chemical identity; the solid-phase dissolution
   equilibrium (Ksp) lives here as a typed solidPhase (roadmap Phase D).
@@ -8695,7 +8714,7 @@ solidPhases
         equilibrium { logK25 27.86; dH -206000; source "USGS PHREEQC pitzer.dat/phreeqc.dat (public domain); reaction re-expressed to Choupo master basis from Forsterite"; }
     }
 }
-`,zs=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,ia=`/*--------------------------------*- Choupo -*-----------------------*\\
   Mineral: gaylussite (CaNa2(CO3)2:5H2O) -- unified substance file.
   One canonical record per chemical identity; the solid-phase dissolution
   equilibrium (Ksp) lives here as a typed solidPhase (roadmap Phase D).
@@ -8712,7 +8731,7 @@ solidPhases
         equilibrium { logK25 11.237; dH -29798.4; source "USGS PHREEQC pitzer.dat/phreeqc.dat (public domain); reaction re-expressed to Choupo master basis from Gaylussite"; }
     }
 }
-`,$s=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,ra=`/*--------------------------------*- Choupo -*-----------------------*\\
   Mineral: glaserite (NaK3(SO4)2) -- unified substance file.
   One canonical record per chemical identity; the solid-phase dissolution
   equilibrium (Ksp) lives here as a typed solidPhase (roadmap Phase D).
@@ -8729,7 +8748,7 @@ solidPhases
         equilibrium { logK25 -3.803; dH 25000; source "USGS PHREEQC pitzer.dat/phreeqc.dat (public domain); reaction re-expressed to Choupo master basis from Glaserite"; }
     }
 }
-`,Ys=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,sa=`/*--------------------------------*- Choupo -*-----------------------*\\
   Mineral: glauberite (Na2Ca(SO4)2) -- unified substance file.
   One canonical record per chemical identity; the solid-phase dissolution
   equilibrium (Ksp) lives here as a typed solidPhase (roadmap Phase D).
@@ -8746,7 +8765,7 @@ solidPhases
         equilibrium { logK25 -5.31; dH 0; analytic ( 218.142 0 -9285 -77.735 0 0 ); validC ( 0 200 ); source "USGS PHREEQC pitzer.dat/phreeqc.dat (public domain); reaction re-expressed to Choupo master basis from Glauberite"; }
     }
 }
-`,Qs=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,la=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: D-Glucose (C6H12O6, CAS 50-99-7)
 
   A non-volatile non-electrolyte solute --- a canonical NF tutorial
@@ -8814,7 +8833,7 @@ groups
 {
     unifac ( { group CH2; count 1; } { group CH; count 4; } { group OH; count 5; } { group CHO; count 1; } );   // added from data/groupEstimative (UNIFAC decomposition; vocab-checked vs groups.dat)
 }
-`,Zs=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,da=`/*--------------------------------*- Choupo -*-----------------------*\\
   Mineral: goergeyite (K2Ca5(SO4)6H2O) -- unified substance file.
   One canonical record per chemical identity; the solid-phase dissolution
   equilibrium (Ksp) lives here as a typed solidPhase (roadmap Phase D).
@@ -8831,7 +8850,7 @@ solidPhases
         equilibrium { logK25 -29.5; dH 0; analytic ( 1056.787 0 -52300 -368.06 0 0 ); validC ( 0 200 ); source "USGS PHREEQC pitzer.dat/phreeqc.dat (public domain); reaction re-expressed to Choupo master basis from Goergeyite"; }
     }
 }
-`,Xs=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,ca=`/*--------------------------------*- Choupo -*-----------------------*\\
   Mineral: gypsum (CaSO4:2H2O) -- unified substance file.
   One canonical record per chemical identity; the solid-phase dissolution
   equilibrium (Ksp) lives here as a typed solidPhase (roadmap Phase D).
@@ -8855,7 +8874,7 @@ solidPhases
         }
     }
 }
-`,nl=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,pa=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: heavyWater  (D2O1, CAS 7789-20-0)
   PROPOSAL TIER -- UNVERIFIED.  Imported from CoolProp 7.2.0 (MIT);
   pure-fluid properties from the published reference EOS below.
@@ -8925,7 +8944,7 @@ groups
 {
     unifac ( { group H2O; count 1; } );   // added from data/groupEstimative (UNIFAC decomposition; vocab-checked vs groups.dat)
 }
-`,el=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,ma=`/*--------------------------------*- Choupo -*-----------------------*\\
   Mineral: hexahydrite (MgSO4:6H2O) -- unified substance file.
   One canonical record per chemical identity; the solid-phase dissolution
   equilibrium (Ksp) lives here as a typed solidPhase (roadmap Phase D).
@@ -8949,7 +8968,7 @@ solidPhases
         }
     }
 }
-`,ol=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,ua=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: hexamethyldisiloxane  (C6H18O1Si2, CAS 107-46-0)
   PROPOSAL TIER -- UNVERIFIED.  Imported from CoolProp 7.2.0 (MIT);
   pure-fluid properties from the published reference EOS below.
@@ -9014,7 +9033,7 @@ provenance
     liquidCp       "polynomial fitted to CoolProp sat-liquid cp, maxerr 0.01%";
     triplePoint    "CoolProp reference EOS triple-point T,P";
 }
-`,al=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,ha=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: hfe143m  (C2F3H3O1, CAS 421-14-7)
   PROPOSAL TIER -- UNVERIFIED.  Imported from CoolProp 7.2.0 (MIT);
   pure-fluid properties from the published reference EOS below.
@@ -9099,7 +9118,7 @@ provenance
     triplePoint    "CoolProp reference EOS triple-point T,P";
     preserved      "from prior proposal (NOT CoolProp): standardThermochemistry, groups";
 }
-`,tl=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,Ca=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: HITEC molten salt  (7-49-44 mol% NaNO3-NaNO2-KNO3,
                                   equivalent to 7-40-53 wt%)
   Pseudo-component for use as a high-temperature molten-salt heat carrier.
@@ -9157,7 +9176,7 @@ liquidHeatCapacity
     //  valid outside your fit, so narrowing is the conservative direction.
     Trange        (426  776);
 }
-`,il=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,fa=`/*--------------------------------*- Choupo -*-----------------------*\\
   Mineral: huntite (CaMg3(CO3)4) -- unified substance file.
   One canonical record per chemical identity; the solid-phase dissolution
   equilibrium (Ksp) lives here as a typed solidPhase (roadmap Phase D).
@@ -9181,7 +9200,7 @@ solidPhases
         }
     }
 }
-`,rl=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,ga=`/*--------------------------------*- Choupo -*-----------------------*\\
   Mineral: hydroxyapatite (Ca5(PO4)3OH) -- unified substance file.
   One canonical record per chemical identity; the solid-phase dissolution
   equilibrium (Ksp) lives here as a typed solidPhase (roadmap Phase D).
@@ -9198,7 +9217,7 @@ solidPhases
         equilibrium { logK25 -40.459; dH -106964; source "USGS PHREEQC pitzer.dat/phreeqc.dat (public domain); reaction re-expressed to Choupo master basis from Hydroxyapatite"; }
     }
 }
-`,sl=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,ba=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: isoButane  (C4H10, CAS 75-28-5)
   PROPOSAL TIER -- UNVERIFIED.  Imported from CoolProp 7.2.0 (MIT);
   pure-fluid properties from the published reference EOS below.
@@ -9295,7 +9314,7 @@ cosmo
         installed   false;                 // install your own copy: bin/choupo-import-cosmo (-> data/local/cosmo/VT2005/)
     }
 }
-`,ll=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,Ta=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: isoButene  (C4H8, CAS 115-11-7)
   PROPOSAL TIER -- UNVERIFIED.  Imported from CoolProp 7.2.0 (MIT);
   pure-fluid properties from the published reference EOS below.
@@ -9392,7 +9411,7 @@ cosmo
         installed   false;                 // install your own copy: bin/choupo-import-cosmo (-> data/local/cosmo/VT2005/)
     }
 }
-`,dl=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,ya=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: isohexane  (C6H14, CAS 107-83-5)
   PROPOSAL TIER -- UNVERIFIED.  Imported from CoolProp 7.2.0 (MIT);
   pure-fluid properties from the published reference EOS below.
@@ -9491,7 +9510,7 @@ cosmo
         installed   false;                 // install your own copy: bin/choupo-import-cosmo (-> data/local/cosmo/VT2005/)
     }
 }
-`,cl=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,Pa=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: isopentane  (C5H12, CAS 78-78-4)
   PROPOSAL TIER -- UNVERIFIED.  Imported from CoolProp 7.2.0 (MIT);
   pure-fluid properties from the published reference EOS below.
@@ -9580,7 +9599,7 @@ cosmo
         installed   false;                 // install your own copy: bin/choupo-import-cosmo (-> data/local/cosmo/VT2005/)
     }
 }
-`,pl=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,va=`/*--------------------------------*- Choupo -*-----------------------*\\
   Mineral: kainite (KMgClSO4:3H2O) -- unified substance file.
   One canonical record per chemical identity; the solid-phase dissolution
   equilibrium (Ksp) lives here as a typed solidPhase (roadmap Phase D).
@@ -9597,7 +9616,7 @@ solidPhases
         equilibrium { logK25 -0.193; dH 0; source "USGS PHREEQC pitzer.dat/phreeqc.dat (public domain); reaction re-expressed to Choupo master basis from Kainite"; }
     }
 }
-`,ml=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,Sa=`/*--------------------------------*- Choupo -*-----------------------*\\
   Mineral: kalicinite (KHCO3) -- unified substance file.
   One canonical record per chemical identity; the solid-phase dissolution
   equilibrium (Ksp) lives here as a typed solidPhase (roadmap Phase D).
@@ -9614,7 +9633,7 @@ solidPhases
         equilibrium { logK25 0.389; dH -14899.2; source "USGS PHREEQC pitzer.dat/phreeqc.dat (public domain); reaction re-expressed to Choupo master basis from Kalicinite"; }
     }
 }
-`,ul=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,Oa=`/*--------------------------------*- Choupo -*-----------------------*\\
   Mineral: kieserite (MgSO4:H2O) -- unified substance file.
   One canonical record per chemical identity; the solid-phase dissolution
   equilibrium (Ksp) lives here as a typed solidPhase (roadmap Phase D).
@@ -9631,7 +9650,7 @@ solidPhases
         equilibrium { logK25 -1.16; dH 9220; analytic ( 29.485 -0.0507 0 -2.662 -795000 ); source "USGS PHREEQC phreeqc.dat (public domain)"; }
     }
 }
-`,hl=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,Aa=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: krypton  (Kr1, CAS 7439-90-9)
   PROPOSAL TIER -- UNVERIFIED.  Imported from CoolProp 7.2.0 (MIT);
   pure-fluid properties from the published reference EOS below.
@@ -9702,7 +9721,7 @@ provenance
     liquidCp       "polynomial fitted to CoolProp sat-liquid cp, maxerr 0.00%";
     triplePoint    "CoolProp reference EOS triple-point T,P";
 }
-`,Cl=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,Ha=`/*--------------------------------*- Choupo -*-----------------------*\\
   Mineral: labile_S (Na4Ca(SO4)3:2H2O) -- unified substance file.
   One canonical record per chemical identity; the solid-phase dissolution
   equilibrium (Ksp) lives here as a typed solidPhase (roadmap Phase D).
@@ -9719,7 +9738,7 @@ solidPhases
         equilibrium { logK25 -5.672; dH 0; source "USGS PHREEQC pitzer.dat/phreeqc.dat (public domain); reaction re-expressed to Choupo master basis from Labile_S"; }
     }
 }
-`,fl=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,_a=`/*--------------------------------*- Choupo -*-----------------------*\\
   Mineral: leonhardite (MgSO4:4H2O) -- unified substance file.
   One canonical record per chemical identity; the solid-phase dissolution
   equilibrium (Ksp) lives here as a typed solidPhase (roadmap Phase D).
@@ -9743,7 +9762,7 @@ solidPhases
         }
     }
 }
-`,gl=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,Ea=`/*--------------------------------*- Choupo -*-----------------------*\\
   Mineral: leonite (K2Mg(SO4)2:4H2O) -- unified substance file.
   One canonical record per chemical identity; the solid-phase dissolution
   equilibrium (Ksp) lives here as a typed solidPhase (roadmap Phase D).
@@ -9760,7 +9779,7 @@ solidPhases
         equilibrium { logK25 -3.979; dH 0; source "USGS PHREEQC pitzer.dat/phreeqc.dat (public domain); reaction re-expressed to Choupo master basis from Leonite"; }
     }
 }
-`,bl=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,Ra=`/*--------------------------------*- Choupo -*-----------------------*\\
   Mineral: lithiumChlorideH2O (LiCl:H2O) -- unified substance file.
   One canonical record per chemical identity; the solid-phase dissolution
   equilibrium (Ksp) lives here as a typed solidPhase (roadmap Phase D).
@@ -9777,7 +9796,7 @@ solidPhases
         equilibrium { logK25 4.9841; source "logK25 CALIBRATED to Farelo (JCED 50, 2005, 1470) LiCl saturation 19.7 mol/kg, 298 K, via the refitted Pitzer gamma_pm + the HMW osmotic-coefficient water activity a_w (the hydrate water leg; a_w at I~20 is what makes the hydrate equilibrium work)"; }
     }
 }
-`,yl=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,Na=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: mXylene  (C8H10, CAS 108-38-3)
   PROPOSAL TIER -- UNVERIFIED.  Imported from CoolProp 7.2.0 (MIT);
   pure-fluid properties from the published reference EOS below.
@@ -9876,7 +9895,7 @@ cosmo
         installed   false;                 // install your own copy: bin/choupo-import-cosmo (-> data/local/cosmo/VT2005/)
     }
 }
-`,Tl=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,ka=`/*--------------------------------*- Choupo -*-----------------------*\\
   Mineral: magnesite (MgCO3) -- unified substance file.
   One canonical record per chemical identity; the solid-phase dissolution
   equilibrium (Ksp) lives here as a typed solidPhase (roadmap Phase D).
@@ -9893,7 +9912,7 @@ solidPhases
         equilibrium { logK25 2.495; dH -21068.2; source "USGS PHREEQC pitzer.dat/phreeqc.dat (public domain); reaction re-expressed to Choupo master basis from Magnesite"; }
     }
 }
-`,vl=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,Ka=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: Magnesium hydroxide (Mg(OH)2), BRUCITE.  CAS 1309-42-8.
 
   A NON-VOLATILE sparingly-soluble base: never enters the vapour (K = 0).
@@ -9949,7 +9968,7 @@ solidPhases
         equilibrium { logK25 17.12; dH -92507.6; source "USGS PHREEQC pitzer.dat/phreeqc.dat (public domain); reaction re-expressed to Choupo master basis from Brucite"; }
     }
 }
-`,Pl=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,Ma=`/*--------------------------------*- Choupo -*-----------------------*\\
   Mineral: melanterite (FeSO4:7H2O) -- unified substance file.
   One canonical record per chemical identity; the solid-phase dissolution
   equilibrium (Ksp) lives here as a typed solidPhase (roadmap Phase D).
@@ -9973,7 +9992,7 @@ solidPhases
         }
     }
 }
-`,Sl=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,wa=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: Methanol  (CH4O, CAS 67-56-1)
   Sources: critical constants (Tc/Pc/omega/Tb/HvapTb/Vliq), Antoine
            coefficients, Cp polynomials and the ideal-gas formation datum
@@ -10062,7 +10081,7 @@ cosmo
 // Curated fact: methanol does NOT participate in the aqueous speciation
 // network at this thermodynamic level (pKa ~ 15.5 -- negligible).
 aqueousSpeciation  none;
-`,Ol=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,qa=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: Methyl acetate  (C3H6O2, CAS 79-20-9)
 
   Added 2026-06-28 to support the reactive-distillation validation against
@@ -10138,7 +10157,7 @@ cosmo
         installed   false;                 // install your own copy: bin/choupo-import-cosmo (-> data/local/cosmo/VT2005/)
     }
 }
-`,Al=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,Ja=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: methylLinoleate  (C19H34O2, CAS 112-63-0)
   PROPOSAL TIER -- UNVERIFIED.  Imported from CoolProp 7.2.0 (MIT);
   pure-fluid properties from the published reference EOS below.
@@ -10223,7 +10242,7 @@ provenance
     triplePoint    "CoolProp reference EOS triple-point T,P";
     preserved      "from prior proposal (NOT CoolProp): standardThermochemistry, groups";
 }
-`,Hl=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,Ia=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: methylLinolenate  (C19H32O2, CAS 301-00-8)
   PROPOSAL TIER -- UNVERIFIED.  Imported from CoolProp 7.2.0 (MIT);
   pure-fluid properties from the published reference EOS below.
@@ -10308,7 +10327,7 @@ provenance
     triplePoint    "CoolProp reference EOS triple-point T,P";
     preserved      "from prior proposal (NOT CoolProp): standardThermochemistry, groups";
 }
-`,_l=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,Da=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: methylOleate  (C19H36O2, CAS 112-62-9)
   PROPOSAL TIER -- UNVERIFIED.  Imported from CoolProp 7.2.0 (MIT);
   pure-fluid properties from the published reference EOS below.
@@ -10405,7 +10424,7 @@ cosmo
         installed   false;                 // install your own copy: bin/choupo-import-cosmo (-> data/local/cosmo/VT2005/)
     }
 }
-`,El=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,Va=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: methylPalmitate  (C17H34O2, CAS 112-39-0)
   PROPOSAL TIER -- UNVERIFIED.  Imported from CoolProp 7.2.0 (MIT);
   pure-fluid properties from the published reference EOS below.
@@ -10489,7 +10508,7 @@ provenance
     triplePoint    "CoolProp reference EOS triple-point T,P";
     preserved      "from prior proposal (NOT CoolProp): standardThermochemistry, groups";
 }
-`,wl=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,xa=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: methylStearate  (C19H38O2, CAS 112-61-8)
   PROPOSAL TIER -- UNVERIFIED.  Imported from CoolProp 7.2.0 (MIT);
   pure-fluid properties from the published reference EOS below.
@@ -10573,7 +10592,7 @@ provenance
     triplePoint    "CoolProp reference EOS triple-point T,P";
     preserved      "from prior proposal (NOT CoolProp): standardThermochemistry, groups";
 }
-`,Nl=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,Ga=`/*--------------------------------*- Choupo -*-----------------------*\\
   Mineral: mirabilite (Na2SO4:10H2O) -- unified substance file.
   One canonical record per chemical identity; the solid-phase dissolution
   equilibrium (Ksp) lives here as a typed solidPhase (roadmap Phase D).
@@ -10590,7 +10609,7 @@ solidPhases
         equilibrium { logK25 -0.706; dH 124000; analytic ( -53.037 0.1242 4562 ); source "USGS PHREEQC phreeqc.dat (public domain); lit: ref. 3"; }
     }
 }
-`,xl=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,Fa=`/*--------------------------------*- Choupo -*-----------------------*\\
   Mineral: misenite (K8H6(SO4)7) -- unified substance file.
   One canonical record per chemical identity; the solid-phase dissolution
   equilibrium (Ksp) lives here as a typed solidPhase (roadmap Phase D).
@@ -10607,7 +10626,7 @@ solidPhases
         equilibrium { logK25 -10.806; dH 0; source "USGS PHREEQC pitzer.dat/phreeqc.dat (public domain); reaction re-expressed to Choupo master basis from Misenite"; }
     }
 }
-`,Rl=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,Ba=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: n-Butane  (C4H10, CAS 106-97-8)
 
   The other half of LPG; refinery alkylation feedstock; aerosol
@@ -10692,7 +10711,7 @@ pcsaft
     epsilonK 222.88;
     source   "Gross & Sadowski, Ind. Eng. Chem. Res. 40 (2001) 1244, Table 1";
 }
-`,kl=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,La=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: 1-Butanol  (C4H10O, CAS 71-36-3)
   Notable LLE: partially miscible with water below 125.5 °C (UCST).
   Sources: critical constants (Tc/Pc/omega/Tb/HvapTb/Vliq), Antoine
@@ -10774,7 +10793,7 @@ cosmo
         installed   false;                 // install your own copy: bin/choupo-import-cosmo (-> data/local/cosmo/VT2005/)
     }
 }
-`,Ml=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,Wa=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: nDecane  (C10H22, CAS 124-18-5)
   PROPOSAL TIER -- UNVERIFIED.  Imported from CoolProp 7.2.0 (MIT);
   pure-fluid properties from the published reference EOS below.
@@ -10873,7 +10892,7 @@ cosmo
         installed   false;                 // install your own copy: bin/choupo-import-cosmo (-> data/local/cosmo/VT2005/)
     }
 }
-`,Kl=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,Ua=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: nDodecane  (C12H26, CAS 112-40-3)
   PROPOSAL TIER -- UNVERIFIED.  Imported from CoolProp 7.2.0 (MIT);
   pure-fluid properties from the published reference EOS below.
@@ -10970,7 +10989,7 @@ cosmo
         installed   false;                 // install your own copy: bin/choupo-import-cosmo (-> data/local/cosmo/VT2005/)
     }
 }
-`,ql=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,ja=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: nHeptane  (C7H16, CAS 142-82-5)
   PROPOSAL TIER -- UNVERIFIED.  Imported from CoolProp 7.2.0 (MIT);
   pure-fluid properties from the published reference EOS below.
@@ -11059,7 +11078,7 @@ cosmo
         installed   false;                 // install your own copy: bin/choupo-import-cosmo (-> data/local/cosmo/VT2005/)
     }
 }
-`,Il=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,za=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: n-Hexane  (C6H14, CAS 110-54-3)
   Sources: critical constants (Tc/Pc/omega/Tb/HvapTb/Vliq), Antoine
            coefficients, Cp polynomials and the ideal-gas formation datum
@@ -11134,7 +11153,7 @@ pcsaft
     epsilonK 236.77;
     source   "Gross & Sadowski, Ind. Eng. Chem. Res. 40 (2001) 1244, Table 1";
 }
-`,Jl=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,Qa=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: nNonane  (C9H20, CAS 111-84-2)
   PROPOSAL TIER -- UNVERIFIED.  Imported from CoolProp 7.2.0 (MIT);
   pure-fluid properties from the published reference EOS below.
@@ -11233,7 +11252,7 @@ cosmo
         installed   false;                 // install your own copy: bin/choupo-import-cosmo (-> data/local/cosmo/VT2005/)
     }
 }
-`,Vl=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,Ya=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: n-Octane  (C8H18, CAS 111-65-9)
 
   Reference compound for the gasoline RON / MON scale (iso-octane =
@@ -11298,7 +11317,7 @@ cosmo
         installed   false;                 // install your own copy: bin/choupo-import-cosmo (-> data/local/cosmo/VT2005/)
     }
 }
-`,Dl=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,Za=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: nPentane  (C5H12, CAS 109-66-0)
   PROPOSAL TIER -- UNVERIFIED.  Imported from CoolProp 7.2.0 (MIT);
   pure-fluid properties from the published reference EOS below.
@@ -11387,7 +11406,7 @@ cosmo
         installed   false;                 // install your own copy: bin/choupo-import-cosmo (-> data/local/cosmo/VT2005/)
     }
 }
-`,Fl=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,$a=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: nUndecane  (C11H24, CAS 1120-21-4)
   PROPOSAL TIER -- UNVERIFIED.  Imported from CoolProp 7.2.0 (MIT);
   pure-fluid properties from the published reference EOS below.
@@ -11484,7 +11503,7 @@ cosmo
         installed   false;                 // install your own copy: bin/choupo-import-cosmo (-> data/local/cosmo/VT2005/)
     }
 }
-`,Gl=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,Xa=`/*--------------------------------*- Choupo -*-----------------------*\\
   Mineral: natron (Na2CO3:10H2O) -- unified substance file.
   One canonical record per chemical identity; the solid-phase dissolution
   equilibrium (Ksp) lives here as a typed solidPhase (roadmap Phase D).
@@ -11501,7 +11520,7 @@ solidPhases
         equilibrium { logK25 9.504; dH -14899.2; source "USGS PHREEQC pitzer.dat/phreeqc.dat (public domain); reaction re-expressed to Choupo master basis from Natron"; }
     }
 }
-`,Ll=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,nt=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: neon  (Ne1, CAS 7440-01-9)
   PROPOSAL TIER -- UNVERIFIED.  Imported from CoolProp 7.2.0 (MIT);
   pure-fluid properties from the published reference EOS below.
@@ -11579,7 +11598,7 @@ provenance
     triplePoint    "CoolProp reference EOS triple-point T,P";
     standardThermochemistry "NASA TM-4513 (McBride-Gordon-Reno 1993), H0/S0(298.15) from NASA-7 poly";
 }
-`,jl=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,et=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: neopentane  (C5H12, CAS 463-82-1)
   PROPOSAL TIER -- UNVERIFIED.  Imported from CoolProp 7.2.0 (MIT);
   pure-fluid properties from the published reference EOS below.
@@ -11676,7 +11695,7 @@ cosmo
         installed   false;                 // install your own copy: bin/choupo-import-cosmo (-> data/local/cosmo/VT2005/)
     }
 }
-`,Bl=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,ot=`/*--------------------------------*- Choupo -*-----------------------*\\
   Mineral: nesquehonite (MgCO3:3H2O) -- unified substance file.
   One canonical record per chemical identity; the solid-phase dissolution
   equilibrium (Ksp) lives here as a typed solidPhase (roadmap Phase D).
@@ -11700,7 +11719,7 @@ solidPhases
         }
     }
 }
-`,Wl=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,at=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: novec649  (C6F12O1, CAS 756-13-8)
   PROPOSAL TIER -- UNVERIFIED.  Imported from CoolProp 7.2.0 (MIT);
   pure-fluid properties from the published reference EOS below.
@@ -11785,7 +11804,7 @@ provenance
     triplePoint    "CoolProp reference EOS triple-point T,P";
     preserved      "from prior proposal (NOT CoolProp): standardThermochemistry, groups";
 }
-`,Ul=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,tt=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: oXylene  (C8H10, CAS 95-47-6)
   PROPOSAL TIER -- UNVERIFIED.  Imported from CoolProp 7.2.0 (MIT);
   pure-fluid properties from the published reference EOS below.
@@ -11884,7 +11903,7 @@ cosmo
         installed   false;                 // install your own copy: bin/choupo-import-cosmo (-> data/local/cosmo/VT2005/)
     }
 }
-`,zl=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,it=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: pXylene  (C8H10, CAS 106-42-3)
   PROPOSAL TIER -- UNVERIFIED.  Imported from CoolProp 7.2.0 (MIT);
   pure-fluid properties from the published reference EOS below.
@@ -11983,7 +12002,7 @@ cosmo
         installed   false;                 // install your own copy: bin/choupo-import-cosmo (-> data/local/cosmo/VT2005/)
     }
 }
-`,$l=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,rt=`/*--------------------------------*- Choupo -*-----------------------*\\
   Mineral: pentahydrite (MgSO4:5H2O) -- unified substance file.
   One canonical record per chemical identity; the solid-phase dissolution
   equilibrium (Ksp) lives here as a typed solidPhase (roadmap Phase D).
@@ -12000,7 +12019,7 @@ solidPhases
         equilibrium { logK25 -1.285; dH 0; source "USGS PHREEQC pitzer.dat/phreeqc.dat (public domain); reaction re-expressed to Choupo master basis from Pentahydrite"; }
     }
 }
-`,Yl=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,st=`/*--------------------------------*- Choupo -*-----------------------*\\
   Mineral: pirssonite (Na2Ca(CO3)2:2H2O) -- unified substance file.
   One canonical record per chemical identity; the solid-phase dissolution
   equilibrium (Ksp) lives here as a typed solidPhase (roadmap Phase D).
@@ -12017,7 +12036,7 @@ solidPhases
         equilibrium { logK25 11.424; dH -29798.4; source "USGS PHREEQC pitzer.dat/phreeqc.dat (public domain); reaction re-expressed to Choupo master basis from Pirssonite"; }
     }
 }
-`,Ql=`/*--------------------------------*- Choupo -*--------------------------------*\\
+`,lt=`/*--------------------------------*- Choupo -*--------------------------------*\\
   Component: Polyethylene (HDPE)
 
   A commodity polymer as a NONVOLATILE pseudo-component (Pareto over the Polymer
@@ -12062,7 +12081,7 @@ provenance
 
 // Solid polymer: no gas/liquid transport correlations apply (empty by design).
 
-`,Zl=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,dt=`/*--------------------------------*- Choupo -*-----------------------*\\
   Mineral: polyhalite (K2MgCa2(SO4)4:2H2O) -- unified substance file.
   One canonical record per chemical identity; the solid-phase dissolution
   equilibrium (Ksp) lives here as a typed solidPhase (roadmap Phase D).
@@ -12079,7 +12098,7 @@ solidPhases
         equilibrium { logK25 -13.744; dH 0; source "USGS PHREEQC pitzer.dat/phreeqc.dat (public domain); reaction re-expressed to Choupo master basis from Polyhalite"; }
     }
 }
-`,Xl=`/*--------------------------------*- Choupo -*--------------------------------*\\
+`,ct=`/*--------------------------------*- Choupo -*--------------------------------*\\
   Component: Polypropylene (isotactic)
 
   A commodity polymer as a NONVOLATILE pseudo-component (Pareto over the Polymer
@@ -12124,7 +12143,7 @@ provenance
 
 // Solid polymer: no gas/liquid transport correlations apply (empty by design).
 
-`,nd=`/*--------------------------------*- Choupo -*--------------------------------*\\
+`,pt=`/*--------------------------------*- Choupo -*--------------------------------*\\
   Component: Polystyrene (atactic)
 
   A commodity polymer as a NONVOLATILE pseudo-component (Pareto over the Polymer
@@ -12169,7 +12188,7 @@ provenance
 
 // Solid polymer: no gas/liquid transport correlations apply (empty by design).
 
-`,ed=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,mt=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: Potassium bitartrate / potassium hydrogen tartrate
              (KHC4H4O6, "cream of tartar", KHT; CAS 868-14-4)
 
@@ -12238,7 +12257,7 @@ liquidHeatCapacity
     coefficients  (300.0);      // J/(mol.K), constant
     Trange        (270  400);
 }
-`,od=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,ut=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: Propane  (C3H8, CAS 74-98-6)
   Sources:   vaporPressure  -- Rips 1963 (primary measured set)
              constants  -- cross-checked vs CoolProp 7.2.0 reference EOS;
@@ -12326,7 +12345,7 @@ pcsaft
     epsilonK 208.11;
     source   "Gross & Sadowski, Ind. Eng. Chem. Res. 40 (2001) 1244, Table 1";
 }
-`,ad=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,ht=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: Propene / Propylene  (C3H6, CAS 115-07-1)
 
   Second-largest petrochemical building block (polypropylene,
@@ -12390,7 +12409,7 @@ cosmo
         installed   false;                 // install your own copy: bin/choupo-import-cosmo (-> data/local/cosmo/VT2005/)
     }
 }
-`,td=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,Ct=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: Propylene Glycol 30 vol % brine  (DOWFROST / GlycoChill class)
   Pseudo-component for use as a low-temperature secondary-loop refrigerant
   (chilled glycol / cooling brine for HVAC + sub-ambient process duty).
@@ -12444,7 +12463,7 @@ liquidHeatCapacity
     coefficients  (109.8   0.1040);
     Trange        (260  385);
 }
-`,id=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,ft=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: propyne  (C3H4, CAS 74-99-7)
   PROPOSAL TIER -- UNVERIFIED.  Imported from CoolProp 7.2.0 (MIT);
   pure-fluid properties from the published reference EOS below.
@@ -12539,7 +12558,7 @@ cosmo
         installed   false;                 // install your own copy: bin/choupo-import-cosmo (-> data/local/cosmo/VT2005/)
     }
 }
-`,rd=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,gt=`/*--------------------------------*- Choupo -*-----------------------*\\
   Mineral: pyrochroite (Mn(OH)2) -- unified substance file.
   One canonical record per chemical identity; the solid-phase dissolution
   equilibrium (Ksp) lives here as a typed solidPhase (roadmap Phase D).
@@ -12563,7 +12582,7 @@ solidPhases
         }
     }
 }
-`,sd=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,bt=`/*--------------------------------*- Choupo -*-----------------------*\\
   Mineral: rhodochrosite (MnCO3) -- unified substance file.
   One canonical record per chemical identity; the solid-phase dissolution
   equilibrium (Ksp) lives here as a typed solidPhase (roadmap Phase D).
@@ -12587,7 +12606,7 @@ solidPhases
         }
     }
 }
-`,ld=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,Tt=`/*--------------------------------*- Choupo -*-----------------------*\\
   Mineral: schoenite (K2Mg(SO4)2:6H2O) -- unified substance file.
   One canonical record per chemical identity; the solid-phase dissolution
   equilibrium (Ksp) lives here as a typed solidPhase (roadmap Phase D).
@@ -12604,7 +12623,7 @@ solidPhases
         equilibrium { logK25 -4.328; dH 0; source "USGS PHREEQC pitzer.dat/phreeqc.dat (public domain); reaction re-expressed to Choupo master basis from Schoenite"; }
     }
 }
-`,dd=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,yt=`/*--------------------------------*- Choupo -*-----------------------*\\
   Mineral: sepiolite (Mg2Si3O7.5OH:3H2O) -- unified substance file.
   One canonical record per chemical identity; the solid-phase dissolution
   equilibrium (Ksp) lives here as a typed solidPhase (roadmap Phase D).
@@ -12621,7 +12640,7 @@ solidPhases
         equilibrium { logK25 15.76; dH -44768.8; source "USGS PHREEQC pitzer.dat/phreeqc.dat (public domain); reaction re-expressed to Choupo master basis from Sepiolite"; }
     }
 }
-`,cd=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,Pt=`/*--------------------------------*- Choupo -*-----------------------*\\
   Mineral: sepiolite_d (Mg2Si3O7.5OH:3H2O) -- unified substance file.
   One canonical record per chemical identity; the solid-phase dissolution
   equilibrium (Ksp) lives here as a typed solidPhase (roadmap Phase D).
@@ -12638,7 +12657,7 @@ solidPhases
         equilibrium { logK25 18.66; dH 0; source "USGS PHREEQC pitzer.dat/phreeqc.dat (public domain); reaction re-expressed to Choupo master basis from Sepiolite(d)"; }
     }
 }
-`,pd=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,vt=`/*--------------------------------*- Choupo -*-----------------------*\\
   Mineral: siderite (FeCO3) -- unified substance file.
   One canonical record per chemical identity; the solid-phase dissolution
   equilibrium (Ksp) lives here as a typed solidPhase (roadmap Phase D).
@@ -12662,7 +12681,7 @@ solidPhases
         }
     }
 }
-`,md=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,St=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: Silica  (SiO2) --- a generic mineral particulate / dust.
 
   A NON-VOLATILE solid: it never enters the vapour (K = 0) and carries
@@ -12734,7 +12753,7 @@ solidPhases
         equilibrium { logK25 -3.98; dH 25062.2; analytic ( 0.41 0 -1309 ); source "USGS PHREEQC phreeqc.dat (public domain)"; }
     }
 }
-`,ud=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,Ot=`/*--------------------------------*- Choupo -*-----------------------*\\
   Mineral: strontianite (SrCO3) -- unified substance file.
   One canonical record per chemical identity; the solid-phase dissolution
   equilibrium (Ksp) lives here as a typed solidPhase (roadmap Phase D).
@@ -12758,7 +12777,7 @@ solidPhases
         }
     }
 }
-`,hd=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,At=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: Sucrose (C12H22O11, CAS 57-50-1)
 
   Non-volatile crystalline disaccharide; the canonical solute for
@@ -12771,7 +12790,7 @@ solidPhases
 
       Cp(x)  ≈  4.19  -  2.35 · x    [kJ/(kg·K)]
 
-  used in standard MCFT exercises (e.g. Coulson & Richardson 6th
+  used in standard evaporation exercises (e.g. Coulson & Richardson 6th
   ed. Example 14.4; the same coefficients appear in the course
   notes Exemplo 10.4 for the triple-effect cocurrent evaporator).
 
@@ -12852,7 +12871,7 @@ solidHeatCapacity
     coefficients  ( 425.5 );
     Trange        ( 280  330 );        // [Putnam & Kilday 1986, J. Res. NBS 91]
 }
-`,Cd=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,Ht=`/*--------------------------------*- Choupo -*-----------------------*\\
   Mineral: syngenite (K2Ca(SO4)2:H2O) -- unified substance file.
   One canonical record per chemical identity; the solid-phase dissolution
   equilibrium (Ksp) lives here as a typed solidPhase (roadmap Phase D).
@@ -12869,7 +12888,7 @@ solidPhases
         equilibrium { logK25 -6.43; dH -32650; source "USGS PHREEQC pitzer.dat/phreeqc.dat (public domain); reaction re-expressed to Choupo master basis from Syngenite"; }
     }
 }
-`,fd=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,_t=`/*--------------------------------*- Choupo -*-----------------------*\\
   Mineral: talc (Mg3Si4O10(OH)2) -- unified substance file.
   One canonical record per chemical identity; the solid-phase dissolution
   equilibrium (Ksp) lives here as a typed solidPhase (roadmap Phase D).
@@ -12886,7 +12905,7 @@ solidPhases
         equilibrium { logK25 21.399; dH -193937; source "USGS PHREEQC pitzer.dat/phreeqc.dat (public domain); reaction re-expressed to Choupo master basis from Talc"; }
     }
 }
-`,gd=`/*--------------------------------*- Choupo -*--------------------------------*\\
+`,Et=`/*--------------------------------*- Choupo -*--------------------------------*\\
   Component: L-(+)-Tartaric acid (C4H6O6), the wine-industry organic diacid.
   CAS 87-69-4.  MW 150.087 g/mol.
 
@@ -12965,7 +12984,7 @@ groups
 {
     unifac ( { group CH; count 2; } { group OH; count 2; } { group COOH; count 2; } );   // added from data/groupEstimative (UNIFAC decomposition; vocab-checked vs groups.dat)
 }
-`,bd=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,Rt=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: Toluene  (C7H8, CAS 108-88-3)
   Sources: critical constants (Tc/Pc/omega/Tb/HvapTb/Vliq), Antoine
            coefficients, Cp polynomials and the ideal-gas formation datum
@@ -13045,7 +13064,7 @@ cosmo
         installed   false;                 // install your own copy: bin/choupo-import-cosmo (-> data/local/cosmo/VT2005/)
     }
 }
-`,yd=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,Nt=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: trans2Butene  (C4H8, CAS 624-64-6)
   PROPOSAL TIER -- UNVERIFIED.  Imported from CoolProp 7.2.0 (MIT);
   pure-fluid properties from the published reference EOS below.
@@ -13142,7 +13161,7 @@ cosmo
         installed   false;                 // install your own copy: bin/choupo-import-cosmo (-> data/local/cosmo/VT2005/)
     }
 }
-`,Td=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,kt=`/*--------------------------------*- Choupo -*-----------------------*\\
   Mineral: trona (Na3H(CO3)2:2H2O) -- unified substance file.
   One canonical record per chemical identity; the solid-phase dissolution
   equilibrium (Ksp) lives here as a typed solidPhase (roadmap Phase D).
@@ -13159,7 +13178,7 @@ solidPhases
         equilibrium { logK25 9.274; dH -29798.4; source "USGS PHREEQC pitzer.dat/phreeqc.dat (public domain); reaction re-expressed to Choupo master basis from Trona"; }
     }
 }
-`,vd=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,Kt=`/*--------------------------------*- Choupo -*-----------------------*\\
   Mineral: vivianite (Fe3(PO4)2:8H2O) -- unified substance file.
   One canonical record per chemical identity; the solid-phase dissolution
   equilibrium (Ksp) lives here as a typed solidPhase (roadmap Phase D).
@@ -13176,7 +13195,7 @@ solidPhases
         equilibrium { logK25 -36; dH 0; source "USGS PHREEQC pitzer.dat/phreeqc.dat (public domain); reaction re-expressed to Choupo master basis from Vivianite"; }
     }
 }
-`,Pd=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,Mt=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: Water  (H2O, CAS 7732-18-5)
   Warning: Antoine fit accurate for 273-373 K only.
            Above ~373 K use steam tables or a proper EoS (IAPWS).
@@ -13364,7 +13383,7 @@ cosmo
         installed   false;                 // install your own copy: bin/choupo-import-cosmo (-> data/local/cosmo/VT2005/)
     }
 }
-`,Sd=`/*--------------------------------*- Choupo -*-----------------------*\\
+`,wt=`/*--------------------------------*- Choupo -*-----------------------*\\
   Mineral: witherite (BaCO3) -- unified substance file.
   One canonical record per chemical identity; the solid-phase dissolution
   equilibrium (Ksp) lives here as a typed solidPhase (roadmap Phase D).
@@ -13381,23 +13400,4 @@ solidPhases
         equilibrium { logK25 1.767; dH -11957.9; analytic ( 715.5291 0.15362649 -25163.04 -275.42041 563713.9 ); source "USGS PHREEQC phreeqc.dat (public domain)"; }
     }
 }
-`,Od=[],Ad=Object.assign({"../../../data/standards/components/1Butene.dat":Ut,"../../../data/standards/components/Ar.dat":zt,"../../../data/standards/components/C.dat":$t,"../../../data/standards/components/C2H.dat":Yt,"../../../data/standards/components/C2H3.dat":Qt,"../../../data/standards/components/C2H5.dat":Zt,"../../../data/standards/components/C2O.dat":Xt,"../../../data/standards/components/C3H3.dat":ni,"../../../data/standards/components/C3H5.dat":ei,"../../../data/standards/components/C3H7.dat":oi,"../../../data/standards/components/C4H2.dat":ai,"../../../data/standards/components/C4H4.dat":ti,"../../../data/standards/components/C5H5.dat":ii,"../../../data/standards/components/C6H5.dat":ri,"../../../data/standards/components/CH.dat":si,"../../../data/standards/components/CH2.dat":li,"../../../data/standards/components/CH2CO.dat":di,"../../../data/standards/components/CH2OH.dat":ci,"../../../data/standards/components/CH2_S.dat":pi,"../../../data/standards/components/CH3.dat":mi,"../../../data/standards/components/CH3CO.dat":ui,"../../../data/standards/components/CH3O.dat":hi,"../../../data/standards/components/CH3O2.dat":Ci,"../../../data/standards/components/CH4.dat":fi,"../../../data/standards/components/CN.dat":gi,"../../../data/standards/components/CO.dat":bi,"../../../data/standards/components/CO2.dat":yi,"../../../data/standards/components/CS.dat":Ti,"../../../data/standards/components/CS2.dat":vi,"../../../data/standards/components/CaCO3.dat":Pi,"../../../data/standards/components/CaCl2.dat":Si,"../../../data/standards/components/CaO.dat":Oi,"../../../data/standards/components/CaSO4.dat":Ai,"../../../data/standards/components/Cl.dat":Hi,"../../../data/standards/components/Cl2.dat":_i,"../../../data/standards/components/ClO.dat":Ei,"../../../data/standards/components/D2.dat":wi,"../../../data/standards/components/Dichloroethane.dat":Ni,"../../../data/standards/components/H.dat":xi,"../../../data/standards/components/H2.dat":Ri,"../../../data/standards/components/H2O2.dat":ki,"../../../data/standards/components/H2S.dat":Mi,"../../../data/standards/components/H2SO4.dat":Ki,"../../../data/standards/components/H3PO4.dat":qi,"../../../data/standards/components/HCCO.dat":Ii,"../../../data/standards/components/HCHO.dat":Ji,"../../../data/standards/components/HCN.dat":Vi,"../../../data/standards/components/HCO.dat":Di,"../../../data/standards/components/HCl.dat":Fi,"../../../data/standards/components/HNO.dat":Gi,"../../../data/standards/components/HNO3.dat":Li,"../../../data/standards/components/HO2.dat":ji,"../../../data/standards/components/HOCl.dat":Bi,"../../../data/standards/components/HONO.dat":Wi,"../../../data/standards/components/HSO.dat":Ui,"../../../data/standards/components/HSO3.dat":zi,"../../../data/standards/components/He.dat":$i,"../../../data/standards/components/K2SO4.dat":Yi,"../../../data/standards/components/KCl.dat":Qi,"../../../data/standards/components/KOH.dat":Zi,"../../../data/standards/components/LiCl.dat":Xi,"../../../data/standards/components/MD3M.dat":nr,"../../../data/standards/components/MD4M.dat":er,"../../../data/standards/components/MDM.dat":or,"../../../data/standards/components/MgSO4.dat":ar,"../../../data/standards/components/N.dat":tr,"../../../data/standards/components/N2.dat":ir,"../../../data/standards/components/N2H2.dat":rr,"../../../data/standards/components/N2H3.dat":sr,"../../../data/standards/components/N2H4.dat":lr,"../../../data/standards/components/N2O.dat":dr,"../../../data/standards/components/NCO.dat":cr,"../../../data/standards/components/NH.dat":pr,"../../../data/standards/components/NH2.dat":mr,"../../../data/standards/components/NH3.dat":ur,"../../../data/standards/components/NH4Cl.dat":hr,"../../../data/standards/components/NNH.dat":Cr,"../../../data/standards/components/NO.dat":fr,"../../../data/standards/components/NO2.dat":gr,"../../../data/standards/components/NO3.dat":br,"../../../data/standards/components/Na2CO3.dat":yr,"../../../data/standards/components/Na2SO4.dat":Tr,"../../../data/standards/components/NaCl.dat":vr,"../../../data/standards/components/NaHCO3.dat":Pr,"../../../data/standards/components/NaOH.dat":Sr,"../../../data/standards/components/O.dat":Or,"../../../data/standards/components/O2.dat":Ar,"../../../data/standards/components/O3.dat":Hr,"../../../data/standards/components/OH.dat":_r,"../../../data/standards/components/OrthoDeuterium.dat":Er,"../../../data/standards/components/OrthoHydrogen.dat":wr,"../../../data/standards/components/PET.dat":Nr,"../../../data/standards/components/PMMA.dat":xr,"../../../data/standards/components/PVC.dat":Rr,"../../../data/standards/components/ParaDeuterium.dat":kr,"../../../data/standards/components/ParaHydrogen.dat":Mr,"../../../data/standards/components/R11.dat":Kr,"../../../data/standards/components/R113.dat":qr,"../../../data/standards/components/R12.dat":Ir,"../../../data/standards/components/R1234yf.dat":Jr,"../../../data/standards/components/R1234zeE.dat":Vr,"../../../data/standards/components/R1234zeZ.dat":Dr,"../../../data/standards/components/R134a.dat":Fr,"../../../data/standards/components/R13I1.dat":Gr,"../../../data/standards/components/R143a.dat":Lr,"../../../data/standards/components/R21.dat":jr,"../../../data/standards/components/R218.dat":Br,"../../../data/standards/components/R22.dat":Wr,"../../../data/standards/components/R236EA.dat":Ur,"../../../data/standards/components/R245fa.dat":zr,"../../../data/standards/components/R32.dat":$r,"../../../data/standards/components/R365MFC.dat":Yr,"../../../data/standards/components/RC318.dat":Qr,"../../../data/standards/components/S.dat":Zr,"../../../data/standards/components/S2.dat":Xr,"../../../data/standards/components/SF6.dat":ns,"../../../data/standards/components/SH.dat":es,"../../../data/standards/components/SO.dat":os,"../../../data/standards/components/SO2.dat":as,"../../../data/standards/components/SO3.dat":ts,"../../../data/standards/components/Xe.dat":is,"../../../data/standards/components/acetaldehyde.dat":rs,"../../../data/standards/components/aceticAcid.dat":ss,"../../../data/standards/components/acetone.dat":ls,"../../../data/standards/components/acetylene.dat":ds,"../../../data/standards/components/akermanite.dat":cs,"../../../data/standards/components/anthophyllite.dat":ps,"../../../data/standards/components/artinite.dat":ms,"../../../data/standards/components/barite.dat":us,"../../../data/standards/components/benzene.dat":hs,"../../../data/standards/components/bischofite.dat":Cs,"../../../data/standards/components/bloedite.dat":fs,"../../../data/standards/components/burkeite.dat":gs,"../../../data/standards/components/calciumHydroxide.dat":bs,"../../../data/standards/components/calciumTartrate.dat":ys,"../../../data/standards/components/carbonylSulfide.dat":Ts,"../../../data/standards/components/carnallite.dat":vs,"../../../data/standards/components/celestite.dat":Ps,"../../../data/standards/components/chrysotile.dat":Ss,"../../../data/standards/components/cis2Butene.dat":Os,"../../../data/standards/components/compA.dat":As,"../../../data/standards/components/compB.dat":Hs,"../../../data/standards/components/compC.dat":_s,"../../../data/standards/components/cyclohexane.dat":Es,"../../../data/standards/components/cyclopentane.dat":ws,"../../../data/standards/components/cyclopropane.dat":Ns,"../../../data/standards/components/diethylEther.dat":xs,"../../../data/standards/components/dimethylCarbonate.dat":Rs,"../../../data/standards/components/dimethylEther.dat":ks,"../../../data/standards/components/diopside.dat":Ms,"../../../data/standards/components/dolomite.dat":Ks,"../../../data/standards/components/dowthermA.dat":qs,"../../../data/standards/components/enstatite.dat":Is,"../../../data/standards/components/epsomite.dat":Js,"../../../data/standards/components/ethane.dat":Vs,"../../../data/standards/components/ethanol.dat":Ds,"../../../data/standards/components/ethylAcetate.dat":Fs,"../../../data/standards/components/ethylBenzene.dat":Gs,"../../../data/standards/components/ethylene.dat":Ls,"../../../data/standards/components/ethyleneOxide.dat":js,"../../../data/standards/components/fluorine.dat":Bs,"../../../data/standards/components/fluorite.dat":Ws,"../../../data/standards/components/forsterite.dat":Us,"../../../data/standards/components/gaylussite.dat":zs,"../../../data/standards/components/glaserite.dat":$s,"../../../data/standards/components/glauberite.dat":Ys,"../../../data/standards/components/glucose.dat":Qs,"../../../data/standards/components/goergeyite.dat":Zs,"../../../data/standards/components/gypsum.dat":Xs,"../../../data/standards/components/heavyWater.dat":nl,"../../../data/standards/components/hexahydrite.dat":el,"../../../data/standards/components/hexamethyldisiloxane.dat":ol,"../../../data/standards/components/hfe143m.dat":al,"../../../data/standards/components/hitecSalt.dat":tl,"../../../data/standards/components/huntite.dat":il,"../../../data/standards/components/hydroxyapatite.dat":rl,"../../../data/standards/components/isoButane.dat":sl,"../../../data/standards/components/isoButene.dat":ll,"../../../data/standards/components/isohexane.dat":dl,"../../../data/standards/components/isopentane.dat":cl,"../../../data/standards/components/kainite.dat":pl,"../../../data/standards/components/kalicinite.dat":ml,"../../../data/standards/components/kieserite.dat":ul,"../../../data/standards/components/krypton.dat":hl,"../../../data/standards/components/labile_S.dat":Cl,"../../../data/standards/components/leonhardite.dat":fl,"../../../data/standards/components/leonite.dat":gl,"../../../data/standards/components/lithiumChlorideH2O.dat":bl,"../../../data/standards/components/mXylene.dat":yl,"../../../data/standards/components/magnesite.dat":Tl,"../../../data/standards/components/magnesiumHydroxide.dat":vl,"../../../data/standards/components/melanterite.dat":Pl,"../../../data/standards/components/methanol.dat":Sl,"../../../data/standards/components/methylAcetate.dat":Ol,"../../../data/standards/components/methylLinoleate.dat":Al,"../../../data/standards/components/methylLinolenate.dat":Hl,"../../../data/standards/components/methylOleate.dat":_l,"../../../data/standards/components/methylPalmitate.dat":El,"../../../data/standards/components/methylStearate.dat":wl,"../../../data/standards/components/mirabilite.dat":Nl,"../../../data/standards/components/misenite.dat":xl,"../../../data/standards/components/nButane.dat":Rl,"../../../data/standards/components/nButanol.dat":kl,"../../../data/standards/components/nDecane.dat":Ml,"../../../data/standards/components/nDodecane.dat":Kl,"../../../data/standards/components/nHeptane.dat":ql,"../../../data/standards/components/nHexane.dat":Il,"../../../data/standards/components/nNonane.dat":Jl,"../../../data/standards/components/nOctane.dat":Vl,"../../../data/standards/components/nPentane.dat":Dl,"../../../data/standards/components/nUndecane.dat":Fl,"../../../data/standards/components/natron.dat":Gl,"../../../data/standards/components/neon.dat":Ll,"../../../data/standards/components/neopentane.dat":jl,"../../../data/standards/components/nesquehonite.dat":Bl,"../../../data/standards/components/novec649.dat":Wl,"../../../data/standards/components/oXylene.dat":Ul,"../../../data/standards/components/pXylene.dat":zl,"../../../data/standards/components/pentahydrite.dat":$l,"../../../data/standards/components/pirssonite.dat":Yl,"../../../data/standards/components/polyethylene.dat":Ql,"../../../data/standards/components/polyhalite.dat":Zl,"../../../data/standards/components/polypropylene.dat":Xl,"../../../data/standards/components/polystyrene.dat":nd,"../../../data/standards/components/potassiumBitartrate.dat":ed,"../../../data/standards/components/propane.dat":od,"../../../data/standards/components/propylene.dat":ad,"../../../data/standards/components/propyleneGlycol30.dat":td,"../../../data/standards/components/propyne.dat":id,"../../../data/standards/components/pyrochroite.dat":rd,"../../../data/standards/components/rhodochrosite.dat":sd,"../../../data/standards/components/schoenite.dat":ld,"../../../data/standards/components/sepiolite.dat":dd,"../../../data/standards/components/sepiolite_d.dat":cd,"../../../data/standards/components/siderite.dat":pd,"../../../data/standards/components/silica.dat":md,"../../../data/standards/components/strontianite.dat":ud,"../../../data/standards/components/sucrose.dat":hd,"../../../data/standards/components/syngenite.dat":Cd,"../../../data/standards/components/talc.dat":fd,"../../../data/standards/components/tartaricAcid.dat":gd,"../../../data/standards/components/toluene.dat":bd,"../../../data/standards/components/trans2Butene.dat":yd,"../../../data/standards/components/trona.dat":Td,"../../../data/standards/components/vivianite.dat":vd,"../../../data/standards/components/water.dat":Pd,"../../../data/standards/components/witherite.dat":Sd});function No(n,t="standard"){let o;try{o=Qe(Ze(n))}catch{return null}const i=typeof o.name=="string"?o.name:"";if(!i)return null;const r=typeof o.formula=="string"?o.formula:"",s=o.role==="nonvolatile",m=typeof o.Tc=="number"&&o.Tc>0,f=o.vaporPressure!==void 0&&o.vaporPressure!==null&&m&&!s,c=s?"nonvolatile":f?"volatile":"fragment",C=typeof o.standardThermochemistry=="object"&&o.standardThermochemistry!==null&&o.standardThermochemistry.phase==="solid",y=typeof o.dissociation=="number"?o.dissociation:1,g=o.electrolyte!==void 0&&o.electrolyte!==null||y>1&&!C,v=o.noncondensable==="true"||o.noncondensable===!0,P=o.groups,H=!!P&&P.unifac!==void 0&&P.unifac!==null,E=p=>typeof p=="number"&&p>0?p:void 0;return{name:i,formula:r,kind:c,vleAble:f,isElectrolyte:g,isPermanentGas:v,hasUnifac:H,origin:t,tc:E(o.Tc),pc:E(o.Pc),tb:E(o.Tb)}}const Xn=Object.values(Ad).map(n=>No(n)).filter(n=>n!==null).sort((n,t)=>n.name.localeCompare(t.name)),Hd=Od.map(n=>No(n,"proposed")).filter(n=>n!==null).sort((n,t)=>n.name.localeCompare(t.name)),_d=/(?:^|\/)constant\/components\/([^/]+)\.dat$/;function Ea(n){const t=n.match(_d);if(!t)return null;const o=t[1];return o.includes(".estimate-")?null:o}function wa(n){if(!n)return[];const t=new Set(Xn.map(i=>i.name)),o=new Map;for(const[i,r]of Object.entries(n)){const s=Ea(i);if(!s)continue;const m=No(r,t.has(s)?"local-shadow":"local");if(!m)continue;const l={...m,name:s},f=i.split("/").length,c=o.get(s);(!c||f<c.depth)&&o.set(s,{meta:l,depth:f})}return[...o.values()].map(i=>i.meta).sort((i,r)=>i.name.localeCompare(r.name))}function Ed(n){if(!n)return{};const t=new Map;for(const[i,r]of Object.entries(n)){const s=Ea(i);if(!s)continue;const m=i.split("/").length,l=t.get(s);(!l||m<l.depth)&&t.set(s,{body:r,depth:m})}const o={};for(const[i,r]of t)o[`constant/components/${i}.dat`]=r.body;return o}function wd(n){const t=wa(n);if(t.length===0)return Xn;const o=new Map;for(const i of Xn)o.set(i.name,i);for(const i of t)o.set(i.name,i);return[...o.values()].sort((i,r)=>i.name.localeCompare(r.name))}function da(n,t=Xn){const o=n.trim().toLowerCase();return o?t.filter(i=>i.name.toLowerCase().includes(o)||i.formula.toLowerCase().includes(o)):t}function un(n,t=Xn){return t.find(o=>o.name===n)}function ca(n){if(!n.formula)return null;const t=o=>o.toLowerCase().replace(/\s/g,"");return t(n.formula)!==t(n.name)?n.formula:null}function Nd(n){const t=n.trim().split(/\r?\n/),o=[];for(let i=1;i<t.length;++i){const r=t[i].split(","),s=Number(r[0]),m=Number(r[1]);Number.isFinite(s)&&Number.isFinite(m)&&o.push({T:s,P:m,curve:(r[2]??"").trim()})}return o}function xd({csv:n,comp:t,tb:o}){const i=Se(L=>L.displayPrefs),r=i.temperature==="degC"?"°C":"K",s=i.pressure,m=L=>tn(L,i.temperature),l=L=>cn(L,i.pressure),f=Nd(n);if(f.length===0)return null;const c=L=>f.filter(k=>k.curve===L),C=c("saturation"),y=c("sublimation"),g=c("fusion"),v=f.find(L=>L.curve==="critical"),P=f.find(L=>L.curve==="triple"),H=y.length>0&&g.length>0,E=(L,k,pn,u)=>({type:"scatter",mode:"lines",name:k,x:L.map(I=>m(I.T)),y:L.map(I=>l(I.P)),line:{color:pn,width:2.4},hovertemplate:`T=%{x:.1f} ${r}<br>P=%{y:.4g} ${s}<extra>${k}</extra>`}),p=[E(C,"saturation (L–V)",J.accent)];y.length&&p.push(E(y,"sublimation (S–V)","#64b5f6")),g.length&&p.push(E(g,"fusion (S–L)","#9ccc65")),v&&p.push({type:"scatter",mode:"markers",name:"critical point",x:[m(v.T)],y:[l(v.P)],marker:{color:J.warm,size:11},hovertemplate:`Tc=${m(v.T).toFixed(1)} ${r}<br>Pc=${l(v.P).toFixed(2)} ${s}<extra>critical</extra>`}),P&&p.push({type:"scatter",mode:"markers",name:"triple point",x:[m(P.T)],y:[l(P.P)],marker:{color:J.text,size:9,symbol:"square"},hovertemplate:`Tt=${m(P.T).toFixed(2)} ${r}<br>Pt=${l(P.P).toPrecision(3)} ${s}<extra>triple point</extra>`}),o&&p.push({type:"scatter",mode:"markers",name:"normal b.p. (1 atm)",x:[m(o)],y:[l(101325)],marker:{color:J.text,size:8,symbol:"diamond"},hovertemplate:`Tb=${m(o).toFixed(1)} ${r} @ 1 atm<extra>normal b.p.</extra>`});const O=f.map(L=>l(L.P)).filter(L=>L>0),N=f.map(L=>L.T),W=v?.T??Math.max(...N),q=Math.min(...O,l(101325))*.4,w=Math.max(...O)*2,G=m(Math.min(...N)*.98),Cn=m(W*1.06),an=[{xref:"paper",yref:"paper",x:.42,y:.72,text:"liquid",showarrow:!1,font:{...rn.font,color:J.text}},{xref:"paper",yref:"paper",x:.72,y:.14,text:"vapour",showarrow:!1,font:{...rn.font,color:J.text}}];return v&&an.push({xref:"paper",yref:"paper",x:.82,y:.965,text:"supercritical fluid",showarrow:!1,font:{...rn.font,color:J.text}}),H&&an.push({xref:"paper",yref:"paper",x:.08,y:.7,text:"solid",showarrow:!1,font:{...rn.font,color:J.text}}),e.jsx(Xe,{data:p,layout:{...rn,title:{text:`P–T phase diagram  ·  ${t}${H?"":"  (liquid–vapour)"}`,font:{...rn.font,size:14}},xaxis:{...rn.xaxis,title:{text:`temperature   T   [${r}]`},range:[G,Cn]},yaxis:{...rn.yaxis,title:{text:`pressure   P   [${s}]`},type:"log",range:[Math.log10(q),Math.log10(w)]},legend:{...rn.legend,x:.02,y:.98},annotations:an},config:no,style:{width:"100%",height:"100%"},useResizeHandler:!0})}const Rd={sat:J.accent,rh:J.accent2,adia:J.warm,wb:J.warm2},kd={sat:"#00838f",rh:"#0097a7",adia:"#ef6c00",wb:"#c62828"};function Md({csv:n,yMax:t=0}){const o=Se(p=>p.displayPrefs.temperature),i=Aa("dark"),r=i==="dark"?Rd:kd,s=p=>tn(p+273.15,o),m=n.trim().split(`
-`);if((m[0]??"").trim()!=="T_C,Y,curve")return e.jsx("div",{style:{padding:16,color:"#888",fontSize:12},children:"Computing psychrometric chart…"});const l=new Map;for(let p=1;p<m.length;p++){const O=m[p].split(",");if(O.length<3)continue;const N=Number(O[0]),W=Number(O[1]),q=O[2];if(!Number.isFinite(N)||!Number.isFinite(W))continue;l.has(q)||l.set(q,{x:[],y:[]});const w=l.get(q);w.x.push(N),w.y.push(W)}const f=n.trim().split(`
-`).length-1;if([...l.values()].reduce((p,O)=>p+O.x.length,0)===0)return e.jsx("div",{style:{padding:16,fontFamily:"monospace",fontSize:12,color:"#ffb74d",whiteSpace:"pre-wrap"},children:`Psychrometric chart — no plottable points.
-csv length: ${n.length} chars, ${f} data row(s).
---- first 400 chars of what the engine returned: ---
-${n.slice(0,400)}`});const C=p=>p==="saturation"?3:p.startsWith("wetbulb:")?2:p.startsWith("adiabatic:")?1:0,y=[...l.keys()].sort((p,O)=>C(p)-C(O)),g=y.map(p=>{const O=l.get(p);let N=p,W=r.rh,q="solid",w=1,G=!0;return p==="saturation"?(N="saturation (100% RH)",W=r.sat,w=3):p.startsWith("rh:")?(N=`RH ${p.slice(3)}%`,W=r.rh,w=1,G=!1):p.startsWith("adiabatic:")?(N=`adiabatic sat. ${p.slice(10)}°C`,W=r.adia,q="dash",w=1,G=!1):p.startsWith("wetbulb:")&&(N=`wet-bulb ${p.slice(8)}°C`,W=r.wb,q="dot",w=1,G=!1),{type:"scattergl",mode:"lines",name:N,x:O.x.map(s),y:O.y,legendgroup:p==="saturation"?"sat":p.startsWith("wetbulb:")?"twb":p.startsWith("adiabatic:")?"wb":"rh",showlegend:G,line:{color:W,width:w,dash:q},hovertemplate:`${N}<br>T = %{x:.1f} ${gn(o)}   Y = %{y:.4f} kg/kg<extra></extra>`}}),v=(p,O,N,W)=>({type:"scattergl",mode:"lines",name:p,x:[NaN],y:[NaN],legendgroup:W,showlegend:!0,line:{color:O,width:N==="dash"?1:2,dash:N},hoverinfo:"skip"});y.some(p=>p.startsWith("rh:"))&&g.push(v("relative humidity",r.rh,"solid","rh")),y.some(p=>p.startsWith("adiabatic:"))&&g.push(v("adiabatic saturation",r.adia,"dash","wb")),y.some(p=>p.startsWith("wetbulb:"))&&g.push(v("wet-bulb (via Lewis nº)",r.wb,"dot","twb"));const P=(l.get("saturation")?.y??[]).slice().sort((p,O)=>p-O),H=P.length>2?Math.max(.05,P[Math.floor(P.length*.5)]*1.3):void 0,E=t>0?t:H;return e.jsx(Xe,{data:g,layout:{...rn,autosize:!0,showlegend:!0,legend:{x:.02,y:.98,bgcolor:i==="dark"?"rgba(31,31,31,0.6)":"rgba(255,255,255,0.85)",bordercolor:i==="dark"?"#3b3b3b":"#ced4da",borderwidth:1},xaxis:{...rn.xaxis,title:{text:`Dry-bulb temperature (${gn(o)})`},dtick:20,minor:{dtick:5,showgrid:!0,gridcolor:J.grid}},yaxis:{...rn.yaxis,title:{text:"Humidity ratio  Y  (kg vapour / kg dry gas)"},minor:{dtick:(E??.1)/10,showgrid:!0,gridcolor:J.grid},...E?{range:[0,E]}:{rangemode:"tozero"}}},config:no,style:{width:"100%",height:"100%"},useResizeHandler:!0})}function Kd({csv:n,compA:t,compB:o}){const i=Aa("dark"),r=n.trim().split(`
-`);if((r[0]??"").trim()!=="x1,gmix_J_per_mol,role,beta")return e.jsx("div",{style:{padding:16,color:"#888",fontSize:12},children:"Computing binary LLE diagram…"});const s={x:[],y:[]},m=[];for(let P=1;P<r.length;P++){const H=r[P].split(",");if(H.length<3)continue;const E=Number(H[0]),p=Number(H[1]),O=(H[2]??"").trim();!Number.isFinite(E)||!Number.isFinite(p)||(O==="curve"?(s.x.push(E),s.y.push(p)):O==="binodal"&&m.push({x:E,g:p,beta:Number(H[3])}))}const l=s.x.map((P,H)=>H).sort((P,H)=>s.x[P]-s.x[H]),f=l.map(P=>s.x[P]),c=l.map(P=>s.y[P]),C=i==="dark"?"#4dabf7":"#1c7ed6",y=i==="dark"?"#ffa94d":"#e8590c",g=[{type:"scattergl",mode:"lines",name:"g_mix",x:f,y:c,line:{color:C,width:2},hovertemplate:`x(${t}) = %{x:.4f}<br>g_mix = %{y:.1f} J/mol<extra></extra>`}];if(m.length===2){const P=m[0],H=m[1];g.push({type:"scattergl",mode:"lines",name:"common tangent (tie-line)",x:[P.x,H.x],y:[P.g,H.g],line:{color:y,width:2,dash:"dash"},hovertemplate:"common tangent<extra></extra>"}),g.push({type:"scattergl",mode:"markers+text",name:"coexisting liquids",x:[P.x,H.x],y:[P.g,H.g],text:[`x=${P.x.toFixed(4)}
-β=${P.beta.toFixed(3)}`,`x=${H.x.toFixed(4)}
-β=${H.beta.toFixed(3)}`],textposition:"bottom center",textfont:{size:10,color:y},marker:{color:y,size:11,symbol:"circle",line:{color:"#fff",width:1}},hovertemplate:`coexisting liquid: x(${t}) = %{x:.4f}<extra></extra>`})}const v=m.length===2?`${t}/${o} — two liquid phases: x(${t}) = ${m[0].x.toFixed(4)} ⇄ ${m[1].x.toFixed(4)}`:`${t}/${o} — single liquid (miscible: g_mix stays convex)`;return e.jsx(Xe,{data:g,layout:{...rn,autosize:!0,title:{text:v,font:{size:13}},showlegend:!0,legend:{x:.5,y:.02,xanchor:"center",orientation:"h",bgcolor:i==="dark"?"rgba(31,31,31,0.6)":"rgba(255,255,255,0.85)",bordercolor:i==="dark"?"#3b3b3b":"#ced4da",borderwidth:1},xaxis:{...rn.xaxis,title:{text:`mole fraction x(${t})`},range:[0,1]},yaxis:{...rn.yaxis,title:{text:"molar Gibbs energy of mixing  g_mix  (J/mol)"},zeroline:!0,zerolinecolor:J.grid}},config:no,style:{width:"100%",height:"100%"},useResizeHandler:!0})}function qd(n){const t=n.trim().split(/\r?\n/);if(t.length<3)return null;const o=t[0].split(",").map(c=>c.trim()),i=/^x\[([^\]]+)\]$/.exec(o[0]??"");if(!i)return null;const r=i[1],s=0,m=o.indexOf("T_bubble"),l=o.indexOf("y_eq_"+r);if(m<0||l<0)return null;const f=[];for(let c=1;c<t.length;c++){const C=t[c].split(","),y=Number(C[s]),g=Number(C[l]),v=Number(C[m]);Number.isFinite(y)&&Number.isFinite(g)&&Number.isFinite(v)&&f.push({x:y,y:g,T:v})}return f.length<2?null:(f.sort((c,C)=>c.x-C.x),{comp:r,x:f.map(c=>c.x),yEq:f.map(c=>c.y),Tbub:f.map(c=>c.T)})}function xo(n,t,o){const i=n.length;if(i===0)return NaN;if(o<=n[0])return t[0];if(o>=n[i-1])return t[i-1];let r=0,s=i-1;for(;s-r>1;){const c=r+s>>1;n[c]<=o?r=c:s=c}const m=n[r],l=n[s],f=l===m?0:(o-m)/(l-m);return t[r]+f*(t[s]-t[r])}function Oe(n,t){return xo(n.x,n.yEq,t)}function wo(n,t){return xo(n.x,n.Tbub,t)}function $e(n,t,o){const i=n.length;if(i===0)return NaN;const r=t[i-1]>=t[0],s=r?t[0]:t[i-1],m=r?t[i-1]:t[0];if(o<=s)return r?n[0]:n[i-1];if(o>=m)return r?n[i-1]:n[0];let l=n[0],f=n[i-1];const c=y=>xo(n,t,y)-o;let C=c(l);for(let y=0;y<80;y++){const g=.5*(l+f),v=c(g);if(Math.abs(v)<1e-12||f-l<1e-10)return g;C<0==v<0?(l=g,C=v):f=g}return .5*(l+f)}function Ro(n,t){const o=wo(n,t),i=$e(n.x,n.yEq,t),r=wo(n,i);return{Tbubble:o,Tdew:r}}function Na(n,t,o){const r=Oe(n,o)-o;return Math.abs(r)<1e-12?NaN:(t-o)/r}function Id(n,t,o){const{Tbubble:i,Tdew:r}=Ro(n,t),s={z:t,T:o,Tbubble:i,Tdew:r},m=Math.min(i,r),l=Math.max(i,r);if(o<=m+1e-9)return{...s,VF:0,xLiq:t,yVap:Oe(n,t),regime:"all-liquid",note:o<m-1e-6?"below the bubble point — subcooled liquid; the tie-line collapses (V/F = 0)":void 0};if(o>=l-1e-9)return{...s,VF:1,xLiq:$e(n.x,n.yEq,t),yVap:t,regime:"all-vapour",note:o>l+1e-6?"above the dew point — superheated vapour; the tie-line collapses (V/F = 1)":void 0};const f=$e(n.x,n.Tbub,o),c=Oe(n,f);let C=Na(n,t,f);return C=Math.min(1,Math.max(0,C)),{...s,VF:C,xLiq:f,yVap:c,regime:"two-phase"}}function Jd(n,t,o){const{Tbubble:i,Tdew:r}=Ro(n,t),s={z:t,Tbubble:i,Tdew:r},m=Math.min(1,Math.max(0,o)),l=t,f=$e(n.x,n.yEq,t);if(m<=1e-9)return{...s,VF:0,xLiq:t,yVap:Oe(n,t),T:i,regime:"all-liquid"};if(m>=1-1e-9)return{...s,VF:1,xLiq:f,yVap:t,T:r,regime:"all-vapour"};let c=Math.min(l,f),C=Math.max(l,f);const y=E=>{const p=Na(n,t,E);return Number.isFinite(p)?p-m:0};let g=y(c),v=.5*(c+C);for(let E=0;E<80;E++){v=.5*(c+C);const p=y(v);if(Math.abs(p)<1e-12||C-c<1e-12)break;g<0==p<0?(c=v,g=p):C=v}const P=Oe(n,v),H=wo(n,v);return{...s,VF:m,xLiq:v,yVap:P,T:H,regime:"two-phase"}}function Vd(n){const t=Math.abs(n.z-n.xLiq),o=Math.abs(n.yVap-n.z),i=t+o,r=i>1e-15?t/i:NaN;return{liquidArm:t,vapourArm:o,total:i,vfFromArms:r}}function Dd({csv:n,compA:t,compB:o,P:i}){const r=Se(u=>u.displayPrefs),s=r.temperature,m=r.pressure,l=gn(s),f=u=>tn(u,s),c=d.useMemo(()=>qd(n),[n]),[C,y]=d.useState(.5),[g,v]=d.useState("T"),[P,H]=d.useState(.5),[E,p]=d.useState(.5),O=d.useMemo(()=>c?Ro(c,C):null,[c,C]);if(!c||!O)return e.jsx(qn,{color:"yellow",variant:"light",title:"No equilibrium curve",children:"The binary T-x-y curve could not be read — pick exactly two VLE-able components."});const N=Math.min(O.Tbubble,O.Tdew),W=Math.max(O.Tbubble,O.Tdew),q=N+(W-N)*P,w=g==="T"?Id(c,C,q):Jd(c,C,E),G=Vd(w),Cn=w.regime==="two-phase",an={x:[0,1],y:[0,1]},L=[{type:"scatter",mode:"lines",name:"y = x",x:an.x,y:an.y,line:{color:J.accent2,width:1,dash:"dot"},hoverinfo:"skip"},{type:"scatter",mode:"lines",name:"equilibrium y*(x)",x:c.x,y:c.yEq,line:{color:J.accent,width:2.5},hovertemplate:"x=%{x:.3f}<br>y*=%{y:.3f}<extra>equilibrium</extra>"},{type:"scatter",mode:"lines",name:`feed z (${t})`,x:[C,C],y:[0,C],line:{color:J.warm2,width:1,dash:"dash"},hoverinfo:"skip"},{type:"scatter",mode:"markers+text",name:"feed z",x:[C],y:[C],text:[`z=${C.toFixed(3)}`],textposition:"bottom right",marker:{color:J.warm2,size:9,symbol:"diamond"},textfont:{color:J.warm2,size:11},hovertemplate:"feed z=%{x:.3f}<extra></extra>"}];if(Cn){const u=w.yVap;L.push({type:"scatter",mode:"lines",name:"tie-line",x:[w.xLiq,w.yVap],y:[u,u],line:{color:J.warm,width:2},hovertemplate:"tie-line<extra></extra>"},{type:"scatter",mode:"lines",name:"liquid arm (∝ V)",x:[w.xLiq,C],y:[u,u],line:{color:J.series[4],width:6},opacity:.7,hoverinfo:"skip"},{type:"scatter",mode:"lines",name:"vapour arm (∝ L)",x:[C,w.yVap],y:[u,u],line:{color:J.series[5],width:6},opacity:.7,hoverinfo:"skip"},{type:"scatter",mode:"markers+text",x:[w.xLiq,C,w.yVap],y:[u,u,u],text:[`x=${w.xLiq.toFixed(3)}`,"",`y=${w.yVap.toFixed(3)}`],textposition:"top center",marker:{color:[J.accent,J.warm2,J.warm],size:[9,7,9],symbol:["circle","x","square"]},textfont:{size:11},showlegend:!1,hovertemplate:"%{x:.3f}<extra></extra>"},{type:"scatter",mode:"lines",x:[w.xLiq,w.xLiq],y:[0,u],line:{color:J.accent,width:1,dash:"dot"},showlegend:!1,hoverinfo:"skip"})}const k=Cn?"teal":"orange",pn=w.regime==="two-phase"?"two-phase (V + L)":w.regime==="all-liquid"?"single phase — all liquid (V/F = 0)":"single phase — all vapour (V/F = 1)";return e.jsxs(vn,{gap:"xs",style:{height:"100%"},children:[e.jsxs(x,{gap:"xs",wrap:"wrap",children:[e.jsxs(bn,{size:"lg",variant:"filled",color:"accent",tt:"none",children:["V/F = ",w.VF.toFixed(3)]}),e.jsxs(bn,{size:"lg",variant:"light",color:"cyan",tt:"none",children:["x (",t,") = ",w.xLiq.toFixed(3)]}),e.jsxs(bn,{size:"lg",variant:"light",color:"orange",tt:"none",children:["y (",t,") = ",w.yVap.toFixed(3)]}),e.jsxs(bn,{size:"lg",variant:"light",color:"grape",tt:"none",children:["T = ",se(f(w.T))," ",l,g==="VF"?" (result)":""]}),e.jsx(bn,{size:"lg",variant:"outline",color:k,tt:"none",children:pn})]}),e.jsxs(S,{size:"xs",c:"dimmed",children:["A binary isothermal flash is fixed by 2 numbers (Duhem): P = ",se(cn(i,m))," ",fn(m)," ","and the γ-model are frozen in the curve below — turn ",g==="T"?"T":"V/F"," and read the split. The curve is the REAL model curve (the engine's y*(x), not a sketch). Lever rule:"," ","V/F = (z − x)/(y − x) = ",G.liquidArm.toFixed(3)," / ",G.total.toFixed(3)," = ",Number.isFinite(G.vfFromArms)?G.vfFromArms.toFixed(3):"—","."]}),w.note&&e.jsx(qn,{color:"orange",variant:"light",py:6,children:e.jsxs(S,{size:"xs",children:[w.note," — at this condition the feed does not split, so there is no tie-line to draw."]})}),e.jsxs(x,{gap:"lg",align:"center",wrap:"wrap",children:[e.jsxs(x,{gap:6,align:"center",children:[e.jsx(S,{size:"xs",c:"dimmed",w:64,children:"feed z"}),e.jsx(Ao,{w:170,min:.01,max:.99,step:.01,value:C,onChange:y,label:u=>u.toFixed(2),color:"orange"})]}),e.jsx(Ue,{size:"xs",value:g,onChange:u=>v(u),data:[{label:"spec T",value:"T"},{label:"spec V/F",value:"VF"}]}),g==="T"?e.jsxs(x,{gap:6,align:"center",children:[e.jsx(S,{size:"xs",c:"dimmed",w:64,children:"T (flash)"}),e.jsx(Ao,{w:210,min:0,max:1,step:.005,value:P,onChange:H,label:()=>`${se(f(q))} ${l}`,color:"grape",marks:[{value:0,label:"bubble"},{value:1,label:"dew"}]})]}):e.jsxs(x,{gap:6,align:"center",children:[e.jsx(S,{size:"xs",c:"dimmed",w:64,children:"V/F"}),e.jsx(Ao,{w:210,min:0,max:1,step:.005,value:E,onChange:p,label:u=>u.toFixed(3),color:"accent",marks:[{value:0,label:"bubble"},{value:1,label:"dew"}]})]})]}),e.jsxs(S,{size:"xs",c:"dimmed",children:["feed bubble point ",se(f(O.Tbubble))," ",l," (V/F → 0) · feed dew point ",se(f(O.Tdew))," ",l," (V/F → 1)"]}),e.jsx(Xe,{data:L,layout:{...rn,title:{text:`Binary flash  ·  ${t} / ${o}  ·  P = ${se(cn(i,m))} ${fn(m)}`,font:{...rn.font,size:14}},xaxis:{...rn.xaxis,title:{text:`x of ${t} (liquid)`},range:[0,1]},yaxis:{...rn.yaxis,title:{text:`y of ${t} (vapour)`},range:[0,1],scaleanchor:"x",scaleratio:1},legend:{...rn.legend,x:.02,y:.98},showlegend:!0},config:no,style:{width:"100%",flex:1,minHeight:0},useResizeHandler:!0})]})}const xa="choupo.explore.recentComponents",Ra=6;function ka(){if(typeof window>"u")return[];try{const n=JSON.parse(window.localStorage.getItem(xa)??"[]");return Array.isArray(n)?n.filter(t=>typeof t=="string").slice(0,Ra):[]}catch{return[]}}function Fd(n){const t=[n,...ka().filter(o=>o!==n)].slice(0,Ra);try{window.localStorage.setItem(xa,JSON.stringify(t))}catch{}return t}const Gd={volatiles:"Volatiles (VLE-able)",electrolytes:"Electrolytes / ions",gases:"Permanent gases",nonvolatile:"Non-volatile / fragments"},Ld=["volatiles","electrolytes","gases","nonvolatile"];function jd(n){return n.isElectrolyte?"electrolytes":n.isPermanentGas?"gases":n.vleAble?"volatiles":"nonvolatile"}function Bd({selected:n,onAdd:t,onRemove:o,vleContext:i=!1,caseComponents:r,onEstimate:s,unlockLine:m}){const[l,f]=d.useState(""),[c,C]=d.useState("all"),[y,g]=d.useState(ka),[v,P]=d.useState(!1),H=d.useCallback(u=>{g(Fd(u)),t(u)},[t]),E=u=>c==="vle"?u.vleAble:c==="solute"?u.kind==="nonvolatile":!0,p=d.useMemo(()=>r.filter(u=>{const I=l.trim().toLowerCase();return(!I||u.name.toLowerCase().includes(I)||u.formula.toLowerCase().includes(I))&&E(u)}),[r,l,c]),O=d.useMemo(()=>new Set(r.map(u=>u.name)),[r]),N=d.useMemo(()=>da(l,Xn).filter(u=>!O.has(u.name)&&E(u)),[l,c,O]),W=d.useMemo(()=>new Set(Xn.map(u=>u.name)),[]),q=d.useMemo(()=>da(l,Hd).filter(u=>!O.has(u.name)&&!W.has(u.name)&&E(u)),[l,c,O]),w=p.length===0&&N.length===0&&q.length===0,G=new Set(n),Cn=l.trim().length===0,an=d.useMemo(()=>{if(!Cn)return[];const u=new Map(N.map(I=>[I.name,I]));return y.map(I=>u.get(I)).filter(I=>!!I)},[Cn,N,y]),L=d.useMemo(()=>new Set(an.map(u=>u.name)),[an]),k=d.useMemo(()=>{const u={volatiles:[],electrolytes:[],gases:[],nonvolatile:[]};for(const I of N)Cn&&L.has(I.name)||u[jd(I)].push(I);return u},[N,Cn,L]),pn=(u,I="")=>{const yn=G.has(u.name);return e.jsx(ra,{onClick:()=>yn?o(u.name):H(u.name),className:"choupo-compound-row","data-on":yn?"true":void 0,style:{padding:"3px 6px",borderRadius:4,background:yn?"var(--mantine-color-accent-light)":void 0,opacity:i&&!u.vleAble?.45:1},children:e.jsxs(x,{justify:"space-between",gap:6,wrap:"nowrap",children:[e.jsxs(S,{size:"xs",fw:yn?600:400,truncate:!0,children:[u.name,ca(u)&&e.jsxs(S,{span:!0,c:"dimmed",size:"xs",children:[" ",ca(u)]})]}),e.jsxs(x,{gap:3,wrap:"nowrap",children:[u.origin==="proposed"&&e.jsx(en,{withArrow:!0,multiline:!0,w:250,label:"Extended-tier component (data/proposed/) — machine-ingested / estimated, USABLE but not yet hand-curated. The solver prints a [proposed] notice; review its gaps (esp. Cp / formation) before relying on it, then promote it to the verified catalogue.",children:e.jsx(bn,{size:"xs",variant:"light",color:"orange",children:"proposed"})}),(u.origin==="local"||u.origin==="local-shadow")&&e.jsx(en,{withArrow:!0,multiline:!0,w:230,label:u.origin==="local-shadow"?"case-local .dat — overrides the standard component of the same name (shipped to the solver)":"case-local component — shipped to the solver as a raw .dat",children:e.jsx(bn,{size:"xs",variant:"light",color:"teal",children:u.origin==="local-shadow"?"override":"local"})}),!u.vleAble&&e.jsx(en,{withArrow:!0,multiline:!0,w:220,label:u.kind==="nonvolatile"?"no vapour pressure — cannot appear in VLE / ternary plots":"no Tc / no Antoine — cannot appear in VLE / ternary plots",children:e.jsx(bn,{size:"xs",variant:"light",color:"gray",children:u.kind==="nonvolatile"?"nonvol":"frag"})})]})]})},I+u.name)};return e.jsxs(vn,{gap:6,style:{height:"100%",minHeight:0},children:[e.jsxs(x,{justify:"space-between",align:"center",gap:4,wrap:"nowrap",children:[e.jsx(S,{size:"xs",fw:700,c:"dimmed",children:"COMPONENTS"}),e.jsx(en,{label:"Estimate a component the catalogue lacks, by Joback groups",withArrow:!0,multiline:!0,w:220,children:e.jsx(En,{size:"compact-xs",variant:"subtle",color:"accent",leftSection:e.jsx(ia,{size:13}),onClick:()=>s(l.trim()),children:"estimate"})})]}),e.jsx(Ha,{size:"xs",placeholder:"search name / formula",value:l,onChange:u=>f(u.currentTarget.value)}),e.jsx(de.Group,{value:c,onChange:u=>C(u||"all"),children:e.jsxs(x,{gap:4,children:[e.jsx(de,{size:"xs",value:"all",color:"accent",children:"all"}),e.jsx(de,{size:"xs",value:"vle",color:"accent",children:"VLE"}),e.jsx(de,{size:"xs",value:"solute",color:"accent",children:"nonvolatile"})]})}),e.jsx(yt,{style:{flex:1,minHeight:0},children:e.jsxs(vn,{gap:1,children:[p.length>0&&e.jsx(je,{label:"CASE COMPONENTS",c:"teal.6"}),p.map(u=>pn(u,"case-")),Cn?e.jsxs(e.Fragment,{children:[an.length>0&&e.jsx(je,{label:"Recently used"}),an.map(u=>pn(u,"recent-")),Ld.map(u=>k[u].length>0?e.jsxs(nn,{children:[e.jsx(je,{label:Gd[u]}),k[u].map(I=>pn(I,`${u}-`))]},u):null)]}):e.jsxs(e.Fragment,{children:[p.length>0&&N.length>0&&e.jsx(je,{label:"STANDARD CATALOGUE"}),N.map(u=>pn(u))]}),q.length>0&&e.jsx(en,{withArrow:!0,multiline:!0,w:260,label:"data/proposed/ — extended catalogue (bulk-ingested / estimated). Usable for screening, but not yet hand-curated: the solver flags it, and you should review its gaps (esp. Cp / formation) before relying on it.",children:e.jsx(ra,{mt:8,onClick:()=>P(u=>!u),"aria-expanded":l.trim().length>0||v,children:e.jsxs(S,{size:"xs",fw:700,c:"orange.6",children:["PROPOSED — review before relying (",q.length,") · ",l.trim().length>0||v?"hide":"show"]})})}),(l.trim().length>0||v)&&q.map(u=>pn(u,"proposed-")),w&&e.jsxs(vn,{gap:6,align:"center",mt:"sm",children:[e.jsx(S,{size:"xs",c:"dimmed",ta:"center",children:"no match"}),l.trim()&&e.jsxs(En,{size:"compact-xs",variant:"light",color:"accent",leftSection:e.jsx(ia,{size:13}),onClick:()=>s(l.trim()),children:["estimate “",l.trim(),"” by groups"]})]})]})}),n.length>0&&e.jsxs(nn,{children:[e.jsxs(S,{size:"xs",c:"dimmed",mb:3,children:["SET (",n.length,")"]}),e.jsx(x,{gap:4,children:n.map(u=>e.jsx(bn,{size:"sm",variant:"filled",color:"accent",tt:"none",rightSection:e.jsx(Tt,{size:12,onClick:()=>o(u),"aria-label":`remove ${u}`,style:{color:"inherit"}}),children:u},u))}),m&&e.jsxs(x,{gap:4,mt:6,wrap:"nowrap",align:"flex-start",children:[e.jsx(vt,{size:13,style:{marginTop:2,flexShrink:0,opacity:.7}}),e.jsx(S,{size:"xs",c:"dimmed",style:{lineHeight:1.3},children:m})]})]})]})}function je({label:n,c:t="dimmed"}){return e.jsx(S,{size:"xs",fw:700,c:t,mt:6,pb:1,style:{position:"sticky",top:0,zIndex:2,letterSpacing:.3,background:"light-dark(var(--mantine-color-body), var(--mantine-color-dark-7))"},children:n})}const pa=[{name:"CH3",mw:15.035,contrib:13.67,label:"CH3 (methyl)"},{name:"CH2",mw:14.027,contrib:10.231,label:"CH2 (methylene)"},{name:"CH",mw:13.019,contrib:6.78,label:"CH (methine)"},{name:"C",mw:12.011,contrib:3.33,label:"C (quaternary)"},{name:"ACH",mw:13.019,contrib:8.06,label:"ACH (aromatic =CH–)"},{name:"AC",mw:12.011,contrib:5.54,label:"AC (aromatic =C<, substituted)"},{name:"CHCl",mw:48.472,contrib:18.781,label:"CHCl (>CHCl)"},{name:"CH2Cl",mw:49.48,contrib:22.23,label:"CH2Cl (–CH2Cl)"}],ma=[{name:"CH2",mw:14,contrib:4.026,label:"CH2  –CH2–"},{name:"CHCH3",mw:28,contrib:8.222,label:"CHCH3  –CH(CH3)– (propylene)"},{name:"CHOCH3",mw:44,contrib:10.611,label:"CHOCH3  –CH(OCH3)–"},{name:"CHCOOH",mw:58,contrib:18.82,label:"CHCOOH  –CH(COOH)–"},{name:"CHOH",mw:30,contrib:4.697,label:"CHOH  –CH(OH)– (vinyl alcohol)"},{name:"CHCONH2",mw:57,contrib:29.918,label:"CHCONH2  –CH(CONH2)–"},{name:"CHcyclopentyl",mw:82,contrib:29.607,label:"CHcyclopentyl"},{name:"CHcyclohexyl",mw:96,contrib:38.934,label:"CHcyclohexyl"},{name:"CHphenyl",mw:90,contrib:42.153,label:"CHphenyl  –CH(C6H5)– (styrene)"},{name:"CHCl",mw:48.5,contrib:17.911,label:"CHCl  –CHCl– (vinyl chloride)"},{name:"CHvinyl",mw:40,contrib:10.77,label:"CHvinyl"},{name:"CHeqCH",mw:26,contrib:1.344,label:"CHeqCH  –CH=CH–"},{name:"CCH3eqCH",mw:40,contrib:6.228,label:"CCH3eqCH"},{name:"CCleqCH",mw:60.5,contrib:13.807,label:"CCleqCH"},{name:"CH4pyridyl",mw:91,contrib:40.704,label:"CH4pyridyl  (4-vinylpyridine)"},{name:"CH2pyrrolidinone",mw:97,contrib:46.146,label:"CH2pyrrolidinone  (NVP)"},{name:"CHCN",mw:39,contrib:15.637,label:"CHCN  –CH(CN)– (acrylonitrile)"},{name:"CHcarbazolyl",mw:179,contrib:93.246,label:"CHcarbazolyl  (NVC)"},{name:"CCH3CH3",mw:42,contrib:18.234,label:"CCH3CH3  –C(CH3)2– (isobutylene)"},{name:"CCH3COOCH3",mw:86,contrib:37.503,label:"CCH3COOCH3  (MMA)"},{name:"CCOOCH3COOCH3",mw:130,contrib:57.666,label:"CCOOCH3COOCH3"},{name:"CCH3phenyl",mw:104,contrib:54.475,label:"CCH3phenyl  (α-methylstyrene)"},{name:"CClCOOCH3",mw:106.5,contrib:43.597,label:"CClCOOCH3"},{name:"CFF",mw:50,contrib:17.503,label:"CFF  –CF2– (TFE)"},{name:"CClCl",mw:83,contrib:23.91,label:"CClCl  –CCl2–"},{name:"CFCl",mw:66.5,contrib:26.884,label:"CFCl"},{name:"CFCF3",mw:100,contrib:32.682,label:"CFCF3"},{name:"CHCF3",mw:82,contrib:25.254,label:"CHCF3"},{name:"CCF3CF3",mw:150,contrib:80.103,label:"CCF3CF3"},{name:"NCOCH3",mw:57,contrib:23.331,label:"NCOCH3"},{name:"O",mw:16,contrib:-14.718,label:"O  –O– (ether linker)"},{name:"Oend",mw:16,contrib:12.011,label:"Oend"},{name:"Ooxide",mw:16,contrib:4.989,label:"Ooxide"},{name:"S",mw:32,contrib:-2.887,label:"S  –S– (thioether linker)"},{name:"CO",mw:28,contrib:4.37,label:"CO  >C=O"},{name:"SO2",mw:64,contrib:15.373,label:"SO2  –SO2–"},{name:"OCSO",mw:76,contrib:14.676,label:"OCSO"},{name:"COO",mw:44,contrib:7.025,label:"COO  ester linker"},{name:"CONH",mw:43,contrib:19.247,label:"CONH  amide linker"},{name:"OCOO",mw:60,contrib:13.663,label:"OCOO  carbonate linker"},{name:"OCONH",mw:59,contrib:16.108,label:"OCONH  urethane linker"},{name:"pPhenylene",mw:76,contrib:42.182,label:"pPhenylene  –C6H4–"},{name:"methylPhenylene",mw:90,contrib:43.893,label:"methylPhenylene"},{name:"dimethylPhenylene",mw:104,contrib:68.975,label:"dimethylPhenylene"},{name:"cyclohexylene",mw:82,contrib:36.274,label:"cyclohexylene"},{name:"naphthylene",mw:126,contrib:111.805,label:"naphthylene"},{name:"pyromelliticDiimide",mw:214,contrib:187.952,label:"pyromelliticDiimide"},{name:"glutarimide",mw:111,contrib:44.226,label:"glutarimide"},{name:"phthalimide",mw:145,contrib:103.18,label:"phthalimide"},{name:"quinoxaline",mw:128,contrib:112.517,label:"quinoxaline"},{name:"phenylQuinoxaline",mw:204,contrib:141.851,label:"phenylQuinoxaline"},{name:"benzoxazole",mw:117,contrib:88.241,label:"benzoxazole"},{name:"thiophene",mw:82,contrib:35.372,label:"thiophene"},{name:"dioxane",mw:86,contrib:33.723,label:"dioxane"},{name:"SiCH3CH3",mw:58,contrib:-1.059,label:"SiCH3CH3  –Si(CH3)2– (PDMS)"},{name:"SiCH3phenyl",mw:120,contrib:21.853,label:"SiCH3phenyl"},{name:"CH2oxide",mw:14,contrib:3.412,label:"CH2oxide"},{name:"backboneSideChain",mw:0,contrib:2.771,label:"backboneSideChain  (Nb term)"}];function Wd(n){return n.map(t=>({value:t.name,label:t.label??t.name}))}function Ud(n){return Object.fromEntries(n.map(t=>[t.name,t]))}const zd=[{name:"polystyrene",label:"Polystyrene  –[CH2–CH(C6H5)]–",rows:[{group:"CH2",count:1},{group:"CH",count:1},{group:"ACH",count:5},{group:"AC",count:1}]},{name:"pvc",label:"PVC  –[CH2–CHCl]–",rows:[{group:"CH2",count:1},{group:"CHCl",count:1}]},{name:"polyethylene",label:"Polyethylene  –[CH2–CH2]–",rows:[{group:"CH2",count:2}]}],$d=[{name:"pvc",label:"PVC  –[CH2–CHCl]–  (≈351 K)",rows:[{group:"CH2",count:1},{group:"CHCl",count:1}]},{name:"polystyrene",label:"Polystyrene  –[CH2–CH(phenyl)]–  (≈444 K)",rows:[{group:"CH2",count:1},{group:"CHphenyl",count:1}]},{name:"pmma",label:"PMMA  –[CH2–C(CH3)(COOCH3)]–  (≈378 K)",rows:[{group:"CH2",count:1},{group:"CCH3COOCH3",count:1}]}],Yd=[{value:"CH3",label:"CH3 (methyl)"},{value:"CH2",label:"CH2 (methylene)"},{value:"CH",label:"CH (methine)"},{value:"C",label:"C (quaternary)"},{value:"eCH2",label:"=CH2 (alkene, terminal)"},{value:"eCH",label:"=CH– (alkene)"},{value:"eC",label:"=C< (alkene)"},{value:"OH",label:"OH (alcohol)"},{value:"ether",label:"–O– (ether)"},{value:"ketone",label:">C=O (ketone)"},{value:"aldehyde",label:"–CHO (aldehyde)"},{value:"acid",label:"–COOH (acid)"},{value:"ester",label:"–COO– (ester)"},{value:"arCH",label:"=CH– (aromatic)"},{value:"arC",label:"=C< (aromatic)"}],Qd=[{value:"Joback",label:"Small molecule — Joback (Tc, Pc, ω, Psat)"},{value:"VanKrevelen",label:"Polymer density — Van Krevelen (ρ)"},{value:"Yang2020",label:"Polymer Tg — Yang 2020 (Tg∞)"}];function le(n,t){const o=typeof n=="number"?n:parseFloat(n);return Number.isFinite(o)?o:t}function ua({opened:n,onClose:t,prefillName:o}){const[i,r]=d.useState("Joback"),[s,m]=d.useState(o),[l,f]=d.useState([{group:"CH3",count:1}]),[c,C]=d.useState("1.60"),y=i==="VanKrevelen"||i==="Yang2020",g=i==="VanKrevelen"?pa:i==="Yang2020"?ma:null,v=i==="Joback"?Yd:Wd(g),P=g?Ud(g):null,H=i==="VanKrevelen"?zd:i==="Yang2020"?$d:[],E=()=>v[0]?.value??"CH2",[p,O]=d.useState(!1),[N,W]=d.useState(""),[q,w]=d.useState(""),[G,Cn]=d.useState(""),[an,L]=d.useState(""),[k,pn]=d.useState(!1),[u,I]=d.useState(null),[yn,jn]=d.useState(null);d.useEffect(()=>{n&&(m(o),jn(null),I(null))},[n,o]);const In=h=>{r(h);const on=h==="Joback"?"CH3":(h==="VanKrevelen"?pa:ma)[0]?.name??"CH2";f([{group:on,count:1}]),jn(null),I(null)},Ae=(h,_)=>f(on=>on.map((mn,ae)=>ae===h?{...mn,..._}:mn)),pe=()=>f(h=>[...h,{group:E(),count:1}]),He=h=>f(_=>_.filter((on,mn)=>mn!==h)),Bn=h=>{m(h.name),f(h.rows.map(_=>({..._}))),jn(null),I(null)},Jn=()=>({...N?{Tb:le(N,NaN)}:{},...q?{Tc:le(q,NaN)}:{},...G?{Pc_bar:le(G,NaN)}:{},...an?{omega:le(an,NaN)}:{}}),Q=s.trim().length>0&&l.length>0&&l.every(h=>h.group&&h.count>0),_e=async()=>{if(Q){pn(!0),I(null),jn(null);try{const h=Jn(),_={...h.Tb!==void 0&&Number.isFinite(h.Tb)?{Tb:h.Tb}:{},...h.Tc!==void 0&&Number.isFinite(h.Tc)?{Tc:h.Tc}:{},...h.Pc_bar!==void 0&&Number.isFinite(h.Pc_bar)?{Pc:h.Pc_bar*1e5}:{},...h.omega!==void 0&&Number.isFinite(h.omega)?{omega:h.omega}:{}},on=ve({components:[],properties:[],axis:{variable:"T",from:0,to:1,n:2},state:{composition:{}},estimate:{component:s.trim(),groups:l.map(Vn=>({group:Vn.group,count:Math.round(Vn.count)})),estimator:i,...i==="Joback"&&Object.keys(_).length>0?{reference:_}:{},...i==="VanKrevelen"?{polymer:{packing:le(c,1.6),state:"amorphous"}}:{}}}),mn=await _a("wasm");if(mn.kind==="unavailable"){I(mn.fallbackReason??"The solver (WASM) could not be loaded."),pn(!1);return}const ae=await mn.adapter.run(on,()=>{},void 0,"choupoProps");ae.status!=="done"&&I(`estimateComponent did not finish — check the groups (every group must be a known ${i} key).`),jn(ae)}catch(h){I(h instanceof Error?h.message:String(h))}finally{pn(!1)}}},Wn=yn?.operationResults?.find(h=>h.type==="estimateComponent"),sn=Wn?.diagnostics??{},Rn=Object.entries(yn?.proposals??{}).find(([h])=>h.includes(`${s.trim()}.estimate`)),Ee=Rn?Rn[0].split("/").pop():null,kn=Rn?Rn[1]:null,ne=Jn(),ee=(h,_)=>{if(h===void 0||_===void 0||!Number.isFinite(_)||_===0)return"";const on=(h-_)/_*100;return`${on>=0?"+":""}${on.toFixed(2)}%`},eo=[[sn.Tb_K,"Tb (normal b.p.)","K",ne.Tb],[sn.Tc_K,"Tc (critical)","K",ne.Tc],[sn.Pc_bar,"Pc (critical)","bar",ne.Pc_bar],[sn.omega,"ω (acentric)","—",ne.omega],[sn.Vliq298_cm3mol,"Vliq(298 K)","cm³/mol",void 0],[sn.dHf_kJmol,"ΔHf°(298, gas)","kJ/mol",void 0],[sn.Cp298,"Cp_ig(298 K)","J/mol·K",void 0],[sn.Psat_298_bar,"Psat(298 K)","bar",void 0]],me=[[sn.M0_g_per_mol,"M0 (repeat-unit mass)","g/mol",void 0],[sn.Vw_cm3_per_mol,"Vw (van der Waals vol.)","cm³/mol",void 0],[sn.packing_k,"k (packing factor)","—",void 0],[sn.V_cm3_per_mol,"V = k·Vw (molar vol.)","cm³/mol",void 0],[sn.density_g_cm3,"ρ (density)","g/cm³",void 0]],oo=[[sn.M0_g_per_mol,"M0 (repeat-unit mass)","g/mol",void 0],[sn.YgSum_1e3gKmol,"ΣYg (Tg function)","10³ g·K/mol",void 0],[sn.Tg_K,"Tg∞ (glass transition)","K",void 0]],ue=i==="VanKrevelen"?me:i==="Yang2020"?oo:eo,oe=y&&P?l.map(h=>{const _=P[h.group],on=Math.round(h.count);return{group:h.group,count:on,mw:_?_.mw*on:void 0,contrib:_?_.contrib*on:void 0}}):[],Un=i==="VanKrevelen"?"n·Vw (cm³/mol)":"n·Yg (10³ g·K/mol)",ao=i==="VanKrevelen"?"Estimate a polymer density — Van Krevelen group contribution":i==="Yang2020"?"Estimate a polymer Tg — Yang 2020 group contribution":"Estimate a new component — Joback group contribution",zn=i==="Joback"?e.jsxs(S,{size:"xs",c:"dimmed",children:["Declare the molecular groups; the engine estimates the pure-component constants (+ Psat by Ambrose-Walton, Vliq by Rackett). The result is an",e.jsx("b",{children:" ESTIMATE"})," you DOWNLOAD as a reviewable proposal — rename it to",e.jsxs("code",{children:[" constant/components/",s.trim()||"<name>",".dat"]})," on disk to promote."]}):i==="VanKrevelen"?e.jsxs(S,{size:"xs",c:"dimmed",children:["Decompose the polymer's ",e.jsx("b",{children:"repeat unit"})," into Van Krevelen groups; the engine sums M0 = Σn·MW and Vw = Σn·Vw (Bondi 1964) and returns",e.jsx("b",{children:" ρ = M0 / (k·Vw)"}),". k is the packing factor (≈1.60 amorphous, ≈1.43 crystalline) — yours to set, and shown, never hidden."]}):e.jsxs(S,{size:"xs",c:"dimmed",children:["Decompose the polymer's ",e.jsx("b",{children:"repeat unit"})," into Yang 2020 groups; the engine sums M0 = Σn·MW and Yg = Σn·Yg (ACS Omega 2020, CC-BY) and returns the infinite-Mw glass transition ",e.jsx("b",{children:"Tg∞ = ΣYg·10³ / M0"}),". For most vinyl polymers Nb (backbone-in-side-chain) = 0; add the ",e.jsx("code",{children:"backboneSideChain"}),"group only when a backbone atom sits in a side chain."]});return e.jsx(Pt,{opened:n,onClose:t,size:"lg",title:e.jsx(S,{fw:600,children:ao}),children:e.jsxs(vn,{gap:"sm",children:[e.jsx(Tn,{label:"What to estimate",data:Qd,value:i,allowDeselect:!1,onChange:h=>h&&In(h)}),zn,e.jsx(Ha,{label:y?"Polymer name (the filename stem you will type in cases)":"Component name (the filename stem you will type in cases)",placeholder:y?"polystyrene":"pentadiene",value:s,onChange:h=>m(h.currentTarget.value)}),H.length>0&&e.jsxs(x,{gap:"xs",align:"center",children:[e.jsx(S,{size:"xs",c:"dimmed",children:"Quick-pick repeat unit:"}),H.map(h=>e.jsx(En,{variant:"light",size:"compact-xs",onClick:()=>Bn(h),children:h.label},h.name))]}),e.jsxs("div",{children:[e.jsx(S,{size:"sm",fw:500,mb:4,children:y?`Repeat-unit groups (${i})`:"Molecular groups (Joback)"}),e.jsx(vn,{gap:6,children:l.map((h,_)=>e.jsxs(x,{gap:"xs",wrap:"nowrap",children:[e.jsx(Tn,{data:v,value:h.group,searchable:!0,onChange:on=>Ae(_,{group:on??E()}),w:320,allowDeselect:!1}),e.jsx(R,{value:h.count,min:1,w:90,onChange:on=>Ae(_,{count:Math.max(1,Math.round(le(on,1)))})}),e.jsx(Pe,{variant:"subtle",color:"gray","aria-label":"remove group",onClick:()=>He(_),disabled:l.length<=1,children:e.jsx(Wt,{size:16})})]},_))}),e.jsx(En,{variant:"subtle",size:"compact-xs",leftSection:e.jsx(jt,{size:14}),onClick:pe,mt:6,children:"add group"})]}),i==="VanKrevelen"&&e.jsx(R,{label:"Packing factor k  (V = k·Vw; ≈1.60 amorphous, ≈1.43 crystalline)",value:c,min:1,max:2,step:.01,decimalScale:2,w:360,onChange:h=>C(String(h??"1.60"))}),i==="Joback"&&e.jsxs(e.Fragment,{children:[e.jsx(En,{variant:"subtle",size:"compact-xs",onClick:()=>O(h=>!h),w:"fit-content",children:p?"Hide reference (validation)":"Reference values (optional — see the deviation)"}),e.jsx(Eo,{in:p,children:e.jsxs(x,{gap:"xs",wrap:"wrap",children:[e.jsx(R,{label:"Tb (K)",value:N,onChange:h=>W(String(h??"")),w:110}),e.jsx(R,{label:"Tc (K)",value:q,onChange:h=>w(String(h??"")),w:110}),e.jsx(R,{label:"Pc (bar)",value:G,onChange:h=>Cn(String(h??"")),w:110}),e.jsx(R,{label:"ω (-)",value:an,onChange:h=>L(String(h??"")),w:110})]})})]}),e.jsxs(x,{children:[e.jsx(En,{color:"accent",onClick:()=>void _e(),disabled:!Q||k,leftSection:k?e.jsx(ze,{size:14}):void 0,children:k?"Estimating…":"Estimate"}),!Q&&e.jsx(S,{size:"xs",c:"dimmed",children:"name + at least one group required"})]}),u&&e.jsx(qn,{color:"red",variant:"light",children:u}),Wn&&e.jsxs(e.Fragment,{children:[y&&oe.length>0&&e.jsxs(e.Fragment,{children:[e.jsx(la,{label:"Additive group sum (glass-box — redo it by hand)",labelPosition:"center"}),e.jsxs(D,{withRowBorders:!1,verticalSpacing:2,fz:"xs",children:[e.jsx(D.Thead,{children:e.jsxs(D.Tr,{children:[e.jsx(D.Th,{children:"group"}),e.jsx(D.Th,{ta:"right",children:"count"}),e.jsx(D.Th,{ta:"right",children:"n·MW (g/mol)"}),e.jsx(D.Th,{ta:"right",children:Un})]})}),e.jsxs(D.Tbody,{children:[oe.map((h,_)=>e.jsxs(D.Tr,{children:[e.jsx(D.Td,{ff:"monospace",children:h.group}),e.jsx(D.Td,{ta:"right",children:h.count}),e.jsx(D.Td,{ta:"right",ff:"monospace",children:h.mw!==void 0?h.mw.toFixed(3):"—"}),e.jsx(D.Td,{ta:"right",ff:"monospace",children:h.contrib!==void 0?h.contrib.toFixed(3):"—"})]},_)),e.jsxs(D.Tr,{children:[e.jsxs(D.Td,{fw:600,children:["Σ (M0, ",i==="VanKrevelen"?"Vw":"Yg",")"]}),e.jsx(D.Td,{}),e.jsx(D.Td,{ta:"right",fw:600,ff:"monospace",children:oe.reduce((h,_)=>h+(_.mw??0),0).toFixed(3)}),e.jsx(D.Td,{ta:"right",fw:600,ff:"monospace",children:oe.reduce((h,_)=>h+(_.contrib??0),0).toFixed(3)})]})]})]})]}),e.jsx(la,{label:"Estimated properties (ESTIMATE — review before trusting)",labelPosition:"center"}),e.jsxs(D,{withRowBorders:!1,verticalSpacing:2,fz:"xs",children:[e.jsx(D.Thead,{children:e.jsxs(D.Tr,{children:[e.jsx(D.Th,{children:"property"}),e.jsx(D.Th,{ta:"right",children:"value"}),e.jsx(D.Th,{children:"unit"}),e.jsx(D.Th,{ta:"right",children:"vs ref"})]})}),e.jsx(D.Tbody,{children:ue.filter(([h])=>h!==void 0).map(([h,_,on,mn])=>e.jsxs(D.Tr,{children:[e.jsx(D.Td,{children:_}),e.jsx(D.Td,{ta:"right",ff:"monospace",children:h.toPrecision(5)}),e.jsx(D.Td,{c:"dimmed",children:on}),e.jsx(D.Td,{ta:"right",c:"dimmed",children:ee(h,mn)})]},_))})]}),i==="Yang2020"&&sn.Tg_K!==void 0&&e.jsxs(S,{size:"xs",c:"dimmed",children:["Tg∞ is the ",e.jsx("b",{children:"infinite-molecular-weight limit"}),"; a real sample's Tg(Mn) = Tg∞ − K/Mn sits a little below it."]}),e.jsxs(x,{gap:6,children:[e.jsx(bn,{size:"sm",variant:"light",color:"orange",children:"origin: estimate"}),e.jsx(S,{size:"xs",c:"dimmed",children:i==="VanKrevelen"?"Van Krevelen / Bondi 1964 Vw — ρ carries the packing-factor k uncertainty (try crystalline k≈1.43).":i==="Yang2020"?"Yang 2020 (ACS Omega, CC-BY) — additive main-chain Tg∞; over-predicts bulky pendants (e.g. polystyrene +19%).":"Joback + Lee-Kesler ω + Ambrose-Walton Psat + Rackett Vliq — corresponding states, a few % error (worse for polar species)."})]}),e.jsxs(x,{justify:"space-between",align:"center",mt:4,children:[e.jsxs(S,{size:"xs",c:"dimmed",children:["Downloads a dated proposal; review its gaps, then rename to",e.jsxs("code",{children:[" ",s.trim(),".dat"]})," to promote (the GUI never writes it in place)."]}),e.jsx(en,{label:kn?"Save the dated .estimate-DATE.dat proposal (Save-As lets you pick the folder)":"no proposal produced",withArrow:!0,multiline:!0,w:240,children:e.jsx(En,{leftSection:e.jsx(Ot,{size:16}),disabled:!kn,onClick:()=>kn&&Ee&&void St(Ee,kn),children:"Download proposal"})})]})]})]})})}const Zd=200,Xd=460,Ln=240,Ma="choupo.explore.railWidth",Ka="choupo.explore.railCollapsed";function ko(n){return Number.isFinite(n)?Math.min(Xd,Math.max(Zd,Math.round(n))):Ln}function nc(){if(typeof window>"u")return Ln;try{const n=window.localStorage.getItem(Ma);if(n===null)return Ln;const t=parseFloat(n);return Number.isFinite(t)?ko(t):Ln}catch{return Ln}}function ha(n){if(!(typeof window>"u"))try{window.localStorage.setItem(Ma,String(ko(n)))}catch{}}function ec(){if(typeof window>"u")return!1;try{return window.localStorage.getItem(Ka)==="1"}catch{return!1}}function oc(n){if(!(typeof window>"u"))try{window.localStorage.setItem(Ka,n?"1":"0")}catch{}}function ac(){const[n,t]=d.useState(nc),[o,i]=d.useState(ec),r=d.useRef(null),s=d.useRef(n),m=d.useCallback(()=>{i(c=>{const C=!c;return oc(C),C})},[]),l=d.useCallback(()=>{s.current=Ln,t(Ln),ha(Ln)},[]),f=d.useCallback(c=>{c.preventDefault();const C=c.clientX,y=s.current,g=c.currentTarget;try{g.setPointerCapture(c.pointerId)}catch{}const v=document.body.style.userSelect;document.body.style.userSelect="none";const P=E=>{const p=ko(y+(E.clientX-C));s.current=p,r.current===null&&(r.current=window.requestAnimationFrame(()=>{r.current=null,t(s.current)}))},H=E=>{g.removeEventListener("pointermove",P),g.removeEventListener("pointerup",H),g.removeEventListener("pointercancel",H);try{g.releasePointerCapture(E.pointerId)}catch{}r.current!==null&&(window.cancelAnimationFrame(r.current),r.current=null),document.body.style.userSelect=v,t(s.current),ha(s.current)};g.addEventListener("pointermove",P),g.addEventListener("pointerup",H),g.addEventListener("pointercancel",H)},[]);return{width:n,collapsed:o,toggleCollapsed:m,onPointerDown:f,reset:l}}const qa={water:[{group:"H2O",count:1}],ethanol:[{group:"CH3",count:1},{group:"CH2",count:1},{group:"OH",count:1}],nButanol:[{group:"CH3",count:1},{group:"CH2",count:3},{group:"OH",count:1}],nHexane:[{group:"CH3",count:2},{group:"CH2",count:4}],benzene:[{group:"ACH",count:6}],C4H10:[{group:"CH3",count:2},{group:"CH2",count:2}],nPentane:[{group:"CH3",count:2},{group:"CH2",count:3}],isopentane:[{group:"CH3",count:3},{group:"CH2",count:1},{group:"CH",count:1}],nHeptane:[{group:"CH3",count:2},{group:"CH2",count:5}],C8H18:[{group:"CH3",count:2},{group:"CH2",count:6}],cyclohexane:[{group:"CH2",count:6}]};function tc(n){let t;try{t=Qe(Ze(n))}catch{return null}const o=t.unifac;if(!o||typeof o!="object")return null;const i=o.groups;if(!Array.isArray(i))return null;const r=[];for(const s of i)s&&typeof s=="object"&&typeof s.group=="string"&&typeof s.count=="number"&&r.push({group:s.group,count:s.count});return r.length?r:null}function ic(n){const t={};if(!n)return t;for(const[o,i]of Object.entries(n)){if(!/(^|\/)constant\/components\/[^/]+\.dat$/.test(o))continue;let r;try{r=Qe(Ze(i))}catch{continue}const s=typeof r.name=="string"?r.name:"";if(!s)continue;const m=tc(i);m&&(t[s]=m)}return t}function Ia(n,t={}){return Object.prototype.hasOwnProperty.call(t,n)||Object.prototype.hasOwnProperty.call(qa,n)}function Be(n,t={}){const o={};for(const i of n){const r=t[i]??qa[i];r&&(o[i]=r.map(s=>({group:s.group,count:s.count})))}return o}function rc(n,t){if(n.length===0)return"mixed";if(n.length===1)return"pure";const o=n.map(l=>un(l,t)),i=n.includes("water"),r=o.some(l=>l?.isElectrolyte),s=o.some(l=>l?.isPermanentGas),m=o.some(l=>(l?.vleAble??!1)&&!(l?.isPermanentGas??!1));return s&&m?"humid-gas":i&&r?"aqueous-electrolyte":o.every(l=>l?.vleAble)?i?"aqueous-organic":"organic-mixture":"mixed"}function Ca(n,t,o){const i=new Set(["scan"]),r=n.length;if(r>=2&&i.add("gibbsmap"),r===0)return i;const s=n.map(C=>un(C,t)),m=rc(n,t),l=s.every(C=>C?.vleAble??!1),f=n.every((C,y)=>(s[y]?.hasUnifac??!1)||Ia(C,o)),c=m==="aqueous-organic"||m==="organic-mixture";return r===1&&(s[0]?.vleAble&&i.add("phase"),n[0]==="water"&&i.add("steam")),r===2&&c&&l&&(i.add("txy"),i.add("flash"),i.add("gamma"),i.add("mccabe")),r===2&&f&&i.add("binaryLle"),r===3&&c&&l&&i.add("ternary"),r===3&&c&&l&&f&&i.add("ternaryLle"),m==="humid-gas"&&r===2&&i.add("psychro"),m==="aqueous-electrolyte"&&i.add("scaling"),i}const sc=Object.assign({}),lc=Object.assign({});function fa(n,t){const o=[];for(const i of Object.values(n))try{const s=Qe(Ze(i)).components;Array.isArray(s)&&s.length===2&&o.push({model:t,a:String(s[0]),b:String(s[1])})}catch{}return o}const dc=[...fa(sc,"NRTL"),...fa(lc,"Wilson")];function Ho(n,t,o){return dc.some(i=>i.model===n&&(i.a===t&&i.b===o||i.a===o&&i.b===t))}const cc={water:{tripleT:273.16,tripleP:611.657,Hfus:6010,Hsub:51059,deltaVfus:-163e-8}};function pc(n){return cc[n]}function mc(n,t=12){const o=typeof navigator<"u"&&navigator.hardwareConcurrency||4;return Math.max(1,Math.min(o-2,t,Math.max(1,n)))}function uc(n){const t=n.filter(l=>l&&l.trim().length>0);if(t.length===0)return"";const o=t[0].trim().split(/\r?\n/)[0],i=o.split(","),r=i.indexOf("tieline_id"),s=i.indexOf("kind"),m=[o];return t.forEach((l,f)=>{const c=l.trim().split(/\r?\n/);for(let C=1;C<c.length;++C){let y=c[C];if(r>=0&&s>=0){const g=y.split(",");if(g[s]==="tie"){const v=Number(g[r]);Number.isFinite(v)&&v>=0&&(g[r]=String(f*1e6+v),y=g.join(","))}}m.push(y)}}),m.join(`
-`)+`
-`}function hc(n){return n==="Psat"?{family:"vaporPressure",models:["Antoine","AmbroseWalton"]}:["Z","v_molar","H_real","S_real"].includes(n)?{family:"equationOfState",models:["idealGas","SRK","PR"]}:n==="viscosity_liquid"?{family:"transportLiquidVisc",models:["Andrade","Vogel"]}:n==="thermal_conductivity_liquid"?{family:"transportLiquidCond",models:["SatoRiedel","Latini"]}:null}function Cc(n,t,o,i){switch(t){case"equationOfState":return{...n,equationOfState:{model:o}};case"transportLiquidVisc":return{...n,transport:{...n.transport??{},liquidViscosity:o}};case"transportLiquidCond":return{...n,transport:{...n.transport??{},liquidConductivity:o}};case"vaporPressure":{if(o==="Antoine")return n;const r={...n.componentFiles??{}};for(const s of i)r[`constant/components/${s}.dat`]=`name ${s};
-vaporPressure { model ${o}; }
-`;return{...n,componentFiles:r}}}}function fc(n){const t=(c,C)=>Math.abs(c-C)<=1e-9*Math.max(1,Math.abs(c),Math.abs(C)),o=n.map(c=>{const C=c.csv.trim().split(/\r?\n/),y=C[0]?.split(",")[1]?.trim()||"value",g=[];for(let v=1;v<C.length;++v){const P=C[v].split(",");if(P.length<2)continue;const H=Number(P[0]);Number.isFinite(H)&&g.push({x:H,xs:P[0].trim(),v:P[1].trim()})}return{model:c.model,prop:y,pts:g}}).filter(c=>c.pts.length>0);if(o.length===0)return"";const i=n[0].csv.split(/\r?\n/)[0]?.split(",")[0]?.trim()||"x",r=o[0].prop,s=[],m=o.flatMap(c=>c.pts).sort((c,C)=>c.x-C.x);for(const c of m)(s.length===0||!t(s[s.length-1].x,c.x))&&s.push(c);const l=[i,...o.map(c=>`${r}__${c.model}`)].join(","),f=[];for(const c of s){const C=o.map(y=>y.pts.find(g=>t(g.x,c.x))?.v??"");f.push([c.xs,...C].join(","))}return[l,...f].join(`
-`)}function gc(n){const t=n.trim().split(/\r?\n/);let o=0,i=0;for(let r=1;r<t.length;++r){const s=t[r].split(",").slice(1).map(c=>c.trim()===""?NaN:Number(c)).filter(Number.isFinite);if(s.length<2)continue;const m=Math.min(...s),l=Math.max(...s),f=l-m;o=Math.max(o,f),i=Math.max(i,f/Math.max(Math.abs(m),Math.abs(l),1e-30)*100)}return{absMax:o,relMaxPct:i}}const _o=[{id:"scan",label:"Property vs T/P",min:1,max:99,vle:!1,why:"pick at least one component"},{id:"phase",label:"Pure phase diagram (P-T)",min:1,max:1,vle:!0,why:"needs exactly 1 VLE-able component (Tc + vapour pressure)"},{id:"txy",label:"Binary boiling envelope (T-x-y)",min:2,max:2,vle:!0,why:"needs exactly 2 VLE-able components"},{id:"gamma",label:"γ(x)",min:2,max:2,vle:!0,why:"needs exactly 2 VLE-able components"},{id:"mccabe",label:"McCabe-Thiele (distillation)",min:2,max:2,vle:!0,why:"needs exactly 2 VLE-able components"},{id:"flash",label:"Binary flash (x-y + lever rule)",min:2,max:2,vle:!0,why:"needs exactly 2 VLE-able components"},{id:"binaryLle",label:"Binary LLE (g_mix + tangent)",min:2,max:2,vle:!1,needsUnifac:!0,why:"needs exactly 2 components with UNIFAC groups (e.g. water + nButanol)"},{id:"ternary",label:"Ternary boiling surface (T_bubble)",min:3,max:3,vle:!0,why:"needs exactly 3 VLE-able components"},{id:"ternaryLle",label:"Ternary solubility (LLE)",min:3,max:3,vle:!0,needsUnifac:!0,why:"needs exactly 3 components with UNIFAC groups (e.g. water, ethanol, benzene)"},{id:"psychro",label:"Psychrometric chart",min:2,max:2,vle:!1,why:"pick a carrier gas + a condensable (the condensable needs a vapour-pressure model)"},{id:"scaling",label:"Scaling (SI vs recovery)",min:1,max:99,vle:!1,why:"select water + a dissolved electrolyte (e.g. NaCl) — RO-scaling needs ions"},{id:"gibbsmap",label:"Equilibrium map (Gibbs)",min:2,max:12,vle:!1,why:"pick 2+ gas-phase species with parseable formulas (e.g. N2 + H2 + NH3)"},{id:"steam",label:"Steam tables (IF97)",min:1,max:1,vle:!1,why:"IF97 is the water formulation — select water alone"}],bc={scan:"scan",phase:"P-T",txy:"T-x-y",flash:"flash",gamma:"γ(x)",mccabe:"McCabe",binaryLle:"LLE",ternary:"ternary",ternaryLle:"tern.LLE",psychro:"psychro",scaling:"scaling",steam:"steam",gibbsmap:"gibbsmap"},Ja=["Psat","Cp_liquid"],yc=["Z","v_molar","Cp_ig","H_real","S_real"],Va=["viscosity_liquid","viscosity_gas","thermal_conductivity_liquid","thermal_conductivity"],ga=["Z","v_molar","H_real","S_real"],ba=n=>Ja.includes(n),Tc=n=>Va.includes(n),ya={viscosity_liquid:"μ liquid",viscosity_gas:"μ gas",thermal_conductivity_liquid:"k liquid",thermal_conductivity:"k gas"};function Ta(n){return n==="viscosity_liquid"?["Andrade","Vogel"]:n==="thermal_conductivity_liquid"?["SatoRiedel","Latini"]:[]}const va=[{ion:"Ca",mw:40.078},{ion:"Mg",mw:24.305},{ion:"Na",mw:22.99},{ion:"K",mw:39.098},{ion:"Cl",mw:35.453},{ion:"SO4",mw:96.06},{ion:"HCO3",mw:61.02}],vc={Ca:.0021,Mg:.0011,Na:.0158,K:3e-4,Cl:.0124,SO4:.0026,HCO3:.003},Pa=["calcite","gypsum"],Pc=[{y:0,label:"saturation — above this line the mineral precipitates"}];function We(n){if(!n||/[^A-Za-z0-9()]/.test(n))return{};let t=n;t=t.replace(/\(([A-Za-z0-9]+)\)(\d+)/g,(m,l,f)=>l.repeat(parseInt(f,10)));const o={},i=/([A-Z][a-z]?)(\d*)/g;let r,s=0;for(;(r=i.exec(t))!==null;){if(r.index!==s)return{};s=r.index+r[0].length;const m=r[1],l=r[2]?parseInt(r[2],10):1;o[m]=(o[m]??0)+l}return s===t.length?o:{}}function Te(n,t){const o=n.trim().split(/\r?\n/);if(o.length===0)return n;const i=o[0].split(",").map(r=>r.trim()).indexOf(t);return i<0?n:o.map(r=>{const s=r.split(",");return s.splice(i,1),s.join(",")}).join(`
-`)}const Da={h:{label:"h (h_f, h_g, h_fg)",keep:["h_f","h_g","h_fg"],rename:{h_f:"hf",h_g:"hg",h_fg:"hfg"}},s:{label:"s (s_f, s_g)",keep:["s_f","s_g"],rename:{s_f:"sf",s_g:"sg"}},v:{label:"v (v_f, v_g)",keep:["v_f","v_g"],rename:{v_f:"vf",v_g:"vg"}},psat:{label:"psat",keep:["psat"],rename:{}}},Fa={h:{label:"h",keep:["h"],rename:{h:"hmass"}},s:{label:"s",keep:["s"],rename:{s:"smass"}},v:{label:"v",keep:["v"],rename:{v:"vmass"}},cp:{label:"cp",keep:["cp"],rename:{cp:"cpmass"}}};function Sc(n,t,o){const i=(t==="saturation"?Da:Fa)[o];if(!i)return n;const r=n.trim().split(/\r?\n/);if(r.length===0)return n;const m=r[0].split(",").map(l=>l.trim()).map((l,f)=>({h:l,i:f})).filter(({h:l})=>l==="T"||i.keep.includes(l));return m.length<2?n:[m.map(({h:l})=>i.rename[l]??l).join(","),...r.slice(1).map(l=>{const f=l.split(",");return m.map(({i:c})=>f[c]??"").join(",")})].join(`
-`)}function Oc(n,t){const o=n.trim().split(/\r?\n/);if(o.length<2)return null;const i=o[0].split(",").map(m=>m.trim()).indexOf(t);if(i<0)return null;const r=parseFloat(o[1].split(",")[i]??""),s=parseFloat(o[o.length-1].split(",")[i]??"");return Number.isFinite(r)&&Number.isFinite(s)?{first:r,last:s}:null}function Ac(n,t){switch(n){case"txy":return"ch:flash";case"mccabe":return"sec:mccabe-tray-efficiency";case"flash":return"ch:flash";case"gamma":return"ch:activity";case"ternary":return"sec:ternary";case"ternaryLle":return"ch:lle-gibbs";case"phase":return"ch:vap";case"psychro":return"ch:drying";case"scaling":return"ch:electrolytes";case"gibbsmap":return"ch:gibbs";case"steam":return"ch:vap";default:return t==="Psat"?"ch:vap":t==="Cp_liquid"||t==="Cp_ig"?"ch:heat":t==="viscosity_liquid"||t==="viscosity_gas"?"ch:viscosity":t==="thermal_conductivity_liquid"||t==="thermal_conductivity"?"ch:thermal-cond":"ch:fugacity"}}const Hc=(n,t)=>`/docs/theoryGuide.pdf#nameddest=${Ac(n,t)}`;function F(n,t){const o=typeof n=="number"?n:parseFloat(n);return Number.isFinite(o)?o:t}function Jc(){const[n,t]=d.useState([]),[o,i]=d.useState("scan"),r=ac(),[s,m]=d.useState("Psat"),[l,f]=d.useState("T"),[c,C]=d.useState(290),[y,g]=d.useState(380),[v,P]=d.useState(5e4),[H,E]=d.useState(5e5),p=l==="T"?c:v,O=l==="T"?y:H,N=l==="T"?C:P,W=l==="T"?g:E,[q,w]=d.useState(298.15),[G,Cn]=d.useState(60),[an,L]=d.useState(4),[k,pn]=d.useState(101325),[u,I]=d.useState("idealGas"),[yn,jn]=d.useState("Andrade"),[In,Ae]=d.useState(!1),[pe,He]=d.useState([]),[Bn,Jn]=d.useState(null),[Q,_e]=d.useState("NRTL"),[Wn,sn]=d.useState(10),[Rn,Ee]=d.useState(90),[kn,ne]=d.useState(20),[ee,eo]=d.useState(10),[me,oo]=d.useState(0),[ue,oe]=d.useState({...vc}),[Un,ao]=d.useState("mg/L"),[zn,h]=d.useState("solve"),[_,on]=d.useState(7.8),[mn,ae]=d.useState("closed"),[Vn,Ga]=d.useState(42e-5),[we,La]=d.useState(298.15),[he,ja]=d.useState("davies"),[Ce,Ba]=d.useState(!1),[te,Wa]=d.useState(10),[ie,Ua]=d.useState({}),[Ne,za]=d.useState(573.15),[xe,$a]=d.useState(973.15),[Re,Ya]=d.useState(1e5),[ke,Qa]=d.useState(3e7),[wn,Za]=d.useState(null),[$n,Mo]=d.useState(0),[Ko,Xa]=d.useState(!1),[Me,nt]=d.useState(0),[Ke,et]=d.useState(.85),[Pn,ot]=d.useState("saturation"),[to,at]=d.useState("h"),[io,tt]=d.useState(273.16),[ro,it]=d.useState(623.15),[so,rt]=d.useState(293.15),[lo,st]=d.useState(573.15),[fe,lt]=d.useState(1e5),[dn,qe]=d.useState(null),[co,Ie]=d.useState(!1),[po,Mn]=d.useState(null),[mo,Je]=d.useState([]),[qo,dt]=d.useState(!1),[uo,Io]=d.useState(!0),ho=Se(a=>a.displayPrefs),M=ho.temperature,V=ho.pressure,Ve=a=>l==="T"?tn(a,M):cn(a,V),Jo=a=>l==="T"?Gn(a,M):Le(a,V),Vo=l==="T"?gn(M):fn(V),Do=(a,b)=>Un==="mg/L"?Number((a*b*1e3).toFixed(2)):a,ct=(a,b)=>Un==="mg/L"?a/(b*1e3):a,Dn=Se(a=>a.caseFiles.rawFiles),Z=d.useMemo(()=>wd(Dn),[Dn]),Co=d.useMemo(()=>{let a=n[n.length-1]??null,b=-1;for(const T of n){const A=Object.keys(We(un(T,Z)?.formula??"")).length;A>b&&(b=A,a=T)}return a},[n,Z]),Fo=d.useMemo(()=>wa(Dn),[Dn]),An=d.useMemo(()=>ic(Dn),[Dn]),Sn=d.useMemo(()=>Ed(Dn),[Dn]),Kn=Object.keys(Sn).length>0,De=d.useCallback(a=>(un(a,Z)?.hasUnifac??!1)||Ia(a,An),[Z,An]);d.useEffect(()=>{if(n.length!==2)return;const a=n[0],b=n[1];!De(a)||!De(b)||_e(T=>(T==="NRTL"||T==="Wilson")&&!Ho(T,a,b)?"UNIFAC":T)},[n,De]);const Go=d.useCallback(a=>t(b=>b.includes(a)?b:[...b,a]),[]),Lo=d.useCallback(a=>t(b=>b.filter(T=>T!==a)),[]),[jo,fo]=d.useState(!1),[Bo,pt]=d.useState(""),Wo=d.useCallback(a=>{pt(a),fo(!0)},[]),Hn=o==="txy"||o==="gamma"||o==="mccabe"||o==="flash",Fn=o==="ternary"||o==="ternaryLle",go=ba(s)?"pure":"mixture",Uo=d.useCallback(a=>a.comingSoon?a.comingSoon:Ca(n,Z,An).has(a.id)?null:(n.length<a.min||n.length>a.max,a.why),[n,Z,An]),mt=_o.find(a=>a.id===o)??_o[0],ge=Uo(mt),Yn=d.useMemo(()=>Ca(n,Z,An),[n,Z,An]),zo=d.useRef(Yn),[ut,$o]=d.useState(new Set);d.useEffect(()=>{const a=zo.current,b=new Set;if(Yn.forEach(A=>{a.has(A)||b.add(A)}),zo.current=Yn,b.size===0)return;$o(b);const T=setTimeout(()=>$o(new Set),650);return()=>clearTimeout(T)},[Yn]);const Yo=d.useMemo(()=>{if(n.length===0)return null;const a=U=>un(U,Z),b=n.filter(U=>a(U)?.vleAble).length,T=n.every(U=>a(U)?.vleAble),A=n.includes("water"),$=n.some(U=>a(U)?.isElectrolyte);return n.length===1&&b===1?"+1 VLE compound → boiling envelope, γ(x), McCabe-Thiele":n.length===2&&T&&!Yn.has("ternary")?"+1 VLE compound → ternary boiling surface":A&&!$&&!Yn.has("scaling")?"+ a dissolved salt (e.g. NaCl) → RO-scaling audit":null},[n,Z,Yn]),hn=d.useMemo(()=>{const a={};if(n.forEach(K=>{a[K]=1/Math.max(n.length,1)}),o==="phase"){const K=n[0]??"";return{components:[K],properties:[],axis:{variable:"T",from:0,to:1,n:2},state:{composition:{[K]:1}},phaseDiagram:{grid:Math.max(20,Math.round(G)),solid:pc(K)},componentFiles:{...Sn,[`constant/components/${K}.dat`]:`name ${K};
-vaporPressure { model AmbroseWalton; }
-`}}}if(o==="psychro"){const K=[...n].sort((xn,bt)=>(un(xn,Z)?.tb??0)-(un(bt,Z)?.tb??0)),j=K[0]??"",B=K[K.length-1]??"",Y=c-273.15,ln=y-273.15,X=[];for(let xn=Wn;xn<=Rn+1e-9&&xn<100;xn+=Math.max(1,kn))X.push(Math.round(xn));const re=[],Oo=Math.max(5,ee);for(let xn=Math.ceil(Y/Oo)*Oo;xn<=Math.min(ln,95);xn+=Oo)re.push(xn);return{components:[j,B],properties:[],axis:{variable:"T",from:0,to:1,n:2},state:{composition:{[j]:.5,[B]:.5}},psychrometry:{carrier:j,condensable:B,P:k,TminC:Y,TmaxC:ln,gridN:Math.max(20,Math.round(G)),rh:X,wetBulb:re},transport:{model:"Chung",thermalConductivity:"Eucken",diffusivity:"Fuller"},componentFiles:{...Sn}}}if(o==="gibbsmap"){const K=n.map(X=>({name:X,atoms:We(un(X,Z)?.formula??"")})),j=[...new Set(K.flatMap(X=>Object.keys(X.atoms)))].sort(),B=K.map(X=>({name:X.name,atoms:j.map(re=>X.atoms[re]??0)})),Y={};for(const X of n)Y[X]=ie[X]??1;const ln=wn&&n.includes(wn)?wn:Co??n[n.length-1];return{components:[...n],properties:[],axis:{variable:"T",from:0,to:1,n:2},state:{composition:Object.fromEntries(n.map(X=>[X,1/n.length]))},gibbsmap:{elements:j,species:B,feed:Y,Tfrom:Ne,Tto:xe,nT:25,Pfrom:Re,Pto:ke,nP:25,logP:!0,metric:{type:"moleFraction",species:ln},...$n!==0?{deltaT:$n}:{}},...Kn?{componentFiles:Sn}:{}}}if(o==="scaling"){const K={};for(const{ion:j}of va){const B=ue[j]??0;B>0&&(K[j]=B)}return{components:["water"],properties:[],axis:{variable:"T",from:0,to:1,n:2},state:{composition:{water:1}},scaling:{totals:K,pH:zn==="solve"?"solve":_,...mn==="open"?{pCO2atm:Vn}:{},T:we,activityModel:he,...Ce?{equilibrate:[...Pa],...te>0?{feedFlowM3h:te}:{}}:{},from:Me,to:Ke,n:Math.max(2,Math.round(G))},...Kn?{componentFiles:Sn}:{}}}if(o==="steam")return{components:["water"],properties:[],axis:{variable:"T",from:0,to:1,n:2},state:{composition:{water:1}},steam:Pn==="saturation"?{mode:"saturation",from:io,to:ro,n:Math.max(2,Math.round(G))}:{mode:"isobar",P:fe,from:so,to:lo,n:Math.max(2,Math.round(G))},...Kn?{componentFiles:Sn}:{}};if(o==="ternary"||o==="ternaryLle"){const K=Math.max(8,Math.min(28,Math.round(G))),j={variable:"T",from:0,to:1,n:2};return o==="ternaryLle"?{components:n,properties:[],axis:j,state:{T:q,P:k,composition:a},ternary:{mode:"lle",n:K,tieStride:Math.max(1,Math.round(an))},unifacGroups:Be(n,An),...Kn?{componentFiles:Sn}:{}}:{components:n,properties:[],axis:j,state:{P:k,composition:a},ternary:{mode:"bubbleT",n:K},activityModel:{model:Q},equationOfState:{model:u},...Q==="UNIFAC"?{unifacGroups:Be(n,An)}:{},...Kn?{componentFiles:Sn}:{}}}if(o==="binaryLle")return{components:n,properties:[],axis:{variable:"x",from:0,to:1,n:2},state:{T:q,P:k,composition:a},binaryLle:{n:Math.max(11,Math.round(G))},unifacGroups:Be(n,An),...Kn?{componentFiles:Sn}:{}};if(o==="txy"||o==="gamma"||o==="mccabe"||o==="flash"){const K=un(n[0]??"",Z)?.tb,j=un(n[1]??"",Z)?.tb,B=typeof K=="number"&&typeof j=="number"&&j<K?[n[1],n[0]]:n,Y=B[0]??"",ln=B[1]??"",X=o==="txy"||o==="mccabe"||o==="flash",re=X?["T_bubble",`y_eq_${Y}`,"liquid_stable"]:[`gamma_${Y}`,`gamma_${ln}`];return{components:B,properties:re,axis:{variable:`x[${Y}]`,from:0,to:1,n:Math.max(2,Math.round(G))},state:{P:k,composition:a},activityModel:{model:Q},equationOfState:{model:u},...X?{vleTwoLiquid:!0}:{},...Q==="UNIFAC"?{unifacGroups:Be(B,An)}:{},...Kn?{componentFiles:Sn}:{}}}const b=ba(s),T=b?n.map(K=>`${s}_${K}`):[s],A={composition:a};l==="T"?A.P=k:A.T=q;const $=Ta(s),U=$.includes(yn)?yn:$[0]??"",z=s==="viscosity_liquid"?{liquidViscosity:U}:s==="thermal_conductivity_liquid"?{liquidConductivity:U}:s==="viscosity_gas"?{model:"Chung"}:s==="thermal_conductivity"?{model:"Chung",thermalConductivity:"Eucken"}:void 0;return{components:n,properties:T,axis:{variable:l,from:p,to:O,n:Math.max(2,Math.round(G))},state:A,mode:b?"pure":"mixture",activityModel:{model:"ideal"},...ga.includes(s)?{equationOfState:{model:u}}:{},...z?{transport:z}:{},...Kn?{componentFiles:Sn}:{}}},[n,o,s,l,c,y,v,H,G,an,k,q,u,yn,Q,Wn,Rn,kn,ee,ue,zn,_,mn,Vn,we,he,Ce,te,Me,Ke,Pn,io,ro,so,lo,fe,An,Sn,Kn,ie,Ne,xe,Re,ke,wn,Co,$n,Z]),Qo=d.useMemo(()=>{try{return At(Ht(ve(hn).propsDict))}catch{return"(invalid spec)"}},[hn]),Nn=o==="scan"&&n.length===1?hc(s):null,Zo=pe.filter(a=>Nn?.models.includes(a)),Xo=In&&!!Nn&&Zo.length>=2,be=Nn?.family,Qn=d.useRef(0),bo=d.useRef(null),na=d.useCallback(async()=>{if(ge){bo.current?.abort(),qe(null),Mn(null),Jn(null),Je([]),Ie(!1);return}bo.current?.abort();const a=new AbortController;bo.current=a;const b=++Qn.current;Ie(!0),Mn(null);try{const T=await _a("wasm");if(b!==Qn.current)return;if(T.kind==="unavailable"){Mn(T.fallbackReason??"The real solver could not be loaded (build the WASM)."),Ie(!1);return}if(Xo&&Nn){Je([]);const j=pe.filter(ln=>Nn.models.includes(ln)),B=await Promise.all(j.map(ln=>T.adapter.run(ve(Cc(hn,Nn.family,ln,n)),()=>{},a.signal,"choupoProps")));if(b!==Qn.current)return;const Y=B.map((ln,X)=>({model:j[X],csv:ln.csvFiles?.[On]??""})).filter(ln=>ln.csv.length>0);if(Y.length>=2){const ln=fc(Y);qe(ln),Mn(null),Jn({models:Y.map(X=>X.model),spread:gc(ln),property:s})}else Jn(null),Mn("multi-method: too few curves returned — a model may lack data for this compound.");return}Jn(null);let A,$=!1,U,z=[];const K=Fn&&hn.ternary?mc(hn.ternary.n):1;if(Fn&&hn.ternary&&K>1){const j=await Promise.all(Array.from({length:K},(Y,ln)=>T.adapter.run(ve({...hn,ternary:{...hn.ternary,shard:{k:ln,n:K}}}),()=>{},a.signal,"choupoProps")));if(b!==Qn.current)return;const B=j.map(Y=>Y.csvFiles?.[On]).filter(Y=>typeof Y=="string"&&Y.length>0);B.length===K?A=uc(B):$=j.some(Y=>Y.status!=="done")}else{const j=await T.adapter.run(ve(hn),()=>{},a.signal,"choupoProps");if(b!==Qn.current)return;A=j.csvFiles?.[On],$=j.status!=="done",U=j.log.split(`
-`).map(B=>B.trim()).reverse().find(B=>/(?:error|fatal|refused|failed)/i.test(B)),z=(j.log.match(/^\s*(\[advisory\]|speciation: feed charge imbalance|steamTables: the .* isobar crosses|EQUILIBRATE allowed|.*precipitation CEILING).*$/gm)??[]).map(B=>B.trim())}Je(z),A?(qe(A),Mn(null)):Mn($?`choupoProps did not finish${U?`: ${U}`:". Try a narrower range or a curated compound."}`:`No data — ${s} may not be defined for the selected compound(s) over this range.`)}catch(T){b===Qn.current&&!a.signal.aborted&&(Mn(T instanceof Error?T.message:String(T)),Jn(null))}finally{b===Qn.current&&Ie(!1)}},[hn,ge,s,Xo,In,pe,be]);d.useEffect(()=>{qe(null),Mn(null),Je([])},[o,Pn]),d.useEffect(()=>{const a=setTimeout(()=>{na()},300);return()=>clearTimeout(a)},[na]),d.useEffect(()=>{He(Nn?Nn.models.slice(0,2):[])},[be]);const yo=Hc(o,s),ea=r.toggleCollapsed;d.useEffect(()=>{const a=b=>{if(b.key==="F1"){b.preventDefault(),window.open(yo,"_blank");return}if(b.key==="["&&!b.ctrlKey&&!b.metaKey&&!b.altKey){const T=b.target,A=T?.tagName;if(A==="INPUT"||A==="TEXTAREA"||T?.isContentEditable)return;b.preventDefault(),ea()}};return window.addEventListener("keydown",a),()=>window.removeEventListener("keydown",a)},[yo,ea]);const oa=!Hn&&o!=="scaling"&&s==="Psat"?n.filter(a=>!(un(a,Z)?.vleAble??!1)):[],To=o==="scaling"&&dn?Oc(dn,"I"):null,aa=(()=>{if(Hn===!1&&o!=="ternary"||Q==="ideal")return null;if(Q==="UNIFAC"){const T=n.filter(A=>!De(A));return T.length?`UNIFAC groups — missing for ${T.join(", ")} (treated as ideal); try water, ethanol, benzene, nHexane, nButanol…`:`UNIFAC groups — all ${n.length} components covered ✓ (predictive, no fitted pairs)`}const a=[];return n.length===2?a.push([n[0],n[1]]):n.length===3&&a.push([n[0],n[1]],[n[0],n[2]],[n[1],n[2]]),a.length?`pairs — ${a.map(([T,A])=>`${T}–${A}: ${Ho(Q,T,A)?`${Q} ✓`:"absent → ideal"}`).join("  ·  ")}`:null})(),vo=(()=>{if(!Hn||n.length!==2||Q!=="NRTL"&&Q!=="Wilson")return null;const a=n[0],b=n[1];return Ho(Q,a,b)?null:`No curated ${Q} pair covers ${a}–${b}, so this diagram assumes IDEAL mixing — it cannot show an azeotrope or a liquid-liquid split. Switch γ to UNIFAC (predictive, from the components' groups), or curate a ${Q} pair for this system.`})(),Po=(()=>{if(o!=="txy"||!dn)return null;const a=dn.trim().split(`
-`),b=(a[0]??"").split(",").indexOf("liquid_stable");if(b<0)return null;let T=0,A=0;for(let $=1;$<a.length;$++){const U=Number(a[$].split(",")[b]);Number.isFinite(U)&&(A++,U===0&&T++)}return T>0?`${Q} predicts a liquid-liquid split over ${T} of ${A} compositions — the FLAT segment is the heteroazeotrope (the three-phase L-L-V line: constant boiling T and a fixed vapour, the same across the gap). Open “Binary LLE (g_mix + tangent)” to read the two coexisting liquid compositions.`:null})(),ta=!!po||!!ge||mo.length>0||!!vo||!!Po||o==="gibbsmap";d.useEffect(()=>{ta&&Io(!0)},[ta]);const ht=Hn||o==="ternary",Ct=(Hn||o==="ternary"||o==="scan"&&ga.includes(s))&&!(In&&be==="equationOfState"),ye=Ta(s),Fe=ye.includes(yn)?yn:ye[0]??"",ft=o==="scan"&&ye.length>1&&!(In&&(be==="transportLiquidVisc"||be==="transportLiquidCond")),Ge=l==="T"?"T":"P",So=o==="gibbsmap"?`Equilibrium map — iso-lines of ${wn&&n.includes(wn)?wn:n[n.length-1]??"product"} mole fraction over T × log-P by Gibbs-energy minimisation (the ATOMS you fed, redistributed to minimum G at each cell). Labelled industrial window + a user-declared kinetic band; unconverged cells marked, never interpolated. Click any cell for its full composition + the gibbsReactor dict.${$n!==0?` ΔT approach = ${$n} K: reaction equilibrium at T+ΔT, physical state at T (empirical; ghost ΔT=0 contours underneath).`:""}`:o==="phase"?"Pure-compound P–T phase diagram — liquid–vapour saturation curve to the critical point (AmbroseWalton corresponding states; marks Tc, Pc, normal b.p.). Solid region omitted — needs triple-point / ΔHfus data.":o==="psychro"?`Psychrometric chart at ${cn(k,V)} ${fn(V)} — humidity ratio Y vs dry-bulb T (carrier = lower-Tb, condensable = higher-Tb). Saturation + relative-humidity + adiabatic-saturation + true wet-bulb (via the Lewis number) curves.`:o==="scaling"?`Membrane-scaling audit — SI = log₁₀(IAP/K) per mineral vs water recovery; concentrate totals = feed/(1−r) (pure water removal), ${zn==="solve"?"pH solved from electroneutrality per point (the dashed pH curve rides the right axis)":`pH held at ${_} across the scan`}, ${mn==="open"?`open to CO₂(g) at pCO₂ = ${Vn} atm — DIC set by gas–liquid equilibrium (degassing allowed)`:"closed system — DIC concentrates with the water"}. ${he==="pitzer"?"Pitzer-HMW activity (validated vs HMW-1984 seawater) — quantitative to I ≈ 6 mol/kg in brines":"Davies activity — quantitative to I ≈ 0.5 mol/kg, indicative beyond"}. SI > 0 ⇒ the mineral precipitates.${Ce?` Equilibrium ON: ${Pa.join(", ")} driven to SI = 0 — plot SIeq_<m> (clamped) or scale_<m> (the deposit curve${te>0?", kgday_<m> rated by feed flow":""}). EQUILIBRIUM CEILING — the thermodynamic maximum, NOT a kinetic deposit prediction.`:""}`:o==="steam"?Pn==="saturation"?"Saturated-steam table — IAPWS-IF97 (R7-97(2012)), the industrial water formulation; regions 1/2 evaluated ON the region-4 saturation line (valid 0.01–350 °C). Mass-basis SI columns; pick the property family above.":`Steam isobar at ${cn(fe,V)} ${fn(V)} — IAPWS-IF97 (R7-97(2012)), the industrial water formulation; h, s, v, cp vs T (mass-basis SI). A subcritical isobar jumps at the Tsat crossing — the engine announces it.`:o==="ternaryLle"?`Ternary solubility (LLE) at ${tn(q,M).toFixed(1)} ${gn(M)}, ${cn(k,V)} ${fn(V)} — miscibility regions + tie-lines; activity from UNIFAC (group contribution, no fitted pairs)`:Fn?`Ternary boiling-temperature SURFACE at P = ${cn(k,V)} ${fn(V)} — colour = T_bubble at each composition (a continuous surface, not contours or phase regions)`:Hn?o==="txy"?`Binary VLE — liquid composition swept 0→1 at ${cn(k,V)} ${fn(V)}`:o==="mccabe"?`McCabe-Thiele binary distillation at ${cn(k,V)} ${fn(V)} — the real y*(x) curve (engine) + the interactive staircase; turn R and q (pure-TS redraw, no re-solve)`:o==="flash"?`Binary flash at ${cn(k,V)} ${fn(V)} — the real y*(x) curve + the tie-line through the feed z; the lever rule gives V/F (pure-TS redraw, no re-solve)`:"Activity coefficients γ(x) — composition swept 0→1":Tc(s)?`${ya[s]??s} — transport correlation${Fe?` (${Fe})`:""}, computed from (T, x) only — independent of the equation of state · ${n.length>=2?`mixture xᵢ = 1/${n.length}`:"pure"} vs ${Ge}`:go==="pure"?`Pure-component ${s} vs ${Ge} — composition has no effect`:n.length>=2?`Equimolar mixture (xᵢ = 1/${n.length}) — ${s} vs ${Ge}`:`${s} vs ${Ge}`;if(n.length===0)return e.jsxs(nn,{style:{position:"absolute",inset:0,display:"flex",minHeight:0},children:[e.jsx(Sa,{selected:n,onAdd:Go,onRemove:Lo,vleContext:Hn||Fn,caseComponents:Fo,onEstimate:Wo,rail:r,unlockLine:Yo}),r.collapsed&&e.jsx(Oa,{count:n.length,onExpand:r.toggleCollapsed}),e.jsx(ua,{opened:jo,onClose:()=>fo(!1),prefillName:Bo}),e.jsx(nn,{style:{flex:1,minWidth:0,height:"100%",display:"flex",alignItems:"center",justifyContent:"center",padding:24},children:e.jsxs(vn,{gap:"xs",align:"center",maw:420,style:{textAlign:"center"},children:[e.jsx(S,{fw:600,size:"lg",children:"Property Explorer"}),e.jsxs(S,{size:"sm",c:"dimmed",children:["Pick one or more compounds from the browser on the left to compare their ",e.jsx("b",{children:"pure-component"})," properties (Psat, Cp, …) or a",e.jsx("b",{children:" mixture"})," scalar (Z, v_molar, …).  Pick exactly two VLE-able compounds for a binary ",e.jsx("b",{children:"T-x-y"})," diagram."]}),e.jsx(S,{size:"xs",c:"dimmed",children:"Tip: try benzene + toluene, or ethanol + water."})]})})]});const gt=o==="scan"?e.jsx(bn,{size:"sm",variant:"light",tt:"none",color:go==="pure"?"teal":"accent",children:go==="pure"?"PURE · one curve per compound · composition ignored":n.length>=2?`MIXTURE · equimolar (xᵢ = 1/${n.length})`:"MIXTURE · single component (x = 1.0)"}):null;return e.jsxs(nn,{style:{position:"absolute",inset:0,display:"flex",minHeight:0},children:[e.jsx(Sa,{selected:n,onAdd:Go,onRemove:Lo,vleContext:Hn||Fn,caseComponents:Fo,onEstimate:Wo,rail:r,unlockLine:Yo}),r.collapsed&&e.jsx(Oa,{count:n.length,onExpand:r.toggleCollapsed}),e.jsx(ua,{opened:jo,onClose:()=>fo(!1),prefillName:Bo}),e.jsxs(nn,{style:{flex:1,minWidth:0,height:"100%",display:"flex",flexDirection:"column",overflow:"hidden"},children:[e.jsx(nn,{style:{flexShrink:0,minHeight:44,padding:"6px 12px",overflowX:"auto",overflowY:"hidden",borderBottom:"1px solid light-dark(var(--mantine-color-gray-3), var(--mantine-color-dark-4))"},children:e.jsxs(x,{gap:"sm",wrap:"nowrap",align:"center",style:{minWidth:"fit-content"},children:[(()=>{const a=_o.filter(T=>Uo(T)===null||T.id===o),b=a.some(T=>ut.has(T.id));return e.jsx(nn,{className:b?"choupo-lens-pulse":void 0,style:{borderRadius:6},children:e.jsx(Ue,{size:"xs",color:"accent",value:o,onChange:T=>i(T),data:a.map(T=>({value:T.id,label:e.jsx(en,{label:T.label,withArrow:!0,openDelay:400,children:e.jsx("span",{children:bc[T.id]??T.label})})}))})})})(),o==="scan"&&e.jsxs(e.Fragment,{children:[e.jsx(_n,{label:"Property",children:e.jsx(Tn,{size:"xs",data:[{group:"pure component",items:Ja},{group:"mixture scalar",items:yc},{group:"transport (no EOS)",items:Va.map(a=>({value:a,label:ya[a]??a}))}],value:s,onChange:a=>m(a??"Psat"),w:170,allowDeselect:!1})}),e.jsx(_n,{label:"Axis",children:e.jsx(Tn,{size:"xs",data:["T","P"],value:l,onChange:a=>f(a??"T"),w:64,allowDeselect:!1})}),e.jsx(_n,{label:`from (${Vo})`,children:e.jsx(R,{size:"xs",value:Ve(p),onChange:a=>N(Jo(F(a,Ve(p)))),w:96})}),e.jsx(_n,{label:`to (${Vo})`,children:e.jsx(R,{size:"xs",value:Ve(O),onChange:a=>W(Jo(F(a,Ve(O)))),w:96})}),l==="P"&&e.jsx(_n,{label:`T (${gn(M)})`,children:e.jsx(R,{size:"xs",value:tn(q,M),onChange:a=>w(Gn(F(a,tn(q,M)),M)),w:90})})]}),o==="gibbsmap"&&e.jsxs(e.Fragment,{children:[n.map(a=>e.jsx(_n,{label:`feed ${a} [mol]`,children:e.jsx(R,{size:"xs",w:80,min:0,step:.5,value:ie[a]??1,onChange:b=>Ua({...ie,[a]:F(b,ie[a]??1)})})},a)),e.jsx(_n,{label:"T range [°C]",children:e.jsxs(x,{gap:4,wrap:"nowrap",children:[e.jsx(R,{size:"xs",w:72,value:Math.round(Ne-273.15),onChange:a=>za(F(a,Ne-273.15)+273.15)}),e.jsx(S,{size:"xs",c:"dimmed",children:"–"}),e.jsx(R,{size:"xs",w:72,value:Math.round(xe-273.15),onChange:a=>$a(F(a,xe-273.15)+273.15)})]})}),e.jsx(_n,{label:"P range [bar]",children:e.jsxs(x,{gap:4,wrap:"nowrap",children:[e.jsx(R,{size:"xs",w:72,value:Re/1e5,onChange:a=>Ya(F(a,Re/1e5)*1e5)}),e.jsx(S,{size:"xs",c:"dimmed",children:"–"}),e.jsx(R,{size:"xs",w:72,value:ke/1e5,onChange:a=>Qa(F(a,ke/1e5)*1e5)})]})}),e.jsx(_n,{label:"map of",children:e.jsx(Tn,{size:"xs",w:110,data:n,value:wn&&n.includes(wn)?wn:Co,onChange:a=>Za(a)})}),e.jsx(_n,{label:"advanced",children:e.jsx(sa,{size:"xs",checked:Ko,onChange:a=>{Xa(a.currentTarget.checked),a.currentTarget.checked||Mo(0)}})}),Ko&&e.jsx(_n,{label:"ΔT approach [K]",children:e.jsx(R,{size:"xs",w:80,min:-100,max:100,step:5,value:$n,onChange:a=>Mo(F(a,$n))})})]}),o==="scaling"&&e.jsxs(e.Fragment,{children:[e.jsx(en,{label:"Davies (extended Debye-Hückel): single I-controlled curve, quantitative to I ≈ 0.5 mol/kg, indicative beyond.  Pitzer HMW: ion-specific virial interactions (e.g. the Ca-SO4 2:2 pairing), validated vs HMW-1984 seawater to I ≈ 6 mol/kg.  The SI curves track at low I and FORK in brine — the recovery decision flips on the model.",multiline:!0,w:320,withArrow:!0,children:e.jsx(nn,{children:e.jsx(Ue,{size:"xs",color:"accent",value:he,onChange:a=>ja(a??"davies"),data:[{value:"davies",label:"Davies"},{value:"pitzer",label:"Pitzer"}]})})}),e.jsx(Zn,{label:"Water analysis",value:"",wide:!0,children:e.jsxs(vn,{gap:"xs",style:{width:320},children:[e.jsx(en,{label:"analysis units — mg/L converts to molality at ρ ≈ 1 kg/L (dilute); the synthesized dict always carries mol/kg water",multiline:!0,w:260,withArrow:!0,children:e.jsx(Tn,{label:"analysis",data:["mg/L","mol/kg"],value:Un,onChange:a=>ao(a??"mg/L"),allowDeselect:!1})}),e.jsx(x,{gap:"xs",grow:!0,children:va.map(({ion:a,mw:b})=>e.jsx(R,{label:a,min:0,value:Do(ue[a]??0,b),step:Un==="mg/L"?10:.001,decimalScale:Un==="mg/L"?2:6,onChange:T=>oe(A=>({...A,[a]:Math.max(0,ct(F(T,Do(A[a]??0,b)),b))}))},a))}),e.jsxs(x,{gap:"xs",grow:!0,children:[e.jsx(en,{label:"solved (electroneutrality): H+ joins the unknowns, charge balance closes the system per point — the engine announces the feed charge imbalance the solved pH absorbs.  given: the numeric pH is held across the scan (no degassing / alkalinity shift).",multiline:!0,w:300,withArrow:!0,children:e.jsx(Tn,{label:"pH",allowDeselect:!1,data:[{value:"solve",label:"solved (electroneutrality)"},{value:"given",label:"given"}],value:zn,onChange:a=>h(a??"solve")})}),e.jsx(R,{label:"pH value",value:_,min:0,max:14,step:.1,disabled:zn==="solve",onChange:a=>on(F(a,_))})]}),e.jsxs(x,{gap:"xs",grow:!0,children:[e.jsx(en,{label:"closed: every total (DIC included) concentrates as feed/(1−r).  open (CO₂): the concentrate equilibrates with the atmosphere — a(CO2aq) pinned by Henry, DIC a solved outcome (degassing / invasion allowed).",multiline:!0,w:300,withArrow:!0,children:e.jsx(Tn,{label:"system",allowDeselect:!1,data:[{value:"closed",label:"closed"},{value:"open",label:"open (CO₂)"}],value:mn,onChange:a=>ae(a??"closed")})}),mn==="open"&&e.jsx(R,{label:"pCO₂ (atm)",value:Vn,min:0,step:1e-4,decimalScale:6,onChange:a=>Ga(Math.max(0,F(a,Vn)))}),e.jsx(R,{label:`T (${gn(M)})`,value:Number(tn(we,M).toFixed(2)),onChange:a=>La(Gn(F(a,tn(we,M)),M))})]}),e.jsx(en,{label:"off: SI only — how supersaturated each mineral is vs recovery (the propensity curve).  on: let the scaling minerals (calcite, gypsum) precipitate to SI = 0 — the engine reports SIeq_<m> (clamped at 0), n_<m> and scale_<m> (the deposit curve).  EQUILIBRIUM CEILING: the thermodynamic maximum (SI→0, infinite time, no nucleation barrier), NOT a kinetic deposit prediction — real scale ≤ ceiling, antiscalants act on kinetics this cannot see.",multiline:!0,w:320,withArrow:!0,children:e.jsx(Tn,{label:"equilibrium",allowDeselect:!1,data:[{value:"off",label:"off — SI only (propensity)"},{value:"on",label:"on — precipitate to SI = 0"}],value:Ce?"on":"off",onChange:a=>Ba(a==="on")})}),Ce&&e.jsx(en,{label:"feed volumetric flow — enables the kg/day scale-rate column (kgday_<m>).  Optional even with equilibrium on: without it the engine still gives the precipitated amount in mol/kg.",multiline:!0,w:280,withArrow:!0,children:e.jsx(R,{label:"feed flow (m³/h)",value:te,min:0,step:1,onChange:a=>Wa(Math.max(0,F(a,te)))})}),e.jsxs(x,{gap:"xs",grow:!0,children:[e.jsx(R,{label:"recovery from",value:Me,min:0,max:.98,step:.05,onChange:a=>nt(F(a,Me))}),e.jsx(R,{label:"to",value:Ke,min:.01,max:.99,step:.05,onChange:a=>et(F(a,Ke))})]})]})})]}),o==="steam"&&(()=>{const a=Pn==="saturation"?io:so,b=Pn==="saturation"?ro:lo,T=Pn==="saturation"?tt:rt,A=Pn==="saturation"?it:st,$=Pn==="saturation"?Da:Fa,U=$[to]?to:"h";return e.jsxs(e.Fragment,{children:[e.jsx(en,{label:"saturation curve: the region-4 line with the f/g property pairs (regions 1/2 evaluated on the line, valid 0.01–350 °C).  isobar: h, s, v, cp vs T at fixed P — crossing Tsat jumps the properties.",multiline:!0,w:280,withArrow:!0,children:e.jsx(nn,{children:e.jsx(Ue,{size:"xs",color:"accent",value:Pn,onChange:z=>ot(z??"saturation"),data:[{value:"saturation",label:"saturation"},{value:"isobar",label:"isobar"}]})})}),e.jsx(Zn,{label:"Steam",value:$[U]?.label??U,children:e.jsxs(vn,{gap:"xs",style:{width:240},children:[Pn==="isobar"&&e.jsx(R,{label:`P (${fn(V)})`,value:cn(fe,V),onChange:z=>lt(Le(F(z,cn(fe,V)),V))}),e.jsxs(x,{gap:"xs",grow:!0,children:[e.jsx(R,{label:`from (${gn(M)})`,value:Number(tn(a,M).toFixed(2)),onChange:z=>T(Gn(F(z,tn(a,M)),M))}),e.jsx(R,{label:`to (${gn(M)})`,value:Number(tn(b,M).toFixed(2)),onChange:z=>A(Gn(F(z,tn(b,M)),M))})]}),e.jsx(en,{label:"one property family at a time — the full table mixes magnitudes (psat ~10⁷ Pa beside v_f ~10⁻³ m³/kg) that flatten each other on a shared axis",multiline:!0,w:260,withArrow:!0,children:e.jsx(Tn,{label:"property",allowDeselect:!1,data:Object.entries($).map(([z,K])=>({value:z,label:K.label})),value:U,onChange:z=>at(z??"h")})})]})})]})})(),o==="ternaryLle"&&e.jsx(Zn,{label:"T",value:`${tn(q,M).toFixed(1)} ${gn(M)}`,children:e.jsx(R,{size:"xs",label:`T (${gn(M)})`,value:tn(q,M),w:130,onChange:a=>w(Gn(F(a,tn(q,M)),M))})}),(Hn||Fn||o==="scan"&&l==="T")&&e.jsx(Zn,{label:"P",value:`${cn(k,V)} ${fn(V)}`,children:e.jsx(R,{size:"xs",label:`P (${fn(V)})`,value:cn(k,V),w:130,onChange:a=>pn(Le(F(a,cn(k,V)),V))})}),ht&&e.jsx(Zn,{label:"γ",value:Q,tip:"liquid activity model: ideal = Raoult (no azeotrope); NRTL/Wilson auto-resolve curated binary pairs by name, else that pair is ideal; UNIFAC is PREDICTIVE (γ from molecular groups, no fitted pairs) — a component without a group decomposition is treated as ideal",children:e.jsx(Tn,{size:"xs",label:"γ model",data:["ideal","NRTL","Wilson","UNIFAC"],value:Q,onChange:a=>_e(a??"NRTL"),w:150,allowDeselect:!1})}),Ct&&e.jsx(Zn,{label:"EoS",value:u,tip:"vapour equation of state: idealGas ⇒ Z = 1; SRK/PR are cubic real-gas models",children:e.jsx(Tn,{size:"xs",label:"EoS",data:["idealGas","SRK","PR"],value:u,onChange:a=>I(a??"idealGas"),w:150,allowDeselect:!1})}),ft&&e.jsx(Zn,{label:"model",value:Fe,tip:"transport correlation, chosen WITHIN a family (e.g. Andrade vs Vogel) — a sibling of the EOS, never driven by it; both move the curve, so you SEE which you commit to",children:e.jsx(Tn,{size:"xs",label:"model",data:ye,value:Fe,onChange:a=>jn(a??ye[0]),w:150,allowDeselect:!1})}),Nn&&e.jsxs(x,{gap:8,align:"center",wrap:"nowrap",children:[e.jsx(en,{label:"overlay several models of the same family and SEE the spread (≤3)",withArrow:!0,multiline:!0,w:240,children:e.jsx(sa,{size:"xs",checked:In,onChange:a=>Ae(a.currentTarget.checked),label:"compare",styles:{label:{fontSize:11}}})}),In&&e.jsx(de.Group,{multiple:!0,value:Zo,onChange:a=>He(a.slice(0,3)),children:e.jsx(x,{gap:4,wrap:"nowrap",children:Nn.models.map(a=>e.jsx(de,{size:"xs",value:a,color:"accent",children:a},a))})})]}),e.jsxs(ce,{position:"bottom-end",withArrow:!0,shadow:"md",children:[e.jsx(ce.Target,{children:e.jsx(en,{label:o==="psychro"?"chart options":"resolution & display options",withArrow:!0,children:e.jsx(Pe,{variant:"default",size:"md","aria-label":"options",children:e.jsx(Dt,{size:16})})})}),e.jsx(ce.Dropdown,{children:e.jsxs(vn,{gap:"xs",children:[o==="psychro"&&e.jsxs(e.Fragment,{children:[e.jsxs(x,{gap:"xs",grow:!0,children:[e.jsx(R,{label:`T from (${gn(M)})`,value:Number(tn(c,M).toFixed(1)),step:5,decimalScale:1,onChange:a=>C(Gn(F(a,tn(c,M)),M))}),e.jsx(R,{label:`T to (${gn(M)})`,value:Number(tn(y,M).toFixed(1)),step:5,decimalScale:1,onChange:a=>g(Gn(F(a,tn(y,M)),M))})]}),e.jsx(R,{label:`P (${fn(V)})`,value:cn(k,V),onChange:a=>pn(Le(F(a,cn(k,V)),V)),w:260}),e.jsxs(x,{gap:"xs",grow:!0,children:[e.jsx(R,{label:"RH from (%)",value:Wn,min:0,max:99,onChange:a=>sn(F(a,Wn))}),e.jsx(R,{label:"RH to (%)",value:Rn,min:1,max:99,onChange:a=>Ee(F(a,Rn))}),e.jsx(R,{label:"RH step (%)",value:kn,min:1,max:50,onChange:a=>ne(F(a,kn))})]}),e.jsx(R,{label:`ΔT between sat. lines (${gn(M)})`,value:ee,min:5,max:50,step:5,onChange:a=>eo(F(a,ee)),w:260,description:"spacing of the wet-bulb / adiabatic-saturation anchor lines"}),e.jsx(R,{label:"Y max (0=auto)",value:me,min:0,step:.05,decimalScale:3,onChange:a=>oo(F(a,me)),w:260,description:"auto = drying band; raise to see full saturation"})]}),e.jsx(R,{label:Fn?"grid (intervals per edge)":"points",value:G,onChange:a=>Cn(F(a,G)),w:260,min:2,description:Fn?"more = finer triangle, slower":o==="scaling"?"recovery points across the scan":"samples along the axis"}),o==="ternaryLle"&&e.jsx(R,{label:"tie-line stride",value:an,onChange:a=>L(F(a,an)),w:260,min:1,description:"draw a tie-line every Nth split node (higher = fewer lines)"})]})})]}),co&&e.jsxs(x,{gap:6,wrap:"nowrap",children:[e.jsx(ze,{size:"xs"}),e.jsx(S,{size:"xs",c:"dimmed",children:"computing…"})]}),e.jsx(nn,{style:{flex:1,minWidth:8}}),o==="mccabe"&&dn&&e.jsx(en,{label:"Open the McCabe-Thiele analyzer full-window in a new tab",withArrow:!0,children:e.jsx(Pe,{variant:"subtle",size:"md",color:"accent","aria-label":"pop out McCabe analyzer",onClick:()=>qt({csv:Te(dn,"liquid_stable"),compA:n[0]??"",compB:n[1]??"",P:k,model:Q}),children:e.jsx(_t,{size:16})})}),e.jsx(en,{label:"Open the matching section of the Theory Guide (or press F1)",withArrow:!0,children:e.jsx(Pe,{component:"a",href:yo,target:"_blank",rel:"noopener noreferrer",variant:"subtle",size:"md",color:"gray","aria-label":"open the Theory Guide",children:e.jsx(Gt,{size:16})})})]})}),e.jsx(nn,{style:{flex:1,minWidth:0,overflow:"hidden",padding:16,paddingTop:12,display:"flex",flexDirection:"column"},children:e.jsxs(vn,{gap:"sm",style:{flex:1,minHeight:0},children:[dn?e.jsxs(nn,{style:{flex:1,minHeight:360,position:"relative"},children:[e.jsxs(nn,{style:{position:"absolute",top:4,left:8,zIndex:4,display:"flex",flexDirection:"column",gap:4,alignItems:"flex-start",pointerEvents:"none",maxWidth:"70%"},children:[e.jsxs(x,{gap:6,align:"center",style:{pointerEvents:"auto"},children:[e.jsx(bn,{size:"sm",variant:"outline",color:"gray",tt:"none",style:{background:"light-dark(rgba(255,255,255,0.7), rgba(0,0,0,0.5))"},children:n.join(" · ")}),gt]}),e.jsx(S,{size:"xs",c:"dimmed",style:{background:"light-dark(rgba(255,255,255,0.6), rgba(0,0,0,0.45))",borderRadius:4,padding:"1px 4px",lineHeight:1.3},children:So})]}),o==="phase"?e.jsx(xd,{csv:dn,comp:n[0]??"",tc:un(n[0]??"",Z)?.tc,pc:un(n[0]??"",Z)?.pc,tb:un(n[0]??"",Z)?.tb}):o==="psychro"?e.jsx(Md,{csv:dn,yMax:me}):o==="binaryLle"?e.jsx(Kd,{csv:dn,compA:n[0]??"",compB:n[1]??""}):o==="mccabe"?e.jsx(It,{csv:Te(dn,"liquid_stable"),compA:n[0]??"",compB:n[1]??"",P:k}):o==="flash"?e.jsx(Dd,{csv:Te(dn,"liquid_stable"),compA:n[0]??"",compB:n[1]??"",P:k}):o==="gibbsmap"&&hn.gibbsmap?e.jsx(Kt,{op:{elements:hn.gibbsmap.elements,species:hn.gibbsmap.species.map(a=>({name:a.name,atoms:a.atoms})),feed:hn.gibbsmap.feed,metric:hn.gibbsmap.metric},csv:dn}):e.jsx(kt,{csv:o==="scaling"?Te(dn,"I"):o==="txy"?Te(dn,"liquid_stable"):o==="steam"?Sc(dn,Pn,to):dn,filename:On,referenceLines:o==="scaling"?Pc:void 0,secondaryColumn:o==="scaling"?"pH":void 0,txyPartner:o==="txy"?n[1]:void 0,txyP:o==="txy"?k:void 0,ternaryLabels:n.length===3?[n[0],n[1],n[2]]:void 0}),co&&e.jsx(nn,{style:{position:"absolute",inset:0,display:"flex",alignItems:"center",justifyContent:"center",background:"light-dark(rgba(255,255,255,0.45), rgba(0,0,0,0.45))"},children:e.jsxs(x,{gap:8,children:[e.jsx(ze,{size:"sm"}),e.jsx(S,{size:"sm",c:"dimmed",children:"recomputing…"})]})})]}):co?e.jsx(nn,{style:{flex:1,minHeight:200,display:"flex",alignItems:"center",justifyContent:"center"},children:e.jsxs(x,{gap:8,children:[e.jsx(ze,{size:"sm"}),e.jsxs(S,{size:"sm",c:"dimmed",children:["computing — ",So]})]})}):e.jsx(nn,{style:{flex:1,minHeight:200,display:"flex",alignItems:"center",justifyContent:"center"},children:e.jsx(S,{size:"sm",c:"dimmed",ta:"center",maw:460,children:So})}),Bn&&dn&&(()=>{const a=Mt(Bn.property,ho),b=a.conv(Bn.spread.absMax)-a.conv(0),T=a.unit&&a.unit!=="—"?` ${a.unit}`:"";return e.jsxs(x,{gap:8,align:"center",wrap:"wrap",children:[Bn.models.map((A,$)=>e.jsx(bn,{size:"sm",variant:"light",tt:"none",styles:{root:{color:J.series[$%J.series.length],borderColor:J.series[$%J.series.length],border:"1px solid"}},children:A},A)),e.jsxs(S,{size:"xs",c:"dimmed",children:["spread: max Δ ",b.toPrecision(3),T," (",Bn.spread.relMaxPct.toFixed(1),"%)"]})]})})()]})}),(()=>{const a=[];if(po&&a.push(e.jsx(qn,{color:"red",variant:"light",children:po},"err")),ge&&a.push(e.jsx(qn,{color:"yellow",variant:"light",title:"Cannot plot",children:ge},"reason")),mo.length>0&&a.push(e.jsx(qn,{color:"yellow",variant:"light",title:"Solver advisory",children:mo.map(A=>e.jsx(S,{size:"xs",children:A},A))},"adv")),vo&&a.push(e.jsx(qn,{color:"orange",variant:"light",title:"Assuming ideal mixing — not your real system",children:e.jsx(S,{size:"xs",children:vo})},"ideal")),Po&&a.push(e.jsx(qn,{color:"orange",variant:"light",title:"Heteroazeotrope — flat three-phase line",children:e.jsx(S,{size:"xs",children:Po})},"lle")),o==="gibbsmap"){const A={};for(const z of n){const K=We(un(z,Z)?.formula??""),j=ie[z]??1;for(const[B,Y]of Object.entries(K))A[B]=(A[B]??0)+Y*j}const $=Object.entries(A).map(([z,K])=>`${z}: ${K.toPrecision(3)}`).join(" · "),U=n.filter(z=>Object.keys(We(un(z,Z)?.formula??"")).length===0);a.push(e.jsxs(qn,{color:"blue",variant:"light",title:"A Gibbs map needs no reaction — it redistributes atoms",children:[e.jsxs(S,{size:"xs",children:["Equilibrium finds the composition of minimum Gibbs energy given the atoms you fed; no reaction is written.  Fed atoms (mol): ",e.jsx("b",{children:$||"—"}),". Each map cell holds those totals fixed and solves for the composition that minimises G at that (T, P); click any cell for its full answer."]}),U.length>0&&e.jsxs(S,{size:"xs",c:"orange",mt:4,children:["Formula not parseable for: ",U.join(", ")," — the atom matrix will be wrong.  Pick species with plain formulas (e.g. N2, H2, NH3)."]})]},"gm-explain"))}const b=[];aa&&b.push(e.jsx(S,{size:"xs",c:"dimmed",children:aa},"pair")),oa.length>0&&b.push(e.jsxs(S,{size:"xs",c:"dimmed",children:["No vapour pressure (curve not shown): ",oa.join(", ")]},"skip")),To&&b.push(e.jsxs(S,{size:"xs",c:"dimmed",children:["ionic strength I = ",To.first.toPrecision(3)," → ",To.last.toPrecision(3)," mol/kg across the scan — ",he==="pitzer"?"Pitzer-HMW activity is quantitative to I ≈ 6 mol/kg (brine-grade)":"Davies activity is quantitative to I ≈ 0.5 mol/kg"]},"i"));const T=a.length;return e.jsxs(nn,{style:{flexShrink:0,padding:"4px 12px 8px",borderTop:"1px solid light-dark(var(--mantine-color-gray-3), var(--mantine-color-dark-4))"},children:[e.jsxs(x,{gap:"xs",wrap:"nowrap",align:"center",children:[e.jsx(En,{variant:"subtle",size:"compact-xs",color:"gray",onClick:()=>Io(A=>!A),leftSection:T>0?e.jsx(bn,{size:"xs",circle:!0,color:"orange",variant:"filled",children:T}):void 0,children:uo?"Hide details":T>0?"Honesty & details":"Details"}),e.jsx(En,{variant:"subtle",size:"compact-xs",onClick:()=>dt(A=>!A),children:qo?"Hide propsDict":"Author → copy propsDict"}),!uo&&T===0&&Hn&&e.jsx(S,{size:"xs",c:"dimmed",style:{overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"},children:"NRTL/Wilson pairs auto-resolve by name; absent → ideal (no azeotrope)."})]}),e.jsx(Eo,{in:uo,children:e.jsxs(vn,{gap:6,mt:6,children:[a,b,Hn&&e.jsx(S,{size:"xs",c:"dimmed",children:"NRTL/Wilson pairs auto-resolve by name; absent → ideal (no azeotrope)."})]})}),e.jsx(Eo,{in:qo,children:e.jsxs(vn,{gap:4,mt:6,children:[e.jsxs(S,{size:"xs",c:"dimmed",children:["Create or open a case, then put this block in ",e.jsx("code",{children:"system/propsDict"})," under",e.jsx("code",{children:" operations ( … )"}),"; keep ",e.jsx("code",{children:"constant/propertyDict"})," in sync with the components/models above, and ",e.jsx("code",{children:"runCase"}),"."]}),e.jsx(x,{gap:"xs",children:e.jsx(Jt,{value:Qo,children:({copied:A,copy:$})=>e.jsx(En,{size:"xs",variant:A?"filled":"light",color:"accent",onClick:$,children:A?"Copied ✓":"Copy propsDict"})})}),e.jsx(Et,{block:!0,style:{fontSize:11,maxHeight:200,overflow:"auto"},children:Qo})]})})]})})()]})]})}function Sa({selected:n,onAdd:t,onRemove:o,vleContext:i=!1,caseComponents:r,onEstimate:s,rail:m,unlockLine:l}){const[f,c]=d.useState(!1),C=m.collapsed,y=wt();return d.useEffect(()=>{if(typeof window>"u"||!y)return;const g=window.requestAnimationFrame(()=>window.dispatchEvent(new Event("resize")));return()=>window.cancelAnimationFrame(g)},[C,y]),e.jsxs(nn,{onTransitionEnd:g=>{g.propertyName==="width"&&window.dispatchEvent(new Event("resize"))},style:{width:C?0:m.width,flexShrink:0,height:"100%",padding:C?0:12,overflow:"hidden",position:"relative",transition:y?"none":"width 180ms ease, padding 180ms ease",borderRight:C?"none":"1px solid light-dark(var(--mantine-color-gray-3), var(--mantine-color-dark-4))"},children:[e.jsxs(x,{justify:"space-between",align:"center",mb:6,wrap:"nowrap",gap:4,children:[e.jsx(S,{size:"xs",fw:700,c:"dimmed",style:{letterSpacing:.5},children:"SET"}),e.jsx(en,{label:"Collapse the component browser (shortcut: [ )",withArrow:!0,children:e.jsx(Pe,{variant:"subtle",size:"sm",color:"gray","aria-label":"collapse component browser",onClick:m.toggleCollapsed,children:e.jsx(Nt,{size:15})})})]}),e.jsx(nn,{style:{height:"calc(100% - 28px)"},children:e.jsx(Bd,{selected:n,onAdd:t,onRemove:o,vleContext:i,caseComponents:r,onEstimate:s,unlockLine:l})}),!C&&e.jsx(nn,{onPointerDown:m.onPointerDown,onDoubleClick:m.reset,onPointerEnter:()=>c(!0),onPointerLeave:()=>c(!1),title:"drag to resize · double-click to reset",style:{position:"absolute",top:0,right:-3,width:6,height:"100%",cursor:"ew-resize",zIndex:5,background:f?`color-mix(in srgb, ${J.accent} 30%, transparent)`:"transparent",transition:"background 120ms"}})]})}function _n({label:n,children:t}){return e.jsxs(x,{gap:4,wrap:"nowrap",align:"center",style:{flexShrink:0},children:[e.jsx(S,{size:"xs",c:"dimmed",style:{whiteSpace:"nowrap"},children:n}),t]})}function Zn({label:n,value:t,tip:o,wide:i=!1,children:r}){const s=e.jsxs(En,{size:"xs",variant:"default",rightSection:e.jsx(Rt,{size:13}),style:{flexShrink:0},children:[e.jsx(S,{span:!0,size:"xs",c:"dimmed",mr:t?4:0,children:n}),t&&e.jsx(S,{span:!0,size:"xs",fw:600,children:t})]});return e.jsxs(ce,{position:"bottom-start",withArrow:!0,shadow:"md",width:i?void 0:220,children:[e.jsx(ce.Target,{children:o?e.jsx(en,{label:o,multiline:!0,w:280,withArrow:!0,openDelay:300,children:s}):s}),e.jsx(ce.Dropdown,{children:r})]})}function Oa({count:n,onExpand:t}){const[o,i]=d.useState(!1);return e.jsx(en,{label:"Show the component browser (shortcut: [ )",withArrow:!0,position:"right",children:e.jsxs(nn,{onClick:t,onPointerEnter:()=>i(!0),onPointerLeave:()=>i(!1),role:"button","aria-label":"show component browser",tabIndex:0,onKeyDown:r=>{(r.key==="Enter"||r.key===" ")&&(r.preventDefault(),t())},style:{width:28,flexShrink:0,height:"100%",cursor:"pointer",display:"flex",flexDirection:"column",alignItems:"center",gap:8,paddingTop:10,borderRight:"1px solid light-dark(var(--mantine-color-gray-3), var(--mantine-color-dark-4))",background:o?"light-dark(var(--mantine-color-gray-1), var(--mantine-color-dark-6))":"transparent",transition:"background 120ms"},children:[e.jsx(xt,{size:15,color:"var(--mantine-color-dimmed)"}),e.jsxs(S,{size:"xs",fw:700,c:"dimmed",style:{writingMode:"vertical-rl",letterSpacing:.5,userSelect:"none"},children:["SET · ",n]})]})})}export{Jc as ExploreWorkspace};
+`,qt=[],Jt=Object.assign({"../../../data/standards/components/1Butene.dat":on,"../../../data/standards/components/Ar.dat":an,"../../../data/standards/components/C.dat":tn,"../../../data/standards/components/C2H.dat":rn,"../../../data/standards/components/C2H3.dat":sn,"../../../data/standards/components/C2H5.dat":ln,"../../../data/standards/components/C2O.dat":dn,"../../../data/standards/components/C3H3.dat":cn,"../../../data/standards/components/C3H5.dat":pn,"../../../data/standards/components/C3H7.dat":mn,"../../../data/standards/components/C4H2.dat":un,"../../../data/standards/components/C4H4.dat":hn,"../../../data/standards/components/C5H5.dat":Cn,"../../../data/standards/components/C6H5.dat":fn,"../../../data/standards/components/CH.dat":gn,"../../../data/standards/components/CH2.dat":bn,"../../../data/standards/components/CH2CO.dat":Tn,"../../../data/standards/components/CH2OH.dat":yn,"../../../data/standards/components/CH2_S.dat":Pn,"../../../data/standards/components/CH3.dat":vn,"../../../data/standards/components/CH3CO.dat":Sn,"../../../data/standards/components/CH3O.dat":On,"../../../data/standards/components/CH3O2.dat":An,"../../../data/standards/components/CH4.dat":Hn,"../../../data/standards/components/CN.dat":_n,"../../../data/standards/components/CO.dat":En,"../../../data/standards/components/CO2.dat":Rn,"../../../data/standards/components/CS.dat":Nn,"../../../data/standards/components/CS2.dat":kn,"../../../data/standards/components/CaCO3.dat":Kn,"../../../data/standards/components/CaCl2.dat":Mn,"../../../data/standards/components/CaO.dat":wn,"../../../data/standards/components/CaSO4.dat":qn,"../../../data/standards/components/Cl.dat":Jn,"../../../data/standards/components/Cl2.dat":In,"../../../data/standards/components/ClO.dat":Dn,"../../../data/standards/components/D2.dat":Vn,"../../../data/standards/components/Dichloroethane.dat":xn,"../../../data/standards/components/H.dat":Gn,"../../../data/standards/components/H2.dat":Fn,"../../../data/standards/components/H2O2.dat":Bn,"../../../data/standards/components/H2S.dat":Ln,"../../../data/standards/components/H2SO4.dat":Wn,"../../../data/standards/components/H3PO4.dat":Un,"../../../data/standards/components/HCCO.dat":jn,"../../../data/standards/components/HCHO.dat":zn,"../../../data/standards/components/HCN.dat":Qn,"../../../data/standards/components/HCO.dat":Yn,"../../../data/standards/components/HCl.dat":Zn,"../../../data/standards/components/HNO.dat":$n,"../../../data/standards/components/HNO3.dat":Xn,"../../../data/standards/components/HO2.dat":ne,"../../../data/standards/components/HOCl.dat":ee,"../../../data/standards/components/HONO.dat":oe,"../../../data/standards/components/HSO.dat":ae,"../../../data/standards/components/HSO3.dat":te,"../../../data/standards/components/He.dat":ie,"../../../data/standards/components/K2SO4.dat":re,"../../../data/standards/components/KCl.dat":se,"../../../data/standards/components/KOH.dat":le,"../../../data/standards/components/LiCl.dat":de,"../../../data/standards/components/MD3M.dat":ce,"../../../data/standards/components/MD4M.dat":pe,"../../../data/standards/components/MDM.dat":me,"../../../data/standards/components/MgSO4.dat":ue,"../../../data/standards/components/N.dat":he,"../../../data/standards/components/N2.dat":Ce,"../../../data/standards/components/N2H2.dat":fe,"../../../data/standards/components/N2H3.dat":ge,"../../../data/standards/components/N2H4.dat":be,"../../../data/standards/components/N2O.dat":Te,"../../../data/standards/components/NCO.dat":ye,"../../../data/standards/components/NH.dat":Pe,"../../../data/standards/components/NH2.dat":ve,"../../../data/standards/components/NH3.dat":Se,"../../../data/standards/components/NH4Cl.dat":Oe,"../../../data/standards/components/NNH.dat":Ae,"../../../data/standards/components/NO.dat":He,"../../../data/standards/components/NO2.dat":_e,"../../../data/standards/components/NO3.dat":Ee,"../../../data/standards/components/Na2CO3.dat":Re,"../../../data/standards/components/Na2SO4.dat":Ne,"../../../data/standards/components/NaCl.dat":ke,"../../../data/standards/components/NaHCO3.dat":Ke,"../../../data/standards/components/NaOH.dat":Me,"../../../data/standards/components/O.dat":we,"../../../data/standards/components/O2.dat":qe,"../../../data/standards/components/O3.dat":Je,"../../../data/standards/components/OH.dat":Ie,"../../../data/standards/components/OrthoDeuterium.dat":De,"../../../data/standards/components/OrthoHydrogen.dat":Ve,"../../../data/standards/components/PET.dat":xe,"../../../data/standards/components/PMMA.dat":Ge,"../../../data/standards/components/PVC.dat":Fe,"../../../data/standards/components/ParaDeuterium.dat":Be,"../../../data/standards/components/ParaHydrogen.dat":Le,"../../../data/standards/components/R11.dat":We,"../../../data/standards/components/R113.dat":Ue,"../../../data/standards/components/R12.dat":je,"../../../data/standards/components/R1234yf.dat":ze,"../../../data/standards/components/R1234zeE.dat":Qe,"../../../data/standards/components/R1234zeZ.dat":Ye,"../../../data/standards/components/R134a.dat":Ze,"../../../data/standards/components/R13I1.dat":$e,"../../../data/standards/components/R143a.dat":Xe,"../../../data/standards/components/R21.dat":no,"../../../data/standards/components/R218.dat":eo,"../../../data/standards/components/R22.dat":oo,"../../../data/standards/components/R236EA.dat":ao,"../../../data/standards/components/R245fa.dat":to,"../../../data/standards/components/R32.dat":io,"../../../data/standards/components/R365MFC.dat":ro,"../../../data/standards/components/RC318.dat":so,"../../../data/standards/components/S.dat":lo,"../../../data/standards/components/S2.dat":co,"../../../data/standards/components/SF6.dat":po,"../../../data/standards/components/SH.dat":mo,"../../../data/standards/components/SO.dat":uo,"../../../data/standards/components/SO2.dat":ho,"../../../data/standards/components/SO3.dat":Co,"../../../data/standards/components/Xe.dat":fo,"../../../data/standards/components/acetaldehyde.dat":go,"../../../data/standards/components/aceticAcid.dat":bo,"../../../data/standards/components/acetone.dat":To,"../../../data/standards/components/acetylene.dat":yo,"../../../data/standards/components/akermanite.dat":Po,"../../../data/standards/components/anthophyllite.dat":vo,"../../../data/standards/components/artinite.dat":So,"../../../data/standards/components/barite.dat":Oo,"../../../data/standards/components/benzene.dat":Ao,"../../../data/standards/components/bischofite.dat":Ho,"../../../data/standards/components/bloedite.dat":_o,"../../../data/standards/components/burkeite.dat":Eo,"../../../data/standards/components/calciumHydroxide.dat":Ro,"../../../data/standards/components/calciumTartrate.dat":No,"../../../data/standards/components/carbonylSulfide.dat":ko,"../../../data/standards/components/carnallite.dat":Ko,"../../../data/standards/components/celestite.dat":Mo,"../../../data/standards/components/chrysotile.dat":wo,"../../../data/standards/components/cis2Butene.dat":qo,"../../../data/standards/components/compA.dat":Jo,"../../../data/standards/components/compB.dat":Io,"../../../data/standards/components/compC.dat":Do,"../../../data/standards/components/cyclohexane.dat":Vo,"../../../data/standards/components/cyclopentane.dat":xo,"../../../data/standards/components/cyclopropane.dat":Go,"../../../data/standards/components/diethylEther.dat":Fo,"../../../data/standards/components/dimethylCarbonate.dat":Bo,"../../../data/standards/components/dimethylEther.dat":Lo,"../../../data/standards/components/diopside.dat":Wo,"../../../data/standards/components/dolomite.dat":Uo,"../../../data/standards/components/dowthermA.dat":jo,"../../../data/standards/components/enstatite.dat":zo,"../../../data/standards/components/epsomite.dat":Qo,"../../../data/standards/components/ethane.dat":Yo,"../../../data/standards/components/ethanol.dat":Zo,"../../../data/standards/components/ethylAcetate.dat":$o,"../../../data/standards/components/ethylBenzene.dat":Xo,"../../../data/standards/components/ethylene.dat":na,"../../../data/standards/components/ethyleneOxide.dat":ea,"../../../data/standards/components/fluorine.dat":oa,"../../../data/standards/components/fluorite.dat":aa,"../../../data/standards/components/forsterite.dat":ta,"../../../data/standards/components/gaylussite.dat":ia,"../../../data/standards/components/glaserite.dat":ra,"../../../data/standards/components/glauberite.dat":sa,"../../../data/standards/components/glucose.dat":la,"../../../data/standards/components/goergeyite.dat":da,"../../../data/standards/components/gypsum.dat":ca,"../../../data/standards/components/heavyWater.dat":pa,"../../../data/standards/components/hexahydrite.dat":ma,"../../../data/standards/components/hexamethyldisiloxane.dat":ua,"../../../data/standards/components/hfe143m.dat":ha,"../../../data/standards/components/hitecSalt.dat":Ca,"../../../data/standards/components/huntite.dat":fa,"../../../data/standards/components/hydroxyapatite.dat":ga,"../../../data/standards/components/isoButane.dat":ba,"../../../data/standards/components/isoButene.dat":Ta,"../../../data/standards/components/isohexane.dat":ya,"../../../data/standards/components/isopentane.dat":Pa,"../../../data/standards/components/kainite.dat":va,"../../../data/standards/components/kalicinite.dat":Sa,"../../../data/standards/components/kieserite.dat":Oa,"../../../data/standards/components/krypton.dat":Aa,"../../../data/standards/components/labile_S.dat":Ha,"../../../data/standards/components/leonhardite.dat":_a,"../../../data/standards/components/leonite.dat":Ea,"../../../data/standards/components/lithiumChlorideH2O.dat":Ra,"../../../data/standards/components/mXylene.dat":Na,"../../../data/standards/components/magnesite.dat":ka,"../../../data/standards/components/magnesiumHydroxide.dat":Ka,"../../../data/standards/components/melanterite.dat":Ma,"../../../data/standards/components/methanol.dat":wa,"../../../data/standards/components/methylAcetate.dat":qa,"../../../data/standards/components/methylLinoleate.dat":Ja,"../../../data/standards/components/methylLinolenate.dat":Ia,"../../../data/standards/components/methylOleate.dat":Da,"../../../data/standards/components/methylPalmitate.dat":Va,"../../../data/standards/components/methylStearate.dat":xa,"../../../data/standards/components/mirabilite.dat":Ga,"../../../data/standards/components/misenite.dat":Fa,"../../../data/standards/components/nButane.dat":Ba,"../../../data/standards/components/nButanol.dat":La,"../../../data/standards/components/nDecane.dat":Wa,"../../../data/standards/components/nDodecane.dat":Ua,"../../../data/standards/components/nHeptane.dat":ja,"../../../data/standards/components/nHexane.dat":za,"../../../data/standards/components/nNonane.dat":Qa,"../../../data/standards/components/nOctane.dat":Ya,"../../../data/standards/components/nPentane.dat":Za,"../../../data/standards/components/nUndecane.dat":$a,"../../../data/standards/components/natron.dat":Xa,"../../../data/standards/components/neon.dat":nt,"../../../data/standards/components/neopentane.dat":et,"../../../data/standards/components/nesquehonite.dat":ot,"../../../data/standards/components/novec649.dat":at,"../../../data/standards/components/oXylene.dat":tt,"../../../data/standards/components/pXylene.dat":it,"../../../data/standards/components/pentahydrite.dat":rt,"../../../data/standards/components/pirssonite.dat":st,"../../../data/standards/components/polyethylene.dat":lt,"../../../data/standards/components/polyhalite.dat":dt,"../../../data/standards/components/polypropylene.dat":ct,"../../../data/standards/components/polystyrene.dat":pt,"../../../data/standards/components/potassiumBitartrate.dat":mt,"../../../data/standards/components/propane.dat":ut,"../../../data/standards/components/propylene.dat":ht,"../../../data/standards/components/propyleneGlycol30.dat":Ct,"../../../data/standards/components/propyne.dat":ft,"../../../data/standards/components/pyrochroite.dat":gt,"../../../data/standards/components/rhodochrosite.dat":bt,"../../../data/standards/components/schoenite.dat":Tt,"../../../data/standards/components/sepiolite.dat":yt,"../../../data/standards/components/sepiolite_d.dat":Pt,"../../../data/standards/components/siderite.dat":vt,"../../../data/standards/components/silica.dat":St,"../../../data/standards/components/strontianite.dat":Ot,"../../../data/standards/components/sucrose.dat":At,"../../../data/standards/components/syngenite.dat":Ht,"../../../data/standards/components/talc.dat":_t,"../../../data/standards/components/tartaricAcid.dat":Et,"../../../data/standards/components/toluene.dat":Rt,"../../../data/standards/components/trans2Butene.dat":Nt,"../../../data/standards/components/trona.dat":kt,"../../../data/standards/components/vivianite.dat":Kt,"../../../data/standards/components/water.dat":Mt,"../../../data/standards/components/witherite.dat":wt}),D=new Map;function L(n){const e=/^\s*name\s+([^;\s]+)\s*;/m.exec(n);e&&!D.has(e[1])&&D.set(e[1],n)}function Lt(n){return D.get(n)??null}function V(n,e="standard"){let a;try{a=G(F(n))}catch{return null}const i=typeof a.name=="string"?a.name:"";if(!i)return null;const t=typeof a.formula=="string"?a.formula:"",s=a.role==="nonvolatile",c=typeof a.Tc=="number"&&a.Tc>0,p=a.vaporPressure!==void 0&&a.vaporPressure!==null&&c&&!s,g=s?"nonvolatile":p?"volatile":"fragment",P=typeof a.standardThermochemistry=="object"&&a.standardThermochemistry!==null&&a.standardThermochemistry.phase==="solid",v=typeof a.dissociation=="number"?a.dissociation:1,A=a.electrolyte!==void 0&&a.electrolyte!==null||v>1&&!P,C=a.noncondensable==="true"||a.noncondensable===!0,H=a.provenance,S=!!H&&H.source==="synthetic",f=a.groups,_=!!f&&f.unifac!==void 0&&f.unifac!==null,b=y=>typeof y=="number"&&y>0?y:void 0;return{name:i,formula:t,kind:g,vleAble:p,isElectrolyte:A,isPermanentGas:C,isSynthetic:S,hasUnifac:_,origin:e,tc:b(a.Tc),pc:b(a.Pc),tb:b(a.Tb)}}const O=Object.values(Jt).map(n=>(L(n),V(n))).filter(n=>n!==null).sort((n,e)=>n.name.localeCompare(e.name)),Wt=qt.map(n=>(L(n),V(n,"dataLocal"))).filter(n=>n!==null).sort((n,e)=>n.name.localeCompare(e.name)),It=/(?:^|\/)constant\/components\/([^/]+)\.dat$/;function W(n){const e=n.match(It);if(!e)return null;const a=e[1];return a.includes(".estimate-")?null:a}function Dt(n){if(!n)return[];const e=new Set(O.map(i=>i.name)),a=new Map;for(const[i,t]of Object.entries(n)){const s=W(i);if(!s)continue;const c=V(t,e.has(s)?"caseShadow":"caseLocal");if(!c)continue;const h={...c,name:s},p=i.split("/").length,g=a.get(s);(!g||p<g.depth)&&a.set(s,{meta:h,depth:p})}return[...a.values()].map(i=>i.meta).sort((i,t)=>i.name.localeCompare(t.name))}function Ut(n){if(!n)return{};const e=new Map;for(const[i,t]of Object.entries(n)){const s=W(i);if(!s)continue;const c=i.split("/").length,h=e.get(s);(!h||c<h.depth)&&e.set(s,{body:t,depth:c})}const a={};for(const[i,t]of e)a[`constant/components/${i}.dat`]=t.body;return a}function jt(n){const e=Dt(n);if(e.length===0)return O;const a=new Map;for(const i of O)a.set(i.name,i);for(const i of e)a.set(i.name,i);return[...a.values()].sort((i,t)=>i.name.localeCompare(t.name))}function zt(n,e=O){const a=n.trim().toLowerCase();return a?e.filter(i=>i.name.toLowerCase().includes(a)||i.formula.toLowerCase().includes(a)):e}function Qt(n,e=O){return e.find(a=>a.name===n)}function Yt(n){if(!n.formula)return null;const e=a=>a.toLowerCase().replace(/\s/g,"");return e(n.formula)!==e(n.name)?n.formula:null}function u(n){return typeof n=="string"?n:typeof n=="number"?String(n):null}function T(n){return typeof n=="object"&&n!==null&&!Array.isArray(n)?n:null}function d(n){return typeof n=="number"?n:null}function J(n){if(!n)return"";const e=n.Trange;return typeof e=="string"?e==="unknown"?" · validity DECLARED UNKNOWN":` · ${e}`:Array.isArray(e)&&e.length===2&&typeof e[0]=="number"&&typeof e[1]=="number"?` · ${e[0]}–${e[1]} K`:""}function I(n,e="declared"){return n?u(n.model)??e:""}function Zt(n){let e;try{e=G(F(n))}catch{return null}const a=u(e.name);if(!a)return null;const i=u(e.formula)??"",t=[{label:"name",value:a},{label:"formula",value:i||null,gap:"no molecular formula declared — the element balance refuses this component by name"},{label:"CAS",value:u(e.CAS),gap:"not declared in this record"},{label:"molar mass",value:d(e.MW)!==null?`${d(e.MW)} g/mol`:null,gap:"not declared — derivable from the formula, but the record does not state it"},{label:"InChI",value:u(e.InChI),gap:"not carried by Choupo records yet — ThermoML curation supplies it"},{label:"InChIKey",value:u(e.InChIKey),gap:"not carried by Choupo records yet — ThermoML curation supplies it"}],s=T(e.vaporPressure),c=T(e.idealGasHeatCapacity),h=T(e.liquidHeatCapacity),p=T(e.standardThermochemistry),g=T(e.liquidViscosity),P=d(e.Tc),v=d(e.Pc),A=e.role==="nonvolatile",C=(r,E,K,R,U)=>({key:r,label:E,present:K,detail:R,unlocks:U,verdict:"notClaimed"}),H=[C("criticals","Critical constants",P!==null&&v!==null,P!==null&&v!==null?`Tc ${P} K · Pc ${v} bar${d(e.omega)!==null?` · ω ${d(e.omega)}`:""}`:"","equation of state, corresponding states"),C("psat","Vapour pressure",s!==null,s!==null?`${I(s)}${J(s)}`:"",A?"not applicable — declared `role nonvolatile`":"VLE, flash, distillation"),C("vliq","Liquid molar volume",d(e.Vliq)!==null,d(e.Vliq)!==null?`${d(e.Vliq)} m³/mol`:"","pump work, liquid density"),C("cpIdealGas","Ideal-gas heat capacity",c!==null,c!==null?`${I(c)}${J(c)}`:"","energy balances, enthalpy on the gas rung"),C("gibbs","Formation datum",p!==null,p!==null?`ΔHf° ${d(p.dHf_298)??"—"} J/mol${d(p.s_298)!==null?` · s° ${d(p.s_298)} J/(mol·K)`:""} · ${u(p.referenceState)??"idealGas"} rung`:"","Gibbs reactor, heat of reaction"),C("cpLiquid","Liquid heat capacity",h!==null,h!==null?`${I(h,"polynomial")}${J(h)}`:"","sensible duty on a liquid stream"),C("viscosity","Liquid viscosity",g!==null,g!==null?Object.keys(g).join(" / "):"","pressure drop, transport")],S=[],f=(r,E,K)=>{const R=T(e[E]);R&&S.push({slot:r,model:E,detail:K(R)})};f("Activity (UNIQUAC)","uniquac",r=>`r ${d(r.r)??"—"} · q ${d(r.q)??"—"}`),f("Equation of state (PC-SAFT)","pcsaft",r=>`m ${d(r.m)??"—"} · σ ${d(r.sigma)??"—"} Å · ε/k ${d(r.epsilonK)??"—"} K`+(u(r.assocScheme)?` · assoc ${u(r.assocScheme)}`:" · non-associating")),f("Activity (COSMO-SAC)","cosmo",r=>`${Object.keys(r).length} parameter set(s): ${Object.keys(r).join(", ")}`),f("Electrolyte","electrolyte",r=>Object.keys(r).join(", ")),f("Solid phase","solidPhases",r=>Object.keys(r).join(", "));const _=T(e.groups);_&&S.push({slot:"Group contribution",model:"groups",detail:Object.keys(_).join(", ")});const b=[],y=u(e.reviewStatus);y&&b.push({kind:"reviewStatus",text:`reviewStatus ${y} — the engine announces this record [unreviewed]`,tone:"warn"}),A&&b.push({kind:"role",text:"role nonvolatile — no vapour pressure BY DESIGN; the absence above is a modelling choice, not a gap",tone:"info"});const k=T(e.provenance);if(k&&u(k.source)==="synthetic"){const r=u(k.reason);b.push({kind:"synthetic",tone:"warn",text:"provenance source synthetic — NOT a real substance"+(r?` (${r})`:"")+".  Any number computed with it describes the algorithm, never a chemical."})}return{name:a,formula:i,identity:t,capabilities:H,models:S,marks:b,raw:n}}const Vt={validated:{label:"VALIDATED",color:"green",help:"fitted on declared evidence and tested against held-out points it never saw; the held-out error met the acceptance band declared BEFORE the fit"},notValidated:{label:"NOT VALIDATED",color:"red",help:"tested against held-out points and MISSED the acceptance band declared before the fit — a finding, not a failure to hide"},heldOutPerformed:{label:"HELD-OUT TESTED",color:"blue",help:"tested against held-out points, but no acceptance band was declared beforehand — the residuals are reported and no verdict is claimed"},validationRefused:{label:"NOT TESTED",color:"orange",help:"no independent evidence remained after fitting: everything available was used to fit, so nothing tested the result. The honest answer, not a smaller split"},notClaimed:{label:"no dossier",color:"gray",help:"no curation dossier is attached to this property, so no scientific claim has been made about it. The datum may be perfectly good — nobody has declared evidence for it"}};function xt({v:n}){const e=Vt[n];return o.jsx($,{label:e.help,withArrow:!0,multiline:!0,w:300,children:o.jsx(X,{size:"xs",variant:"light",color:e.color,tt:"none",children:e.label})})}function $t({record:n,onClose:e}){const[a,i]=j.useState(!1);return o.jsxs(M,{gap:"sm",style:{height:"100%",minHeight:0},children:[o.jsxs(w,{justify:"space-between",align:"baseline",wrap:"nowrap",children:[o.jsxs(w,{gap:8,align:"baseline",children:[o.jsx(m,{fw:700,size:"lg",children:n.name}),n.formula&&o.jsx(m,{c:"dimmed",size:"sm",children:n.formula})]}),e&&o.jsx(q,{size:"compact-xs",variant:"subtle",onClick:e,children:"close"})]}),n.marks.length>0&&o.jsx(M,{gap:4,children:n.marks.map(t=>o.jsxs(w,{gap:6,wrap:"nowrap",align:"flex-start",children:[t.tone==="warn"&&o.jsx(z,{size:14,style:{marginTop:2,flexShrink:0}}),o.jsx(m,{size:"xs",c:t.tone==="warn"?"orange.6":"dimmed",children:t.text})]},t.kind+t.text))}),o.jsx(Q,{style:{flex:1,minHeight:0},children:o.jsxs(M,{gap:"md",children:[o.jsx(N,{title:"IDENTITY",children:o.jsx(l,{fz:"xs",withRowBorders:!1,children:o.jsx(l.Tbody,{children:n.identity.map(t=>o.jsxs(l.Tr,{children:[o.jsx(l.Td,{w:110,c:"dimmed",children:t.label}),o.jsx(l.Td,{children:t.value!==null?o.jsx(m,{size:"xs",ff:"monospace",children:t.value}):o.jsxs(m,{size:"xs",c:"dimmed",fs:"italic",children:["— ",t.gap]})})]},t.label))})})}),o.jsxs(N,{title:"PROPERTY COVERAGE",children:[o.jsx(l,{fz:"xs",withRowBorders:!1,children:o.jsx(l.Tbody,{children:n.capabilities.map(t=>o.jsxs(l.Tr,{children:[o.jsx(l.Td,{w:16,children:o.jsx(m,{size:"sm",fw:700,c:t.present?"green.5":"red.5",children:t.present?"✓":"✗"})}),o.jsx(l.Td,{w:150,children:t.label}),o.jsx(l.Td,{children:t.present?o.jsx(m,{size:"xs",ff:"monospace",c:"dimmed",children:t.detail}):o.jsx(m,{size:"xs",c:"dimmed",fs:"italic",children:t.unlocks})}),o.jsx(l.Td,{w:110,ta:"right",children:t.present&&o.jsx(xt,{v:t.verdict})})]},t.key))})}),o.jsx(m,{size:"xs",c:"dimmed",mt:4,children:"✓ means the record CARRIES the block — never that the numbers are good.  The right-hand column is the curation dossier's verdict, and it is the only thing here that speaks to quality."})]}),n.models.length>0&&o.jsx(N,{title:"RESOLVED MODELS",children:o.jsx(l,{fz:"xs",withRowBorders:!1,children:o.jsx(l.Tbody,{children:n.models.map(t=>o.jsxs(l.Tr,{children:[o.jsx(l.Td,{w:180,c:"dimmed",children:t.slot}),o.jsx(l.Td,{children:o.jsx(m,{size:"xs",ff:"monospace",children:t.detail})})]},t.slot+t.model))})})}),o.jsx(N,{title:"EVIDENCE / PROVENANCE",children:o.jsxs(m,{size:"xs",c:"dimmed",children:["No curation dossier is attached to this component.  A dossier is produced by ",o.jsxs(x,{children:["bin/choupo-curate <",n.name,">"]}),", which extracts ThermoML datasets, DECLARES which are fitted and which are held out ",o.jsx("i",{children:"before"})," fitting, and records the held-out residuals beside the acceptance band.  Until then every property above reads ",o.jsx("b",{children:"no dossier"})," — not because the data is bad, but because nobody has declared evidence for it."]})}),o.jsxs(B,{children:[o.jsxs(q,{size:"compact-xs",variant:"subtle",leftSection:o.jsx(Y,{size:13}),onClick:()=>i(t=>!t),children:[a?"hide":"view"," raw record"]}),o.jsx(nn,{in:a,children:o.jsx(x,{block:!0,fz:10,mt:6,style:{maxHeight:360,overflow:"auto"},children:n.raw})})]})]})}),o.jsx(q,{size:"compact-xs",variant:"light",color:"accent",leftSection:o.jsx(Z,{size:13}),onClick:()=>window.open(`${window.location.pathname}?component=${encodeURIComponent(n.name)}`,"_blank","noopener"),children:"open full"})]})}function N({title:n,children:e}){return o.jsxs(B,{children:[o.jsx(m,{size:"xs",fw:700,c:"dimmed",mb:4,children:n}),o.jsx(en,{mb:6}),e]})}export{O as C,Wt as D,$t as a,Dt as b,Ut as c,Qt as d,Zt as e,Yt as f,jt as m,Lt as r,zt as s};
