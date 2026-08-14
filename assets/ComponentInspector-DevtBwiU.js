@@ -1,4 +1,4 @@
-import{be as G,aU as F,b4 as j,aK as o,X as M,G as w,_ as m,d as q,I as z,V as Q,Y as l,h as x,c as B,q as Y,p as Z,a1 as $,B as X}from"./index-DiEwbQTc.js";import{C as nn}from"./Collapse-whhq1JtS.js";import{D as en}from"./Divider-DS0Uz0Ha.js";const on=`/*--------------------------------*- Choupo -*-----------------------*\\
+import{be as G,aU as F,b4 as j,aK as o,X as M,G as w,_ as m,d as q,I as z,V as Q,Y as l,h as x,c as B,q as Y,p as Z,a1 as $,B as X}from"./index-BxCLfKLb.js";import{C as nn}from"./Collapse-CRdDTFxP.js";import{D as en}from"./Divider-rNh-LvK4.js";const on=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: 1Butene  (C4H8, CAS 106-98-9)
   PROPOSAL TIER -- UNVERIFIED.  Imported from CoolProp 7.2.0 (MIT);
   pure-fluid properties from the published reference EOS below.
