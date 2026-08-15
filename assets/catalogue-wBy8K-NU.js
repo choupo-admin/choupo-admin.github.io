@@ -1,4 +1,4 @@
-import{be as A,aU as H}from"./index-BIxxWQHm.js";const _=`/*--------------------------------*- Choupo -*-----------------------*\\
+import{bf as A,aV as H}from"./index-mOvcliS5.js";const _=`/*--------------------------------*- Choupo -*-----------------------*\\
   Component: 1Butene  (C4H8, CAS 106-98-9)
   PROPOSAL TIER -- UNVERIFIED.  Imported from CoolProp 7.2.0 (MIT);
   pure-fluid properties from the published reference EOS below.

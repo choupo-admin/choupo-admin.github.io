@@ -1,6 +1,6 @@
-import{d as i}from"./plotly-8NJipOhv.js";import{a$ as s,aQ as c}from"./index-BIxxWQHm.js";async function u(a){const t=document.querySelector(".js-plotly-plot");if(!t){alert("No plot currently rendered.  Press Run and select a plot view first.");return}await d(t,a)}async function d(a,t){let n;try{n=await i.toImage(a,{format:"png",width:1600,height:1e3,scale:2})}catch(r){alert("Failed to render the plot to PNG: "+r.message);return}const o=p(t),e=s(),l=`<!doctype html><html lang="en"><head>
+import{d as i}from"./plotly-DXixY2dU.js";import{b0 as s,aR as c}from"./index-mOvcliS5.js";async function u(o){const t=document.querySelector(".js-plotly-plot");if(!t){alert("No plot currently rendered.  Press Run and select a plot view first.");return}await d(t,o)}async function d(o,t){let n;try{n=await i.toImage(o,{format:"png",width:1600,height:1e3,scale:2})}catch(r){alert("Failed to render the plot to PNG: "+r.message);return}const a=p(t),e=s(),l=`<!doctype html><html lang="en"><head>
 <meta charset="utf-8">
-<title>Choupo — ${o}</title>
+<title>Choupo — ${a}</title>
 <style>
   body { margin: 0; background: ${e.bg}; color: ${e.text};
          font-family: system-ui, sans-serif;
@@ -18,10 +18,10 @@ import{d as i}from"./plotly-8NJipOhv.js";import{a$ as s,aQ as c}from"./index-BIx
 </style>
 </head><body>
 <header>
-  <span><b>Plot</b> · ${o}</span>
-  <a class="dl" href="${n}" download="${o.replace(/[^A-Za-z0-9_-]/g,"_")}.png">
+  <span><b>Plot</b> · ${a}</span>
+  <a class="dl" href="${n}" download="${a.replace(/[^A-Za-z0-9_-]/g,"_")}.png">
     Download PNG
   </a>
 </header>
-<main><img src="${n}" alt="${o}"></main>
-</body></html>`;c(l)}function p(a){return a.replace(/[&<>"]/g,t=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"})[t])}export{d as a,u as p};
+<main><img src="${n}" alt="${a}"></main>
+</body></html>`;c(l)}function p(o){return o.replace(/[&<>"]/g,t=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"})[t])}export{d as a,u as p};
