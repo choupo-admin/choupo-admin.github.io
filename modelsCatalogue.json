@@ -242,25 +242,9 @@
         "tutorials": []
       },
       {
-        "key": "Latini",
-        "name": "Latini liquid thermal conductivity",
-        "source": "src/thermo/transport/Latini.cpp",
-        "engine": "all",
-        "phases": "liquid",
-        "tutorials": []
-      },
-      {
         "key": "SatoRiedel",
         "name": "Sato-Riedel liquid thermal conductivity",
         "source": "src/thermo/transport/SatoRiedel.cpp",
-        "engine": "all",
-        "phases": "liquid",
-        "tutorials": []
-      },
-      {
-        "key": "Scheibel",
-        "name": "Scheibel liquid diffusivity",
-        "source": "src/thermo/transport/Scheibel.cpp",
         "engine": "all",
         "phases": "liquid",
         "tutorials": []
@@ -1080,7 +1064,7 @@
         "key": "species",
         "name": "Aqueous / gas / solid model-species records",
         "source": "data/standards/species/",
-        "count": 52
+        "count": 53
       },
       {
         "key": "chemistry",
@@ -1134,7 +1118,7 @@
         "key": "parameters.EdwardsPitzer",
         "name": "Edwards et al. (1978) truncated-Pitzer pairs",
         "source": "data/standards/parameters/EdwardsPitzer/",
-        "count": 22
+        "count": 34
       },
       {
         "key": "parameters.SRK",
