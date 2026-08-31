@@ -10,8 +10,8 @@
     "Reaction engineering",
     "Hydraulics & control"
   ],
-  "liveTools": 24,
-  "registryTools": 24,
+  "liveTools": 25,
+  "registryTools": 25,
   "tools": [
     {
       "id": "what-is-temperature",
@@ -31,7 +31,7 @@
       "id": "what-is-exergy",
       "label": "What is exergy?",
       "discipline": "Thermodynamics",
-      "teaches": "That energy is conserved but USEFULNESS is not: exergy prices a state in work, b = (h - h0) - T0*(s - s0), against a dead state the case DECLARES (the engine refuses to choose your environment). Why the two LEGS re-add on screen, why the dead state's own exergy is zero identically, why b is datum-independent (differences at fixed composition), and Gouy-Stodola: every dS_gen a machine publishes costs T0 times itself in lost work.",
+      "teaches": "That energy is conserved but USEFULNESS is not: PHYSICAL flow exergy prices a state in work, b_ph = (h - h0) - T0*(s - s0), against a restricted dead state the case DECLARES (the engine refuses to choose your environment; chemical exergy is refused, never silently zeroed).  Why the two LEGS re-add on screen, why b_ph at the restricted dead state is zero identically, why b is datum-independent but NOT model-independent, and Gouy-Stodola: every dS_gen an adiabatic machine publishes costs T0 times itself in exergy destroyed.",
       "href": "/app/?workspace=methods&tool=what-is-exergy"
     },
     {
@@ -54,6 +54,13 @@
       "discipline": "Thermodynamics",
       "teaches": "Never trust a thermophysical record merely because it exists: test its internal consistency and read its declared validity.  Thirteen records cross-examined against themselves, live -- water's own file disagrees with itself by 0.70 K, and a predictive glycerol correlation that asked to be validated misses by a factor of 19.",
       "href": "/app/?workspace=methods&tool=property-trust"
+    },
+    {
+      "id": "four-ways-mixture",
+      "label": "Four ways to price a mixture",
+      "discipline": "Thermodynamics",
+      "teaches": "That every mixture model answers one question -- what did it KNOW about this pair before it priced it: nothing (ideal), the pair's own measured data (Wilson/NRTL), the groups (UNIFAC), the quantum charge surface (COSMO-SAC), or molecular theory with association (PC-SAFT).  The engine grades four of them against 12 measured ethanol/water points live; a fit wins where its evidence was taken and loses where it was not, and the predictive rungs buy reach at a price the page shows in kelvin.",
+      "href": "/app/?workspace=methods&tool=four-ways-mixture"
     },
     {
       "id": "flash-operating-line",
