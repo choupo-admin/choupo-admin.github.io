@@ -10,8 +10,8 @@
     "Reaction engineering",
     "Hydraulics & control"
   ],
-  "liveTools": 25,
-  "registryTools": 25,
+  "liveTools": 26,
+  "registryTools": 26,
   "tools": [
     {
       "id": "what-is-temperature",
@@ -61,6 +61,13 @@
       "discipline": "Thermodynamics",
       "teaches": "That every mixture model answers one question -- what did it KNOW about this pair before it priced it: nothing (ideal), the pair's own measured data (Wilson/NRTL), the groups (UNIFAC), the quantum charge surface (COSMO-SAC), or molecular theory with association (PC-SAFT).  The engine grades four of them against 12 measured ethanol/water points live; a fit wins where its evidence was taken and loses where it was not, and the predictive rungs buy reach at a price the page shows in kelvin.",
       "href": "/app/?workspace=methods&tool=four-ways-mixture"
+    },
+    {
+      "id": "cosmo-sac-theory",
+      "label": "COSMO-SAC, derived (σ-profiles → activity coefficient)",
+      "discipline": "Thermodynamics",
+      "teaches": "The full derivation of COSMO-SAC 2002 as the engine runs it: the quantum charge surface, the σ-profile, the misfit and hydrogen-bond exchange energy, the IMPLICIT segment activity coefficient solved as a damped fixed point, the residual as a move between environments, and Staverman-Guggenheim for size.  Every equation cited to the line of CosmoSac.cpp that runs it, every constant quoted with its units, every assumption named where it is made — and the licence honesty that the shipped σ-profiles are synthetic teaching surrogates.",
+      "href": "/app/?workspace=methods&tool=cosmo-sac-theory"
     },
     {
       "id": "flash-operating-line",
