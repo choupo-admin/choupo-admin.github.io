@@ -10,8 +10,8 @@
     "Reaction engineering",
     "Hydraulics & control"
   ],
-  "liveTools": 29,
-  "registryTools": 29,
+  "liveTools": 30,
+  "registryTools": 30,
   "tools": [
     {
       "id": "what-is-temperature",
@@ -89,6 +89,13 @@
       "discipline": "Thermodynamics",
       "teaches": "That PC-SAFT builds a residual HELMHOLTZ energy from named contributions -- hard chain, dispersion, association -- so one surface yields both phases and their densities, which no activity model on this shelf can express.  The temperature-dependent segment diameter, the four zeta moments, the perturbation series in packing fraction, van der Waals one-fluid mixing with k_ij as a CORRECTION rather than the whole interaction, and Wertheim TPT1's site-fraction fixed point.  And the lesson this repository paid for: the association SCHEME is part of the fit -- water curated as 4C instead of the paper's 2B passed a pure-density anchor by coincidence while the mixture flash collapsed.",
       "href": "/app/?workspace=methods&tool=pcsaft-theory"
+    },
+    {
+      "id": "ponchon-savarit",
+      "label": "Ponchon-Savarit, derived (the enthalpy diagram)",
+      "discipline": "Separations & phase equilibria",
+      "teaches": "That putting ENTHALPY on the vertical axis turns the energy balance into a point on the diagram: the difference point, whose enthalpy is a net flow over a flow and belongs to no stream, and from which every operating line is a ray.  The lever rule then reads the internal reflux off the page with a ruler, total reflux is the difference point at infinity, and minimum reflux is a ray coinciding with a tie line.  Above all: constant molar overflow is exactly the claim that the two enthalpy curves are parallel straight lines, so how far they are from that IS how wrong McCabe-Thiele is for your system.",
+      "href": "/app/?workspace=methods&tool=ponchon-savarit"
     },
     {
       "id": "flash-operating-line",
