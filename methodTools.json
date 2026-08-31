@@ -10,8 +10,8 @@
     "Reaction engineering",
     "Hydraulics & control"
   ],
-  "liveTools": 27,
-  "registryTools": 27,
+  "liveTools": 28,
+  "registryTools": 28,
   "tools": [
     {
       "id": "what-is-temperature",
@@ -75,6 +75,13 @@
       "discipline": "Thermodynamics",
       "teaches": "That Wilson, NRTL and UNIQUAC are one idea carried three distances -- a molecule's neighbourhood is not the bulk composition -- and that each exists because of something the previous one could not do: Wilson STRUCTURALLY cannot produce a liquid-liquid split, NRTL buys that with a third parameter, UNIQUAC separates size from energy and opens the door UNIFAC walks through.  Every equation cited to the engine line that runs it, every assumption named where it is made -- including the one no textbook can teach, that a pair with no parameters does not fail but runs at tau = 0, exactly ideal, announced and refused unless the case authorised it.",
       "href": "/app/?workspace=methods&tool=local-composition"
+    },
+    {
+      "id": "unifac-theory",
+      "label": "UNIFAC, derived (a pair nobody has measured)",
+      "discipline": "Thermodynamics",
+      "teaches": "That UNIFAC is not a new theory but UNIQUAC's residual term moved one level down, from molecules to their groups: r and q assembled from group counts, a liquid treated as a solution OF GROUPS, one interaction number per ordered main-group pair, and the pure-minus-mixture subtraction that makes a group activity into an activity coefficient.  And that its ideal fallback is a DIFFERENT failure from NRTL's despite identical arithmetic -- NRTL's gap is nobody fitted your pair and closes with data, UNIFAC's is a hole in the published table and does not.",
+      "href": "/app/?workspace=methods&tool=unifac-theory"
     },
     {
       "id": "flash-operating-line",
