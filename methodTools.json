@@ -43,7 +43,7 @@
     },
     {
       "id": "property-origins",
-      "label": "Where do properties come from?",
+      "label": "Where do properties come from? (estimation, Joback)",
       "discipline": "Thermodynamics",
       "teaches": "That every number in a component's data file has a PROVENANCE -- measured, fitted, or estimated -- and the reflex question to ask of each: measured by whom, fitted over what window, estimated from which groups at what typical error.  The anatomy of a .dat file by what CONSUMES each field, and the standing rule that estimation is a curation-time act, never a runtime one.",
       "href": "/app/?workspace=methods&tool=property-origins"
@@ -57,7 +57,7 @@
     },
     {
       "id": "four-ways-mixture",
-      "label": "Four ways to price a mixture",
+      "label": "Four ways to price a mixture (NRTL · UNIFAC · COSMO-SAC · PC-SAFT)",
       "discipline": "Thermodynamics",
       "teaches": "That every mixture model answers one question -- what did it KNOW about this pair before it priced it: nothing (ideal), the pair's own measured data (Wilson/NRTL), the groups (UNIFAC), the quantum charge surface (COSMO-SAC), or molecular theory with association (PC-SAFT).  The engine grades four of them against 12 measured ethanol/water points live; a fit wins where its evidence was taken and loses where it was not, and the predictive rungs buy reach at a price the page shows in kelvin.",
       "href": "/app/?workspace=methods&tool=four-ways-mixture"
