@@ -8,11 +8,10 @@
     "Separations & phase equilibria",
     "Heat transfer & energy",
     "Reaction engineering",
-    "Hydraulics & control",
-    "Economics & management"
+    "Hydraulics & control"
   ],
-  "liveTools": 31,
-  "registryTools": 31,
+  "liveTools": 30,
+  "registryTools": 30,
   "tools": [
     {
       "id": "what-is-temperature",
@@ -97,13 +96,6 @@
       "discipline": "Separations & phase equilibria",
       "teaches": "That putting ENTHALPY on the vertical axis turns the energy balance into a point on the diagram: the difference point, whose enthalpy is a net flow over a flow and belongs to no stream, and from which every operating line is a ray.  The lever rule then reads the internal reflux off the page with a ruler, total reflux is the difference point at infinity, and minimum reflux is a ray coinciding with a tie line.  Above all: constant molar overflow is exactly the claim that the two enthalpy curves are parallel straight lines, so how far they are from that IS how wrong McCabe-Thiele is for your system.",
       "href": "/app/?workspace=methods&tool=ponchon-savarit"
-    },
-    {
-      "id": "number-nobody-checked",
-      "label": "The number nobody checked (defending a capital cost)",
-      "discipline": "Economics & management",
-      "teaches": "That an NPV is the end of a chain of judgements and a viva panel attacks a link, not the last step; that twelve digits are a regression pin and never a claim about how well a value is known; and what to do on finding a discrepancy you are NOT authorised to resolve -- make it visible and route it to whoever owns it, which is what the engine itself does with this one.  Worked on a case that ships in this corpus, whose NPV is discounted over a one-year construction while its own file declares two.",
-      "href": "/app/?workspace=methods&tool=number-nobody-checked"
     },
     {
       "id": "flash-operating-line",
