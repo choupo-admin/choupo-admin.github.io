@@ -24,8 +24,8 @@
     "runnableCases": 393,
     "regressionChecks": 383,
     "byTier": {
-      "witness": 368,
-      "tutorial": 17,
+      "witness": 361,
+      "tutorial": 24,
       "showcase": 8
     }
   },
