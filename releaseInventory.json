@@ -14,7 +14,7 @@
     "materials": 4,
     "membranes": 4,
     "adsorbents": 3,
-    "utilities": 9
+    "utilities": 10
   },
   "engine": {
     "unitOperations": 50,
