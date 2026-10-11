@@ -1,7 +1,7 @@
 {
  "definition": "every line (comments and blanks included) of every git-tracked UTF-8 text file",
  "totalFiles": 41848,
- "totalLines": 2464234,
+ "totalLines": 2464240,
  "groupEstimateCompounds": 28447,
  "buckets": {
   "engineCpp": {
@@ -47,7 +47,7 @@
   "docs": {
    "label": "design records and docs",
    "files": 303,
-   "lines": 90464
+   "lines": 90470
   },
   "rest": {
    "label": "build, scripts, site and the rest",
