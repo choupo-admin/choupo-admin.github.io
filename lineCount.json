@@ -1,7 +1,7 @@
 {
  "definition": "every line (comments and blanks included) of every git-tracked UTF-8 text file",
- "totalFiles": 42193,
- "totalLines": 2507007,
+ "totalFiles": 42195,
+ "totalLines": 2507322,
  "groupEstimateCompounds": 28447,
  "buckets": {
   "engineCpp": {
@@ -16,8 +16,8 @@
   },
   "tutorials": {
    "label": "tutorial cases (dictionaries)",
-   "files": 9796,
-   "lines": 479340
+   "files": 9798,
+   "lines": 479524
   },
   "groupEstimates": {
    "label": "group-contribution estimate records",
@@ -37,17 +37,17 @@
   "tools": {
    "label": "gates and curation tools",
    "files": 339,
-   "lines": 98790
+   "lines": 98795
   },
   "manuals": {
    "label": "manuals (LaTeX)",
    "files": 27,
-   "lines": 62770
+   "lines": 62883
   },
   "docs": {
    "label": "design records and docs",
    "files": 307,
-   "lines": 92373
+   "lines": 92386
   },
   "rest": {
    "label": "build, scripts, site and the rest",
