@@ -15,8 +15,8 @@
     "Process safety",
     "Flowsheeting & numerics"
   ],
-  "liveTools": 61,
-  "registryTools": 61,
+  "liveTools": 63,
+  "registryTools": 63,
   "tools": [
     {
       "id": "what-is-temperature",
@@ -341,6 +341,13 @@
       "href": "/app/?workspace=methods&tool=bode"
     },
     {
+      "id": "data-reconciliation",
+      "label": "Data reconciliation, and how Bayes helps",
+      "discipline": "Hydraulics & control",
+      "teaches": "Why plant meters never close a mass balance, and what to believe instead: reconciliation moves each reading as little as its meter's uncertainty allows until every balance closes -- weighted least squares, and at the same time the Bayesian posterior mode with Gaussian meters and a flat prior.  Then plant a gross error on any meter and watch the chi-square global test reject the snapshot, the measurement test point at the meter, and the error smear over its neighbours until the meter is taken out of service; and finally add yesterday's estimate as a prior and see what the posterior covariance says the redundancy and the prior buy in precision.",
+      "href": "/app/?workspace=methods&tool=data-reconciliation"
+    },
+    {
       "id": "tear-streams",
       "label": "Tear streams (where to cut a recycle)",
       "discipline": "Flowsheeting & numerics",
@@ -444,6 +451,13 @@
       "discipline": "Process design & economics",
       "teaches": "That routes to a product are screened on paper in order of cost, cheapest filter first: the stoichiometric gross margin, the atom economy, the equilibrium limit at the catalyst's temperature, the heat to remove, and whether the product is where the atoms go when every species is allowed; that direct oxidation of methane wins the first four and fails the fifth, because the combustion products lie far below methanol in Gibbs energy; that the remaining questions (Safety, Environmental, Legal, Economics, Control, Throughput) need no rate constant; and that the rate law is bought last, for the one route that survives.",
       "href": "/app/?workspace=methods&tool=route-screening"
+    },
+    {
+      "id": "solvent-mixture",
+      "label": "Choosing a solvent, or a solvent mixture",
+      "discipline": "Thermodynamics",
+      "teaches": "Which solvent, or which blend of two, for a given substance: Hansen's three parameters with the temperature they were placed at, the distance of a solvent from the solute's sphere and the relative energy difference where a radius was measured, the volume-fraction mixture rule as a checked rule of thumb, and the phase check that refuses to average a pair the activity model finds two-phase -- the student predicts the best composition before the engine's curve is shown, on a synthetic pair whose minimum sits at 50:50 by construction, then meets Hansen's own polystyrene with hexane + acetone (better than either) and hexane + nitromethane (the rule likes it, UNIFAC refuses it), beside the dissolution ratings he recorded; and the sentence that a small distance is a compatibility indicator, never a saturation concentration.",
+      "href": "/app/?workspace=methods&tool=solvent-mixture"
     }
   ]
 }
