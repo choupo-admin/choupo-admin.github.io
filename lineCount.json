@@ -1,7 +1,7 @@
 {
  "definition": "every line (comments and blanks included) of every git-tracked UTF-8 text file",
- "totalFiles": 42933,
- "totalLines": 2658862,
+ "totalFiles": 42938,
+ "totalLines": 2661166,
  "groupEstimateCompounds": 28447,
  "buckets": {
   "engineCpp": {
@@ -11,8 +11,8 @@
   },
   "gui": {
    "label": "browser GUI (TypeScript/React)",
-   "files": 765,
-   "lines": 230509
+   "files": 769,
+   "lines": 232389
   },
   "tutorials": {
    "label": "tutorial cases (dictionaries)",
@@ -46,13 +46,13 @@
   },
   "docs": {
    "label": "design records and docs",
-   "files": 330,
-   "lines": 104554
+   "files": 331,
+   "lines": 104971
   },
   "rest": {
    "label": "build, scripts, site and the rest",
    "files": 270,
-   "lines": 68836
+   "lines": 68843
   }
  }
 }
