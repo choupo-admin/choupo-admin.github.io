@@ -1,0 +1,861 @@
+# Patterns — recipes for common case shapes
+
+Each recipe is a working `flowsheetDict` snippet you can adapt.  When
+a user asks "how do I do X?", point them at the closest one, then at
+the corresponding tutorial in `case-layout.md`.
+
+## 1. Recycle with a tear stream  (process03_recycle)
+
+A reactor-flash chain where the flash's liquid returns to the
+reactor.  The recycle is a CYCLE; we tear one stream and solve it.
+
+Author the fresh feed in `0/freshFeed` and the cycle-breaking initial guess in
+`0/recycle`.  The values do not belong in `flowsheetDict`.
+
+```
+tearStreams   (recycle );             // one or more tear stream names
+recycleSolver Newton;                  // default; alt: Wegstein
+recycleTol    1e-8;                    // relative tol, default 1e-5
+
+units
+(
+    { name mixer1;  type mixer;
+      inputs (freshFeed  recycle );  outputs (mixed ); }
+
+    { name reactor; type cstr;
+      in mixed;  outputs (reacted );
+      operation { V_R 0.004; }
+      reaction  esterification_etac; }
+
+    { name flash1;  type isothermalFlash;
+      in reacted;  outputs (recycle  vapor );   // position 0 IS the liquid --
+      operation { T 350 K; P 1 bar; } }         // the liquid recycles, as the
+                                                // prose above says (this snippet
+                                                // had them swapped until
+                                                // 2026-08-23; the real
+                                                // process03_recycle was right)
+);
+```
+
+Initial guess for the tear: AUTHOR its `0/` state file (at the stream's
+ownership path, e.g. `0/recycle`) with a reasonable starting composition —
+the tear seed is a first-class authored file of the stream-state
+architecture, and `bin/choupo-init0` REFUSES to invent one (a recycle seed
+is the author's, never propagated from nothing).  Newton converges
+quadratically.
+For counter-current cases with multiple tears + over-shoot, switch to
+`recycleSolver Wegstein;` with damping (`evaporator05_counter_current`).
+
+## 2. Sweep — vary one parameter, plot a KPI  (sensitivity01_column_reflux)
+
+`system/outerDict`:
+
+```
+type    sweep;
+
+parameter
+{
+    target    units[0].operation.refluxRatio;
+    range     ( 1.5  5.0 );
+    nPoints   10;
+}
+
+responses
+(
+    column01.T_top
+    column01.x_D_LK
+    column01.V_strip          // the swept response(s): <unit>.<kpi>
+);
+
+report
+{
+    format   csv;
+    file     sweep_results.csv;
+}
+```
+
+The simulator runs the case `nPoints` times across `range`, extracting
+each `<unit>.<kpi>` in `responses` per pass and writing one row to
+`sweep_results.csv` (parameter value + each response column).
+Plot it in any tool (GUI's PropsView shows scan CSVs as a multi-line
+plot natively).
+
+## 3. DesignSpec — manipulate $variables so named targets are met
+(designSpec01_triple_equal_areas)
+
+`system/flowsheetDict` declares the manipulated `$variables` once:
+
+```
+variables { A 100 m2; F_steam 400 kmol/h; }
+
+units
+(
+    { name effect1; type evaporator;  inputs (feed steam );
+      outputs (liq1 V_1 cond1 );
+      operation { area $A m2; U 1000; Tref 298.15; } }
+...
+);
+```
+
+`system/outerDict`:
+
+```
+type      designSpec;
+
+manipulate
+(
+    { variable A;        initial 100.0  m2;     min 20.0  m2;      max 500.0  m2;     }
+    { variable F_steam;  initial 400.0  kmol/h; min 100.0 kmol/h;  max 1500.0 kmol/h; }
+);
+
+targets
+(
+    { path  L3.F_mass;   value 4500.0 kg/h;  tol 1.0 kg/h; }   // <stream>.<field>
+    { path  effect3.P;   value 15000 Pa;     tol 50 Pa;    }   // <unit>.<kpi>
+);
+
+options
+{
+    maxIter   40;
+    tolF      1.0;
+    fdStep    1.0e-4;
+}
+
+report   { file designspec_history.csv; }
+```
+
+`manipulate` names the case `$variables` to vary (bare `variable`
+name, NOT a path — the driver writes `variables.<name>`); `targets`
+gives the residuals to zero (`<stream>.<field>` or `<unit>.<kpi>`).
+The Newton-ND iterates the simulator with new $A, $F_steam values
+until every target is within `tol`.  Reports run on the final pass
+(replay mode).
+
+## 4. fitParameters — regress thermo parameters to experimental data
+(the canonical fit engine, runs under **choupoProps**)
+
+`fitParameters` is a `propsDict` operation under **choupoProps** (NOT an
+outerDict, NOT a flowsheet).  It regresses any dotted thermophysical-system
+parameters by Levenberg–Marquardt against a dataset and is the one engine
+the GUI runs and visualises.  `system/propsDict`:
+
+```
+operations
+(
+    {
+        name        fit_nrtl;
+        type        fitParameters;
+        parameters
+        (
+            { path activityModel.pairs[0].a_ij; initial -0.5; min -5; max 5; }
+            { path activityModel.pairs[0].b_ij; initial 200;  min -1500; max 1500; }
+            { path activityModel.pairs[0].a_ji; initial  2.5; min -5; max 5; }
+            { path activityModel.pairs[0].b_ji; initial -400; min -1500; max 1500; }
+        );
+        residual { kind T_bubble; P 1.01325 bar; data ( 0.05 361.95  0.10 359.95  ... ); }
+        options  { maxIter 40; tolerance 1e-4; fdStep 1e-3; lambda0 1e-3; }
+        output
+        {
+            fit_log   fit_history.csv;   // χ² + parameter trajectory per iter
+            parity    parity.csv;        // model vs experiment at the optimum
+            proposal  auto;              // OPT-IN promote: write a proposal .dat
+        }
+    }
+);
+```
+
+`residual.kind` is currently `T_bubble` only (each (x_1, T_exp) row → the
+model bubble-T residual; drives NRTL/Wilson binary-pair regression).
+
+**Identifiability statistics (what the GUI Fit view shows).**  After the LM
+loop, fitParameters forms JᵀJ at the optimum and reports per-parameter
+standard errors, 95 % (Student-t) confidence intervals, the parameter
+**correlation matrix**, a condition-number proxy, and a verdict
+(`identifiable`/`invertible`/`well_conditioned`).  This is the point: a fit
+can CONVERGE to a low χ² yet have meaningless parameters.  The shipped
+ethanol-water fit does exactly that — χ² is tiny but max|correlation| = 1.000
+between a_ij and b_ij, because NRTL τ = a + b/T is linear in both a and b/T at
+a single pressure, so the two cannot be separated.  The GUI badges this RED
+("converged — but the data don't pin all parameters individually") and names
+the culprit pairs; the engine NEVER certifies a fit as good — the engineer
+judges from the evidence.
+
+**Promote (opt-in).**  `output { proposal auto; }` writes
+`constant/parameters/<model>/<pair>.fit-<date>.dat` with the fitted values, a
+`provenance { source fitted; ... }` block, and — if the fit is not
+individually identifiable — a loud header warning.  Promotion is then a
+deliberate `mv` (or, in the GUI, a reviewed download-to-disk); the GUI never
+writes data files itself.
+
+**RETIRED `fitBinaryPair`** — the factory THROWS, naming
+`fitParameters` as the replacement (which subsumes it: same LM regression
+plus identifiability statistics, mode evaluate and the GUI Fit view).  The
+old tutorial was migrated to fitParameters keeping its golden.  Historical
+record only; it cannot be run.
+
+## 5. Computed $variables — post-processing arithmetic
+(evaporator02_triple_effect_sugar)
+
+In any dict (typically controlDict or flowsheetDict):
+
+```
+variables
+{
+    // Inputs (plain numbers):
+    A       100.0;
+
+    // Computed (post-solve arithmetic over KPIs / stream fields / other vars):
+    Q_total       { compute "effect1.duty + effect2.duty + effect3.duty"; unit kW; }
+    water_evap    { compute "effect1.F_vap_mass + effect2.F_vap_mass + effect3.F_vap_mass"; unit kg/h; }
+    economy       { compute "water_evap / effect1.F_steam"; }
+}
+
+reports
+{
+    streamTable {}
+    massBalance {}
+    computed    {}        // emits reports/computed/values.csv
+}
+```
+
+Identifiers in `compute` resolve as `<unit>.<kpi>`, `<stream>.<field>`
+(`T`, `P`, `F`, `vf`), an earlier computed var, or a plain `$variable`.
+Order matters — references resolve sequentially.
+
+## 6. Batch recipe — react then transfer to distill
+(recipe01_react_then_distill)
+
+In `system/flowsheetDict`:
+
+```
+units
+(
+    { name reactor;  type batchReactor;
+      initial { T 350 K; P 1 bar; V 0.001; totalMoles 0.0185;
+                molarComposition { ethanol 0.5; aceticAcid 0.5; } }
+      operation { mode isothermal; T_setpoint 350 K; }
+      reaction  esterification_etac; }
+
+    { name still;  type batchStill;
+      initial { T 350 K; P 1 bar; V 0.001; totalMoles 0; }
+      operation { F_vap 2.0e-5 kmol/s;  P 1 bar; } }
+);
+
+recipe
+(
+    { time 400;  action transfer;     from reactor;  to still; fraction 1.0; }
+    { time 800;  action setParameter; unit still;    key F_vap;  value 0; }
+);
+```
+
+In `system/controlDict`:
+
+```
+application   choupoBatch;
+startTime     0;
+endTime       1200;     // s
+deltaT        1.0;
+writeInterval 30;
+```
+
+For condition-triggered events:
+
+```
+{ when { unit reactor; quantity x_ethanol; op lt; value 0.30; }
+  action transfer; from reactor; to still; fraction 0.5; }
+```
+
+Quantities: `T`, `total`, `n_<comp>`, `x_<comp>`.
+Operators: `gt`, `ge`, `lt`, `le`.
+
+## 7. Multi-effect cascade with $variables + Newton-on-tears
+(evaporator05_counter_current)
+
+Counter-current backward feed: vapour flows hot → cold, liquid flows
+cold → hot.  TWO tear streams (V_1 + V_2), damped Wegstein.
+
+The feed and steam states live in `0/feed` and `0/steam`; the two authored tear
+seeds live in `0/V_1` and `0/V_2`.  `flowsheetDict` carries only the topology
+and the `$variables` used by the equipment.
+
+```
+variables { A 17; F_steam 1500 kg/h; }
+
+tearStreams    (V_1  V_2 );
+recycleSolver  Wegstein;
+recycleWegsteinQmin  -0.7;      // extra damping for counter-current
+
+units
+(
+    { name effect3; type evaporator;  inputs (feed V_2 );
+      outputs (liq3 V_3 cond3 );
+      operation { area $A m2; U 800; Tref 298.15; } }
+
+    { name effect2; type evaporator;  inputs (liq3 V_1 );
+      outputs (liq2 V_2_out cond2 );      // V_2_out IS the tear V_2
+      operation { area $A m2; U 800; Tref 298.15; } }
+...
+);
+```
+
+Wrap in a DesignSpec on `$A, $F_steam` if you want to design for a
+final product concentration + a specific operating pressure.
+
+## 8. Multi-sector "plant"
+(plant/ChemicalPlantTutorial)
+
+A plant is a TREE of folders.  Any `flowsheetDict` is ONE of two kinds:
+
+- **LEAF** — one piece of hardware.  Has `type` (+ optional `model`,
+  `reaction`, `thermo {}`), an `operation {}` block and its stream
+  MENTIONS (`inputs (...)` / `outputs (...)`).  Its boundary state lives
+  in the case's `0/` files, never inline.
+- **COMPOSITE** — a SECTOR or the PLANT.  Lists its members
+  (`units (...)` / `sectors (...)` of folder names — ONE list when kinds
+  mix) plus `connections { ... }` wiring them as NAMED edges.  May add
+  `tearStreams`/`recycleSolver`
+  for an internal recycle.
+
+Each member name is a SUBFOLDER: a composite under `sectors/<NAME>/`, a
+dignified unit under `unitOperations/<name>/` (a bare `<name>/` folder is
+still resolved for older cases).  Names follow `case-layout.md`: SECTORS
+in `CAPS`, units / streams in `camelCase`, components lowercase.
+
+### The folder tree
+
+```
+tutorials/plant/myPlant/
+├── myPlant.cho
+├── system/
+│   ├── controlDict                 application choupoSolve; ...
+│   └── flowsheetDict               PLANT: sectors (...) + named-edge connections
+├── constant/
+│   └── thermoPhysPropDict          GLOBAL thermophysical system -- CASCADES DOWN
+├── 0/                              THE STATE: streams as FILES; each unit's interior
+│   │                               is ONE file under internalStates/
+│   ├── MAIN/tolueneIn              plant inlet: its other end IS the plant boundary
+│   ├── MAIN/reactorOut             REACTION -> SEPARATION: it belongs to neither
+│   ├── SEPARATION/product          internal to SEPARATION (the plant only LABELS it)
+│   └── internalStates/SEPARATION/column
+│                                   what that unit holds inside, one block per kind
+└── sectors/
+    ├── REACTION/
+    │   ├── system/flowsheetDict    units ( mix reactor ); + connections
+    │   ├── constant/reactions      sector-particular (cascades to its units)
+    │   └── unitOperations/
+    │       ├── mix/system/flowsheetDict       LEAF: type mixer
+    │       └── reactor/system/flowsheetDict   LEAF: type conversionReactor
+    └── SEPARATION/ ...
+```
+
+### A LEAF (one unit — a folder with a `type`)
+
+```
+// sectors/REACTION/unitOperations/reactor/system/flowsheetDict
+type        conversionReactor;
+reaction    hda;                  // resolved from REACTION/constant/reactions (cascade)
+operation   { conversion 0.75;  T 900 K; }
+inputs      ( feed );             // the streams this unit MENTIONS
+outputs     ( product );          // (a legacy boundary{inlets/outlets} is still read)
+```
+
+The input/output NAMES are the leaf's PORTS.  Wire them from outside as
+`leafName/portName` (e.g. `reactor/feed`).  The unit reads its feed
+F / T / P / composition FROM the connected stream's `0/` file — you never
+write a `feed {}` or `composition {}` block on the unit.
+
+### A SECTOR (composite — wires its members)
+
+```
+// sectors/REACTION/system/flowsheetDict
+units ( mix reactor );            // ordered member folders (ONE list; a root
+                                  // mixing `units` AND `sectors` REFUSES)
+
+connections                       // NAMED EDGES: the key IS the stream identity
+{
+    tolueneIn  { to mix/tolueneIn; }              // sector inlet -> leaf port
+    h2In       { to mix/h2In; }
+    mixed      { from mix/mixed;       to reactor/feed; }
+    reactorOut { from reactor/product; }          // sector outlet
+}
+```
+
+A connection's KEY is the stream ID — the same identity as its `0/` state
+file, at the ownership path: the LOWEST LEVEL of the case whose subtree
+contains EVERY ENDPOINT of the stream (2026-09-07), so a plant inlet and a
+sector crossing both sit at `MAIN/` and a stream internal to one sector sits
+in it.  `from`/`to` are producer/consumer PORTS, never identities.  Ask
+`choupoSolve --manifest <case>` rather than working it out.
+
+### Run any level
+
+```
+runCase tutorials/plant/myPlant                     // the whole plant
+choupoSolve tutorials/plant/myPlant/sectors/REACTION  // one sector, standalone
+```
+
+A child runs standalone because `constant/thermoPhysPropDict`, `controlDict` and
+`constant/reactions` **CASCADE UP** the folder tree, and its `0/` is
+materialised from the parent's persisted state (`converged/` by default —
+never a silent "latest").  A `streams {}` block is refused at every node —
+state lives in `0/`, nowhere else.
+
+### Recycle inside a sector
+
+List the tear and seed it, exactly as a flat case (§1, §7):
+
+```
+tearStreams   ( recycle );
+recycleSolver Newton;
+connections { ... recycle { from splitter/recycle; to mix/recycle; } ... }
+```
+The tear's initial guess is its AUTHORED `0/<SECTOR>/recycle` state file:
+```
+componentMolarFlows { etoh 90 kmol/h;  water 60 kmol/h; }
+T 310 K;   P 1 bar;
+```
+
+### Curation phase (structure before streams)
+
+A composite with `children` but **NO `connections`** is "in curation":
+the sectors exist as thermo regions but are not wired.  The engine prints
+a notice and does NOT simulate — curate the per-sector thermo
+(`choupoProps`) first, then add `connections` to assemble and simulate.
+This is the deliberate first state of a new plant.
+
+## 9. User unit op in `case/code/`
+(userOp01_yield_reactor)
+
+A case may ship its own C++ unit op:
+
+```
+case/
+├── code/
+│   ├── YieldReactor.{H,cpp}     // the new unit
+│   └── registerUserTypes.cpp    // explicit factory registration
+├── system/
+│   └── flowsheetDict            // uses `type yieldReactor;`
+└──...
+```
+
+The student's `registerUserTypes()` calls
+`UnitOperation::registerType("yieldReactor", []{ return std::make_unique<YieldReactor>(); });`.
+`bin/buildCode <case>` compiles it into a per-case binary linked
+against `libchoupo.so`.  Glass-box; no dlopen, no macro magic.
+
+## 10. Heat integration — drive one unit with another's rejected heat
+(heatlink01_condenser_to_heater)
+
+A forward heat-link wires a *producer*'s rejected duty into a
+*consumer* as its energy input.  Here a column's condenser duty
+(~1.28 MW) heats a cold process stream through a `heater` — no
+utility consumed, the heat is re-used.
+
+Author `0/feed` and `0/coldProcess` separately.  The topology remains:
+
+```
+units
+(
+    // PRODUCER listed FIRST so it solves before the consumer reads its KPI.
+    { name column01;  type distillationColumn;
+      in feed;  outputs (distillate  bottoms );
+      operation { nStages 15; feedStage 8; refluxRatio 2.0;
+                  distillateRate 50 kmol/h; P 1.01325 bar; } }
+
+    { name preheater; type heater;
+      in coldProcess;  outputs (warmedProcess );
+      operation { }                       // Q is supplied by the heat-link
+      energyInputs
+      (
+          { from column01.condenser;  kind heat;  target Q; }
+      ) }
+);
+```
+
+The column exposes two implicit heat ports — `column01.condenser`
+(cold, at the top) and `column01.reboiler` (hot, at the base).  The
+consumer names the port in `energyInputs.from` and the operation key
+to receive the resolved scalar in `target` (here the heater's `Q`).
+
+**Ordering rule (forward heat-link):** the producer MUST be listed
+*before* the consumer in the `units (...)` list, so its KPI exists when
+the consumer's `solve()` reads it.  This is the energy-wire analogue of
+a tear stream, but with no iteration — it is a one-pass forward
+dependency.
+
+For the full energy model — work wires (`W = scalar wire`) vs heat
+carriers (`Q` carried-or-allocated), the column reboiler/condenser
+heat ports, allocation-by-temperature-level, and the `utilityAllocation`
+report — see `docs/ai/energy.md`.
+
+## 11. Convergence aids — honest auto-init  (the "no silent crutch" credo)
+
+When a hard recycle wanders out of the physical region mid-iteration (a
+flash flips, a tear flow goes negative, T runs away), help it — but
+*honestly*.  Choupo's rule: **every aid is explicit and the solver
+announces when it acts; it never silently props itself up** (the
+cautionary tale is ASCEND, demoed as a mystical solver while a hidden
+`1 kg/s` guess kept it from breaking).
+
+**Initial guesses live on the stream.**  A tear's `0/` state file IS its
+guess (`process03_recycle`).  A MISSING tear file is FATAL before the solve
+(completeness) and `bin/choupo-init0` refuses to invent it — the seed is
+yours, authored and visible like every other stream state.
+
+**There is no `bounds {}` cage on a tear stream.**  A relative/absolute cage
+on the recycle iterate was designed under this credo, and earlier drafts of
+these notes documented its grammar — but **no reader for it exists in the
+engine**, so a `bounds {}` block written into a case is inert.  What remains
+of the design is its rule, and it is worth stating because any future cage
+must obey it: a bound shapes the SEARCH only, and a bound still active at the
+converged answer must be ANNOUNCED as a signal that the spec, not the solver,
+is the constraint — never silently applied to the reported result.
+
+**Ratings speak.**  A membrane warns if the feed exceeds its catalogue
+`P_max`/`T_max`; vessel sizing warns (it no longer aborts) above the
+material's pressure rating — WARN-only, never a clamp.
+
+**And the caveat surface is durable.**  Extrapolations beyond a declared
+validity window, `[unreviewed]` records, `[local]` values and `[estimate]`
+correlations ride the advisory log into the result JSON and are replayed
+once, grouped, at the end of every run — a run with nothing to say says so,
+so silence means "nothing raised" and never "the block did not run".  These
+surface in the GUI too (amber run-complete toast + a list in the Streams
+summary band), so a student who never opens the Log still sees them.
+
+## 12. Compare several models on ONE plot — the `experimental {}` overlay  (choupoProps)
+
+This is the **"see, then decide"** pillar: to choose between thermo models
+(ideal vs NRTL vs Wilson, …) you OVERLAY their predictions on the **same axes**
+and look.  It takes **TWO pieces** in `system/propsDict` — and forgetting the
+second is the usual mistake (you get N separate plots instead of one overlay).
+
+**Piece 1 — one scan `operation` per model.**  Each `propertyScan1D` sweeps the
+SAME variable and emits the SAME properties, differing only in its `thermo {}`
+override.  For a VLE comparison emit the **(x, T_bubble, y_eq) trio** — that
+trio is what unlocks the T-x-y / x-y / T-x / T-y toggle:
+
+```
+operations
+(
+    { name txy_ideal;  type propertyScan1D;
+      vary { variable x[methanol]; from 0; to 1; n 51; }
+      state { P 1.01325 bar; composition { methanol 0.5; aceticAcid 0.5; } }
+      thermo { activityModel { model ideal; } }
+      properties ( T_bubble  y_eq_methanol );  output { file txy_ideal.csv; } }
+
+    { name txy_nrtl;   type propertyScan1D;
+      vary { variable x[methanol]; from 0; to 1; n 51; }
+      state { P 1.01325 bar; composition { methanol 0.5; aceticAcid 0.5; } }
+      thermo { activityModel { model NRTL; pairs ( { i methanol; j aceticAcid; a_ij ..; b_ij ..; a_ji ..; b_ji ..; alpha 0.3; } ); } }
+      properties ( T_bubble  y_eq_methanol );  output { file txy_nrtl.csv; } }
+);
+```
+
+A scan may also evaluate AT DECLARED CONDITIONS instead of over a grid:
+`vary { variable x[methanol]; points ( 0.1 0.25 0.5 ); }` (the values in the
+order written, canonical SI -- K, Pa, or a mole fraction).  That is how a
+residual against a measured dataset is engine-minus-measurement at the
+measured x rather than a grid interpolation; `points` beside `from/to/n` in
+one `vary {}` is refused by name.
+
+**Piece 2 — an `experimental {}` entry that OVERLAYS them.**  This is the part
+that actually puts both curves on one figure.  `models ( … )` lists the scan
+ops by name; `dataset` is OPTIONAL (add it to draw real lab points on top):
+
+```
+experimental
+(
+    {
+        name      txy_compare;       // the title of the combined plot
+        component methanol;          // the axis component
+        kind      txy;               // VLE comparison -> the T-x-y/x-y toggle
+        models    ( txy_ideal  txy_nrtl );   // <-- the ops from Piece 1, overlaid
+        // dataset "constant/experiments/<file>";   // OPTIONAL: lab points as markers
+        // source  "DECHEMA Vol.I";                 // OPTIONAL: citation
+    }
+);
+```
+
+In the GUI this appears as **one** entry under **"Comparisons (data vs
+models)"** in the Props navigator; opening it draws every model curve together,
+with a **T-x-y / x-y / T-x / T-y** toggle (top-right) — **x-y is the
+McCabe-Thiele diagram**.  Add a third model (`txy_wilson`) just by writing its
+scan op and adding its name to `models ( … )`.
+
+**The common mistake (and how to recognise it):** declaring the scan
+`operations` but NO `experimental {}` block.  Then each model shows as its OWN
+entry under "Property estimates", one at a time — never overlaid.  If you wrote
+two `txy_*` scans and they only appear separately, you are missing Piece 2.
+
+**If the curves come out nearly coincident, that is a RESULT, not a bug** —
+the binary is close to ideal (or the placeholder pair parameters are weak), and
+*seeing* the two curves almost touch is exactly how the student decides NRTL is
+not worth it here.  Promote a model only when the overlay shows it earns its
+keep.
+
+**Piece 3 — the AAD validation number (automatic).**  When an `experimental {}`
+entry has BOTH a `dataset` AND `models`, the engine QUANTIFIES the overlay: for
+each (model, shared property column) it interpolates the model curve onto the
+MEASURED abscissa and reports an average absolute deviation (AAD).  It prints a
+ranked table (verbosity ≥ 2) and emits a `validation` array in the run JSON.
+Rules that keep the number honest (a wrong AAD is worse than none):
+- the dataset must be the self-describing `columns ( {name; unit;} … )` format
+  (so values are canonical SI and each column's kind is known) — the legacy
+  2-column format is refused (no validation emitted);
+- the model's abscissa column must NAME-match the dataset's (else
+  `status: abscissaMismatch`, no number) — e.g. a Psat-vs-T scan cannot be
+  scored against an x-abscissa VLE dataset;
+- metric by unit: temperature → mean |ΔT| in **K**; mole fraction → mean |Δ|
+  (absolute); other dimensional → relative **%** (with a near-zero guard);
+- measured points outside the model's scanned range are EXCLUDED and counted
+  (never extrapolated); the used/total point count is always shown.
+
+Example: ethanol-water at 1 atm gives ideal T_bubble AAD ≈ 5.4 K vs NRTL ≈ 0.35 K
+(and y AAD 0.088 vs 0.0023) — the azeotrope is why NRTL wins, now as a number.
+
+**Worked example with REAL lab data:**
+`tutorials/props/compare/compare_vle_etoh_water` — ethanol/water T-x-y at 1 atm, the
+ideal and NRTL bubble/dew curves overlaid with measured VLE points (Carey &
+Lewis 1932, in `constant/experiments/etoh_water_vle_1atm.dat`).  The ideal
+curve misses the azeotrope; NRTL lands on the data at x ≈ 0.894, 78 °C — the
+canonical "see the data, pick the model".  The dataset uses the self-describing
+`columns ( {name; unit;} … ) + data ( … )` form, so the engine echoes x, T AND
+y to `exp_<name>.csv` and every T-x-y / x-y view gets its measured points.
+
+**Kinetics overlay** (`kind kinetics`): the same pattern fits CHEMICAL KINETICS.
+`tutorials/props/compare/compare_kinetics_order` -- two `kinetics1D` ops (order 1, order
+2) each regress their own k from one measured c(t) set; the `experimental {}`
+entry (`kind kinetics`, `models ( rate_order1 rate_order2 )`, `dataset`) overlays
+both fitted curves on the measured points.  The data are second-order, so the
+order-1 curve misses the tail (R^2 0.97) and order-2 lands on it (R^2 0.999) --
+the data picks the order.
+
+## 13. Create a component from its groups — `estimateComponent` (choupoProps)
+
+When a component is missing from the catalogue AND the literature, ESTIMATE its
+pure-component constants from the molecular groups it is built from, by the
+Joback group-contribution method.  This is the CREATE stage of the props
+lifecycle (create → curate → wire → simulate).
+
+```
+operations
+(
+    {
+        name        estimate_acetone;
+        type        estimateComponent;
+        component   acetone;
+        groups      ( { group CH3; count 2; } { group ketone; count 1; } );
+        reference   { source "NIST"; Tb 329.2 K; Tc 508.1 K; Pc 47.0 bar; omega 0.307; }
+    }
+);
+```
+
+It sums each group's tabulated contribution and reports MW, Tb, Tc, Pc, Vc,
+omega (Lee-Kesler), dHf, dGf, Hvap, and the ideal-gas Cp(T) polynomial.  The GUI
+shows an **estimate card** (estimated vs reference, dev% coloured); the per-group
+build-up is in the run log.  The optional `reference {}` block validates the
+estimate against known values — glass-box: you see the estimate grow from groups
+AND see its error.
+
+**Groups available** (tokenizer-safe keys — the full Joback Table 2-2, 40 groups):
+- hydrocarbons: `CH3 CH2 CH C` (alkane sp3), `eCH2 eCH eC` (alkene sp2),
+  `alleneC` (=C=), `yneCH yneC` (alkyne sp), `rCH2 rCH rC` (saturated ring),
+  `arCH arC` (aromatic ring)
+- halogens: `F Cl Br I`
+- oxygen: `OH` (alcohol), `OHar` (phenol), `ether` (-O-), `etherRing` (ring -O-),
+  `ketone` (>C=O), `ketoneRing` (ring >C=O), `aldehyde` (-CHO), `acid` (-COOH),
+  `ester` (-COO-), `Oother` (=O, other)
+- nitrogen: `NH2` (primary amine), `NH` (secondary), `rNH` (ring >NH),
+  `N` (tertiary), `eN` (=N- nonring), `reN` (ring =N-), `CN` (nitrile),
+  `NO2` (nitro)
+- sulfur: `SH` (thiol), `S` (-S-), `rS` (ring -S-)
+
+So N/S/halogen species (acetonitrile = `CH3`+`CN`, chloroform = `CH`+3·`Cl`,
+methylamine = `CH3`+`NH2`, thiophene = ring) are now estimable.  Caveat: the
+`eN` group lacks Vc/Cp/dGf contributions in the source table (its Gf and Cp
+estimates are unreliable — the run log flags it).
+
+**Honest limits** (printed): Joback is weak on Tb of strongly H-bonding species
+(ethanol's Tb ~14 K low) and gives NO Antoine / vapour-pressure parameters —
+those need a fit or a corresponding-states correlation, a separate step.
+
+Tutorials: `estimate_acetone` (validated vs NIST), `estimate_ethanol_benzene`
+(the method's spread — ethanol weak, benzene good).  Theory: `docs/propsGuide.pdf`.
+
+## 14. Aqueous speciation OPEN to a gas — brine + atmospheric CO2  (choupoProps)
+
+The full working pair for "NaCl 0.5 mol/kg in equilibrium with atmospheric
+CO2 at 25 degC: pH, ionic strength, activity coefficients".  Transcribed
+from a run that works (the 2026-08-23 LLM benchmark's case D, which took
+eight rounds WITHOUT this pattern — every key below that carries a comment
+was a round).
+
+`constant/thermoPhysPropDict`:
+
+```
+recordType    thermophysicalPropertySystem;
+schemaVersion 2;
+
+components ( water  NaCl  CO2 );
+
+equilibrium
+{
+    formulation electrolyteGammaPhi;    // aqueous electrolyte x ideal vapour
+    aqueous
+    {
+        solvent            water;       // the stream carries the salt
+        activityModel { ionic davies; } // the REACTIVE ionic rung: davies or
+                                        // pitzerHMW (served since 2026-08-24;
+                                        // edwardsPitzer is refused here -- its
+                                        // Henry convention belongs to the
+                                        // speciate op's vapour{} block); the
+                                        // op below still picks its own model
+                                        // -- the op-level activityModel is the
+                                        // contrast knob
+        compositionBasis molality;
+    }
+    volatiles ( water CO2 );            // REQUIRED at equilibrium{} level (not
+                                        // inside aqueous{}): which components
+                                        // may enter the vapour
+    vapour { fugacityModel idealGas; }
+}
+```
+
+`system/propsDict`:
+
+```
+operations
+(
+    {
+        name saltyWater;
+        type speciate;
+
+        analyticalTotals
+        {
+            Na    0.5     mol/kg;
+            Cl    0.5     mol/kg;
+            HCO3  1.0e-5  mol/kg;   // the carbonate MASTER: a family's
+                                    // equilibria activate only when its master
+                                    // is in the feed ("N unreachable from this
+                                    // feed" in the log = a family whose master
+                                    // is absent).  Tiny is fine; the amount is
+                                    // a solved outcome of the CO2 pin.
+                                    // Do NOT also declare CO2aq here -- it is
+                                    // a COMPUTED species of this network, and
+                                    // a totals entry for it declares a second
+                                    // inventory under the same name (refused).
+                                    // An INERT gas with no formation record
+                                    // (O2, N2) is the opposite case: there the
+                                    // gas's own species entry IS the key.
+        }
+
+        temperature  298.15 K;
+        pH           solve;         // REQUIRED key on speciate (a number =
+                                    // given; `solve` = electroneutrality
+                                    // closes it -- the right choice whenever
+                                    // nothing measured a pH)
+        atmosphere   { pCO2 4.0e-4 atm; }   // OPEN system: pins dissolved CO2
+        activityModel  pitzerHMW;   // brine at I ~ 0.5: Pitzer, not davies
+
+        diagSpecies   ( Na Cl H OH HCO3 CO3 CO2aq );
+        diagMeanIonic ( { cation Na; anion Cl; } );
+        output        { file speciation.csv; }
+    }
+);
+```
+
+Checks on the answer (all from the benchmark run): gamma_pm(NaCl) = 0.681
+at 0.5 mol/kg — the literature value; pH 5.58 (slightly acid, as an open-CO2
+brine must be); I = 0.500; m_CO2aq = 1.257e-5 (solved from the pin).
+
+One more thing this system needs today: `species/CO2aq.dat` is not yet in
+the standards catalogue, so the case carries a case-local
+`constant/species/CO2aq.dat`, in full (promotion is tracked in the same
+scope, S3):
+
+```
+recordType modelSpecies;
+schemaVersion 1;
+
+name    CO2aq;
+formula     "CO2";
+charge  0;
+MW { value 44.009; unit g/mol;}
+```
+
+And a props case has NO streams and NO `0/` directory -- the analysis lives
+in the op's own `totals`, and `choupoProps` never asks for a state tree.
+
+## 15. Fit a membrane to a lab dataset, then simulate the process with it  (membrane24_fit_then_simulate)
+
+ONE case, two modes (docs/ai/case-layout.md, "One case, two modes").  The
+researcher's measurements go in `constant/experimental/`, one file per
+series, one row per operating point:
+
+```
+provenance { source measured; reviewStatus ...; citation "..."; }
+T            293.15 K;                 // or a `T` column
+feed         { NaCl 10 mol/m3; }       // or c_<component> columns (mol/m3)
+columns ( { name Jv; unit m/s; } { name R_NaCl; unit -; } );   // Jv | dP imposed
+data    ( 8.239e-06 0.431136   1.2344e-05 0.533778 ... );
+```
+
+Measured columns: `R_<component>` (a feed component) or `R_<ion>` (an ion
+the law reports, e.g. DSPM-DE's `R_SO4`), `Jv_measured` (only beside `dP`),
+`sigma_<column>` for `weighting sigma;`.  Any other column REFUSES.  `Jv`
+imposes the flux (DSPM-DE only); `dP` imposes the pressure (every law, and
+A_w can then be fitted from `Jv_measured`).
+
+The fit, in `system/propsDict`:
+
+```
+{
+    name      fit_mymembrane;          // REQUIRED: the record names its operation
+    type      fitParameters;
+    parameters
+    (
+        { path poreModel.poreRadius;     initial 6.0e-10;  min 3.0e-10;  max 3.0e-9; }   // m
+        { path poreModel.chargeDensity;  initial -20;      min -3000;    max 3000;   }   // mol/m3
+    );
+    evidence ( { dataset "constant/experimental/a.dat"; role fit; }
+               { dataset "constant/experimental/b.dat"; role validation; } );
+    acceptance { maxAAD 10 points; origin "declared before the fit, by ..."; }   // rejection POINTS: `percent` here is REFUSED
+    residual
+    {
+        kind membrane;  model DSPM-DE;  membrane NF270_dspmde;   // the BASE record
+        rejection intrinsic;           // or observed -- REQUIRED, no default
+        transportParameters { ... }    // the law's own block, as the units read it
+        k_film 10;                     // or massTransfer { ... }; 10 m/s = no polarisation
+        polarisation { suctionCorrection GeraldesAfonso2006; ionCoupling electroneutral; }
+    }
+    output { record "constant/assets/mymembrane_fitted.dat"; }
+}
+```
+
+* A parameter is a PATH into the base record (`poreModel.poreRadius`,
+  `poreModel.chargeDensity`, `poreModel.porosityOverThickness`,
+  `poreModel.poreDielectric`, `A_w`, `permeabilities.<solute>`) or
+  `transportParameters.<path>`; `initial/min/max` in the field's RAW
+  convention, NO unit (chargeDensity is mol/m3, not the engine's kmol/m3).
+  Everything not listed keeps the base record's value.
+* `model`: DSPM-DE (pore), SDEM (per-ion `permeabilities.<ion>`),
+  solutionDiffusion (`permeabilities.<salt>`, `A_w`), constantRejection
+  (`transportParameters.rejection.<solute>`; no record is written for it).
+* No free parameter = a PREDICTION of every row (nothing written).
+* READ the identifiability block before trusting a value: the run prints
+  the condition number, every correlation and each parameter's sensitivity,
+  and REFUSES the record when the fit did not converge, ended on a bound or
+  is not identifiable (|correlation| >= 0.999).  Which salts are fitted
+  decides what is identifiable: on NF270 the two chlorides identify
+  (r_p, X_d), NaCl + MgSO4 does not.
+* Then in `system/flowsheetDict` point the unit at the written record
+  (`membrane mymembrane_fitted;`), run `bin/choupo-init0`, `runCase <case>`.
+  The stage prints `[fitted] membrane '...' is a FITTED record: operation
+  ... wrote it, held-out verdict ...`.
+
+Pitfalls: the fitted record carries what the data determine and NOTHING
+else (an imposed-Jv dataset says nothing about A_w, so the stage's A_w is
+the base record's); a mixture feed in Process mode is an extrapolation of a
+fit to single salts; the thermophysical package (ion radii, D0) is NOT
+fingerprinted, so changing a species record does not stale the fit.

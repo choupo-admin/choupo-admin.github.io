@@ -1,0 +1,47 @@
+# Choupo
+
+> Choupo is an open-source, glass-box chemical process simulator (C++17, GPL-3.0-or-later) that runs in the browser at https://www.choupo.org/app; the documents below teach an AI assistant to design a process and write it as a Choupo case.
+
+Read the brief first and all of it: it is the contract for a case and ends with an index of task packs.  Read only the packs the design needs.  The reference documents are long and are for lookups a pack points to, not for reading end to end.
+
+## Start here
+
+- [brief.md](https://www.choupo.org/llm/brief.md): Choupo assistant brief — read this first, all of it
+
+## Task packs
+
+- [batch-plant.md](https://www.choupo.org/llm/packs/batch-plant.md): Pack: a batch plant (tablets): batch plan, machines, clean utilities, quotes, crew
+- [design-cost.md](https://www.choupo.org/llm/packs/design-cost.md): Pack: equipment sizing, costing and economics (CAPEX, OPEX, NPV)
+- [layout.md](https://www.choupo.org/llm/packs/layout.md): Pack: plant layout (plot plan) and the GMP building interior
+- [pressure.md](https://www.choupo.org/llm/packs/pressure.md): Pack: pressure changers (pump, compressor, turbine, valve, pipe)
+- [reactors.md](https://www.choupo.org/llm/packs/reactors.md): Pack: reactors and kinetics
+- [recycles.md](https://www.choupo.org/llm/packs/recycles.md): Pack: recycles (loops in a steady flowsheet)
+- [separations.md](https://www.choupo.org/llm/packs/separations.md): Pack: separations (columns, absorbers, strippers, extraction, drums)
+
+## Optional: reference documents
+
+- [case-layout.md](https://www.choupo.org/llm/reference/case-layout.md): Case layout — the folders + files a case is made of
+- [components.md](https://www.choupo.org/llm/reference/components.md): Standard catalogue — what ships in `data/standards/`
+- [consistency.md](https://www.choupo.org/llm/reference/consistency.md): Data-consistency tests — *test the data, not just fit it*
+- [curation-protocol.md](https://www.choupo.org/llm/reference/curation-protocol.md): Curation protocol — building a case *with the student* when data is missing
+- [data-doctrine.md](https://www.choupo.org/llm/reference/data-doctrine.md): Data-governance doctrine — where every number lives, and why
+- [dict-syntax.md](https://www.choupo.org/llm/reference/dict-syntax.md): Dict syntax — the language a Choupo case is written in
+- [energy.md](https://www.choupo.org/llm/reference/energy.md): Energy: shaft work, heat duties, utilities, heat integration
+- [extending.md](https://www.choupo.org/llm/reference/extending.md): Extending Choupo — writing your own code (and sharing it)
+- [gui-credo.md](https://www.choupo.org/llm/reference/gui-credo.md): Choupo GUI Credo
+- [membrane-research.md](https://www.choupo.org/llm/reference/membrane-research.md): Membrane research with Choupo -- a quick start
+- [outer-drivers.md](https://www.choupo.org/llm/reference/outer-drivers.md): Outer drivers — the `system/outerDict` reference
+- [overview.md](https://www.choupo.org/llm/reference/overview.md): Choupo — Overview for an LLM helping a user
+- [patterns.md](https://www.choupo.org/llm/reference/patterns.md): Patterns — recipes for common case shapes
+- [pitfalls.md](https://www.choupo.org/llm/reference/pitfalls.md): Pitfalls — common mistakes when authoring a Choupo case
+- [schemas-reference.md](https://www.choupo.org/llm/reference/schemas-reference.md): Schemas reference — the shipped operations that carry a JSON schema
+- [start-here.md](https://www.choupo.org/llm/reference/start-here.md): Start here — run and understand one Choupo case
+- [stream-state.md](https://www.choupo.org/llm/reference/stream-state.md): Stream state — what a `0/<stream>` file may say
+- [thermo.md](https://www.choupo.org/llm/reference/thermo.md): thermoPhysPropDict — declaring the thermophysical system
+- [unit-ops.md](https://www.choupo.org/llm/reference/unit-ops.md): Unit-op catalogue — every shipped type, what it does, how to write it
+- [validating-against-data.md](https://www.choupo.org/llm/reference/validating-against-data.md): Validating a case against measured data — and diagnosing what is wrong
+
+## Optional: the project
+
+- [Repository](https://github.com/choupo-admin/choupo): source, tutorial cases and data (GPL-3.0-or-later)
+- [The app](https://www.choupo.org/app/): run a case in the browser

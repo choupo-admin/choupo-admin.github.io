@@ -1,0 +1,1098 @@
+# Choupo GUI Credo
+
+The single source of truth for how the Choupo GUI is designed.  Read
+this before proposing any UI change, before reviewing GUI code, or
+before suggesting a "feature you've seen elsewhere".
+
+The Choupo GUI is not a clone of any existing tool.  It is informed
+by **ParaView's separation of authoring (offline) from viewing (in
+the GUI)**, but adapts that pattern to the specifics of a
+chemical-process simulator built around dict-on-disk cases edited
+with LLM help.
+
+## 1. Identity
+
+The Choupo GUI is a **viewer** for a Choupo case directory.  It loads
+the plain-text dicts (`system/`, `constant/`, sectors), runs
+the C++ solver compiled to WebAssembly in the browser, and renders
+the results.  The shell is deliberately minimal: a 32 px header
+(menu + brand + case + Run) over a **full-screen flowsheet canvas**,
+with detail surfaced on demand (see §2.5).  It is not:
+
+- **A spreadsheet-style block editor.**  Cases are authored as dicts
+  on disk (with an LLM assistant), not built by drag-drop in the GUI.
+- **A literal ParaView clone.**  The "pipeline" relevant to a chemical
+  engineer is the dict-file structure of the case, not a chain of
+  visualisation filters — see §3.
+- **An IDE.**  Editing the dicts happens in the user's text editor.
+  The GUI shows what is on disk; it does not write back silently.
+
+## 2. Founding principles (non-negotiable)
+
+1. **Dict-on-disk is the source of truth.**  The GUI loads and
+   renders; it never silently writes.  When the user wants to change
+   a case, the change happens in the dict files.
+2. **LLM is the author, GUI is the viewer.**  The expected authoring
+   workflow is the user describing what they want to an LLM (in
+   plain language), the LLM editing the dicts via `Write`/`Edit`,
+   the GUI inspecting the result.
+3. **Single click selects, double click opens.**  File-manager
+   convention.  Single click on any element → the floating top-right
+   **selection card** updates.  Double click on a stream → new browser
+   tab (pop-out).  Double click on a sector / unit that is itself a
+   case → drill into it as its own URL.  Double click on a WORKFLOW STEP
+   → that step in its own tab, everything about it (C172 slice 3b).
+4. **Pop-out (new browser tab) beats modal.**  Long content (file
+   text, streams table, plots, multi-phase / many-component
+   streams) opens in a separate browser tab via Blob URL +
+   programmatic anchor click.  The user keeps the flowsheet visible
+   while reading the detail — modal would block the canvas.
+5. **Errors must never blank the screen.**  Render exceptions are
+   caught by a global ErrorBoundary and replaced with a visible
+   fallback (message + stack + reset button).  Defensive numeric
+   formatters render "—" instead of throwing on missing data.
+6. **Onboarding is implicit in the layout.**  Any opened case
+   answers "what is this?" within 5 seconds: the whole plant
+   STRUCTURE is on screen at once (at fit, a simplified view -- see
+   *Legibility wins over fitting* below; it used to read "the full
+   flowsheet", which at 17+ blocks meant 4-6 px labels), the case
+   subtitle comes from `controlDict.description`, and the detail
+   (streams, thermo, case files, log, plots) is one click away in the
+   top-menu workspaces.
+
+## 2.5 The shell (current layout)
+
+The shell was redesigned in the Fase A/B workspaces rework
+(2026-05-27, `gui/src/ui/AppShell.tsx`).  There is **no second tree**,
+**no** right Properties panel, and **no** bottom tab strip.  The rule
+on the left is not "no left pane" but "no SECOND navigation" (DEV.md 4c
+C168's ruling (a), 2026-10-26): a left pane is allowed when it is the
+case's ONE primary navigation AND it collapses -- the Workflow's outline
+of a properties case is that pane (it folds to a 28 px strip, `[`, the
+panel contract's left edge); a flowsheet case has none, because its
+canvas IS its navigation.  What was removed in 2026-05 was an always-on
+file tree BESIDE the canvas: two ways to reach the same objects, the
+second doing little.  The layout of a flowsheet case is:
+
+```
+┌──────────────────────────────────────────────────────────┐
+│  File <context-dependent workspaces> …        [▶ Run]    │  32 px header
+├──────────────────────────────────────────────────────────┤
+│                                                          │
+│                FlowCanvas (full screen)        ┌───────┐ │
+│                                                │ sel.  │ │  ← floating
+│                                                │ card  │ │    top-right
+│                                                └───────┘ │    (when selected)
+└──────────────────────────────────────────────────────────┘
+```
+
+- **Header (32 px).**  Menu items on the left (`MenuBar`), brand /
+  case name on the right (`TopBar`).
+- **ONE Run, in the top bar, saying what it runs** (DEV.md 4c C168's
+  ruling (2b), built by C172 slice 1 -- "the run follows the view").  The
+  `[▶ Run]` in the sketch above is the case's one Run control
+  (`gui/src/ui/RunButton.tsx`) plus Ctrl+Enter; its label names the home
+  on screen -- "Run flowsheet" on a process case, "Run workflow" on a
+  properties case or a two-mode case shown in its Workflow -- and its
+  title the binary.  The canvas, the Workflow and the intro carry no Run
+  of their own (they had four doors between them).  The button dispatches
+  `choupo:run` / `choupo:stop`; the `TopBar` orchestrates (it holds the
+  AbortController).  The engine version and the adapter that ran are in
+  Help > About Choupo, not in the header and not in a bar of their own
+  (Vitor, 2026-10-26: "uma barra so para mostrar o numero de versao e
+  disparate"): implementation metadata, read when wanted.
+- **Canvas (everything below).**  The flowsheet fills the viewport.
+- **Workspaces, opened on demand from the top menu.**  Each menu
+  item is a **toggle** that swaps the canvas for that workspace;
+  clicking it again — or pressing **Esc** — returns to the canvas.  At
+  most one workspace is open at a time.  This replaces the old
+  always-on bottom tabs.
+  **The lineup is CONTEXT-DEPENDENT, and the authority on it is the
+  `WORKSPACES` table in `gui/src/ui/MenuBar.tsx`** — this file states
+  the rule, never a copy of the list (an earlier revision carried one
+  and it drifted: it still named a "Thermo" workspace years of edits
+  after Thermo became a TAB inside Props, and called Reports a
+  placeholder long after it shipped utilities + global balances).  The
+  rule: each case TYPE exposes only the workspaces that mean something
+  for it, so a lit-but-dead button never shows — a props case gets the
+  props set (its home is the WORKFLOW, the word "Results" naming only
+  what a run produced), a batch/ctrl case gets the time set (plus the
+  Control Room only when a PID is actually declared), a steady case gets
+  the full set, and a blank boot shows no tabs at all.  And an entry with
+  NOTHING behind it on the open case is hidden, not greyed (C172):
+  Variables only when the case declares a $variable or a designSpec
+  target, Pinch only once a run has published heat duties, Literature
+  only when the reader's local mirror answers.  A process case has no
+  Workflow: its thermo readiness is shown where the thermo is declared
+  (the Case tab, at `constant/thermoPhysPropDict`).
+- **Selection card (floating, top-right).**  Appears only when
+  something is selected; shows the selected unit's "hardware"
+  parameters and its latest-run KPIs, or a stream's conditions.  It is
+  a small overlay card, NOT a docked right panel, and it disappears
+  when nothing is selected (it does not fall back to a ThermoSummary).
+  A unit's continuous `operation` scalars are EDITABLE on it -- a
+  what-if of the OPEN COPY, never of the case on disk (DEV.md 4c C168's
+  ruling (1), "tinkering", 2026-10-26; see §4).
+- **PropsView (the Workflow).**  A `choupoProps` case (carries
+  `propsDict`, no `flowsheet`) -- or a two-mode case shown in its
+  Workflow -- OPENS ON ITS WORKFLOW DIAGRAM, full width, as a process case
+  opens on its flowsheet (C172 slice 3b, Vitor's ruling: "Em qualquer um
+  dos casos o que circula e so informacao!").  It is the SAME canvas, not a
+  look-alike: React Flow with the flowsheet's dot grid, controls, fit
+  (`flowsheetViewport.ts`), legibility floor, arrowheads, wire marks
+  (`WaypointEdge.tsx`), WIRES legend, key line and floating selection card
+  (`canvasChrome.tsx`), boxes and terminals in the unit's and the stream
+  terminal's card styles (`nodeCard.ts`).  ONE BOX PER NUMBERED STEP
+  (`case/workflowSteps.ts`; a set of runs a declared view draws together is
+  one step), each STUDY a frame, order read from position; a box SAYS WHAT
+  IS INSIDE IT -- type, runs, model and main options, FIT / HELD OUT reads,
+  writes, the views it feeds, state and verdict -- and at a fit too small
+  for its 12 px lines it shows a COMPACT FACE (number and name, type,
+  model, state) sized to the zoom, never an empty box.  ARROWS ARE
+  INFORMATION (`case/workflowDiagram.ts`): feeds on the left (datasets,
+  records), the "Flowsheet run" terminal for a file a step declares the
+  process run writes, products on the right (records, proposals, files no
+  later step reads, the case's declared views), step to step where a later
+  step reads what an earlier one writes (the engine's file-traffic table),
+  each labelled with what it carries and routed in the gaps.  A study of
+  independent steps may be laid in a grid when that fits the workflow at a
+  larger zoom.  SINGLE CLICK opens the flowsheet's own selection card with
+  the step in it (PropertyPanel's workflow branch, `workflowCard.tsx`: what
+  it reads, the model with its options, what it writes with fingerprints,
+  the verdict with identifiability, the main numbers); DOUBLE CLICK, Enter
+  or the card's Open opens the step in its OWN TAB (`?step=`, `StepTab.tsx`,
+  the counterpart of a unit's internals page).  The OUTLINE stays on the
+  left, collapsible, sharing the selection.  The case's STUDIES (each
+  study's figures, tables, numbers) and REPORTS (curation verdicts, records
+  and proposals written, the comparison with data, the decision ledger,
+  every file written, the thermo readiness, one .zip of all of it) are
+  menu entries beside the Workflow, as Streams and Reports sit beside the
+  Flowsheet; the props menu reads Workflow · Studies · Reports · Log ·
+  Case.  The calculation map and the View menu that held it are RETIRED:
+  the diagram replaced it (Vitor: "E o 'view' nao esta la a fazer nada!!!
+  Devia ficar em 'reports'!!!").
+
+**A FULL-VIEWPORT HEIGHT IS THE DYNAMIC VIEWPORT (2026-09-22).**  The shell
+is a full-viewport box with `overflow: hidden`, which is right for an
+application chrome and wrong the moment it is written `height: 100vh`.
+`100vh` is the LARGE viewport -- it measures the window as though the
+browser's own URL bar were retracted, whether it is or not -- so on a phone
+the shell lays out taller than the glass, the bottom strip sits under the
+browser chrome, and the shell's own `overflow: hidden` means there is no
+scroller to reach it with.  The docked console row and the foot of every
+workspace were not awkward on a phone; they were unreachable.  One home,
+`--choupo-vh` in `gui/src/theme-overrides.css`, `100vh` with an
+`@supports (height: 100dvh)` upgrade so a browser without `dvh` still gets a
+height rather than none.  A document that cannot inherit it -- a popped-out
+plot window is its own document -- restates the property in `100dvh`
+instead, which is the one thing a React style OBJECT cannot express, since
+it has a single key per property.
+
+**THE SYMBOL GROWS BECAUSE THE BOX SHRINKS -- the `details` chip
+(2026-09-22).**  Asked three times in one day why the unit symbols look
+small, and answered wrongly twice: the symbol was enlarged 34 -> 41 px and
+Vítor came back.  Measured, **the symbol is not small; the box is big** -- a
+full node carries the symbol, the name, a type badge and up to three
+parameter lines, so the silhouette is about a QUARTER of its own card, and
+the automatic layout spaces siblings by that full card's height (a fixed
+130 px lane until 2026-10-10).  Enlarging inside that card cannot fix the
+ratio without making the drawing grow.  So the `details` chip REMOVES the badge row and
+the parameter lines; the box shrinks, and the symbol grows into what frees.
+At 56 px on a short box the silhouette dominates AND the node still has a
+smaller footprint than the 41 px full one -- the only option that improves
+the ratio by shrinking rather than growing.
+
+The symbol and the NAME always stay: the shape is what a flowsheet is read
+by, and the name is the one string tying the block to the dict a student
+edits.  **No popup was added, and that was the substantive decision**: a
+single click already opens the Properties card with the full schema-driven
+operation block, a strict SUPERSET of the lines hidden, and the 2026-06-12
+ruling settled on exactly TWO unit surfaces.  A third would be a second home
+for an answer that exists.  Two other options were rejected on engineering
+rather than taste -- the NAME BELOW THE BOX (in React Flow the box IS the
+handle frame, so text inside buys no height and text outside is unowned by
+the node, overlapping edges and neighbours with no collision handling), and
+SIZE BY ZOOM (a second, non-linear grammar of size on a canvas where size
+means nothing today).
+
+Two things this slice paid for.  The chip folds into the existing `SHOW` row
+per the NO-REBLOAT invariant, but it is the FIRST one there that PERSISTS:
+the other four are content filters that answer "does this case have any?" and
+are per-tab, while a way of looking belongs to the READER (`prefs.ts`'s own
+ruling).  The row now holds two kinds of control that look alike, and that is
+said in the code rather than hidden.  And a short box CROWDS ITS OWN HANDLES,
+because a handle sits at a fraction of the border -- so the simple node takes
+a height floor sized on the BUSIER SIDE, never the sum, since ports are on
+opposite borders.  The two numbers live in `case/nodeDetail.ts` where tests
+can hold them; nothing here renders React, so the drawing around them is
+checked by a human looking, and the module says so.
+
+**SHAPE IS THE EQUIPMENT, TAG IS THE CALCULATION MODEL (2026-09-22).**  A flowsheet is read
+BY SHAPE, and a sheet of identical boxes teaches none of the vocabulary.  Two
+rounds were needed and the second is the lesson.  Round one replaced a
+per-type icon table that had gone silently short (24 of 51 types drew the
+generic settings-sliders glyph through a `default:`) with ELEVEN FAMILIES plus
+a gate that recounts against the engine's registry.  Vítor found the
+consequence within the hour: `mixer` and a splitter wore one bow-tie, and so
+did pump/compressor/turbine, and so did all five reactors.  **The families had
+been argued on MAINTENANCE, and the same commit's gate had already solved
+maintenance** -- so the coarseness was being paid for a problem that no longer
+existed.  *Granularity must follow MEANING; a gate that prevents drift is what
+makes fine granularity affordable, never a reason to stay coarse.*
+
+The rule is therefore not a judgement about what looks similar enough (that
+question is what produced the bow-tie): `UnitOperation::registerBuiltins()`
+maps each registered NAME to the C++ CLASS it constructs -- 51 names, 42
+classes -- and **two types share a symbol if and only if they construct the
+same class**.  The gate derives that map from the engine source, checks each
+entry's class against it, refuses two classes drawn with one path, and
+enumerates the eight sanctioned shares in its own claim line.  A symbol shows
+what makes the block that block (the agitator, the serpentine tube, the
+packing, the trays, the fan); a difference that is a SPECIFICATION is not
+drawn and lives on the badge, unless it is hardware -- an adiabatic flash is
+insulated, and insulation is hardware.  Drawn in INK, not the brand accent:
+colour on this canvas already means phase, duty tier and utility class, and
+the accent it spent was the same cyan that means LIQUID.  Gate:
+`check_unit_families`.
+
+**Round three corrected my own reasoning, not just the drawings.**  Held
+against how a commercial sheet is actually drawn, three things were wrong.
+There were no NOZZLES, and a symbol without its connections is an icon rather
+than a process block.  Vessels were RECTANGLES where a pressure vessel is a
+capsule with dished heads.  And -- the real error -- round two had DRAWN
+DIFFERENCES THAT ARE NOT HARDWARE: it gave `gibbsReactor` a minimum curve and
+`equilibriumReactor` a double arrow, inventing physical distinctions for three
+blocks that have none (RStoic, REquil and RGibbs are one vessel with three
+SPECIFICATIONS), and gave the adiabatic flash an insulation jacket, all while
+its own text said a specification is not drawn.  So a symbol may carry a TAG,
+and four shapes are shared by classes with identical hardware: the vessel
+reactor (CONV/EQ/GIBBS), the flash drum (T/Q=0), the trayed column (MESH/FUG)
+and the packed column (ABS/STR).  **Two classes may share a shape only if
+their tags differ and neither is empty**; real hardware is still drawn (a CSTR
+has an agitator, a PFR is a tube) and no tag replaces it.
+
+**COLOUR IS NOT USED TO CLASSIFY, and the reason is this canvas's own
+grammar.**  A proposal coloured the symbols by family -- reaction red, heat
+amber, separation blue.  Refused: colour here ALREADY means phase (cyan
+liquid, orange vapour, purple two-phase), duty tier and utility class, every
+one of them a RESULT the engine computed.  A fixed equipment colour puts a
+second grammar of colour on one picture, and a blue vessel among blue wires
+stops saying which of the two it means.  Symbols in ink; colour for what is
+computed.
+
+**A gate goes blind the moment the thing it checks is factored.**  The sharing
+rule lives in shared geometry CONSTANTS, and the gate's harvester read only
+quoted literals -- so it reported "0 shapes shared" on a module with four
+sharing groups, blind exactly where its own rule lives.  It resolves the
+constants now, and an identifier it CANNOT resolve fails rather than being
+skipped: half a resolution shortens the path, and two classes sharing that
+piece then look different -- the same failure, quieter.
+
+**Why this needed a gate and the panel contract did not.**  The fit rule
+answers from measured widths and is wrong VISIBLY when it is wrong.  This
+one is invisible to the entire toolchain: without a retracting chrome
+`100vh` and `100dvh` are the same number, so every developer screen, every
+test and every screenshot agrees while the phone is broken.  A defect no
+part of the workbench can see is exactly what a gate is for --
+`check_viewport_units`.
+
+## 2.6 Legibility, colour and the keyboard (DEV.md 4c C168, 2026-10-26)
+
+The C168 audit measured the GUI against WCAG 2.2 AA and found four places
+where this credo and the heuristics disagreed.  The commander decided them
+(Vítor delegated: "decide tu"), and slice 2 built them.  They bind every
+surface.
+
+**(c) LEGIBILITY WINS OVER FITTING THE WHOLE FLOWSHEET.  ONE minimum text
+size: 11 CSS px, RENDERED.**  The number has one home,
+`gui/src/case/legibility.ts` (`MIN_TEXT_PX`).  Rendered means the declared
+size times every scale between the text and the screen (a canvas's zoom, an
+SVG viewBox).  CSS px means browser zoom multiplies it: at 200 % an 11 px
+label is 22 device px, which is WCAG 1.4.4 met, not argued.  WHY 11: it is
+the size the Workflow was already held to (C172 slice 3), the smallest size
+the GUI already used for running secondary text, and the caption floor of
+the common interface guidelines (11 pt).  The audit's illegible text was all
+below it: 9 px badges, 9 px status-bar and legend text, 9 px tick digits,
+4.7 px map labels and 3.9-7.7 px flowsheet labels.  A larger floor would cost
+the dense chrome rows a second line.  It is a floor, not a style: text above
+it is untouched.
+- On a FIXED surface (the chrome, the Workflow, a plot) it is a floor on the
+  declared size.  The shared `<Plot>` wrapper floors every figure's fonts.
+  A LOG axis is floored at 15 px, because Plotly draws its in-between digits
+  at 0.75 of the tick font.
+- On a ZOOMED drawing (the flowsheet, a properties case's workflow diagram) a canvas
+  fitting itself to its box would shrink every label with the box.  So each
+  label is decided from the zoom (`ui/legibilityFloor.ts`, generic over
+  every text node in the viewport):
+  - it is drawn as declared when it is legible;
+  - a PRIMARY label is drawn AT the minimum: a unit's name, a block's title,
+    a wire's phase letter, marked `data-legible-primary`;
+  - any other label is NOT DRAWN.  An illegible label is not information.
+
+  So **the drawing at fit is the simplified view** (shapes, wires, names,
+  phase letters), and the full graph is one zoom away.  The canvas says
+  which one the reader is looking at ("Overview: labels under 11 px are
+  hidden").  Past 2.6 times its own size a primary label hides too, because
+  the names would overlap, and the drawing is then a map of shapes.  On a
+  short pane (200 % zoom on a laptop) the fit's margins shrink in proportion
+  (`flowsheetViewport.ts` `FIT_MARGIN_SHARE`).  Before this, the fixed
+  150 + 56 px margins exceeded the pane, and every plant was drawn as a dot
+  at zoom 0.01.
+
+**(d) NO MEANING IN COLOUR ALONE.**  Every fact a colour carries has a
+second channel:
+- **Phase on a wire** is a LETTER on the wire's move-point: L, V, V+L, S,
+  S+L, or "?" before a run where `0/` declares none
+  (`ui/WirePhaseMark.tsx`).  Until this slice only the terminals had one.
+- **Wire kinds** each have a dash pattern of their OWN, differing in SHAPE:
+  energy dash-dot, utility long dash, duty dots, recipe dash-dot-dot, empty
+  sparse dashes (`case/edgeDashes.ts`, one table).  Two pairs used to share
+  a stroke and differ by colour only (`4 4`, `6 3`), and `6 4` against
+  `6 3` was a pixel apart.
+- **The workflow diagram's arrow kinds** likewise, each with a dash of its
+  own and its word in the legend (`WIRES` in `case/workflowDiagram.ts`, one
+  table).  The calculation map it replaced had "measured data" and
+  "results" both solid.  A step box too small for its lines at fit shows a
+  COMPACT FACE sized to the zoom (`data-legible-self`), which the floor
+  leaves alone.
+- **Series of one figure** that differ only by colour get a marker SHAPE
+  (markers) or a DASH (lines), applied once in the `<Plot>` wrapper
+  (`case/plotChannels.ts`).  A declared dash or fill is kept.
+- **Selection and the active view** are said to assistive technology
+  (`aria-current`, `aria-expanded`), not only drawn in yellow or teal.
+
+**THE LIGHT PALETTE IS HELD AGAINST THE CANVAS IT IS DRAWN ON.**  The phase
+hues were tuned on the dark canvas, where all of them pass 3:1.  On the light
+canvas, a mid grey (`gray-6`), every wire measured 1.0-1.6:1.  The light
+canvas is now `gray-1`.  Each phase hue, and each fixed ink (heat, work,
+duty, recipe), has a LIGHT twin of the same hue darkened to >= 3.8:1 on it
+(`ui/plotting/palette.ts`, `phaseColor(…, ui)` and `inkFor`).  The meaning
+of a hue never changes between the schemes.  A wire with nothing to say is
+NEUTRAL grey, never the accent cyan, which reads as liquid.
+
+**THE KEYBOARD.**
+- **The focus ring is INK, not accent.**  It is near-black on light and
+  near-white on dark, 2 px, offset onto the surround.  That holds >= 15:1
+  on every surface whatever the control's colour.  The accent ring was
+  2.74:1 on white and 1.21:1 on the old canvas.
+- A flowsheet node takes the ring on its box.  A wire takes an ink halo
+  round its line.  A chip shows it on its label.
+- The shell has a skip link and landmarks: `banner`, `navigation`, and
+  `main` with a heading.
+- A wire's accessible name is its stream ("stream S3, recycle cut, phase
+  liquid"), not "Edge from unit:A to unit:B".
+- A plot's mode-bar buttons carry their names.
+
+## 3. Deliberate adaptations vs ParaView
+
+ParaView is the architectural inspiration (DSL + viewer family, dicts
+on disk, CLI binaries, no editing of physics models in the GUI).  But
+chemical-process simulation is not CFD; some adaptations are needed.
+
+| Where | ParaView | Choupo | Why |
+|---|---|---|---|
+| **Left panel** | Pipeline Browser: source + applied filters | **On a flowsheet case, none**: the canvas is full-screen and IS the navigation; case files live in the on-demand **Case** workspace.  **On a properties case, the Workflow's outline** beside the Workflow DIAGRAM -- the case's navigation, collapsible (C168 ruling (a)), sharing the diagram's selection | An always-on left tree where clicking does little was "nojo" — a docked panel earns its pixels only if it is constantly useful.  The rule is "no SECOND tree": a pane that is the only way through the case's studies and steps is constantly useful, and it folds when the reader wants the width. |
+| **Right panel** | Properties of selected filter | **Floating selection card** (top-right): the selected node's hardware + run KPIs, or a stream's conditions.  Vanishes when nothing is selected | A docked Properties panel is mostly empty most of the time.  A card that appears on selection and gets out of the way otherwise keeps the canvas dominant. |
+| **View modes** | Render View / Spreadsheet / Plot / etc. swap on the central canvas | **On-demand workspaces** opened from the top menu (context-dependent lineup — see §2.5; `MenuBar.tsx` is the authority); each toggles over the canvas, Esc returns | Done in Fase A/B (2026-05-27).  The earlier bottom-tab strip was removed; workspaces are the canvas-view-mode pattern this row once flagged for "Layer 2". |
+| **Multi-view split** | Yes (4-up layout) | **No — pop-outs (new tab) instead** | Pop-outs let the user multi-monitor or window-tile, with the same outcome and far less code.  Browser tabs are persistent and survive a Choupo crash. |
+| **Time controls** | Timeline + slider for transient runs | Not yet — `choupoBatch` / `choupoCtrl` / `choupoSemiContinuous` trajectories have static plots | Layer 2 work. |
+| **Color By field selector** | Yes | **The Colours menu** (DEV.md 4c C114): wires by any field the run PUBLISHES (T, P, vapour fraction, pH, molar / mass / enthalpy flow, a component's mole or mass fraction or flow), linear or log, auto or fixed range, a threshold that dims, "follow a molecule" (colour = its concentration, width = its own flow), units by a published KPI (diverging at zero), hover probe, SVG/PNG export with the legend.  Phase stays the default | Phase colour stays the semantic default; a property gradient is a deliberate display MODE the reader picks, never a repaint on interaction.  A field is offered only when a stream publishes it, and a stream that does not is drawn NO-DATA grey, never as zero: the canvas maps published numbers and computes no physics (`case/streamColouring.ts`). |
+
+### The Property Explorer (interactive visualiser scratchpad) — adaptation, 2026-06-05
+
+An on-demand workspace to navigate a component's (standard or case-local) or a
+mixture's properties and plot them interactively (xy multi-curve, 2D contour /
+isolines, ternary, later) — *serendipity before authoring a case*. This is the
+purest expression of the founding "see, then decide" principle and the front
+door to the property-model tree (`docs/property-architecture.md`).
+
+It does NOT cross the "GUI is a viewer, authoring is offline" line — it is a
+**visualiser scratchpad**, gated by five hard guard-rails:
+
+1. **Ephemeral — never writes a case.** Computes + renders; never persists.
+2. **Hands off to authoring.** When the student keeps an exploration, the
+   explorer EMITS the `propsDict` snippet for the student/agent to author on
+   disk. Dict-on-disk stays the source of truth (Credo Q2). The explorer feeds
+   authoring; it does not replace it (ver → decidir → o agente autora).
+3. **On-demand workspace** (top menu + Esc), NOT a first-step config dialog
+   gating a case (that is the forbidden setup-wizard anti-pattern, §5).
+4. **Reuses the engine + plot kit — reimplements ZERO physics in TS.** Every
+   curve is a `choupoProps` (WASM) run over a transient, GUI-synthesized
+   `propsDict` (the same `propertyScan1D`/`2D` + `evaluateProperty` an authored
+   case uses), rendered with the shared `gui/src/ui/plotting/` kit. A property
+   or sweep the explorer needs that the engine lacks is ADDED to `choupoProps`
+   (reused by authored cases + the agent) — the explorer is a forcing function
+   that completes the engine, never a parallel compute path.
+5. **Provenance-first — PENDING.** Each curve is to carry
+   `origin/method/validity`, with the validity range shaded and measured data
+   + AAD overlaid where available (scheduled with the per-value `Origin`
+   provenance keystone, `docs/property-architecture.md`). The explorer is the
+   surface where per-value provenance becomes visible.
+6. **Generate-and-DOWNLOAD is the ONE authoring act the explorer may do**
+   (ratified 2026-06-06, forum-validated). Estimating a missing component is
+   still *see-then-decide*, so it is allowed — under THREE fences: (a) the
+   ENGINE does all the physics (`choupoProps estimateComponent` via WASM; zero
+   TS), (b) the result is a **reviewable case-local
+   `constant/components/<name>.estimate-DATE.dat` proposal the student DOWNLOADS
+   via Save-As** — the GUI NEVER writes `<name>.dat` in place and NEVER persists
+   silently, and (c) `data/standards/` stays frozen. *Promotion = the student's
+   `mv`/rename on disk*, never a GUI action. "Download a dated proposal" ≠
+   "activate a component" — the word "promote" is reserved for the manual disk step.
+
+Build order (Pareto, on data the engine already produces): Fase 1 = xy
+multi-curve + 2D contour/isolines + binary x-y/T-x-y; Fase 2 = ternary (needs a
+composition-simplex sweep added to `choupoProps`); 3D surface optional.
+
+**THE CATALOGUE LEFT THIS WORKSPACE (2026-09-03, Vítor) — and for six hours it
+had NOT, which is recorded here because the record was the thing that lied.**
+The chrome budget below is why: with the plot as the ONE primary surface, the
+compound catalogue could only ever be a foldable rail — and a rail is the wrong
+shape for several hundred substances in a family tree.  The paragraph said
+"left" while the split had in fact mounted the SAME `CompoundBrowser` in both
+places, so the catalogue had not left, it had gained a second home — and the
+reason given for the split ("a rail is the wrong shape for a family tree") was
+contradicted by the rail still containing exactly that family tree.  An audit
+found it the same evening, along with a comment in `state/prefs.ts` justifying
+the landing's wider default against "a chosen-set list" that was also a family
+tree of several hundred names: a distinction that did not exist in code.
+**Both are true now** (the surfaces rail leads with the SET and mounts no
+catalogue nodes at all when it arrives with one — measured 0 group nodes
+against 22), but they were written before they were true.  The catalogue became
+THE EXPLORER'S LANDING (`?workspace=explore` — the owner's own name for that
+screen), with the record of the focused compound filling its right half, and
+the property surfaces moved to `?workspace=properties`, their own door on the
+hub.  **AND THEN THE TWO DOORS BECAME ONE (2026-10-21, DEV.md 4c C116, Vítor:
+"temos o 'explore' e o 'Property Surfaces' que acho que fazem a mesma coisa
+e só se cria confusão por se ter dois").**  Measured before it was merged:
+the catalogue tab's only act the surfaces lacked was a wider inspector and a
+link, the same three components were mounted twice, and the hub's labels
+were inverted against the keys (label "Explore" = key `compounds`, label
+"Property surfaces" = key `explore`).  Explore is ONE tab now, labelled
+"Explore", keyed `explore`, with two VIEWS of one set switched in place —
+Catalogue (browse, read, estimate) and Surfaces (every lens) — the set and
+the view in the address (`?workspace=explore&view=surfaces&components=…`),
+the three components mounted once.  What survives the merge is the part
+that mattered: the surfaces are reachable with an EMPTY set
+(`&view=surfaces`), so the catalogue is a door and not step 1 of the wizard
+§5 forbids; and `?workspace=properties` / `?workspace=compounds` are
+REDIRECTS to the view each used to open, never errors.  Record:
+`docs/design/one-tab-one-thing.md` §8 (the split) and §8.8 (the merge).
+
+**THE LANDING'S THREE CORRECTIONS (2026-09-03, Vítor, on the built screen).**
+(1) **The compound browser's width is the reader's.**  It shipped at a fixed
+420 px because adopting `panelContract` looked like it brought a FOLD, and
+folding away a tab's own subject is a trap.  The fold is opt-in: the panel
+declares `contentMin: 0` and no shortcut, so nothing folds it, while the drag,
+the arrow keys, the double-click reset and the remembered width all come from
+the ONE contract.  It is the first entry in `state/prefs.ts` with a size and
+deliberately NO fold key, and `tests/panelContract.test.ts` carries that as a
+declared category (`NO_FOLD`) rather than an omission.
+(2) **The action sits with the SET it consumes.**  "Explore properties" already
+opened a dedicated browser tab; it lived on the RIGHT header, whose subject is
+the one focused compound, while the set is chosen on the left.  It is now at the
+foot of the browser, carrying the count.
+(3) **Capability is a FILTER, not a level.**  "Volatile liquids (VLE-able)" held
+352 of 570 records — 62 % of the catalogue behind a label describing what the
+solver can do — and "Non-volatile solutes / polymers / others" was 18 in a bin
+whose name ends in "others".  The clinching argument was already on screen: the
+browser carried `all / VLE / nonvolatile` filter chips, so the same fact was
+drawn twice and the hierarchy copy was most of the catalogue.  (Those chips
+have since moved off the landing entirely — the owner asked "porque continuo a
+ter VLE no top?!" of the row itself, and the capability question belongs where
+the plot is built: they render only under `vleContext`, i.e. on a VLE or
+ternary surface.  This sentence describes the screen as it was when the
+argument was made, and is kept in the past tense for that reason.)  Both buckets are
+gone as GROUPS; their members file by chemical FAMILY (`case/family.ts` — the
+record's own UNIFAC groups, else its formula, each label saying which).  The
+classification PRECEDENCE is untouched, so no record changed hands between the
+groups that remain; only the way in (`firstPath`) opens by default, because ~20
+chemistry nodes each carrying a count read better than five open ones holding
+several hundred names.
+
+**Explorer chrome budget — the NO-REBLOAT invariant (ratified 2026-06-24).**
+The plot is the one primary surface. There are exactly **three chrome homes**:
+(1) the **collapsible left SET rail** (component authoring only — folds to a
+28px re-open tab, lossless of the dragged width, `[` toggles); (2) **ONE top
+toolbar row, `wrap: nowrap`, which must NEVER grow a second row**; (3) the
+**collapsible honesty footer** below the plot (alerts + validity readouts stay
+VISIBLE — numerical-honesty credo — but a `⚠ N` pill folds them so they never
+push the plot down). Any new control goes into the toolbar as a
+menu-button/popover, or into an existing popover — **NEVER a new stacked row
+above the plot.** A control that would force the toolbar to wrap is wrong by
+construction: fold it into a popover. The plot's top-left origin is FIXED and
+must not move when lenses or options change (the PURE/MIXTURE badge, the SET
+pill and the plain-words caption ride as on-plot top-left overlays, not pre-plot
+rows). `wrap: nowrap` is the *mechanical* guard that makes re-bloat physically
+impossible without consciously breaking the rule. **No STEP-1/2/3 wizard
+labels** — the regions are self-evident spatially (a numbered wizard is the
+forbidden setup-dialog smell, §5). The one exception that stays INLINE rather
+than folding into a popover: a control that *forks the curve* (the scaling
+Davies/Pitzer activity model; the steam saturation/isobar mode) — because
+SEEING the fork is the lesson.
+**On a phone** (`useNarrowViewport`, the one posture home) the rule is applied
+to the whole lineup at once (2026-10-10): the lens's controls -- forks included
+-- fold behind ONE `controls` menu-button and are listed open inside its
+popover, and the lens picker becomes a Select, so the row fits 390 px without
+wrapping (`ToolbarFold` in `ExploreWorkspace.tsx`; it had laid its controls out
+to x = 1187).  The desk is unchanged.
+
+## 4. Consolidated patterns
+
+### Selection model
+- **Single click** on any flowsheet element → `selectNode(id)`.
+  The floating top-right **selection card** appears (or updates) with
+  that node's hardware + KPIs, or that stream's conditions.
+- **Double click** on a stream (FEED / PRODUCT / edge label) →
+  `popOutStreamByName(name)`.  New browser tab with conditions table
+  + composition bars.  The selection card ALSO updates.
+- **Double click** on a sector or unit that is itself a sub-case →
+  `openInNewWindow(id)`.  New browser window loads the sub-case as its
+  own root case (sector drill-in).
+- **Click on the canvas pane** → `selectNode(null)`.  The selection
+  card disappears (the canvas is the resting state — there is no
+  ThermoSummary fallback; the thermo readiness lives in the Case tab at
+  `constant/thermoPhysPropDict`, and in a properties case's Workflow under
+  its thermo package).
+
+### Direct manipulation of the layout (view-only, persisted)
+The flowsheet is a layout the user can arrange; none of this writes
+back to the dicts (the dict topology is immutable from the GUI).
+- **Drag a node** to reposition it.
+- **Drag an edge's mid-point** to bend it (`waypoint` / `WaypointEdge`),
+  routing connections around units.
+- **Drag a connection point** along a unit's border to choose where a
+  stream attaches (per-unit `<unitId>\0<handleId>` overrides).
+- **Per-case layout persistence.**  Node positions, viewport, edge
+  bend-centres, and connection-point overrides are saved to
+  `localStorage`, keyed by case, and reloaded on next open.  Never
+  touches disk on its own.
+
+**THE FIRST DRAWING IS THE AUTOMATIC LAYOUT; AFTER THE READER ARRANGES
+IT, NOTHING MOVES (Vítor, 2026-10-10, DEV.md 4c C59).**  Precedence: this
+browser's working copy > the case's curated `.cho` snapshot > the
+automatic layout (`gui/src/case/flowsheetLayout.ts`: a layered drawing,
+flow left to right, declared tears as the recycles routed above or below
+the train, feeds beside their consumer and products beside their
+producer, crossings reduced, the main train straight; a plant too LONG
+to fit the canvas at a legible zoom -- one train behind another -- is
+folded into two rows like a line of text, at the cut crossing the fewest
+wires, never across a recycle loop, the stream between the rows drawn as
+a return wire through the band between them).  The moment the
+reader moves ANY node, connection point or edge bend, the WHOLE drawing
+is snapshotted -- every unit and terminal, including the ones nobody
+touched -- so a later improvement of the algorithm never reshuffles the
+untouched nodes around the moved one.  A node the saved arrangement does
+not name (a unit added to the case since) is placed by the automatic
+layout relative to a saved neighbour, moving no saved node.
+**A docked utility / duty / power stub is an annotation of its unit, not a
+free node** (2026-10-11, `gui/src/case/stubDocking.ts`): it is never stored
+at absolute coordinates, it sits at its unit plus an offset -- the
+automatic one, or the one the reader gave it by dragging the stub -- and
+it FOLLOWS its unit whenever the unit moves.  (The first C59 snapshots
+stored stubs absolutely, and a `choupo.layouts.v1` copy written by the
+older canvas held them at the automatic position of a unit the `.cho` had
+moved: the green-ammonia plant drew every DUTY stub in one row across the
+top.  A v1 copy is therefore set aside, not applied, said once, and
+offered back as **Restore my earlier arrangement** -- units where the
+reader had them, stubs docked.)  Before a run a single-duty stub claims
+only the sign its declaration implies (`gui/src/case/dutySign.ts`: a
+declared `Q`, a cooling-by-construction type, or a `phaseChanger`'s
+`outletT` against a DECLARED inlet temperature); otherwise it reads a
+neutral **duty / sign after run**, never "heating" by default.
+The way back is the canvas's `layout` menu: **Automatic layout** (this
+browser only), **Case layout (.cho)** when the case ships one, and **Save
+layout to case** -- the ONE write of the tracked `.cho`, explicit, on a
+local bridge only.  The canvas used to write the `.cho` on every drag;
+that made an arrangement a local modification a `git pull` refused
+(C55), and is gone.
+
+### Stream-class show/hide
+The canvas carries view-only toggles (NOT case data) to show/hide
+classes of stream: **energy** wires (W / Q) and **utility** streams
+(incl. the column duty stubs); default shown.  A recycle is process
+material and is drawn SOLID like any other stream, the solver's cut always
+marked on it by a break symbol (Vítor, 2026-10-07; DEV.md 4c C41).  The
+**recycle** chip lights the whole LOOP each tear cuts -- its units and
+streams wear a cyan halo, read from the engine's `recycleLoops` result
+block, never re-detected in the GUI (C42); default OFF, and it never
+hides a pipe.  This lets a reader declutter a busy flowsheet without editing
+anything.
+
+### Column duty stubs
+A distillation column renders short **duty stub** edges for its
+reboiler / condenser heat ports.  Each stub reads the duty (kW) from
+the run KPIs and the allocated utility + cost (€/h) from the solver's
+`utilityAllocation`, so the stub shows which utility serves it and at
+what cost.  (For the underlying heat-port / heat-link / utility model,
+see `docs/ai/energy.md`.)  Duty stubs are part of the **utility**
+stream class for show/hide.
+
+### Pop-out pattern
+Used in: Files (single file from the Case workspace), Streams table
+(whole table, from the Streams workspace), Single stream (from canvas
+double-click or the selection card's ↗), Plots (current Plotly view
+as PNG).
+
+Implementation:
+- Build full HTML document (inline `<style>`, no React, no Mantine).
+- Wrap in `Blob`, get URL via `URL.createObjectURL`.
+- Create hidden `<a target="_blank" rel="noopener">`, programmatic
+  `.click()`, remove.
+- Revoke URL after 30 s (generous timeout for cold browser tabs).
+
+This bypasses Firefox's popup blocker (no `window.open(...)` with
+explicit features) and works identically across Firefox / Chrome /
+Safari.
+
+The interactive pop-outs are a second family: a full React view in a
+REAL tab that re-reads a stable, never-consumed localStorage stash
+(see *Tab citizenship* below) — `?focus=`, `?internals=`,
+`?explore=mccabe&key=`, and `?layout=` (the 3D plant layout, DEV.md
+4c C78: opened from Reports → "Plant layout (3D)" and the EduTools
+plant-layout bench; it follows its parent through the browser's
+`storage` event and dims exactly as the parent does when the case has
+moved since the run it draws).
+
+A third use of the same Blob mechanics is a SAVED page rather than an
+opened one: "Export as page" on the 3D plant layout (DEV.md 4c C81 --
+Reports, the `?layout=` tab, the EduTools bench) writes ONE
+self-contained HTML file with a `download` name.  The engine's `layout {}`
+block rides in it as JSON data, the viewer is the app's own
+`layoutScene` + `mountLayoutScene` compiled with three.js into one inline
+script (`gui/scripts/layoutViewerPlugin.ts`, a lazy chunk loaded at the
+click), the tables come from the same rows the app draws
+(`case/layoutTables.ts`), and the page loads nothing from the network and
+carries three.js's MIT notice.  A STALE run is not exported -- the button
+stays visible, disabled, saying to run again -- because a shared file has
+no parent to dim against.
+
+### Stream-name lookup
+Streams cross several naming conventions in the same case:
+- `flowsheetDict` connections: `concentration/condensate1` (slashes)
+- Solver JSON output: `concentration.evap1.cond1` (dots) OR
+  `evapCondensate1` (boundary alias)
+
+The `findRunStream(streams, name)` helper tries in order: exact match,
+slash↔dot swap, leaf-match (case-insensitive suffix on the last path
+segment).  Used by all stream lookups (selection card + pop-out).
+
+### Defensive rendering
+- `formatTemperature/Pressure/Flow` return `"—"` for `undefined`,
+  `null`, or non-finite inputs.  Never throw.
+- `Object.entries(... ?? {})` on any composition / extraFiles / etc.
+- Top-level `ErrorBoundary` in `App.tsx` catches any render exception
+  and shows a fallback instead of unmounting the app.
+
+### The what-if lives in the unit's INTERNALS page — Vítor's ruling 2026-06-12
+
+All interactive "change a value and re-run" wishes are ONE concept, not
+many features: a **transient overlay over a clone the GUI already
+makes** (every run ships the dicts to MEMFS; `unitFocus.ts` synthesises
+a 1-unit case that never existed on disk).  Where it lives was settled
+by Vítor, overruling the first card-based build AND the forum's
+focus-tab arrangement:
+
+- **The parent flowsheet never authors the case.**  Dict-on-disk stays
+  the only authoring channel for the case itself (principle §2.1).
+  **CORRECTED 2026-10-26 (DEV.md 4c C168, Vítor's ruling (1):
+  "tinkering").**  This bullet used to read "No editable fields on the
+  main case's canvas or selection card, ever", and the code had said
+  otherwise since 2026-06-21, when Vítor overruled the read-only card
+  ("TINKERING", `ui/PropertyPanel.tsx`); the C168 audit found the card
+  taking edits under a header that still said "Read-only", and he ruled
+  that the tinkering stays.  So the selection card's continuous
+  `operation` scalars ARE editable, and what the card does is said on
+  it: **a what-if edit of the OPEN COPY** -- the case loaded in this
+  tab -- marked PENDING beside the field (the value on disk shown with
+  it, one click back), ANNOUNCED (a polite status on the card, and the
+  Run control counting the pending edits), used by the next run, and
+  **never written to disk**.  A `$reference`, an integer (it reallocates
+  a structure, not a value) and a properties operation stay read-only.
+  The internals page below keeps the sweep and the plots; the card is the
+  one-number nudge.
+- **Parameter manipulation happens in the unit's INTERNALS page**
+  (`?internals=`, the pop-out where the unit's tables and PLOTS live) —
+  a "What-if" tab beside Streams/Hardware/Dict/Model: edit the
+  `operation` scalars, run the synthesised 1-unit clone, sweep a
+  parameter, and SEE the resulting plots in the same page.  Manipulate
+  where you plot; one page per unit.
+- **NEVER a save option.**  The what-if is transient by definition:
+  no download, no write-back, no "save edited dict" — closing the tab
+  is the reset.  Showing/copying the equivalent dict text is allowed
+  (glass-box: the screen teaches the dict); SAVING it is not.
+- **Honesty banner is mandatory:** the clone's inlets are FROZEN from
+  the parent run — plant-level feedback (recycles, controllers,
+  heat-links) is NOT in the loop.  Say so on the surface.
+- **The GENERIC what-if path is the ASSISTANT CONSOLE, not widgets
+  (Vítor, 2026-06-12).**  The in-GUI LLM console runs a real agent in
+  the open case: it can vary ANY parameter, author a real `outerDict`,
+  run the solver and present the result — at the student's request, in
+  natural language.  That is strictly more general than any classic
+  control, and it IS the credo's "LLM is the author" principle at
+  work.  The classic What-if tab therefore stays deliberately modest —
+  the no-LLM fallback for classroom/offline/quick-demo use — and new
+  interactive-variation wishes default to "the console already does
+  this" before any widget is considered (wish-filter question (d)).
+
+**The wish filter** (apply to EVERY interactivity request, including
+the founder's): (a) does the engine already know how to do it? (new
+physics/drivers go to C++ first); (b) is it expressible as a dict diff
+the student could apply by hand?; (c) does it emit that dict when the
+user wants to keep it?; (d) does it reuse the overlay/scratchpad
+concept, or invent a parallel mechanism?  Failing (b) or (d) ⇒ reject,
+however attractive.  This is what keeps the GUI from becoming a
+monster of one-off controls.
+
+**Tab citizenship + two surfaces (2026-06-12).**  There are exactly
+TWO unit surfaces: the selection card (single click; its what-if
+fields edit the open copy only, see above) and the
+unit's internals page (double-click; tables + plots + the What-if
+tab).  A pop-out tab is a REAL tab: it must survive F5 (stable,
+never-consumed stash), carry a distinguishing `document.title`, and
+when its source is gone it refuses honestly ("expired — reopen from
+the parent") — it must NEVER silently degrade into another surface
+while its URL claims otherwise.
+
+## 5. Anti-patterns to avoid
+
+When a feature request smells like one of these, **stop and re-read
+this Credo before proposing**.
+
+- **Modal full-screen for inspection content.**  Use pop-out (new
+  browser tab) instead.  Modals interrupt; tabs compose with the
+  user's existing workflow.
+- **Drag-drop authoring of any kind.**  Streams, unit ops,
+  experimental data, thermo packages — all are authored as dicts on
+  disk.  GUI never edits.
+- **Palette of unit-op types as a drag source.**  This is a
+  catalogue-of-types editor pattern.  Choupo has no catalogue-of-types
+  palette and no left panel beside the canvas — the flowsheet comes
+  from the case dicts, not from dragging blocks onto a canvas.  (The
+  Workflow's outline is not this: it lists the case's own declared
+  studies and steps, it is the case's one navigation, and it folds.)
+- **A second tree.**  Two ways through the same objects -- a tree
+  beside a map beside a details list, each repeating the others -- is
+  what the C168 audit found on the properties screen.  One primary
+  navigation per case kind; a left pane only when it is that one, and
+  collapsible.
+- **Setup wizard / modal property selector / "choose your thermo
+  package" first-step dialog.**  Authoring is offline.  The GUI
+  starts by loading a case, not by configuring one.
+- **Auto-save back to disk.**  If we ever add edit operations
+  (today: case-level scalar tweaks), the user must explicitly Save
+  → download.  Disk is never written silently.
+- **Interop / file-conversion dialogs.**  Out of scope
+  and a vector for proprietary lock-in.
+- **`window.open(url, "_blank", features)` with explicit features.**
+  Triggers Firefox's popup blocker.  Use Blob URL + anchor click.
+- **CDN-only assets** (Plotly via CDN, fonts via Google Fonts,
+  etc.).  Choupo runs offline after first load; everything ships in
+  the bundle.
+
+## 6. Vocabulary
+
+- **Case** — a directory with the Choupo layout
+  (`<short>.cho` marker, `system/`, `constant/`, optional sectors).
+- **Stream** — a process stream (mass + energy carrier between units),
+  NOT a data stream or React stream.
+- **Sector** — a sub-flowsheet folder in a sectored case (e.g.
+  `concentration/`, `drying/` inside the plant case).
+- **Workspace** — a content mode that toggles over the canvas,
+  opened from the top menu; the lineup is context-dependent per case
+  type and `gui/src/ui/MenuBar.tsx` is its authority (§2.5).  At most
+  one is open; Esc closes it back to the canvas.  (Older docs called
+  these "views / bottom tabs"; the bottom-tab strip was removed in the
+  Fase A/B redesign.)
+- **Selection card** — the floating top-right overlay showing the
+  selected node's hardware + KPIs (or a stream's conditions).  Appears
+  on selection, vanishes on deselect.  NOT a docked right panel.
+- **Pop-out** — opening content in a separate browser tab via Blob
+  URL + anchor click.  The verb is "to pop out".  The icon is `↗`
+  (IconExternalLink).
+- **Drill-in** — double-clicking a sector to open its sub-case as a
+  root case in a new browser window.  URL: `?case=<plant>/<sector>`.
+- **Run** — pressing the Run button to invoke the WASM solver on the
+  current case.  ONE button, in the top toolbar, its label naming what it
+  runs ("Run flowsheet" / "Run workflow"), plus Ctrl+Enter — see §2.5
+  (DEV.md 4c C172; the per-view Run panels it replaced are gone).
+- **Pre-Run / Post-Run** — UI states distinguishing "no
+  solver output yet" from "solver output available".
+
+## 7. Roadmap by layer
+
+| Layer | Purpose | Status |
+|---|---|---|
+| **1 — Onboarding & context** | Subtitle, file/stream pop-out, ErrorBoundary, defensive formatters, sector lookup, slash/dot stream name normalisation | **Done** |
+| **1.5 — Shell redesign** | Full-screen canvas, 32 px header, on-demand workspaces (replacing the bottom-tab strip), floating selection card (replacing the right panel), removal of the left case-tree | **Done** (Fase A/B, 2026-05-27) |
+| **2 — Run + inspect** | Draggable nodes + edge bends + connection points, per-case layout persistence (localStorage), stream-class show/hide toggle, column duty stubs | **Done** |
+| **2.5 — Inspect, remaining** | Colour by a published stream field / unit KPI (done, C114); time controls for trajectories, multi-stream comparison overlay | Partial |
+| **3 — Comparison & decision** | `compare_*` props tutorials with multi-CSV overlay (done), parity plots for fits, declared `experimental {}` block + overlay, thermo audit auto-generation against current flowsheet | Partial |
+
+## 8. Three questions before any UI change
+
+If the answer to any of these is "no" or "I don't know", stop.
+
+1. **Which founding principle does it serve?** (§2)  If none, don't
+   propose it.
+2. **Does it preserve dict-on-disk as the source of truth?**  If it
+   creates a parallel authoring channel, reject.
+3. **Which audience does it help — onboarding student, working
+   researcher, both?**  Trade-offs that help one but degrade the other
+   need explicit justification.
+
+## 9. The Methods workspace (2026-08-15)
+
+A second standalone workspace beside the Property Explorer, ratified
+2026-08-15, hosting **classical METHOD CONSTRUCTIONS** — operating lines,
+staircases, process paths on a state chart.  The criterion that splits the
+two planes, recorded here as the contract:
+
+> **method-construction → Methods;  property-surface → Explorer.**
+
+A property surface answers *"what does this system's property look like?"*
+(T-x-y, γ(x), a Psat scan — the Explorer keeps these).  A method
+construction answers *"what does the classical graphical method say about a
+design question?"* (how many stages does this R and q buy; where does this
+drying path land).  The first slice migrated the two tools that were method
+constructions living in the Explorer: **McCabe-Thiele** and the
+**psychrometric chart** — the HOSTING moved (`MethodsWorkspace.tsx`), the
+plot components stayed in the shared `gui/src/ui/plotting/` kit, and the
+engine feeds moved to their one shared home (`gui/src/case/methodFeeds.ts`
+— Explore's T-x-y / γ(x) / flash lenses and Methods' McCabe tool consume the
+SAME `binaryVleSpec`, so the two hosts cannot drift).
+
+**The Explorer's guard-rails (§3) are inherited unchanged**, above all:
+
+* **ZERO physics in TS (guard-rail 4).**  Every curve is an engine (WASM
+  `choupoProps`) run over a transient synthesized case, or an engine-written
+  CSV.  The McCabe equilibrium curve y*(x) arrives ALREADY COMPUTED by the
+  engine; the staircase drawn ON it (and the psychro chart's rendering) is
+  pure geometry in the plot kit.  A construction the engine cannot yet feed
+  is listed as *planned*, never faked in TS.
+* **The propsDict / case hand-off (guard-rail 2).**  Each live tool keeps
+  the "Author → copy propsDict" hand-off: the workspace EMITS the dict for
+  the student / agent to author on disk; dict-on-disk stays the one
+  authoring channel, and the workspace never writes a case.
+* **Ephemeral, on-demand** (top menu beside Explore; Esc closes via the
+  shell), standalone (works with no case open — it synthesizes its own
+  transient runs; case-local components still reach the runs when a case IS
+  open, exactly as in the Explorer).
+
+**The tool registry is the authority.**  `METHOD_TOOLS` in
+`MethodsWorkspace.tsx` is the single source of truth for which tools exist
+and which are live — this document carries no copy of the tally (the
+7-tool/2-live table that used to sit here had already drifted; a second
+home for a derived count is the arity sin).  Planned entries stay
+**visible but disabled**, each naming the engine output that will feed it;
+the rail and the narrow-viewport bottom sheet BOTH render the registry
+(`MethodToolList`), never a filtered subset.
+
+**Consolidated pattern — ONE PANEL CONTRACT (2026-08-18; supersedes the
+"responsive rail" paragraph that stood here).**  Every rail and the bottom
+window obey one declaration, `gui/src/ui/panelContract.tsx`, over one storage
+home, `gui/src/state/prefs.ts`.  A panel is resizable, auto-hideable,
+keyboard-reachable, and its width belongs to the READER (localStorage, every
+tab) while only which case/view/selection belongs to the TAB.  Three rules
+are enforced structurally rather than by convention: a handle you can SEE is
+a handle you can GRAB (it renders as a sibling of the clipping box, so no
+ancestor `overflow: hidden` can trim it); an ADVERTISED shortcut is a BOUND
+shortcut (one field derives both the hint and the binding); and collapse
+defaults by MEASUREMENT — `fitsRow(min + contentMin, measured host width)`,
+never a breakpoint and never `pointer: coarse`.
+
+**A band above its content is a TOP panel, never a box with no height
+(2026-10-19, DEV.md 4c C105).**  The Streams workspace stacked its balances
+band (advisories, model boundaries, per-component table) above the stream
+table with no height of its own, so on a plant the TABLE was what the band
+left over: 155 px for 46 streams at 1280x720 and 0 px with the console
+docked, with no seam to drag — Vítor's "a window at the bottom that you
+cannot see to the end, nor adjust".  The contract has a `top` edge now (its
+seam is its BOTTOM edge, ArrowDown grows it); the band scrolls inside its own
+height, folds to a strip, and is DRAWN at `shownTopPanelPx` = min(the
+reader's size, its content, the workspace less what the content below must
+keep) — render-only, never written back.  The rule generalises: content that
+can grow without bound must not sit in a flex column above the thing the
+reader came to read unless it has a size of its own.
+
+What the superseded paragraph got wrong is worth keeping, because it is the
+project's standing lesson about posture: it made the DEFAULT a media query.
+Breakpoints and `pointer: coarse` have each produced a wrong answer on a real
+device here (a tablet treated as a phone), which is why the fit rule now
+answers from two measured widths and an unmeasured width answers "fits".
+
+The EduTools setup knobs were the LAST thing outside this contract — a
+horizontal strip above the diagram, excluded on the argument that it was "a
+fold with no size, so not the contract's shape".  True of a strip, void for a
+panel: as a left panel it HAS a size, which is exactly the contract's shape.
+Moving it returned the drawing its width (the strip cost 201 px of chrome
+height, and an aspect-fitted plot pays lost height in width: 913 px drawn
+becomes 1068 with zero side margin).  A square plot pays the opposite way,
+and dragging or folding recovers it.
+
+**AN INDICATOR THAT FLOATS OVER THE CANVAS CARRIES ITS OWN SURFACE
+(2026-09-22).**  The run-status badge read as low-contrast coloured text, and
+the cause is a fact about this app rather than about the badge: **the React
+Flow pane does not share the background of the rest of the app** -- every
+other surface is `gray-0` in the light scheme, the canvas was then `gray-6`, a
+mid grey (it is `gray-1` since 2026-10-26: see *the light palette* below).  A
+Mantine `light` variant is a saturated foreground on a very pale tint
+of the same hue, computed for the PAGE's background; over mid grey the tint
+vanishes and the word is left floating.  So anything overlaid on the canvas --
+a badge, a chip, a legend -- is `filled`, or sits on a box with its own
+background, and never relies on the page's.  The `Reset` button beside it had
+always been legible for exactly that reason (`variant="default"` brings a
+surface).  The same rule is why the legend strips are opaque boxes and not
+bare text.
+
+**A COLLAPSED PANEL MUST BE `visibility: hidden`, not merely `width: 0`.**
+Paid for once, across seven panels at once: `width: 0; overflow: hidden`
+clips PAINT only — the children keep boxes, tab order and hit-testing, so a
+keyboard user tabs into a panel that is not on screen and types into fields
+they cannot see.  It was invisible to the test suite (jsdom has no layout)
+and reached only by the browser harness, which reported 94 unreachable
+controls at 390 px.
+
+**NOTHING IS LAID OUT PAST THE SCREEN'S RIGHT EDGE, EXCEPT A DRAWING THAT
+DECLARES IT PANS (2026-10-10).**  A grid column written `1fr` is
+`minmax(auto, 1fr)`, and `auto` is the column's min-content: one wide child
+-- a table given a `miw` precisely so it can scroll inside its own box --
+becomes the column's floor, and on a phone the whole column, its buttons
+with it, grows past the glass.  The track is `minmax(0, 1fr)` (tear-streams'
+order buttons had reached x ~ 476 at 390 px; active-set-qp and the
+ε-NTU chart the same day).
+A drawing that must be read at size (a row of units, a diagram whose labels
+would be 3 px if scaled) keeps a floor width inside a box that scrolls
+sideways, marked `data-pan-x`, and a line under `useNarrowViewport` tells the
+reader to swipe -- a phone shows no scrollbar until it is touched.
+`bin/checkGui` names every control past the right edge per page and FAILS a
+gated pass on one; the mark excuses a control only when its nearest
+horizontal scroller carries it AND fits the screen, because every
+`overflow-y: auto` workspace root is a horizontal scroller too and geometry
+alone would excuse the very defect.
+
+Planned entries are never filtered out by posture, and hover is never
+load-bearing: anything a tooltip says is a visible description in the panel.
+At 390 px the knobs panel starts folded by the measured default and opens as
+a sheet over the construction, saying so on the panel.
+
+**EVERY RESULT SAYS WHERE ITS NUMBERS CAME FROM (2026-10-25, DEV.md 4c
+C112, points 15 and 18).**  Four origins, one word each, and the list is
+closed: `engine` (Choupo's C++ engine -- a witness run in the browser, or a
+named case's recorded run), `page` (the page's own arithmetic, TypeScript or
+written out, on numbers it shows), `reference` (a cited source, not computed
+in Choupo), `assumption` (an input: a control the reader sets, or a value the
+example declares).  The ruling is a mark per value, or per PANEL where every
+value shares one -- never a per-value provenance sheet across sixty pages.
+One shared component, `gui/src/ui/methods/origin.tsx` (`OriginMark` at the
+head of each result panel, a dotted badge per origin plus a short note saying
+which witness or which source; the words and their meanings live once in
+`originKinds.ts`); the tool frame draws `OriginLegend` above every tool from
+the tool's own `origins` declaration in the registry, which the homepage
+prints on the tool's card through `methodTools.json`.  The mark is a WORD
+beside a colour (colour does not survive a greyscale print) and its meaning
+is visible text in the legend, not only a tooltip.  `tests/methodOrigins.
+test.ts` holds each declaration equal to the marks its page draws, both
+ways; it cannot see a panel left unmarked, so a new result panel takes its
+mark when it is written.  Where the `page` origin appears, the page is doing
+arithmetic in TypeScript; guard-rail 4 (above) still says ZERO physics in TS,
+and the pages that compute a design procedure on the page (bund, pool fire,
+the relief and letdown benches) are the places where the two are to be read
+together -- the mark makes the boundary visible; it does not move it.
+
+**Ratified naming (2026-08 ballot).**  The rail header is **CLASSICAL
+METHODS**; tool labels are operation-first with the method in parentheses —
+"Distillation (McCabe-Thiele)", "Absorption (Kremser)", "Batch still
+(Rayleigh)", "Heat exchanger (ε-NTU)".  The top-menu label stays
+**Methods** and the URL key stays `methods`.
+
+Deep links: `?workspace=methods&tool=<id>` (new); the legacy
+`?explore=mccabe` URL (without a `&key=` stash) now opens Methods/mccabe —
+a redirect, never a broken link.  With `&key=` it remains the McCabe
+analyzer pop-out tab, unchanged.  Selecting a tool writes the deep link
+back into the address bar (`history.replaceState` — no history spam), so
+the URL is always a shareable bookmark of what is on screen.
+
+## Provenance
+
+Started 2026-05-27 as `gui-mental-model.md` during over-correction
+from a block-editor framing to ParaView patterns.  Renamed to `gui-credo.md`
+and rewritten when Vítor pointed out that the Choupo GUI is its own
+thing — informed by ParaView, but with deliberate adaptations driven
+by chemical-process specifics and the dict-on-disk + LLM-author
+workflow.
+
+## 10. EduTools REPLACE THE TEXTBOOK — Vítor's ruling, 2026-08-31
+
+Reviewing the pages, the owner ruled on their AMBITION, and it is a change
+of mission rather than a refinement:
+
+> *"Os alunos têm de chegar e ver lá a teoria toda deduzida, com equações,
+> exemplos e a papinha toda feita!  Para o resto dos modelos de propriedades
+> deve ser a mesma coisa!  O EduTools serve para substituir os livros de
+> texto!  No McCabe e Thiele deve ter a dedução das equações!  E o Savarit
+> também tem de ficar!"*
+
+The occasion was the COSMO-SAC entry in `four-ways-mixture`: five fields and
+one paragraph, telling a reader what the model KNOWS and never showing a
+sigma-profile, never writing the segment-activity equation, never deriving
+anything.  The verdict on it was "uma porcaria", and it is the right verdict
+against this bar even though the card is correct against the OLD one.
+
+What changes:
+
+* A page is no longer a set of notes BESIDE the construction.  It carries
+  the **derivation** — the equations, in order, with the assumptions named
+  as they are made — then the worked example, then the live engine run.
+* This binds **every property model**, not only COSMO-SAC: ideal, NRTL,
+  UNIQUAC, UNIFAC, COSMO-SAC, PC-SAFT.
+* It binds the classical constructions: McCabe-Thiele must derive its
+  operating lines and its q-line, not merely draw them.
+* **Ponchon-Savarit is IN SCOPE and must exist.**  The engine already
+  publishes what it is drawn on (`enthalpyConcentration`, witness
+  `tutorials/props/scan/hxy01_ethanol_water_1atm`, theory `ch:ponchon`);
+  what is missing is the page.
+
+WHAT THIS DOES NOT LICENCE, because the ruling raises the ambition and
+repeals none of the invariants below it:
+
+* **Zero physics in TypeScript still holds.**  A derivation is prose and
+  equations; the NUMBERS in a worked example come from the engine run, or
+  are closed-form arithmetic printed with their constants so a reader can
+  redo them on paper.  A page that starts computing thermodynamics in the
+  browser to look like a textbook has become a second engine.
+* **Nothing invented.**  A derivation that needs a datum the tree does not
+  carry states the gap; it does not supply a plausible number.
+* Every equation shown must be the one the engine RUNS, cited to
+  `file:line`.  This is not bureaucracy: requiring the citation is what
+  turns writing a page into READING the implementation, and that is where
+  the 2026-08-28/29 glossing slice found eight defects nobody was hunting.
+
+A SCOPE LIMIT, added the day after: **management and organisational
+material is OUT for now** (owner, 2026-09-01: *"para já vamos evitar o
+management"*).  A page working through a capital cost's chain of judgement
+was built and then WITHDRAWN at his word, and the "Economics & management"
+shelf went with it — a discipline label with nothing under it is exactly
+what the shelf test forbids.  Recorded so the next session does not
+re-propose it as a fresh idea: it was tried, and the owner did not want it.
+What the ruling above binds is the DERIVATION of what the engine computes;
+it is not a licence to widen the syllabus.
+
+THE ARITY QUESTION THIS OPENS, recorded because it is unresolved and the
+next session must not assume it away: derivations already have a home, the
+Theory Guide (`docs/theoryGuide.tex`), and every registry entry carries a
+`theory:` field pointing into it (`ch:pcsaft`, `ch:ponchon`, ...).  Putting
+the derivation on the page too creates a SECOND home for one derivation,
+which is the sin this project spends most of its gates on.  The working
+default, until the owner rules otherwise: the PAGE is written first and is
+the home a student reads; the guide chapter keeps the formal treatment and
+the two must be checked against each other rather than diverging quietly.
+A mechanism that makes them one source has not been designed.
+
+Update this file when:
+- A new founding principle is established (rare).
+- An adaptation vs ParaView is debated and decided.
+- A new pattern is consolidated across multiple components.
+- An anti-pattern is identified after a wrong path was taken.
+
+Do NOT update for routine implementation work; that belongs in the
+component itself and `CLAUDE.md`.
