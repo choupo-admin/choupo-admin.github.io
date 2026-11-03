@@ -1,5 +1,7 @@
 # Standard catalogue — what ships in `data/standards/`
 
+> **Version.** This document describes the development line `Choupo-dev`, which https://www.choupo.org/app runs and which every assistant document here describes.  The latest stable release is `Choupo-2608`; the one page that describes that release instead of the development line is the model catalogue, https://www.choupo.org/models/ (static copy: https://www.choupo.org/llm/models.md).
+
 <!-- BEGIN-PROSE -->
 Inventory snapshot, regenerated from `data/standards/components/`.
 When declaring the thermophysical system (`constant/thermoPhysPropDict`), pick component names from this list

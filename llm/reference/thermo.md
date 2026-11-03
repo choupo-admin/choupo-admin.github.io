@@ -1,5 +1,7 @@
 # thermoPhysPropDict — declaring the thermophysical system
 
+> **Version.** This document describes the development line `Choupo-dev`, which https://www.choupo.org/app runs and which every assistant document here describes.  The latest stable release is `Choupo-2608`; the one page that describes that release instead of the development line is the model catalogue, https://www.choupo.org/models/ (static copy: https://www.choupo.org/llm/models.md).
+
 A case's `constant/thermoPhysPropDict` declares the case's whole
 thermophysical system: the components, the equilibrium **formulation** (which
 K-value structure the VLE runs on), the model in each phase slot, the caloric

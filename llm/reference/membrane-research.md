@@ -1,5 +1,7 @@
 # Membrane research with Choupo -- a quick start
 
+> **Version.** This document describes the development line `Choupo-dev`, which https://www.choupo.org/app runs and which every assistant document here describes.  The latest stable release is `Choupo-2608`; the one page that describes that release instead of the development line is the model catalogue, https://www.choupo.org/models/ (static copy: https://www.choupo.org/llm/models.md).
+
 *For a researcher who has measured rejections on a nanofiltration or reverse
 osmosis membrane and wants to fit a transport model to them and use it in a
 process -- and for an assistant helping him.  The worked case is

@@ -1,5 +1,7 @@
 # Pack: a batch plant (tablets): batch plan, machines, clean utilities, quotes, crew
 
+> **Version.** This document describes the development line `Choupo-dev`, which https://www.choupo.org/app runs and which every assistant document here describes.  The latest stable release is `Choupo-2608`; the one page that describes that release instead of the development line is the model catalogue, https://www.choupo.org/models/ (static copy: https://www.choupo.org/llm/models.md).
+
 Read this pack when the plant runs in LOTS (tablets, capsules, fine
 chemicals): how many lots a year, which step paces the plant, whether a
 machine of a given rating takes the lot, the air and purified water of the

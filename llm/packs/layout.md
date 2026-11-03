@@ -1,5 +1,7 @@
 # Pack: plant layout (plot plan) and the GMP building interior
 
+> **Version.** This document describes the development line `Choupo-dev`, which https://www.choupo.org/app runs and which every assistant document here describes.  The latest stable release is `Choupo-2608`; the one page that describes that release instead of the development line is the model catalogue, https://www.choupo.org/models/ (static copy: https://www.choupo.org/llm/models.md).
+
 Read this pack when the design must say WHERE things stand: a plot plan with
 the sized equipment, a pipe rack, roads, a fence, hazardous-area zones; or,
 for a pharmaceutical plant, the rooms of the building (grades, pressures,

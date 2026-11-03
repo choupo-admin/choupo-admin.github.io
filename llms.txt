@@ -2,9 +2,15 @@
 
 > Choupo is an open-source, glass-box chemical process simulator (C++17, GPL-3.0-or-later) that runs in the browser at https://www.choupo.org/app; the documents below teach an AI assistant to design a process and write it as a Choupo case.
 
-Read the brief first and all of it: it is the contract for a case and ends with an index of task packs.  Read only the packs the design needs.  The reference documents are long and are for lookups a pack points to, not for reading end to end.
+> **Version.** This document describes the development line `Choupo-dev`, which https://www.choupo.org/app runs and which every assistant document here describes.  The latest stable release is `Choupo-2608`; the one page that describes that release instead of the development line is the model catalogue, https://www.choupo.org/models/ (static copy: https://www.choupo.org/llm/models.md).
 
-## Start here
+Two questions, one path each.  To answer whether Choupo does something (a unit, a calculation, a check), read the capability index: per concept it says what Choupo computes, what it only balances, what it only checks and what is missing, with a witness case.  To DESIGN a process, read the brief first and all of it: it is the contract for a case and ends with an index of task packs.  Read only the packs the design needs.  The reference documents are long and are for lookups a pack points to, not for reading end to end.
+
+## Does Choupo do X?
+
+- [capabilities.md](https://www.choupo.org/llm/capabilities.md): Capability index: does Choupo do X?
+
+## Design a process: start here
 
 - [brief.md](https://www.choupo.org/llm/brief.md): Choupo assistant brief — read this first, all of it
 
@@ -40,6 +46,7 @@ Read the brief first and all of it: it is the contract for a case and ends with 
 - [thermo.md](https://www.choupo.org/llm/reference/thermo.md): thermoPhysPropDict — declaring the thermophysical system
 - [unit-ops.md](https://www.choupo.org/llm/reference/unit-ops.md): Unit-op catalogue — every shipped type, what it does, how to write it
 - [validating-against-data.md](https://www.choupo.org/llm/reference/validating-against-data.md): Validating a case against measured data — and diagnosing what is wrong
+- [models.md](https://www.choupo.org/llm/models.md): Choupo model catalogue (static; describes the stable release it names, not the development line)
 
 ## Optional: the project
 

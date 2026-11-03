@@ -1,5 +1,7 @@
 # Dict syntax — the language a Choupo case is written in
 
+> **Version.** This document describes the development line `Choupo-dev`, which https://www.choupo.org/app runs and which every assistant document here describes.  The latest stable release is `Choupo-2608`; the one page that describes that release instead of the development line is the model catalogue, https://www.choupo.org/models/ (static copy: https://www.choupo.org/llm/models.md).
+
 Choupo dicts: hierarchical, plain-text, **comma-free** (one statement
 per logical entry, terminated by `;`).  Parser lives in
 `src/core/Dictionary.{H,cpp}`.  Component-aware tokenizer: `[` and `]`

@@ -1,5 +1,7 @@
 # Extending Choupo — writing your own code (and sharing it)
 
+> **Version.** This document describes the development line `Choupo-dev`, which https://www.choupo.org/app runs and which every assistant document here describes.  The latest stable release is `Choupo-2608`; the one page that describes that release instead of the development line is the model catalogue, https://www.choupo.org/models/ (static copy: https://www.choupo.org/llm/models.md).
+
 Most of the time you are a **user**: you author cases from plain-text dicts and
 run the built-in unit ops and property methods. This guide is for the step
 where you become an **author**: you write your OWN unit operation or your OWN

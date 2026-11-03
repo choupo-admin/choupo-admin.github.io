@@ -1,5 +1,7 @@
 # Choupo GUI Credo
 
+> **Version.** This document describes the development line `Choupo-dev`, which https://www.choupo.org/app runs and which every assistant document here describes.  The latest stable release is `Choupo-2608`; the one page that describes that release instead of the development line is the model catalogue, https://www.choupo.org/models/ (static copy: https://www.choupo.org/llm/models.md).
+
 The single source of truth for how the Choupo GUI is designed.  Read
 this before proposing any UI change, before reviewing GUI code, or
 before suggesting a "feature you've seen elsewhere".
