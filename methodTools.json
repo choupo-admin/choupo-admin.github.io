@@ -33,8 +33,8 @@
       "meaning": "an input -- a value you set with a control, or one the example's author declared -- not a result"
     }
   ],
-  "liveTools": 70,
-  "registryTools": 70,
+  "liveTools": 72,
+  "registryTools": 72,
   "tools": [
     {
       "id": "what-is-temperature",
@@ -835,6 +835,30 @@
         "assumption"
       ],
       "href": "/app/?workspace=methods&tool=demand-forecast"
+    },
+    {
+      "id": "plant-cost",
+      "label": "What a plant costs to build",
+      "discipline": "Process design & economics",
+      "teaches": "How to put a number on the capital to build a plant from a list of equipment, and why the methods disagree: Lang's multiplier (his three factors, cited), a factored estimate in which every fraction is the student's input with a pointer to the book that tabulates it beside it, and Choupo's bare-module route read from the engine, side by side with their spread; the working capital by three methods with the spread printed; and a loan year by year with the interest during construction.  A pharmaceutical tablet plant is one of the two example lists.  Not a risk analysis, and a factor is not a quote.",
+      "origins": [
+        "page",
+        "reference",
+        "assumption"
+      ],
+      "href": "/app/?workspace=methods&tool=plant-cost"
+    },
+    {
+      "id": "plant-running-cost",
+      "label": "What a plant costs to run, and when it pays",
+      "discipline": "Process design & economics",
+      "teaches": "How the balances and the investment of one plant become a verdict: the cost of production itemised (direct, indirect, fixed, general) with each factor a declared input and a pointer to the book that tabulates it, set against Choupo's three-term COM_d on the same bills; the crew from shifts and hours; depreciation by asset class against one straight line; fixed and variable costs and the break-even capacity; the cash flow with a discount rate built from components, NPV, IRR and discounted payback; a one-at-a-time sensitivity with elasticities; and the market arithmetic (price index, currency, apparent consumption, FOB and CIF, unit margin). Each engine statement carries the line it was read at, and what Choupo does not compute is said.",
+      "origins": [
+        "page",
+        "reference",
+        "assumption"
+      ],
+      "href": "/app/?workspace=methods&tool=plant-running-cost"
     },
     {
       "id": "solvent-mixture",
