@@ -256,6 +256,7 @@ batch plan, sizing, clean utilities, costing and economics on top
 | Concept (synonyms) | Computes | Where | Witness |
 |---|---|---|---|
 | Flash, phase split (VLE, LLE, bubble/dew point) | equilibrium split, duty | `unit:isothermalFlash`, `unit:adiabaticFlash`, `unit:bubbleT`, `unit:dewT` | `tutorials/steady/flash/flash01_benzene_toluene` |
+| Specified flash (PH, PS, TV/F, PV/F; isentropic expansion, throttling, wet steam quality) | the equilibrium state at a (P, H), (P, S), (T, V/F) or (P, V/F) pair: T or P, vapour fraction, phases, H and S; a pure fluid inside its latent jump lands on the saturation plateau by the lever rule.  Checks: a specification no state meets inside the window is refused.  Missing: (T, H), (T, S), (U, V); the units (`unit:adiabaticFlash`, `unit:valve`, `unit:compressor`, `unit:turbine`) still run their own searches, and a turbine expands a single-phase vapour | `op:flashSpec` | `tutorials/props/thermo/flashSpec01_wet_steam_expansion` |
 | Distillation (column, MESH, shortcut, Fenske-Underwood-Gilliland) | rigorous column; shortcut design | `unit:distillationColumn`, `unit:shortcutColumn` | `tutorials/steady/distillation/column01_benzene_toluene` |
 | Absorption, stripping, extraction | outlet compositions of the contactor | `unit:absorber`, `unit:stripper`, `unit:extractor` | `tutorials/steady/absorption/stripper01_NH3_water` |
 | Reactors (CSTR, PFR, conversion, equilibrium, Gibbs) | kinetics, equilibrium, adiabatic T | `unit:cstr`, `unit:pfr`, `unit:conversionReactor`, `unit:equilibriumReactor`, `unit:gibbsReactor` (`pack:reactors`) | `tutorials/steady/reactors/cstr01_first_order` |
@@ -268,7 +269,7 @@ batch plan, sizing, clean utilities, costing and economics on top
 | Property bench (phase diagrams, steam tables, psychrometry, parameter fitting) | properties, envelopes, fits | `op:phaseEnvelope`, `op:steamTables`, `op:psychrometricChart`, `op:fitParameters`, `op:speciate` | `tutorials/props/steam/steam01_if97_verification`, `tutorials/props/heat/psychro01_n2_water` |
 | Process control (PID, step response, loops) | closed-loop dynamics | `dynUnit:dynamicCSTR`, `controller:PID` | `tutorials/ctrl/ctrl01_cstr_temp_control` |
 | Dynamics without control (start-up, feed and bleed) | transients of connected units | `dynUnit:quasiSteady`, `dynUnit:dynamicTank` | `tutorials/unsteady/unsteady03_nf_feed_and_bleed_startup` |
-| Recycles (tear streams) | converged recycle | `pack:recycles` | `tutorials/plant/hda` |
+| Recycles (tear streams) | converged recycle; `recycleSolver` Newton, Wegstein or the opt-in dominant-eigenvalue extrapolation (announced, with fallbacks) | `pack:recycles`, `key:recycleSolver`, `key:recycleDELambdaMax` | `tutorials/plant/hda` |
 
 The full list of unit operations, with their keys, is
 `docs/ai/unit-ops.md`.  The catalogue of thermodynamic and property models is
