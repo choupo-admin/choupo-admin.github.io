@@ -17,7 +17,7 @@
   "tutorials": {
    "label": "tutorial cases (dictionaries)",
    "files": 10850,
-   "lines": 570153
+   "lines": 570229
   },
   "groupEstimates": {
    "label": "group-contribution estimate records",
@@ -47,12 +47,12 @@
   "docs": {
    "label": "design records and docs",
    "files": 401,
-   "lines": 128752
+   "lines": 128820
   },
   "rest": {
    "label": "build, scripts, site and the rest",
    "files": 287,
-   "lines": 77834
+   "lines": 77690
   }
  }
 }
