@@ -2,6 +2,8 @@
 
 > **Version.** This document describes the development line `Choupo-dev`, which https://www.choupo.org/app runs and which every assistant document here describes.  The latest stable release is `Choupo-2608`; the one page that describes that release instead of the development line is the model catalogue, https://www.choupo.org/models/ (static copy: https://www.choupo.org/llm/models.md).
 
+budget: 2700 words (~4320 tokens)
+
 Read after the brief (`docs/ai/brief.md`). Units here: `shortcutColumn` (FUG) · `distillationColumn` · `absorber` · `stripper` · `extractor` · `isothermalFlash` as drum or decanter.
 
 ## 1. Which unit

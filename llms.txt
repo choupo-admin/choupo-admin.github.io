@@ -1,10 +1,14 @@
 # Choupo
 
-> Choupo is an open-source, glass-box chemical process simulator (C++17, GPL-3.0-or-later) that runs in the browser at https://www.choupo.org/app; the documents below teach an AI assistant to design a process and write it as a Choupo case.
+> Point the assistant at https://www.choupo.org/llm/start-here.md: it is the ONE entry and routes every task.  Choupo is an open-source, glass-box chemical process simulator (C++17, GPL-3.0-or-later) that runs in the browser at https://www.choupo.org/app; the documents below teach an AI assistant to design a process and write it as a Choupo case.
 
 > **Version.** This document describes the development line `Choupo-dev`, which https://www.choupo.org/app runs and which every assistant document here describes.  The latest stable release is `Choupo-2608`; the one page that describes that release instead of the development line is the model catalogue, https://www.choupo.org/models/ (static copy: https://www.choupo.org/llm/models.md).
 
 Two questions, one path each.  To answer whether Choupo does something (a unit, a calculation, a check), read the capability index: per concept it says what Choupo computes, what it only balances, what it only checks and what is missing, with a witness case.  To DESIGN a process, read the brief first and all of it: it is the contract for a case and ends with an index of task packs.  Read only the packs the design needs.  The reference documents are long and are for lookups a pack points to, not for reading end to end.
+
+## Start here (the one entry; it routes every task)
+
+- [start-here.md](https://www.choupo.org/llm/start-here.md): read its first section and follow the route it gives
 
 ## Does Choupo do X?
 
@@ -19,6 +23,7 @@ Two questions, one path each.  To answer whether Choupo does something (a unit, 
 - [batch-plant.md](https://www.choupo.org/llm/packs/batch-plant.md): Pack: a batch plant (tablets): batch plan, machines, clean utilities, quotes, crew
 - [design-cost.md](https://www.choupo.org/llm/packs/design-cost.md): Pack: equipment sizing, costing and economics (CAPEX, OPEX, NPV)
 - [layout.md](https://www.choupo.org/llm/packs/layout.md): Pack: plant layout (plot plan) and the GMP building interior
+- [pharmaceutical.md](https://www.choupo.org/llm/packs/pharmaceutical.md): Pack: a tablet plant from a drug and a dose
 - [pressure.md](https://www.choupo.org/llm/packs/pressure.md): Pack: pressure changers (pump, compressor, turbine, valve, pipe)
 - [reactors.md](https://www.choupo.org/llm/packs/reactors.md): Pack: reactors and kinetics
 - [recycles.md](https://www.choupo.org/llm/packs/recycles.md): Pack: recycles (loops in a steady flowsheet)
@@ -41,7 +46,6 @@ Two questions, one path each.  To answer whether Choupo does something (a unit, 
 - [patterns.md](https://www.choupo.org/llm/reference/patterns.md): Patterns — recipes for common case shapes
 - [pitfalls.md](https://www.choupo.org/llm/reference/pitfalls.md): Pitfalls — common mistakes when authoring a Choupo case
 - [schemas-reference.md](https://www.choupo.org/llm/reference/schemas-reference.md): Schemas reference — the shipped operations that carry a JSON schema
-- [start-here.md](https://www.choupo.org/llm/reference/start-here.md): Start here — run and understand one Choupo case
 - [stream-state.md](https://www.choupo.org/llm/reference/stream-state.md): Stream state — what a `0/<stream>` file may say
 - [thermo.md](https://www.choupo.org/llm/reference/thermo.md): thermoPhysPropDict — declaring the thermophysical system
 - [unit-ops.md](https://www.choupo.org/llm/reference/unit-ops.md): Unit-op catalogue — every shipped type, what it does, how to write it
