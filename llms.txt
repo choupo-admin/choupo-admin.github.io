@@ -10,6 +10,10 @@ Two questions, one path each.  To answer whether Choupo does something (a unit, 
 
 - [start-here.md](https://www.choupo.org/llm/start-here.md): read its first section and follow the route it gives
 
+## Prompts to give the assistant (three short ones: learn Choupo, learn the area, the task)
+
+- [prompts.md](https://www.choupo.org/llm/prompts.md): Prompts for your AI assistant
+
 ## Does Choupo do X?
 
 - [capabilities.md](https://www.choupo.org/llm/capabilities.md): Capability index: does Choupo do X?

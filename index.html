@@ -244,6 +244,12 @@
   .commands { margin: 0; border: 1px solid var(--line); padding: 24px; overflow: auto; color: #d8eee8; background: var(--night); font: 13px/1.8 "JetBrains Mono", Consolas, monospace; }
   .commands .comment { color: #85968f; }
 
+  .prompt-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-top: 22px; }
+  .prompt-card { border: 1px solid var(--line); padding: 18px 20px; background: var(--white); }
+  .prompt-card h3 { margin: 0 0 10px; font-size: 18px; }
+  .prompt-text { margin: 0 0 12px; padding: 14px 16px; white-space: pre-wrap; overflow-wrap: anywhere; color: #d8eee8; background: var(--night); font: 13px/1.6 "JetBrains Mono", Consolas, monospace; }
+  .prompt-note { margin: 10px 0 0; color: var(--muted); font-size: 14px; max-width: 900px; }
+
   .resource-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
   .resource { border-top: 4px solid var(--teal); padding: 22px 0 0; }
   .resource:nth-child(2) { border-color: var(--yellow); }
@@ -281,17 +287,6 @@
     letter-spacing: .06em; text-transform: uppercase; color: var(--teal-ink); }
   .edutool-shelf:hover, .edutool-shelf:focus-visible { background: #eef8f5; }
   .edutool-n { margin-left: 8px; color: var(--muted); font-weight: 600; letter-spacing: 0; }
-  .edutool-paths:empty { display: none; }
-  .edutool-paths { margin: 0 0 22px; border: 1px solid var(--line); background: var(--white); padding: 16px 20px; }
-  .edutool-paths h3 { margin: 0 0 4px; font-size: 13px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; color: var(--teal-ink); }
-  .edutool-paths > p { margin: 0 0 12px; color: var(--muted); font-size: 14px; }
-  .edutool-path { border-top: 1px solid var(--line); }
-  .edutool-path > summary { cursor: pointer; padding: 10px 0; font-size: 16px; font-weight: 700; color: var(--ink); }
-  .edutool-path > summary span { margin-left: 8px; color: var(--muted); font-size: 14px; font-weight: 400; }
-  .edutool-path ol { margin: 0 0 12px; padding-left: 22px; }
-  .edutool-path li { margin: 0 0 8px; color: var(--muted); font-size: 14px; }
-  .edutool-path li a { color: var(--teal-ink); font-weight: 700; text-decoration: none; }
-  .edutool-path li a:hover { text-decoration: underline; }
   .edutool-filter { margin: 0 0 14px; }
   .edutool-filter input { width: 100%; max-width: 440px; box-sizing: border-box;
     padding: 10px 14px; font: inherit; font-size: 15px; color: var(--ink);
@@ -484,10 +479,6 @@
       </div>
       <!-- The text filter is revealed by the script below; without JavaScript
            the shelves are simply the full list, every one open. -->
-      <!-- THE GUIDED SEQUENCES (DEV.md 4c C221, C251), from the artefact's `paths`: ordered
-           walks through the tools below.  Empty here; buildSite writes the
-           static version and the script below redraws it. -->
-      <div class="edutool-paths" id="edutoolsPaths"><h3>Guided sequences</h3><p>Each sequence walks several tools in a teaching order, with the reason for every step.</p><details class="edutool-path"><summary>Distillation<span>6 steps</span></summary><p style="margin:0 0 8px;color:var(--muted);font-size:14px">From what a standard state means to the cost of the column: one separation, seen six ways.</p><ol><li><a href="/app/?workspace=methods&amp;tool=standard-state&amp;path=distillation" target="_blank" rel="noopener">Enthalpy, standard state and equilibrium (what ° means)</a> &mdash; Fixes what the enthalpies and equilibrium constants behind every later page are measured from.</li><li><a href="/app/?workspace=methods&amp;tool=flash-operating-line&amp;path=distillation" target="_blank" rel="noopener">Flash (operating line)</a> &mdash; One equilibrium stage: the material balance line meets the equilibrium curve, the building block of a column.</li><li><a href="/app/?workspace=methods&amp;tool=mccabe&amp;path=distillation" target="_blank" rel="noopener">Distillation (McCabe-Thiele)</a> &mdash; Stacks those stages: reflux ratio and feed quality decide how many are needed.</li><li><a href="/app/?workspace=methods&amp;tool=ponchon-savarit&amp;path=distillation" target="_blank" rel="noopener">Ponchon-Savarit, derived (the enthalpy diagram)</a> &mdash; Drops the constant-molar-overflow assumption by putting enthalpy on the diagram.</li><li><a href="/app/?workspace=methods&amp;tool=fug&amp;path=distillation" target="_blank" rel="noopener">Distillation shortcut (FUG)</a> &mdash; Shortcut estimate of minimum stages, minimum reflux and the feed stage before a rigorous column.</li><li><a href="/app/?workspace=methods&amp;tool=plant-cost&amp;path=distillation" target="_blank" rel="noopener">What a plant costs to build</a> &mdash; Turns the sized equipment into what the plant costs to build.</li></ol></details><details class="edutool-path"><summary>Thermodynamics<span>5 steps</span></summary><p style="margin:0 0 8px;color:var(--muted);font-size:14px">From the meaning of the degree sign to how a Gibbs reactor finds its answer.</p><ol><li><a href="/app/?workspace=methods&amp;tool=standard-state&amp;path=thermodynamics" target="_blank" rel="noopener">Enthalpy, standard state and equilibrium (what ° means)</a> &mdash; What the degree sign fixes, and what it leaves open.</li><li><a href="/app/?workspace=methods&amp;tool=four-ways-mixture&amp;path=thermodynamics" target="_blank" rel="noopener">Four ways to price a mixture (NRTL · UNIFAC · COSMO-SAC · PC-SAFT)</a> &mdash; Four ways to price one mixture, ordered by what each model knew beforehand.</li><li><a href="/app/?workspace=methods&amp;tool=local-composition&amp;path=thermodynamics" target="_blank" rel="noopener">Local composition, derived (Wilson · NRTL · UNIQUAC)</a> &mdash; Wilson, NRTL and UNIQUAC derived as one idea carried three distances.</li><li><a href="/app/?workspace=methods&amp;tool=equilibrium-landscapes&amp;path=thermodynamics" target="_blank" rel="noopener">Equilibrium landscapes (what an approach can reach)</a> &mdash; What an equilibrium can reach, read from the thermicity and the mole change.</li><li><a href="/app/?workspace=methods&amp;tool=element-potential&amp;path=thermodynamics" target="_blank" rel="noopener">How a Gibbs reactor solves (element potentials)</a> &mdash; How the engine solves it: one potential per element instead of one unknown per species.</li></ol></details><details class="edutool-path"><summary>Reaction engineering<span>7 steps</span></summary><p style="margin:0 0 8px;color:var(--muted);font-size:14px">From the heat a reaction releases to the reactor that keeps it under control.</p><ol><li><a href="/app/?workspace=methods&amp;tool=reaction-enthalpy&amp;path=reaction-engineering" target="_blank" rel="noopener">Reaction enthalpy and temperature (Kirchhoff)</a> &mdash; The heat of reaction, and how it moves with temperature.</li><li><a href="/app/?workspace=methods&amp;tool=reactor-ladder&amp;path=reaction-engineering" target="_blank" rel="noopener">The reactor ladder (stoichiometry, limit, rate)</a> &mdash; The order of questions: what the atoms allow, what thermodynamics allows, then what the rate delivers.</li><li><a href="/app/?workspace=methods&amp;tool=limiting-reactant&amp;path=reaction-engineering" target="_blank" rel="noopener">Limiting reactant and feed ratio in a recycle loop</a> &mdash; Feed ratios and the limiting reactant once a recycle closes the loop.</li><li><a href="/app/?workspace=methods&amp;tool=levenspiel&amp;path=reaction-engineering" target="_blank" rel="noopener">Reactor sizing (Levenspiel)</a> &mdash; Sizing: the PFR integral against the CSTR rectangle for the same conversion.</li><li><a href="/app/?workspace=methods&amp;tool=approach-to-equilibrium&amp;path=reaction-engineering" target="_blank" rel="noopener">Approach to equilibrium (Gibbs reactor)</a> &mdash; How close a reactor can get to equilibrium, and what a Gibbs reactor assumes.</li><li><a href="/app/?workspace=methods&amp;tool=declared-pathways&amp;path=reaction-engineering" target="_blank" rel="noopener">Declared pathways (equilibrium over the reactions you allow)</a> &mdash; Equilibrium over the reactions you allow, against every pathway the species permit.</li><li><a href="/app/?workspace=methods&amp;tool=vanheerden&amp;path=reaction-engineering" target="_blank" rel="noopener">Ignition / extinction (Van Heerden)</a> &mdash; The hazard: heat generated against heat removed gives three steady states and an ignition.</li></ol></details><details class="edutool-path"><summary>Recycle numerics<span>3 steps</span></summary><p style="margin:0 0 8px;color:var(--muted);font-size:14px">From why a recycle is iterated to how the cut is chosen: relaxation, Wegstein, and the tear.</p><ol><li><a href="/app/?workspace=methods&amp;tool=relaxation&amp;path=recycle-numerics" target="_blank" rel="noopener">Relaxation (the first rung of recycle numerics)</a> &mdash; Why a recycle must be iterated, and how a step factor tames an oscillating loop but never a runaway one.</li><li><a href="/app/?workspace=methods&amp;tool=wegstein&amp;path=recycle-numerics" target="_blank" rel="noopener">Wegstein acceleration (closing a recycle)</a> &mdash; The same factor, chosen for you per variable from the last two passes, on a tear that holds a flow and a temperature.</li><li><a href="/app/?workspace=methods&amp;tool=tear-streams&amp;path=recycle-numerics" target="_blank" rel="noopener">Tear streams (where to cut a recycle)</a> &mdash; Which stream to cut in the first place: the engine detects every cycle and leaves the cut to the author.</li></ol></details></div>
       <div class="edutool-filter" id="edutoolsFilterBox" hidden>
         <input type="search" id="edutoolsFilter" placeholder="Filter the tools: McCabe, psychro, Gibbs&hellip;" aria-label="Filter the EduTools by name or topic" autocomplete="off">
         <p class="edutool-filter-note" id="edutoolsFilterNote" role="status" aria-live="polite"></p>
@@ -659,6 +650,54 @@ energy balance      <span class="hot">reported</span></pre>
       <div><p class="eyebrow">No installation required</p><h2>Open a real case and watch the solver work.</h2><p>The browser application executes the C++ engine locally through WebAssembly. Choose a tutorial, inspect its files, run it and read the results.</p></div>
       <a class="button" href="/app/" target="choupo-app" rel="noopener">Launch Choupo</a>
     </div>
+  </section>
+
+  <!-- WORK WITH YOUR AI ASSISTANT (DEV.md 4c C252).  The text between the
+       markers is INJECTED at build time by bin/buildSite from docs/ai/prompts.md
+       (bin/curate/prompts_home.py): never edit it here, and a build that cannot
+       find the markers or read the file FAILS. -->
+  <section class="section" id="assistant" style="background:var(--white)">
+<!--PROMPTS:BEGIN-->
+<div class="wrap">
+<div class="section-head"><p class="eyebrow">AI assistant</p>
+<h2>Work with your AI assistant.</h2>
+<p class="lede">Paste prompt A once per conversation and wait for its ten lines; then paste B, replacing <code>&lt;pack&gt;</code> with one name from the pack list; then C, replacing the angle brackets with your task.</p></div>
+<p class="prompt-note">Your assistant gives you the case as a .zip: open it in the app with File, Open Case from .zip, run it, look, and go back to the assistant with what you saw.</p>
+<div class="prompt-list">
+<div class="prompt-card"><h3>A. First, make it learn Choupo</h3>
+<pre class="prompt-text" id="promptA">Before I ask you anything, learn Choupo from its own instructions. Read these three whole, in this order:
+1. https://www.choupo.org/llm/start-here.md
+2. https://www.choupo.org/llm/brief.md (the contract: what a case is, how a stream is fixed, units and sources, what a refusal means)
+3. https://www.choupo.org/llm/capabilities.md (what Choupo does and does not do)
+Then tell me in ten lines what you learned and wait for my task.
+Standing rule: a tutorial is a worked check, never a template. Derive my case from the contract and the grammar; only afterwards compare it with the nearest tutorial and say where they differ. Never invent a property, a price or a parameter: stop and ask me.</pre>
+<button type="button" class="button light prompt-copy" data-copy="promptA">Copy prompt A</button>
+</div>
+<div class="prompt-card"><h3>B. Then, make it learn the area of the task</h3>
+<pre class="prompt-text" id="promptB">Now read https://www.choupo.org/llm/packs/&lt;pack&gt;.md whole and tell me in five lines what it adds to what you already know. Then wait.</pre>
+<button type="button" class="button light prompt-copy" data-copy="promptB">Copy prompt B</button>
+<p class="prompt-note">Packs: <code>batch-plant</code> (batch plan, machines, GMP), <code>design-cost</code> (sizing, CAPEX, OPEX, NPV), <code>layout</code> (plot plan), <code>pharmaceutical</code> (a tablet plant from a drug and a dose), <code>pressure</code> (pumps, pipes, valves), <code>reactors</code> (kinetics, equilibrium, Gibbs), <code>recycles</code> (loops, tears), <code>separations</code> (columns, absorbers, extraction).</p>
+<p class="prompt-note">For a property, a component or a pair, read https://www.choupo.org/llm/reference/thermo.md and https://www.choupo.org/llm/reference/components.md instead.</p>
+</div>
+<div class="prompt-card"><h3>C. Then, the task in your own words</h3>
+<pre class="prompt-text" id="promptC">My task: &lt;what I want, in plain words: the product, the route, the numbers I have&gt;.
+Work from the contract you learned. First write the three decisions you had to take and why. Then give me the whole case folder as a .zip to download, every value with its unit and its source, and one short note. Only if you cannot create a file, give each file as its own block headed `=== FILE: &lt;path&gt; ===` (path inside the case folder). If a datum is missing, stop and ask me.</pre>
+<button type="button" class="button light prompt-copy" data-copy="promptC">Copy prompt C</button>
+</div>
+</div></div>
+<!--PROMPTS:END-->
+    <script>
+      (function () {
+        document.querySelectorAll(".prompt-copy").forEach(function (b) {
+          b.addEventListener("click", function () {
+            var el = document.getElementById(b.getAttribute("data-copy"));
+            if (!el) return;
+            var done = function () { var o = b.textContent; b.textContent = "Copied"; setTimeout(function () { b.textContent = o; }, 2000); };
+            if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(el.textContent).then(done, function () {});
+          });
+        });
+      })();
+    </script>
   </section>
 
   <section class="section" id="run">
@@ -906,20 +945,6 @@ https://www.choupo.org/app/
         ? (shown ? shown + " of " + cards.length + " tools match."
                  : "No tool matches. Try a method, a model or a quantity.") : "";
     }
-    var pathHost = document.getElementById("edutoolsPaths");
-    function drawPaths(paths) {
-      if (!pathHost || !Array.isArray(paths) || !paths.length) return;
-      pathHost.innerHTML = '<h3>Guided sequences</h3><p>Each sequence walks several tools in a teaching order, with the reason for every step.</p>'
-        + paths.map(function (p) {
-          return '<details class="edutool-path"><summary>' + esc(p.title)
-            + '<span>' + p.steps.length + ' steps</span></summary>'
-            + '<p style="margin:0 0 8px;color:var(--muted);font-size:14px">' + esc(p.intro) + '</p><ol>'
-            + p.steps.map(function (s) {
-              return '<li><a href="' + esc(s.href) + '" target="_blank" rel="noopener">'
-                + esc(s.label) + '</a> &mdash; ' + esc(s.why) + '</li>';
-            }).join("") + '</ol></details>';
-        }).join("");
-    }
     if (box && input) {
       box.hidden = false;
       input.addEventListener("input", applyFilter);
@@ -982,7 +1007,6 @@ https://www.choupo.org/app/
           host.innerHTML = '<div class="edutool-cards">' + tools.map(card).join("") + '</div>';
         }
         applyFilter();
-        drawPaths(doc.paths);
         var count = document.getElementById("edutoolsCount");
         if (count) count.textContent = tools.length;
         var blurb = document.getElementById("edutoolsBlurb");

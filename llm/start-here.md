@@ -2,6 +2,16 @@
 
 > **Version.** This document describes the development line `Choupo-dev`, which https://www.choupo.org/app runs and which every assistant document here describes.  The latest stable release is `Choupo-2608`; the one page that describes that release instead of the development line is the model catalogue, https://www.choupo.org/models/ (static copy: https://www.choupo.org/llm/models.md).
 
+## For a student with a browser and an AI assistant
+
+You need no checkout.  Run cases in the app at https://www.choupo.org/app.  To
+have your assistant (ChatGPT, Claude, ...) write a case, copy the three short
+prompts from https://www.choupo.org/llm/prompts.md (also on the home page,
+under "Work with your AI assistant", and in the app's Help menu): the first
+makes it read Choupo's own instructions before anything else.  The assistant gives
+the case as a .zip; open it with File, Open Case from .zip, run it, look, and
+go back to the assistant with what you saw.  The rest of this file assumes a checkout.
+
 ## For an AI assistant: route the task, then stop reading this file
 
 Read ONLY the one document your task needs.  `docs/ai/<path>` is served at
@@ -15,7 +25,9 @@ Read ONLY the one document your task needs.  `docs/ai/<path>` is served at
 | change an existing case (feedback, a new number) | `brief.md`, its section 10 |
 | how to run a case, what the files are | the rest of this file |
 
-Never invent a key, a unit type, a component name or a parameter value: if the
+A tutorial is a worked check, never a template: derive the case from the
+contract and the grammar, compare it with the nearest tutorial afterwards and
+say where they differ.  Never invent a key, a unit type, a component name or a parameter value: if the
 documents do not give it, say "Choupo does not provide it" and ask.  The rest
 of this file is for the student.
 
