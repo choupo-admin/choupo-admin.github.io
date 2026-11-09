@@ -1,7 +1,7 @@
 {
  "definition": "every line (comments and blanks included) of every git-tracked UTF-8 text file",
  "totalFiles": 44314,
- "totalLines": 2916776,
+ "totalLines": 2916771,
  "groupEstimateCompounds": 28447,
  "buckets": {
   "engineCpp": {
@@ -12,7 +12,7 @@
   "gui": {
    "label": "browser GUI (TypeScript/React)",
    "files": 948,
-   "lines": 287933
+   "lines": 287928
   },
   "tutorials": {
    "label": "tutorial cases (dictionaries)",
