@@ -551,7 +551,11 @@ and `optimization` on the representative pass (the replay at the answer),
 `sweep` per converged point, `gridSweep` not at all (2026-09-26; before that
 a `designSpec` case silently ran no chain under a header that said it did).
 Each TOP-LEVEL key names a pass type and its
-sub-dict is that pass's configuration; the passes run in order after
+sub-dict is that pass's configuration -- EXCEPT `references` and `views`,
+which are not passes: they declare the case's own figures and tables, the
+grammar a props case declares in its propsDict, over the run's units and
+streams (`unitOp <name>;`, `stream <name>;`; C271, dict-syntax.md, "The same
+views in a steady case").  The passes run in order after
 convergence and augment the result (they never change the solution):
 
 ```
@@ -1296,6 +1300,39 @@ terms, checked by hand in its postDict); the gate
 `bin/curate/check_debt_financing.py` holds it and builds further probes from
 a loan-free copy of it and from `economics01_esterification_dcf`.
 
+**TAX ON A LOSS (2026-11-09, DEV.md 4c C269 decision (2)).**  One opt-in word
+in the same `economics {}` block says what a loss year's tax is:
+
+```
+taxOnLoss  credit;    // the default (absent = this): tau x the loss is a tax
+                      // CREDIT -- the loss is set against the owner's OTHER
+                      // taxable profit (a group's consolidated return)
+taxOnLoss  none;      // stand-alone: a loss year pays no tax and earns no
+                      // credit; the loss is NOT carried forward (not modelled)
+```
+
+Absent, nothing moves: every case keeps the cash flow it had.  Whenever an
+operating year's taxable income is negative the run ANNOUNCES the reading in
+force into the caveat block and the result (`[assumed] economics`, a warning
+under `credit` with the credit's total and its discounted value, i.e. its
+share of the NPV; an info line under `none`), prints it beside the tax rate,
+and publishes `kpis.economics.lossYears`, `taxCreditOnLoss` (0 under `none`)
+and `taxCreditOnLoss_NPV`, plus `taxOnLoss`, `lossYears` and
+`taxCreditOnLoss` in the result's `economics` object.  A case with no loss
+year publishes none of these.  Under `none` the rule reaches every tax the
+appraisal computes: the cash flow, the simple payback, the year-by-year table
+and the equity view (the loan's interest shield is floored the same way);
+the salvage gain is taxed as before.  Any other word refuses by name.  Measured
+on 2026-11-09, twelve of the fifteen economics cases have a loss year and
+carry the announcement (the green-ammonia plants every operating year: the
+credit is 87 MEUR of `greenAmmoniaPEQ_baseCase`'s NPV); a case's README says
+which reading its NPV is.  Worked cases: the three tablet plants
+(`tutorials/batch/plant/donepezil01_tablets`: 7 loss years, 2.71 MEUR of the
+NPV; `donepezil02_two_strengths`: all 10; `apalutamide01_tablets`: no loss
+year); the gate
+`bin/curate/check_economic_extensions.py` arm (i) shows both readings on a
+priced-down twin of `economics04`.
+
 **THE PARTICULATE STEPS IN THE LABOUR (2026-10-19, DEV.md 4c C98).**  The
 operator count is Turton's `N_OL = (6.29 + 31.7 P^2 + 0.23 N_np)^0.5` per
 shift (x 4.5 positions), `N_np` the non-particulate processing steps and `P`
@@ -1533,7 +1570,26 @@ plot { margin 10 m; reason "..."; }   // optional; absent: 0 m, announced
              tierSpacing 1.2 m; xStart -14 m; xEnd 100 m; reason "..."; }
   pipes { rawLiquid { waypoints ( { x 56 m; y -6 m; z 10 m; } ... ); } }   // optional override
   ```
-  A waypoint route must be orthogonal (one axis per segment).  A stream the
+  A waypoint route must be orthogonal (one axis per segment).
+  A HEADER (C268): a unit realised by several identical parallel items
+  (a store's vessels, a tank farm, the trains of a trained plant) is piped
+  by ONE MAIN along the row of its items and a BRANCH to each item's port,
+  never by one pipe to the first item; a store sized by the postDict on a
+  boundary stream (`storage`, `gasStorage`) is no flowsheet unit, its
+  sizer already knows the stream (`stream` in the entry; the layout
+  repeats nothing), and the stream's pipe is routed THROUGH it (fence,
+  main, process for a feed store; process, main, fence for a product
+  store).  The main runs in the aisle between two rows or beside one row
+  on the side facing the other end of the pipe, along the tips of the
+  nozzles' 1 m stubs,
+  at the elevation of the stubs; three rows or more leave the far rows
+  announced as not reached.  Each branch is a pipe of its own,
+  `pipe:<stream>@<item>`, with the stream's state and no flow (a store
+  fills and empties by it); the run says how many branches each header
+  carries; a store on a stream that is not routed is a finding by name.
+  A `pipes` override on a stream that carries a header is refused; move
+  a branch's port with `ports` (an item of an attached store is accepted).
+  A stream the
   layout cannot reach (an unsized tank, an unplaced item) is listed as not
   routed, with the reason, the units at its two ends and the point of the end
   it does reach; the 3D view marks it there (a dashed stub and a warning), so

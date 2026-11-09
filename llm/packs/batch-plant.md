@@ -87,6 +87,15 @@ batchPlan
   limiting cycle).  Several products: `products ( ... )` + `campaignOrder (
   ... )` + a `productChangeover` per stage (`cleaning`, `ratedMachine` and
   `cleanUtilities` then run per product and say so; see their sections).
+* A sold unit: `dosageUnit { name tablet; mass 0.29023 g; source "..."; reason
+  "..."; }` inside each product (or in the plan for one product) makes the
+  result's `batchPlan.dosage` give mg of every ingredient per unit (the product
+  stream's own composition x that mass), units per lot and per year, and the
+  fluid (moisture) share by mass.  Every plan also publishes `batchPlan.bases`:
+  the declared lot, the lot's product mass, r_P, H_eq, each train's year and
+  available hours, and the hours every annual flow cost uses -- each with its
+  definition (log: `BASES`).  The stage that sets T_L is the **limiting stage**;
+  the machine nearest its rating is the **least capacity margin** -- two things.
 * Cycle t_j = charge + process + discharge + clean.  T_L = max t_j/N_op.
   Occupancy = (N t_j/N_op + campaigns x changeover) / availableTime.
 * REFUSED (exit 2, with the numbers and remedies): a stage busy more hours
@@ -471,6 +480,8 @@ economics
     constructionPeriod  1;
     discountRate        0.10;
     taxRate             0.21;
+    // taxOnLoss credit;   -- the default: a loss year's tax is a CREDIT (a group's
+    //                        reading, announced when it bites); `none` = stand-alone
     depreciation        straightLine;
     depreciableLife     7;
     salvageFraction     0.0;
@@ -622,7 +633,7 @@ lot (the full route is `docs/pif-student-path.md`).  In the order they bite:
  ratedMachine: sizing/RatedMachineSize.H:31-110 and .cpp: kind list :294-302, rating block :305-310 (source/reason :81), installed :316, batchVolume keys :368-370, massRate :404, tabletPress :416-427, packagingLine :446-448, refusal :481, announceAbove :500, shift :512.
  hvacGrade quote: costing/DeclaredQuote.cpp (identity block, `hvacGrade`/`valuePerSupplyAir`), CostingPass.cpp (airHandling refusal, HVAC KPIs).
  cleanUtilities: CleanUtilitiesPass.H:31-70 and .cpp: hvac :120-170 (grades A B C D CNC :148), unserved :170-180, purifiedWater :300-366 (uses :319-366), run :460-464.
- postDict order and layout-before-economics: src/applications/choupoSolve/main.cpp:1478-1494.
+ postDict order and layout-before-economics: src/applications/choupoSolve/main.cpp:1498-1514.
  quotes: CostingPass.cpp:133; economics keys: EconomicsPass.H:28-120, fromBatchPlan DEV.md 4c C99.
  Sizer failure printed, exit 0: measured (plotMini flashDrum). Missing price exit 0: measured.
 -->

@@ -181,13 +181,15 @@ suffixes below are accepted -- anything else is a parse error.  Includes:
 - **Temperature:** `K`, `degC` (`C`/`Celsius`), `degF` (`F`/`Fahrenheit`)
   -- note: degC/degF are affine, so a difference and an absolute differ;
   use `K` when in doubt.
-- **Length:** `m`, `mm`, `cm`, `km`, `in` (`inch`), `ft`.  (No `um`/`nm`.)
+- **Length:** `m`, `mm`, `um`, `cm`, `km`, `in` (`inch`), `ft`.  (No `nm`.)
 - **Area:** `m2`, `cm2`, `mm2`.
 - **Volume:** `m3`, `L` (`l`), `mL` (`ml`).
-- **Volumetric flow:** `m3/s`, `m3/h`, `L/s`, `L/h`, `L/min`.
-- **Inverse time (a rate of events):** `1/s`, `1/min`, `1/h` (DEV.md 4c C195;
-  a design sheet declares a tablet or pack rate with them).
-- **Time:** `s` (`sec`), `min`, `h` (`hr`), `day`.
+- **Volumetric flow:** `m3/s`, `m3/h`, `m3/d`, `m3/yr` (a year is 365 d),
+  `L/s`, `L/h`, `L/min`.
+- **Inverse time (a rate of events):** `1/s`, `1/min`, `1/h`, `rpm` (= `1/min`;
+  DEV.md 4c C195, C269; a design sheet declares a tablet or pack rate, or an
+  atomiser wheel's speed, with them).
+- **Time:** `s` (`sec`), `min`, `h` (`hr`), `day`, `yr` (365 d).
 - **Mass:** `kg`, `g`, `t` (`ton`/`tonne`).
 - **Energy / power:** `J`, `kJ`, `MJ`, `W`, `kW`, `MW_power` (`MW_power`,
   not `MW` -- a bare `MW` would collide with `MPa`'s milli-prefix logic).
@@ -1066,3 +1068,25 @@ paper's tables and figures), `polarisation01_geraldes_afonso_table1`,
 `tutorials/props/adsorption/isotherm02_fit_jaschik` (the fit defaults);
 gate `check_postprocessing`; record
 `docs/design/a-post-processing-dictionary.md`.
+
+### The same views in a STEADY case (choupoSolve, C271)
+
+A steady case declares the SAME two lists at the top level of
+`system/postDict` (a postDict holding only them runs no pass).  The sources
+are the run's UNITS and STREAMS, two namespaces, so a view names which:
+`unitOp <name>;` (its KPIs as diagnostics; its profile as the table
+`profile`; a KPI key spelt `<name>_<unit>`, e.g. `Q_reboiler_kW`, publishes
+that unit) or `stream <name>;` (`T`, `P`, `F`, `F_mass`, `vf` and, per
+component, `x_<c>` mole fraction, `w_<c>` mass fraction, `m_<c>` mass flow),
+wherever a props view says `op <name>;`.  A declared unit of the same
+dimensions SCALES a published one (a fraction drawn in `"%"`, kg/s in
+`"kg/h"`, kW in `"MW_power"`, K in `"degC"`): the engine converts, never the
+author.  Two forms are new: a series of `pairs` (the parity of a table
+against a run -- each pair a measured cell, `reference <r>; select { ... };
+x <column>;`, set against a model number, `stream <s>; y <diagnostic>;`) and a
+rows-table row whose `cells` each name their own source (`cells { duty {
+unitOp splitter; key Q_reboiler_kW; } iC4 { reference klemola; select { item
+isoButane; } key top_wt; } }`).  Views are parsed before the solve; unit and
+stream names are held to the run after it (a refusal lists what exists).
+An axis may declare a drawing range (`yAxis { unit "%"; scale log; min 0.05; max 150; }`); the CSV keeps every point. Not under an `outerDict`.  Witness: `tutorials/steady/distillation/
+column14_klemola_c4_splitter` (the measured plant, drawn against the run).
