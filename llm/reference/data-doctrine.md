@@ -8,9 +8,9 @@ or an operation's `constant/`.  It is the settled, ratified governance
 (four-pillar design review) and it gates every component-`.dat` curation
 act and every property-model PR.  Read it before you add, move, or refine a
 number.  The companion files are
-[`components.md`](components.md) (the catalogue field glossary),
-[`thermo.md`](thermo.md) (the model shapes + the cascade table), and
-[`property-architecture.md`](../property-architecture.md) (estimation is a
+[`components.md`](https://www.choupo.org/llm/reference/components.md) (the catalogue field glossary),
+[`thermo.md`](https://www.choupo.org/llm/reference/thermo.md) (the model shapes + the cascade table), and
+[`property-architecture.md`](https://github.com/choupo-admin/choupo/blob/main/docs/property-architecture.md) (estimation is a
 RESOLUTION problem solved at CURATION time — SETTLED, do not reopen).
 
 ---

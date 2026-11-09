@@ -128,7 +128,7 @@ once is the STATE views' — do not read a missing `design/MAIN/` as a defect,
 and do not create one.  `system/` and `constant/` exist at every level of
 the case (the plant's, a sector's, a unit's) and never inside the
 geography.  Record:
-[`../design/main-is-a-sector-and-the-views-repeat-the-plant.md`](../design/main-is-a-sector-and-the-views-repeat-the-plant.md).
+[`../design/main-is-a-sector-and-the-views-repeat-the-plant.md`](https://github.com/choupo-admin/choupo/blob/main/docs/design/main-is-a-sector-and-the-views-repeat-the-plant.md).
 **A state view carries the streams AND each unit's interior**, the way an
 OpenFOAM time directory carries a field's `boundaryField` and its
 `internalField` in one file: inside `0/` and `converged/`, the streams are
@@ -138,10 +138,10 @@ directly; the interior is namespaced inside the same view.  What the
 interior IS (a field over a coordinate of
 the equipment or its inventory, never a construction over a swept parameter)
 is in
-[`../design/internal-states-are-a-projection-of-profiles.md`](../design/internal-states-are-a-projection-of-profiles.md);
+[`../design/internal-states-are-a-projection-of-profiles.md`](https://github.com/choupo-admin/choupo/blob/main/docs/design/internal-states-are-a-projection-of-profiles.md);
 why it lives inside the state view, and what a case gains by DECLARING one in
 `0/`, is in
-[`../design/a-state-directory-is-a-restartable-snapshot.md`](../design/a-state-directory-is-a-restartable-snapshot.md).
+[`../design/a-state-directory-is-a-restartable-snapshot.md`](https://github.com/choupo-admin/choupo/blob/main/docs/design/a-state-directory-is-a-restartable-snapshot.md).
 Witnesses: `tutorials/steady/distillation/column16_declared_interior` and
 `tutorials/steady/absorption/extract02_declared_interior`.
 
@@ -424,9 +424,9 @@ letters (a member with a `type` is a leaf, whatever its name), and a FLAT case
 has no `MAIN/` — its units are the plant, so its state files stay flat.
 `choupoSolve --manifest <case>` prints where every stream's file goes; a file at
 the wrong address makes the run REFUSE, naming the move.  Records:
-[`../design/main-is-a-sector-and-the-views-repeat-the-plant.md`](../design/main-is-a-sector-and-the-views-repeat-the-plant.md)
+[`../design/main-is-a-sector-and-the-views-repeat-the-plant.md`](https://github.com/choupo-admin/choupo/blob/main/docs/design/main-is-a-sector-and-the-views-repeat-the-plant.md)
 and
-[`../design/a-stream-belongs-to-the-graph-that-contains-both-ends.md`](../design/a-stream-belongs-to-the-graph-that-contains-both-ends.md).
+[`../design/a-stream-belongs-to-the-graph-that-contains-both-ends.md`](https://github.com/choupo-admin/choupo/blob/main/docs/design/a-stream-belongs-to-the-graph-that-contains-both-ends.md).
 
 No special characters in identifiers: only letters, digits, and
 underscore.  Symbols like `@`, `&`, `#`, `?` break shell expansion,

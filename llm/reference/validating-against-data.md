@@ -109,8 +109,8 @@ rules in §4 apply identically.
 
 ### 1.4 What may enter the repository
 
-Read [`data-doctrine.md`](data-doctrine.md) and
-[`curation-protocol.md`](curation-protocol.md) in full before writing any
+Read [`data-doctrine.md`](https://www.choupo.org/llm/reference/data-doctrine.md) and
+[`curation-protocol.md`](https://www.choupo.org/llm/reference/curation-protocol.md) in full before writing any
 measured value into the tree.  The short form:
 
 * **A handful of values cited to their primary publication is a CITATION** and
@@ -131,8 +131,8 @@ measured value into the tree.  The short form:
 
 ## 2. Where the data goes in the case
 
-The property layout has four axioms (see [`thermo.md`](thermo.md) and
-[`data-doctrine.md`](data-doctrine.md)).  Operationally, for a case:
+The property layout has four axioms (see [`thermo.md`](https://www.choupo.org/llm/reference/thermo.md) and
+[`data-doctrine.md`](https://www.choupo.org/llm/reference/data-doctrine.md)).  Operationally, for a case:
 
 | what | where |
 |---|---|

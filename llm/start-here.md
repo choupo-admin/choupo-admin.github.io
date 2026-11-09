@@ -22,6 +22,7 @@ Read ONLY the one document your task needs.  `docs/ai/<path>` is served at
 | "does Choupo do X?" | `capabilities.md` |
 | design a process, write a case | `brief.md` (all of it), then only the packs it names |
 | a tablet plant for their own drug and dose | `brief.md`, then `docs/ai/packs/pharmaceutical.md` |
+| a component or a binary pair Choupo lacks, measured data to fit | `brief.md`, then `docs/ai/packs/properties.md` |
 | change an existing case (feedback, a new number) | `brief.md`, its section 10 |
 | how to run a case, what the files are | the rest of this file |
 
@@ -129,17 +130,17 @@ fraction, and energy closure.  The dictionaries remain the source of truth.
 
 ## 6. Pull only the reference you need
 
-- Case files and `0/`: [`case-layout.md`](case-layout.md)
-- Dictionary grammar and units: [`dict-syntax.md`](dict-syntax.md)
-- Property models: [`thermo.md`](thermo.md)
-- Unit operation fields: [`unit-ops.md`](unit-ops.md)
+- Case files and `0/`: [`case-layout.md`](https://www.choupo.org/llm/reference/case-layout.md)
+- Dictionary grammar and units: [`dict-syntax.md`](https://www.choupo.org/llm/reference/dict-syntax.md)
+- Property models: [`thermo.md`](https://www.choupo.org/llm/reference/thermo.md)
+- Unit operation fields: [`unit-ops.md`](https://www.choupo.org/llm/reference/unit-ops.md)
 - Bringing MEASURED data in, and finding out WHICH declaration is wrong:
-  [`validating-against-data.md`](validating-against-data.md) -- read this before
+  [`validating-against-data.md`](https://www.choupo.org/llm/reference/validating-against-data.md) -- read this before
   answering "is this model good enough?", and before reaching for a better
   component record
-- Recycle, sweeps, batch, and fitting: [`patterns.md`](patterns.md)
-- Failure modes: [`pitfalls.md`](pitfalls.md)
+- Recycle, sweeps, batch, and fitting: [`patterns.md`](https://www.choupo.org/llm/reference/patterns.md)
+- Failure modes: [`pitfalls.md`](https://www.choupo.org/llm/reference/pitfalls.md)
 
 When a required component property is absent, stop and follow
-[`curation-protocol.md`](curation-protocol.md).  Do not invent a number to make
+[`curation-protocol.md`](https://www.choupo.org/llm/reference/curation-protocol.md).  Do not invent a number to make
 the case run.

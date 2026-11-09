@@ -144,7 +144,7 @@ service:
 operation { ...  reboiler { utility steamMP; }  condenser { utility coolingWater; } }
 ```
 
-(See [`unit-ops.md`](unit-ops.md) → `distillationColumn`.)
+(See [`unit-ops.md`](https://www.choupo.org/llm/reference/unit-ops.md) → `distillationColumn`.)
 
 ### Film-condensation duty from geometry (the condenser HTC)
 
@@ -155,7 +155,7 @@ a coolant film, solving a 1-D wall-energy balance (`q_cond == q_cool`) for the
 wall temperature, then `Q = h_cond · A · dT_film`.  The first-law ledger sees
 the resulting Q exactly as it sees any other duty — the duty is still a RESULT,
 just sourced from geometry.  Grammar (`geometry`/`condensation`/`coolant`
-blocks) → [`dict-syntax.md`](dict-syntax.md); tutorial
+blocks) → [`dict-syntax.md`](https://www.choupo.org/llm/reference/dict-syntax.md); tutorial
 `steady/heat/condenser01_film_nusselt`.
 
 ## 5. Heat integration: wire a duty to a carrier ("carried", not allocated)

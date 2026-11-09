@@ -393,7 +393,7 @@ citable from any source in the tree (record:
 A model's parameter lives at the **highest tier where it is true** — the
 same arity test as the component glossary, asked of the *model* (*does the
 number require you to name the model?*).  See
-[`data-doctrine.md`](data-doctrine.md) §4.
+[`data-doctrine.md`](https://www.choupo.org/llm/reference/data-doctrine.md) §4.
 
 1. **Corresponding-states triad → stays on the component, untouched.**  Any
    model that needs only `{Tc, Pc, ω}` (every cubic: SRK, PR, a new
@@ -428,7 +428,7 @@ number require you to name the model?*).  See
    model-named block IS the doctrine — a future EoS with fitted
    parameters adds its own `pengRobinson{}`-style block; the old
    `eosParameters{}` container idea is retired.  See
-   [`data-doctrine.md`](data-doctrine.md) §4.)
+   [`data-doctrine.md`](https://www.choupo.org/llm/reference/data-doctrine.md) §4.)
 3. **PAIR parameters (NRTL τ, Henry, Pitzer β, `k_ij`) → the parameter
    catalogue**, `data/standards/parameters/<MODEL>/<i>-<j>.dat`, referenced
    from a `binaryParameters`/`binaryInteractions` block by `source`, loaded
@@ -450,7 +450,7 @@ Water earns **one canonical, named, by-name aqueous reference tier** — never
 an *implied component slot*.  When a solution property is needed and no
 solvent is named at the call site, the resolver uses the declared default
 **and announces it on every run**; off-default it **fails with a remedy** —
-never a silent water substitution.  See [`data-doctrine.md`](data-doctrine.md) §2.
+never a silent water substitution.  See [`data-doctrine.md`](https://www.choupo.org/llm/reference/data-doctrine.md) §2.
 
 ## The folder cascade — where a refined number goes
 
@@ -468,7 +468,7 @@ block), never field-by-field.
 | a RATE (kinetics) or GEOMETRY (PSD) — the molecule-in-a-machine | the operation's `constant/` (`crystallisation`, `dryingKinetics`, `reactions`); PSD is a **stream** attribute |
 
 Precedence, lowest → highest: `local < standard < case < sector < unit`.
-Full rule + the merge semantics: [`data-doctrine.md`](data-doctrine.md) §3.
+Full rule + the merge semantics: [`data-doctrine.md`](https://www.choupo.org/llm/reference/data-doctrine.md) §3.
 
 ## membrane (only for spiralWoundModule)
 

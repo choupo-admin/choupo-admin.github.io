@@ -124,7 +124,7 @@ A flash is fixed by exactly two numbers (`T,P` for `isothermalFlash`; `Q=0,P`
 for `adiabaticFlash`).  Its duty `Q` is a RESULT (a KPI + heat stream), never an
 `operation` key — the key was removed on purpose.  To *impose* a heat, chain a
 `heater(Q) → flash`; for a target T, a DesignSpec on the heater's `$Q`.  See
-[`energy.md`](energy.md) → "the flash/heater rule".
+[`energy.md`](https://www.choupo.org/llm/reference/energy.md) → "the flash/heater rule".
 
 ### Specifying a feed's thermal state — a stream is fixed by TWO variables
 A stream of known composition + flow is fixed by exactly **two** intensive
@@ -191,7 +191,7 @@ A geometry-mode **boiler** (`boiling {}`) is the inverse of a geometry-mode
   design above CHF is **HARD-REFUSED (burnout)** — a pool boiler physically
   cannot exceed the critical heat flux. If the run refuses with a burnout
   message, reduce `dT_excess`, area, or the heating-medium temperature; do not
-  raise a tolerance. See [`dict-syntax.md`](dict-syntax.md) → "phaseChanger
+  raise a tolerance. See [`dict-syntax.md`](https://www.choupo.org/llm/reference/dict-syntax.md) → "phaseChanger
   (boiler) `model geometry;`". Tutorial: `steady/heat/reboiler_water_copper`.
 
 ## Activity model / EoS
@@ -681,7 +681,7 @@ model-dependent readout, and the solver never silently nudges `T` to hide
 the step.  So if `H` jumps across an override boundary, that is the two
 models disagreeing — information, not a bug.  Default to ONE consistent
 global thermo; reach for `thermo {}` overrides only when you really need
-different models on adjacent units (rare).  Detail: [`energy.md`](energy.md) §7.
+different models on adjacent units (rare).  Detail: [`energy.md`](https://www.choupo.org/llm/reference/energy.md) §7.
 
 ## Electrolytes
 

@@ -16,7 +16,7 @@ documentation debt.
 It lives under `docs/ai/` because an assistant helping you author a
 case reads it, but it is plain Markdown and reads perfectly well for a
 person.  For prose, groupings and worked examples instead of an
-alphabetical dump, read [`unit-ops.md`](unit-ops.md) beside it; to be
+alphabetical dump, read [`unit-ops.md`](https://www.choupo.org/llm/reference/unit-ops.md) beside it; to be
 taught rather than to look something up, read the User Guide.
 
 *111 of 111 registered operations carry a schema and are documented below.*

@@ -12,7 +12,7 @@ Two questions, one path each.  To answer whether Choupo does something (a unit, 
 
 ## Prompts to give the assistant (three short ones: learn Choupo, learn the area, the task)
 
-- [prompts.md](https://www.choupo.org/llm/prompts.md): Prompts for your AI assistant
+- [prompts.md](https://www.choupo.org/llm/prompts.md): Prompt for your AI assistant
 
 ## Does Choupo do X?
 
@@ -29,6 +29,7 @@ Two questions, one path each.  To answer whether Choupo does something (a unit, 
 - [layout.md](https://www.choupo.org/llm/packs/layout.md): Pack: plant layout (plot plan) and the GMP building interior
 - [pharmaceutical.md](https://www.choupo.org/llm/packs/pharmaceutical.md): Pack: a tablet plant from a drug and a dose
 - [pressure.md](https://www.choupo.org/llm/packs/pressure.md): Pack: pressure changers (pump, compressor, turbine, valve, pipe)
+- [properties.md](https://www.choupo.org/llm/packs/properties.md): Pack: properties -- a component or a binary pair Choupo does not have
 - [reactors.md](https://www.choupo.org/llm/packs/reactors.md): Pack: reactors and kinetics
 - [recycles.md](https://www.choupo.org/llm/packs/recycles.md): Pack: recycles (loops in a steady flowsheet)
 - [separations.md](https://www.choupo.org/llm/packs/separations.md): Pack: separations (columns, absorbers, strippers, extraction, drums)

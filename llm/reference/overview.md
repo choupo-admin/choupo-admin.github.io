@@ -2,7 +2,7 @@
 
 > **Version.** This document describes the development line `Choupo-dev`, which https://www.choupo.org/app runs and which every assistant document here describes.  The latest stable release is `Choupo-2608`; the one page that describes that release instead of the development line is the model catalogue, https://www.choupo.org/models/ (static copy: https://www.choupo.org/llm/models.md).
 
-For a first run, read [`start-here.md`](start-here.md).  This overview defines
+For a first run, read [`start-here.md`](https://www.choupo.org/llm/start-here.md).  This overview defines
 the governing contracts; the remaining files are references and recipes to
 pull in as needed.  Do not load the whole directory by default.  The principal
 references are `overview.md` (this file), `dict-syntax.md`,

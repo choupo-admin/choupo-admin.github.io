@@ -15,7 +15,7 @@ replaces the **whole** `solid{}` block (the standard's `k_v` is lost, not
 deep-merged).  A reference-state block is the atomic unit of physical meaning;
 the curator MUST copy the whole block they refine.  A lone-scalar overlay is
 the forbidden **hidden hybrid** (it would silently mix a sample's `rho_p` with
-the catalogue's `k_v`).  See [`data-doctrine.md`](data-doctrine.md) §3.
+the catalogue's `k_v`).  See [`data-doctrine.md`](https://www.choupo.org/llm/reference/data-doctrine.md) §3.
 
 **Dissolved-solute / solution thermo is PAIR data, not a component field.**
 A property whose definition names a **solvent** — an "in-water" ΔH_soln, an

@@ -630,7 +630,7 @@ equilibrium
 ```
 
 Semantics, worked examples and the four-formulations table:
-[`thermo.md`](thermo.md) → "The formulations".
+[`thermo.md`](https://www.choupo.org/llm/reference/thermo.md) → "The formulations".
 
 ## Per-unit `thermo {}` override
 
@@ -650,7 +650,7 @@ enthalpy.  That step is the two models disagreeing on `H(T,P,z)`; it is
 information, not a bug.  `H` is the conserved truth, `T` is the
 model-dependent readout — the solver never silently nudges `T` to paper over
 the step.  Default is ONE consistent global model; the override is a
-deliberate advanced act.  See [`energy.md`](energy.md) §7 (model boundaries).
+deliberate advanced act.  See [`energy.md`](https://www.choupo.org/llm/reference/energy.md) §7 (model boundaries).
 
 Per-UNIT thermo is the fifth legal axis of the ratified heterogeneous-thermo
 grammar — models per PHASE, conventions per GROUP, correlations per
@@ -757,7 +757,7 @@ plant without transferring matter across the process boundary — so the
 plant-level material SUMMARY can be presented on process matter beside the
 total.  It is TOPOLOGY (which edges form the circuit), which is why it is here
 and not in `0/<stream>`.  The full contract, the refusals and what it does NOT
-change are in [`case-layout.md`](case-layout.md).
+change are in [`case-layout.md`](https://www.choupo.org/llm/reference/case-layout.md).
 
 **How it differs from `category`, above.**  They answer two questions and
 neither replaces the other: `category` is an AGGREGATION LABEL on a stream's
@@ -793,7 +793,7 @@ longer aborts) if the design pressure exceeds the material rating.  These are
 WARN-only — a rating never clamps a stream.
 
 **Sizing `designRules {}` keys** live with the postDict grammar in
-[`case-layout.md`](case-layout.md) (§`system/postDict`), one block per sizer
+[`case-layout.md`](https://www.choupo.org/llm/reference/case-layout.md) (§`system/postDict`), one block per sizer
 word -- `distillationColumn` and, since 2026-09-26, `pfr` (`pressureDesign`
 REQUIRED; `L_over_D` else announced default; `catalystBulkDensity` and
 `catalystPrice` optional, each enabling one half of the catalyst charge and

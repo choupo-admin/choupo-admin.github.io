@@ -159,9 +159,9 @@ Two paths:
 - **Keep it in your case.** Distribute the case (zip). Nothing else needed — it
   is your code, your licence choice (GPL-3.0-or-later recommended, to match Choupo).
 - **Contribute it to Choupo.** Add the GPL-3.0-or-later SPDX header with **your own**
-  copyright line, add your name to [`AUTHORS`](../../AUTHORS), sign your commits
+  copyright line, add your name to [`AUTHORS`](https://github.com/choupo-admin/choupo/blob/main/AUTHORS), sign your commits
   (`git commit -s`, the DCO), and submit. The full policy is in
-  [`CONTRIBUTING.md`](../../CONTRIBUTING.md). Curated **standard catalogue** data
+  [`CONTRIBUTING.md`](https://github.com/choupo-admin/choupo/blob/main/CONTRIBUTING.md). Curated **standard catalogue** data
   (`data/standards/`) is committee-managed and audited — propose it (e.g. promote
   a fit), do not edit it directly.
 
