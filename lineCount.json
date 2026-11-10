@@ -1,7 +1,7 @@
 {
  "definition": "every line (comments and blanks included) of every git-tracked UTF-8 text file",
- "totalFiles": 44411,
- "totalLines": 2941251,
+ "totalFiles": 44412,
+ "totalLines": 2941315,
  "groupEstimateCompounds": 28447,
  "buckets": {
   "engineCpp": {
@@ -16,8 +16,8 @@
   },
   "tutorials": {
    "label": "tutorial cases (dictionaries)",
-   "files": 11069,
-   "lines": 588599
+   "files": 11070,
+   "lines": 588663
   },
   "groupEstimates": {
    "label": "group-contribution estimate records",
