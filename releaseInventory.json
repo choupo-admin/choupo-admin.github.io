@@ -3,9 +3,9 @@
   "latestRelease": "Choupo-2608",
   "latestReleasedAt": "2026-09-02",
   "catalogue": {
-    "components": 649,
+    "components": 687,
     "aqueousSpecies": 53,
-    "nrtlPairs": 132,
+    "nrtlPairs": 558,
     "wilsonPairs": 0,
     "uniquacPairs": 3,
     "henryPairs": 206,
@@ -21,24 +21,24 @@
     "engines": 5
   },
   "tutorials": {
-    "runnableCases": 533,
-    "regressionChecks": 517,
+    "runnableCases": 535,
+    "regressionChecks": 519,
     "byTier": {
-      "witness": 475,
+      "witness": 477,
       "tutorial": 42,
       "showcase": 16
     }
   },
   "curationTraces": {
-    "cases": 201,
-    "regressionChecks": 201,
+    "cases": 722,
+    "regressionChecks": 722,
     "byOrigin": {
-      "pairs": 134,
-      "components": 65,
-      "batches": 2
+      "pairs": 616,
+      "components": 103,
+      "batches": 3
     }
   },
   "totals": {
-    "mixtureParameterRecords": 399
+    "mixtureParameterRecords": 825
   }
 }
