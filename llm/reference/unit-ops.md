@@ -1200,6 +1200,74 @@ outer pass (exact at convergence).  Default `1` = the ideal stage, byte-exact.  
 `E` is DECLARED (O'Connell, a chart, or plant data); the engine never invents it.
 Example: `column11_murphree` (E = 0.70 → distillate 98.12 % → 95.05 %).
 
+**Total reflux** (`model totalReflux;`, C329): no feed, no products, no `in`/`outputs`
+wires.  The c degrees of freedom a closed column leaves open (how much of each
+component circulates) are closed by `operation { totalReflux { boilupRate <kmol/h> |
+fFactor <(m/s)(kg/m3)^0.5>; specifiedAt reboiler; composition { a 0.3; b 0.7; } } }`
+-- the boil-up and the reboiler liquid.  On every cut y = x and V = L exactly, and
+every stage energy balance is solved (the vapour flow follows the latent heat); the
+condenser is total, `fFactor` needs `hydraulics { diameter; }`.  KPI
+`overallTrayEfficiency` is a test report's definition: the Fenske slope of
+ln(x/(1-x)) per tray over ln(alpha).  Pressure drop is not fed back (every stage at
+`P`).  Example: `totalReflux01_c6c7_yanagiRun628`.
+```
+{ name column; type distillationColumn; model totalReflux;
+  operation {
+    nStages 11;  P 34 kPa;  condenser { type total; }
+    totalReflux { fFactor 1.47; specifiedAt reboiler;
+                  composition { cyclohexane 0.284; nHeptane 0.716; } }
+    hydraulics  { diameter 1.2; ... }      // fFactor needs the diameter
+  } }
+```
+
+**Computed tray efficiency** (`operation { efficiency { model AIChE; lightKey a;
+liquidViscosity <Pa s>; entrainment FairMedian|none; } }`, exclusive with
+`murphreeEfficiency`; implemented under `model totalReflux;`, binary only): each tray's
+E_MV from the `hydraulics` geometry, its own traffic and the package's transport
+(Chung + Fuller in the vapour, Wilke-Chang in the liquid) -- AIChE transfer units
+(Treybal 3ed 6.38, 6.61-6.64), point efficiency (6.51-6.52), eddy diffusion along the
+flow path (6.57-6.59), then Colburn's entrainment loss with Fair's median psi at the
+tray's approach to flood (Perry 9ed 14-98/14-99).  The correlations carry NO hole
+area: open area acts only through the hydraulics.  Examples:
+`trayEfficiency01_yanagi14`, `trayEfficiency02_yanagi08` (FRI data, Yanagi & Sakata 1982).
+`model ChanFair;` (Chan & Fair 1984, Eqs 9-26; open area only through the approach to
+flood) and `model SyedaChuang; holePitch <m>;` (Syeda, Afacan & Chuang 2007, Eqs 1-35;
+sees hole velocity, open area and pitch) are selectable beside it; both were fitted on
+data that include these FRI trays (in-sample).  Examples: `trayEfficiency05_chanFair_yanagi14`,
+`trayEfficiency06_syedaChuang_yanagi14`, `trayEfficiency07_syedaChuang_yanagi08`.
+```
+efficiency { model SyedaChuang;      // or AIChE | ChanFair
+             lightKey cyclohexane;
+             liquidViscosity 3.7e-4;   // Pa s, when the package has no liquid viscosity
+             holePitch 0.0302;         // m, SyedaChuang only
+             entrainment FairMedian; } // or none
+hydraulics { pressureDropModel BollesFair; ... }   // default Sinnott
+```
+
+**Packed bed at total reflux** (`model totalReflux;` + `operation { packing { model
+RochaBravoFair; diameter; height; specificArea; voidFraction; corrugationAngle;
+corrugationSide; surface gauze|sheetMetal; [surfaceEnhancement]; lightKey;
+[liquidViscosity]; } }`, no `nStages`): the composition is integrated up the bed,
+dy/dz = (y* - y)/H_OG, with Rocha-Bravo-Fair holdup, pressure drop and flooding
+(IECR 32 (1993) 641) and HETP (IECR 35 (1996) 1660); the top pressure is the
+specification and the bed's own pressure drop sets the bottom.  KPI `HETP` = bed
+height / Fenske stages.  Binary only.  Examples: `packing01_schulz_0p10bar`,
+`packing02_schulz_0p02bar` (Montz-Pak A3-500M, Schulz et al. 2018).
+`model Delft;` (Olujic et al. 1999, working equations of Fair et al. 2000) reads
+`corrugationBase`, `corrugationHeight`, `elementHeight`, `holeFraction` instead of
+`corrugationSide`/`surface`: `packing03_schulz_delft_0p10bar`, `packing04_schulz_delft_0p02bar`.
+```
+{ name column; type distillationColumn; model totalReflux;
+  operation {
+    P 0.10 bar;  condenser { type total; }          // TOP pressure; no nStages
+    totalReflux { fFactor 1.5; specifiedAt reboiler; composition { pXylene 0.2; oXylene 0.8; } }
+    packing { model RochaBravoFair; diameter 1.22 m; height 2.2 m;
+              specificArea 478; voidFraction 0.92; corrugationAngle 60;
+              corrugationSide 0.009 m; surface gauze;  // Delft: corrugationBase, corrugationHeight, elementHeight, holeFraction
+              lightKey pXylene; liquidViscosity 3.91e-4; }
+  } }
+```
+
 **Sieve-tray hydraulics** (optional `operation { hydraulics { ... } }`, works with BOTH
 methods).  The MESH equations contain no diameter — a column of any width converges to
 the same distillate, and a flooded one converges just as prettily.  This is a **rating
@@ -1994,6 +2062,74 @@ KPIs: `deltaP` (+ the five-way breakdown), `u_gas`, `u_particle`,
 _(Solid–liquid separation lives in the `crystalliser`: declare two
 outputs and it discharges a wet cake + the drained mother liquor —
 see the Crystallisation section.)_
+
+## Size distribution and size reduction
+
+### `sizeGrid` (in `system/flowsheetDict`) — the case's ONE size axis
+Declared once; every authored inlet with a `particleSizeDistribution` is put on
+it before the first unit runs (a `RosinRammler`/`logNormal` law INTEGRATED over
+the classes; a measured table RE-BINNED from its `edges`, uniform in ln x inside
+each of its classes), mass exact, each mapping printed (`[psd-grid] ... sum in,
+out`).  Class 0 is the pan `[0, x_1]`; the representative size of a cut is its
+geometric mean.  The `mixer` blends gridded streams class by class; two
+different grids are refused.  Every stream with a distribution publishes
+`psd.moments` (`d10`, `d50`, `d80`, `d90`, Sauter `d32`, `Sv`); the mixer
+publishes them as `psd_*` KPIs.  No `sizeGrid`: nothing of this runs.
+```
+sizeGrid { xMax 2.36 mm; ratio 1.41421356; nClasses 13; }   // pan included
+// a measured sieve table on its own edges (0/<stream>, inside phases { solid { } }):
+particleSizeDistribution { edges ( 0 45e-6 90e-6 ); diameter ( 31.8e-6 63.6e-6 ); massFrac ( 0.4 0.6 ); }
+```
+Theory: `sec:size-grid`.  Case: `tutorials/steady/solids/psd01_grid_and_moments`.
+
+### `mill`
+Size reduction as a breakage population balance on the case's `sizeGrid`
+(Austin 1971): one pass with extents `kappa_i` from the SELECTION function (the
+unit's `model` word) and fragments distributed by the BREAKAGE function;
+`residence plugFlow` (p = exp(M) f, Austin eq. 49) or `perfectlyMixed` (eq. 44a).
+Mass is conserved class by class by construction (`sizeMassClosure` ~1e-16);
+the chemistry passes through.  Exactly ONE of `W_shaft` / `specificEnergy`;
+adiabatic, T_out from H(out) = H(in) + W, published `W_shaft_kW`.  Only
+`herbstFuerstenau` lets the energy break particles; for the rate laws it is
+priced as heat, and the run says so.  Bond's third theory is printed BESIDE it
+(`bond { workIndex ...; }`), never instead.
+
+Selection functions (`model`):
+- `austin` — S = S1 (x/x1)^alpha / (1 + (x/mu)^Lambda); keys `S1` [1/time],
+  `x1` (default 1 mm), `alpha`, optional `mu`, `Lambda`.  Needs `residenceTime`
+  or `holdup`.
+- `herbstFuerstenau` — energy-specific: kappa = S^E E, ln(S^E/S1E) =
+  zeta1 ln(x/x1) + zeta2 ln^2(x/x1); keys `S1E` [t/kWh], `x1`, `zeta1`,
+  `zeta2` (<= 0).  No residence time.
+- `vogelPeukert` — S = f [1 - exp(-fMat x k (Wkin - xWmMin/x))], zero below the
+  threshold size; keys `fMat` [kg/(J m)], `xWmMin` [J m/kg], `Wkin`,
+  `stressFrequency`, `impacts`.  Needs `residenceTime` or `holdup`.
+
+Breakage function: `breakage { model austin; phi; gamma; beta; }`,
+B(u) = phi u^gamma + (1-phi) u^beta.
+```
+type      mill;
+model     herbstFuerstenau;                 // the selection function
+in        feed;   outputs ( product );
+operation
+{
+    specificEnergy  1.82 kWh/t;             // or W_shaft (exactly one)
+    residence       plugFlow;               // or perfectlyMixed
+    selection { S1E 0.857143 t/kWh; x1 1.98451 mm; zeta1 0.75; zeta2 0; }
+    breakage  { model austin; phi 0.456; gamma 0.75; beta 2.2; }
+    bond      { workIndex 12.74 kWh/shortTon; }   // optional cross-check
+}
+```
+Refused: a feed not on the grid, a rate law without (or with two) residence
+times, an energy law with one, both or neither energy keys, no solids.
+KPIs: `feed_*`/`product_*` `d10_um d50_um d80_um d90_um d32_um Sv_m2_m3`,
+`reductionRatio80`, `topClassRemaining`, `sizeMassClosure`, `T_out`, `dT_K`,
+`W_shaft_kW`, `specificEnergy_kWh_t`, `bond_specificEnergy_kWh_t`,
+`bond_ratio`, `bond_operatingWorkIndex_kWh_t`, `anchor_*_dev`.  Profile:
+feed and product per class (`x_um` = upper edge), the extents.
+Theory: `sec:mill`.  Cases: `tutorials/steady/solids/mill01_limestone_herbstFuerstenau`,
+`tutorials/steady/solids/mill02_bond_crosscheck`,
+`tutorials/steady/solids/mill03_impact_vogelPeukert`.
 
 ## Drying
 

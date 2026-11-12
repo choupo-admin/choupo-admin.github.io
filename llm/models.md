@@ -163,16 +163,16 @@ Generated from `generated/modelsCatalogue.json` (the same data the interactive p
 
 | key | name | records | source |
 |---|---|---|---|
-| `components` | Pure-component property records | 608 | `data/standards/components/` |
-| `species` | Aqueous / gas / solid model-species records | 53 | `data/standards/species/` |
+| `components` | Pure-component property records | 687 | `data/standards/components/` |
+| `species` | Aqueous / gas / solid model-species records | 74 | `data/standards/species/` |
 | `chemistry` | Equilibrium reaction records (dissolution, association, gas-liquid) | 78 | `data/standards/chemistry/` |
 | `conventions` | Versioned convention profiles (identity of a parameterisation) | 4 | `data/standards/conventions/` |
-| `parameters.NRTL` | NRTL binary-interaction pairs (public catalogue) | 9 | `data/standards/parameters/NRTL/` |
-| `parameters.UNIQUAC` | UNIQUAC binary-interaction pairs (public catalogue) | 3 | `data/standards/parameters/UNIQUAC/` |
+| `parameters.NRTL` | NRTL binary-interaction pairs (public catalogue) | 793 | `data/standards/parameters/NRTL/` |
+| `parameters.UNIQUAC` | UNIQUAC binary-interaction pairs (public catalogue) | 374 | `data/standards/parameters/UNIQUAC/` |
 | `parameters.UNIFAC` | UNIFAC group-interaction tables | 2 | `data/standards/parameters/UNIFAC/` |
-| `parameters.Henry` | Henry's-law gas-solvent pairs | 206 | `data/standards/parameters/Henry/` |
-| `parameters.Pitzer` | Pitzer (Harvie-Moller-Weare) ion-interaction pairs | 120 | `data/standards/parameters/Pitzer/` |
-| `parameters.eNRTL` | eNRTL electrolyte pairs | 3 | `data/standards/parameters/eNRTL/` |
+| `parameters.Henry` | Henry's-law gas-solvent pairs | 486 | `data/standards/parameters/Henry/` |
+| `parameters.Pitzer` | Pitzer (Harvie-Moller-Weare) ion-interaction pairs | 164 | `data/standards/parameters/Pitzer/` |
+| `parameters.eNRTL` | eNRTL electrolyte pairs | 48 | `data/standards/parameters/eNRTL/` |
 | `parameters.EdwardsPitzer` | Edwards et al. (1978) truncated-Pitzer pairs | 34 | `data/standards/parameters/EdwardsPitzer/` |
 | `parameters.SRK` | SRK binary interaction parameters | 1 | `data/standards/parameters/SRK/` |
 | `parameters.adsorption` | Adsorption isotherm parameter records | 15 | `data/standards/parameters/adsorption/` |

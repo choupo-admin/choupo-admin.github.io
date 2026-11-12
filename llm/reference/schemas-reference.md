@@ -19,7 +19,7 @@ person.  For prose, groupings and worked examples instead of an
 alphabetical dump, read [`unit-ops.md`](https://www.choupo.org/llm/reference/unit-ops.md) beside it; to be
 taught rather than to look something up, read the User Guide.
 
-*113 of 113 registered operations carry a schema and are documented below.*
+*114 of 114 registered operations carry a schema and are documented below.*
 
 ## `FUG`  (FUG operation)
 
@@ -182,7 +182,7 @@ Multistage distillation column with constant molar overflow. Solved by the seque
 
 | Field | Required | Type | Unit | Description |
 |---|:-:|---|---|---|
-| `nStages` | ✓ | integer | — | Equilibrium stages between condenser and reboiler. Total stages = nStages + 2. |
+| `nStages` |   | integer | — | Equilibrium stages between condenser and reboiler. Total stages = nStages + 2. |
 | `feedStage` |   | integer | — | 1-indexed stage where the single feed enters (1 = top tray below the condenser). Omit it when the column declares a `feeds` list, which i… |
 | `refluxRatio` |   | number | — | L/D, liquid returned to the column over distillate withdrawn. |
 | `refluxTemperature` |   | number | K | Temperature at which the reflux returns to the top stage, when it is SUBCOOLED below the distillate's bubble point (a total condenser fol… |
@@ -199,6 +199,9 @@ Multistage distillation column with constant molar overflow. Solved by the seque
 | `murphreeEfficiency` |   | number | - | Fraction of the equilibrium change each tray actually achieves; defaults to 1 (equilibrium stages). Any value other than 1 makes the stag… |
 | `condenser` |   | object | — | The condenser's own block. `type` decides what stage 1 IS, the same in every method: `total` (the default, announced when used) -- nStage… |
 | `hydraulics` |   | object | — | Present = run a hydraulic RATING on the converged profile, which the stage equations never do: can the trays pass the traffic? Give `diam… |
+| `totalReflux` |   | object | — | Read only under `model totalReflux;`: no feed, no products. The c open degrees of freedom are closed by the boil-up (exactly one of `boil… |
+| `efficiency` |   | object | — | Computes each tray's Murphree efficiency from the `hydraulics` geometry, the tray traffic and the transport properties (AIChE correlation… |
+| `packing` |   | object | — | Under `model totalReflux;` replaces the trays by a packed bed: Rocha-Bravo-Fair holdup, pressure drop and flooding (IECR 32 (1993) 641, E… |
 
 ## `compactionFit`  (compactionFit operation)
 
@@ -355,7 +358,7 @@ Multistage distillation column with constant molar overflow. Solved by the seque
 
 | Field | Required | Type | Unit | Description |
 |---|:-:|---|---|---|
-| `nStages` | ✓ | integer | — | Equilibrium stages between condenser and reboiler. Total stages = nStages + 2. |
+| `nStages` |   | integer | — | Equilibrium stages between condenser and reboiler. Total stages = nStages + 2. |
 | `feedStage` |   | integer | — | 1-indexed stage where the single feed enters (1 = top tray below the condenser). Omit it when the column declares a `feeds` list, which i… |
 | `refluxRatio` |   | number | — | L/D, liquid returned to the column over distillate withdrawn. |
 | `refluxTemperature` |   | number | K | Temperature at which the reflux returns to the top stage, when it is SUBCOOLED below the distillate's bubble point (a total condenser fol… |
@@ -372,6 +375,9 @@ Multistage distillation column with constant molar overflow. Solved by the seque
 | `murphreeEfficiency` |   | number | - | Fraction of the equilibrium change each tray actually achieves; defaults to 1 (equilibrium stages). Any value other than 1 makes the stag… |
 | `condenser` |   | object | — | The condenser's own block. `type` decides what stage 1 IS, the same in every method: `total` (the default, announced when used) -- nStage… |
 | `hydraulics` |   | object | — | Present = run a hydraulic RATING on the converged profile, which the stage equations never do: can the trays pass the traffic? Give `diam… |
+| `totalReflux` |   | object | — | Read only under `model totalReflux;`: no feed, no products. The c open degrees of freedom are closed by the boil-up (exactly one of `boil… |
+| `efficiency` |   | object | — | Computes each tray's Murphree efficiency from the `hydraulics` geometry, the tray traffic and the transport properties (AIChE correlation… |
+| `packing` |   | object | — | Under `model totalReflux;` replaces the trays by a packed bed: Rocha-Bravo-Fair holdup, pressure drop and flooding (IECR 32 (1993) 641, E… |
 
 ## `electricLoad`  (electricLoad operation)
 
@@ -861,6 +867,21 @@ FROM A FUNCTIONAL CLASS TO THE COMMERCIAL ELEMENTS THAT DO IT. Hard filters on e
 | `conditions` | ✓ | object | — | Nothing here is defaulted; a missing key refuses by name. |
 | `operation` | ✓ | object | — | The blocks a spiralWoundModule unit writes in its operation (massTransfer, pressureDrop, polarisation, nNodes, rho_feed, ...) and `P_perm… |
 | `output` |   | object | — |  |
+
+## `mill`  (mill operation)
+
+Size reduction as a breakage population balance on the case's size grid (`sizeGrid {}` in system/flowsheetDict; Austin 1971). The unit's `model` word selects the SELECTION function (austin, herbstFuerstenau, vogelPeukert); `breakage { model austin; }` the breakage function. Plug flow or perfectly mixed. Exactly one of W_shaft and specificEnergy; the mill is adiabatic and its outlet temperature is the result. Bond's third theory is an optional cross-check printed beside the population-balance energy, never instead of it.
+
+| Field | Required | Type | Unit | Description |
+|---|:-:|---|---|---|
+| `W_shaft` |   | number | W | The power drawn by the mill. Give this OR specificEnergy, never both: the other follows from the solids flow. |
+| `specificEnergy` |   | number | J/kg | Energy per kg of solids (kWh/t is accepted). For herbstFuerstenau it is what breaks the particles; for the rate laws it is only priced as… |
+| `residence` |   | string | — | plugFlow: p = exp(M) f, a batch mill ground for tau (Austin 1971 eq. 49). perfectlyMixed: p_i (1 + kappa_i) = f_i + sum b_ij kappa_j p_j … |
+| `residenceTime` |   | number | s | For the RATE laws (austin, vogelPeukert): tau. Give this OR holdup. |
+| `holdup` |   | number | kg | Solids mass in the mill; tau = holdup / solids flow (Austin 1971 eq. 46). Give this OR residenceTime. |
+| `selection` | ✓ | object | — | The parameters of the law the unit's `model` word names. austin: S1, x1, alpha, mu, Lambda. herbstFuerstenau: S1E, x1, zeta1, zeta2. voge… |
+| `breakage` | ✓ | object | — | B(u) = phi u^gamma + (1 - phi) u^beta, u = x/y (King 2001 eq. 5.78). |
+| `bond` |   | object | — | W = 10 Wi (1/sqrt(P80) - 1/sqrt(F80)) on the run's own F80 and P80, printed beside the population-balance energy with their ratio and the… |
 
 ## `mixer`  (mixer operation)
 
