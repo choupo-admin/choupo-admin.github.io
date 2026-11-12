@@ -19,7 +19,7 @@ person.  For prose, groupings and worked examples instead of an
 alphabetical dump, read [`unit-ops.md`](https://www.choupo.org/llm/reference/unit-ops.md) beside it; to be
 taught rather than to look something up, read the User Guide.
 
-*114 of 114 registered operations carry a schema and are documented below.*
+*117 of 117 registered operations carry a schema and are documented below.*
 
 ## `FUG`  (FUG operation)
 
@@ -175,6 +175,16 @@ Bubble-point temperature at fixed pressure: the T at which the first vapour bubb
 | Field | Required | Type | Unit | Description |
 |---|:-:|---|---|---|
 | `P` | ✓ | number | Pa | System pressure at which the bubble point is evaluated. |
+
+## `classifier`  (classifier operation)
+
+A size classifier defined by its partition curve alone, on the case's size grid (`sizeGrid {}` in system/flowsheetDict; King 2001 section 4.2, Herbst & Fuerstenau 1980 p. 18): coarse_k = a_k f_k m_s, fine_k = f_k m_s - coarse_k class by class, so the products close on the feed exactly. One solid population; no work, no heat. Outputs (coarse fine).
+
+| Field | Required | Type | Unit | Description |
+|---|:-:|---|---|---|
+| `partition` | ✓ | object | — | The corrected classification function c(d): the fraction of a size class that reports to the coarse product, before the bypass. whiten: c… |
+| `bypass` | ✓ | number | - | The fraction of EVERY class short-circuited to the coarse product: the actual partition is a_k = R + (1 - R) c_k. |
+| `fluidToCoarse` |   | number | - | Only when the feed carries a fluid: the fraction of it leaving with the coarse product (the case's declaration, never a default). |
 
 ## `column`  (column operation)
 
@@ -763,6 +773,15 @@ Single-stream heater. Given the thermal power Q (positive heats, negative cools)
 | `Q` |   | number | W | Absolute thermal power delivered to the stream (positive heats, negative cools). The outlet temperature is a RESULT, never a spec — `Tout… |
 | `Tref` |   | number | K | Reference for the enthalpy integrals; only differences enter the balance. |
 
+## `hydrocyclone`  (hydrocyclone operation)
+
+A hydrocyclone classifying a slurry on the case's size grid. Model declared: the case gives the corrected curve (with its cut size) and the water recovery to underflow R_f, which is also the solids bypass (Kelsall; Wills & Napier-Munn 2006 eq. 9.15): a_k = R_f + (1 - R_f) c_k. A dry feed is refused. Outputs (underflow overflow). The empirical correlation of Nageswararao et al. 2004 is not built.
+
+| Field | Required | Type | Unit | Description |
+|---|:-:|---|---|---|
+| `partition` | ✓ | object | — | The corrected classification function c(d): the fraction of a size class that reports to the coarse product, before the bypass. whiten: c… |
+| `waterToUnderflow` | ✓ | number | - | The fraction of the feed water leaving in the underflow; also the solids bypass. |
+
 ## `ionExchanger`  (ionExchanger operation)
 
 Ion-exchange contactor on a flowsheet stream: the feed's ions equilibrate with a resin dosed per unit of water, and the outlet carries the softened composition. The resin (kind ionExchangeResin, e.g. SAC_Na) brings its own capacity and selectivity data; the case only decides the CONTACT — resin and dose — never the chemistry, which stays with the declared aqueous system.
@@ -1255,6 +1274,24 @@ Concentration scan of a water analysis, the RO/evaporator scaling audit: the dec
 | `diagSpecies` |   | array[string] | — |  |
 | `output` |   | object | — | `{ file <name>.csv; }` — where the per-row results are written, relative to the case directory. |
 
+## `screen`  (screen operation)
+
+A vibrating screen on the case's size grid. The unit's `model` word selects how the partition is obtained: karra (King 2001 section 4.2.1-4.2.2, eqs. 4.30-4.48: the cloth, the inclination and the loading give the cut size; no fitted parameter) or declared (the case's partition curve and bypass). Outputs (oversize undersize). One solid population; no work, no heat.
+
+| Field | Required | Type | Unit | Description |
+|---|:-:|---|---|---|
+| `aperture` |   | number | m | karra: the cloth opening (must lie inside the size grid). declared: optional, checked against the grid. |
+| `wireDiameter` |   | number | m |  |
+| `inclination` |   | number | rad | Write it with its unit, e.g. `20 deg`; in [0, 90) degrees. |
+| `area` |   | number | m2 |  |
+| `deck` |   | integer | - | 1 for the top deck (King eq. 4.38: D = 1.1 - 0.1 S). |
+| `wetScreening` |   | string | — | yes applies King's factor E (p. 89); no gives E = 1. |
+| `bulkDensity` |   | number | kg/m3 | F = rho_B/1600 (King eq. 4.39). |
+| `openArea` |   | number | - | Scales the basic capacity by 100 oa/OA, OA = 21.5 log10(h) + 37 (King eqs. 4.34-4.35). Absent: standard light-medium mesh. |
+| `partition` |   | object | — | The corrected classification function c(d): the fraction of a size class that reports to the coarse product, before the bypass. whiten: c… |
+| `bypass` |   | number | - | declared only: the fraction of every class misplaced to the oversize. |
+| `fluidToOversize` |   | number | - | Only when the feed carries a fluid: the fraction of it leaving with the oversize (neither model predicts it). |
+
 ## `shortcutColumn`  (shortcutColumn operation)
 
 Preliminary column design by the Fenske-Underwood-Gilliland shortcut method. Returns N_min (Fenske), R_min (Underwood), the stage count N (Gilliland) and the feed stage (Kirkbride). EXACTLY ONE operating reflux must be declared, `refluxFactor` (R/R_min, commonly 1.3) or `refluxRatio` (R = L/D directly); there is no default, because the reflux is the design decision the stage count descends from and an engine-chosen one is not defensible. Every relative volatility is evaluated at the FEED BUBBLE POINT, and a bubble point that will not converge refuses rather than falling back on the feed's declared temperature. Assumes constant relative volatility; not valid for azeotropes.
@@ -1459,6 +1496,7 @@ Least-squares fit of measured vapour-pressure data to the Antoine form, producin
 | `evidence` |   | array[object] | — | The FIT / HELD-OUT partition (src/propertyOps/EvidencePartition.H). Each entry names a dataset and DECLARES its role; `role` has no defau… |
 | `objective` |   | object | — | DEV.md 4c C280, C281 step 3: the same block as fitParameters, read through FitObjective. `method`: leastSquares (the op's own search in l… |
 | `outliers` |   | object | — | DEV.md 4c C283: after the least-squares stage a fit point whose relative pressure error exceeds `maxRelativeError` (with its unit, `perce… |
+| `window` |   | object | — | DEV.md 4c C367: only the fit points whose pressure lies inside [`pressureMin`, `pressureMax`] (each a number with a pressure unit: Pa, kP… |
 | `acceptance` |   | object | — | The acceptance band, DECLARED BEFORE the fit. `origin` is mandatory: a limit with no stated provenance cannot be told apart from one chos… |
 
 ## `vleConsistency`  (vleConsistency operation)
