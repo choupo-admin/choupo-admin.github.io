@@ -2,7 +2,7 @@
 
 > **Version.** This document describes the development line `Choupo-dev`, which https://www.choupo.org/app runs and which every assistant document here describes.  The latest stable release is `Choupo-2608`; the one page that describes that release instead of the development line is the model catalogue, https://www.choupo.org/models/ (static copy: https://www.choupo.org/llm/models.md).
 
-budget: 5400 words (~8640 tokens)
+budget: 5500 words (~8800 tokens)
 
 Read this pack when the plant runs in LOTS (tablets, capsules, fine
 chemicals): how many lots a year, which step paces the plant, whether a
@@ -163,6 +163,11 @@ batchPlan
 * `ratedMachine` is NOT costed (no correlation) and NOT placed on the plot
   plan; the money is a `quote`, the place is a room.  A `quote` on a unit
   whose sizer refused STOPS the run (`That refusal is the finding`).
+* A press only (DEV.md 4c C270): optional `dwell {}` (rated on the formulation's
+  minimum dwell, the LOWER capacity used), `effectiveness {}` (OEE scales the
+  capacity) and `compaction {}` (pressure and punch force from the fitted
+  Heckel and Ryshkewitch-Duckworth curves); grammar in pack `pharmaceutical`
+  section 10.  Absent: announced as not checked.
 * Pumps: `kind volumeRate` (no batch plan): see `design-cost`.
 * Hand estimate before you run: load = lot mass / itemMass / hours; capacity
   = stations x rpm x 60.  A 55-station press at 60 rpm makes 198 000 tablets/h.
@@ -187,6 +192,8 @@ batchPlan
   source; reason; }` feeds Turton's N_OL = sqrt(6.29 + 31.7 P^2 + 0.23 N_np)
   (printed as a comparison once a crew is declared; `N_np` = non-particulate
   steps).  Absent both, P = 0 is announced.
+  The crew is multiplied by 4.5 (round the clock); on two shifts declare
+  `operatorCover { positionsPerShift n; source; reason; }`.
 * Solid-dose units are placeholders: say so in DESIGN.md (no compaction
   force, no blend uniformity, no granule size).
 
