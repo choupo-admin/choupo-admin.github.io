@@ -53,6 +53,7 @@ Two questions, one path each.  To answer whether Choupo does something (a unit, 
 - [schemas-reference.md](https://www.choupo.org/llm/reference/schemas-reference.md): Schemas reference — the shipped operations that carry a JSON schema
 - [stream-state.md](https://www.choupo.org/llm/reference/stream-state.md): Stream state — what a `0/<stream>` file may say
 - [thermo.md](https://www.choupo.org/llm/reference/thermo.md): thermoPhysPropDict — declaring the thermophysical system
+- [thermophysical-properties.md](https://www.choupo.org/llm/reference/thermophysical-properties.md): Liquid properties: where a unit's density, viscosity, surface tension and diffusivity come from
 - [unit-ops.md](https://www.choupo.org/llm/reference/unit-ops.md): Unit-op catalogue — every shipped type, what it does, how to write it
 - [validating-against-data.md](https://www.choupo.org/llm/reference/validating-against-data.md): Validating a case against measured data — and diagnosing what is wrong
 - [models.md](https://www.choupo.org/llm/models.md): Choupo model catalogue (static; describes the stable release it names, not the development line)

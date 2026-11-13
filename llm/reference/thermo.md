@@ -421,8 +421,11 @@ compared, differences listed); glycylglycine and triglycine have no formation da
 C376 route 2b (Shock 1995, scan read from images): propionic, n-butyric, benzoic, malonic and glutaric acids are new ladders
 (`HPropn`/`Propn`, `HBut`/`But`, `HBenz`/`Benz`, `H2Maln`/`HMaln`/`Maln`, `H2Glut`/`HGlut`/`Glut`; the neutral master carries its own `hfAq`/`sAq`);
 glycolic acid carries DfH -648.06 kJ/mol (the crystal route) and lactic acid/lactate an entropy.  An entropy or an anion enthalpy the
-paper marks as estimated has a per-value `provenance { sAq { origin estimated; method ...; } }` block in the record: the engine does NOT
-yet announce a species' estimated datum on use (design note section 7.3), so treat these as flagged data, not as measurements.
+paper marks as estimated has a per-value `provenance { sAq { origin estimated; method ...; } }` block in the record. A run that CONSUMES
+such a datum (hfAq in the aqueous ion reference of a salt; cpAq on the constant ion-Cp tier) prints one `[estimate] species '<name>'` line per
+species and datum and records it in the result advisories (category `provenance`, so the caveat block and the result's provenance carry it);
+reading a record is not consuming it, and sAq has no consumer yet. Origin words that mean "not measured": estimated, predictive, assumed,
+placeholder. Witness `estimatedSpecies01_announced`, gate `check_estimated_species_announced`.
 C376 route 4 (Alberty 2003, Table 3.2, read from images): glycylglycine (`H2GlyGly`/`HGlyGly`/`GlyGly`) carries DfH -734.25 kJ/mol and an
 entropy-equivalent for the zwitterion from DfG and DfH (CODATA element entropies), the ions by Goldberg's steps.  Alberty's other families are
 compared against the catalogue and not entered (citrate differs by 8 to 13 kJ/mol from Kochergina's; Alberty's phosphate and pyrophosphate differ from
@@ -497,6 +500,10 @@ point without a flowsheet, use the props op `referenceEoS`.  Theory Guide:
 "Reference equations of state (Helmholtz energy)".
 
 ## transport  (optional; for unit ops that need μ / k / D / σ)
+
+Which unit takes which liquid property from where -- the property kernel or
+its own number -- and how to read the run's liquid-properties table:
+[thermophysical-properties.md](https://www.choupo.org/llm/reference/thermophysical-properties.md).
 
 Transport correlations are declared per PHASE, and an interface block covers
 surface tension:
@@ -761,7 +768,7 @@ vocabulary (standard states + conventions) onto the engine's declarations.
 | **law of mass action on activities** | the SpeciationSolver (mass action + electroneutrality, pH solved) |
 | **mean-ionic activity, γ±** | Davies / Pitzer / eNRTL on molality |
 | **fugacity coefficient φ̂ from an EoS** | `phiPhi` (SRK, PC-SAFT) |
-| **ideal-solution approximation** | `approximations { idealMolecularVLE { components (...) } }` — authorised, delimited, announced |
+| **ideal-solution approximation** | `approximations { idealMolecularVLE { components (...); reason "..."; } }` — authorised, delimited, announced; the `reason` is required and an unknown word is refused |
 | **ideal binary pair** (a declared γ-model pair with no parameters) | `approximations { idealBinaryPair { pairs (...); reason "..."; } }` — **REFUSED unless authorised** (2026-08-11), then recorded as a `problemDivergence` |
 | **composite mixed-solvent electrolyte v1** | NRTL molecular backbone + Davies ions + multiplicative a_w — a COMPOSITE whose limits are PROVEN each sweep (`check_composite_limits`): x_co→0 recovers the aqueous electrolyte, I→0 recovers molecular NRTL, NRTL→0 recovers the authorised ideal |
 
