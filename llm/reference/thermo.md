@@ -291,6 +291,153 @@ The stream carries the SALT (the flowsheet/component basis); the model
 activates its ions from the component's `dissociatesTo` and the ion records
 in `species/`.
 
+**Temperature validity of an electrolyte pair (2026-11-12).**  A Pitzer or
+eNRTL pair record states the temperatures its parameters are good for in
+`provenance { validity { temperature { min 298.15 K; max 298.15 K; } } }`.
+A record with no declared span is read as 298.15 K (the temperature of its
+data), except a Pitzer record that carries temperature functions/slopes,
+whose window is `TvalidLo`-`TvalidHi` (default 273.15-573.15 K).  Evaluated
+outside it, EVERY route (the `pitzerActivity` op, the package route the units
+use, the `pitzerHMW` speciation route, and the eNRTL package) prints ONE
+`[pair-span]` line per pair per run and records it in the caveat block; no
+number changes.  Two things to tell a user: 96 of the 99 Pitzer pair records
+have no temperature dependence (only the Debye-Hueckel slope follows T), and
+the eNRTL temperature rule is the engine's own `tau(T) = tau(25 C) x 298.15/T`,
+NOT a fitted law -- against Archer (1992) NaCl it is off by tens of per cent at
+273 K and 373 K at 3-6 mol/kg while Pitzer stays within 2.1 % (Theory Guide,
+eNRTL "Temperature dependence").  For NaCl-water off 25 C use Pitzer.
+
+**Boron in seawater and borax brines: the borate set of Felmy & Weare (C198, 2026-11-13).**
+Under `pitzerHMW` the catalogue carries boric acid (`H3BO3`, neutral), the
+orthoborate (`BOH4`), two polyborates (`B3O3OH4`, `B4O5OH4`) and the Ca / Mg
+borate ion pairs (`CaBOH4`, `MgBOH4`), with their Pitzer terms read from
+Felmy & Weare, Geochim. Cosmochim. Acta 50 (1986) 2771, Tables 3-5 (25 C,
+every record names table and page): 8 binary pairs, 8 theta + 3 psi, 5 lambda
+(H3BO3 with Cl, SO4, B3O3OH4, Na, K) and 2 zeta (H3BO3-H-Cl, H3BO3-Na-SO4).
+Use them like any ion: list `H3BO3` in `analyticalTotals` and put the formation
+records in the network (`networkScope restricted; network ( water-dissociation
+BOH4-formation CaBOH4-formation MgBOH4-formation );`: the posture of the
+parameterisation is the major ions UNPAIRED and the borate pairs explicit).
+The Pitzer route's constant for `BOH4` is -9.239; the catalogue's
+`BOH4-formation` is the Davies route's (-9.24 plus an enthalpy), so a Pitzer
+case carries its own `constant/chemistry/BOH4-formation.dat` (see
+`borate01_felmyWeare`).  Tell a user: 25 C only (no term has a temperature
+dependence; a run away from 298.15 K is announced); the formation constants are
+the public-domain databank's (they are derived from the mu0/RT of the two papers' tables and agree with the databank to 4e-4 in log K); no
+polyborate-Mg or -Ca interaction exists in the paper; no borate solid is
+shipped.  Seawater: the case anchors the free boric acid against Dickson (1990) Table 3,
+ln(K*/m0) = -19.7556 (total scale, molality, +-0.004); the engine is 0.044 higher
+(0.85 % in m_H3BO3), outside the paper's uncertainty and inside the 1.2 % tolerance;
+partly independent.  Evidence: `data/curation/batches/boron_c198/readings.tsv`; regenerate
+the records with `bin/curate/boron_c198.py`.  Theory Guide, section "Borate in
+the HMW model".
+
+**Caustic soda to 50 wt %: `model OlssonNaOH;` (C377 b, 2026-11-12).**  The
+Na-OH Pitzer pair is fitted to Parker's heats of dilution up to 6 mol/kg
+(19 wt %) at 25 C.  For concentrated caustic (an evaporator to 50 wt %, 25
+mol/kg) select `activityModel { model OlssonNaOH; }` in the same
+`electrolyteGammaPhi` system: the water activity (boiling-point rise) and the
+heat of dilution L_phi come from the correlations of Olsson, Jernqvist & Aly,
+Int. J. Thermophys. 18 (1997) 779 (vapour pressure and enthalpy, 0-200 C,
+water mass fraction 0.2-1), record
+`data/standards/parameters/OlssonNaOH/NaOH-water.dat`.  Below 4 mol/kg it
+is the Na-OH Pitzer pair, blended to the correlation by 6 mol/kg.  It
+refuses any salt but NaOH and any solvent but water.  It announces, once per
+property, a point outside the paper's windows, and at the evaporator's
+concentrate the Gibbs-Helmholtz gap between its two correlations when that
+gap exceeds the paper's 2.15 kJ/kg (it does above ~100 C and 40 wt %: the
+paper's enthalpies there rest on extrapolated heat capacities).  Tell a user
+two things: off 25 C the Pitzer pair's L_phi is an extrapolation and sits
+2-11 kJ/mol below this model at 4-6 mol/kg, 60-200 C; and above 100 C the
+package still prices the water itself on a 75.5 J/mol/K liquid Cp fitted
+to 373 K (about -34 kJ/kg of water at 200 C).  Bench:
+`tutorials/props/electrolyte/olsson01_naoh_high_concentration`
+(`electrolyteActivity` with a `table { massFractions (...); temperatures
+(...); file ...; }` block: a_w, exact and linearised BPE, L_phi, chart
+enthalpy, Gibbs-Helmholtz gap); evaporator:
+`tutorials/steady/evaporation/evaporator11_naoh_olsson_50wt`.  Theory Guide
+`sec:olsson-naoh`.
+
+**The evaporator's boiling-point rise is exact (C377 b).**  With an
+electrolyte package the evaporator solves a_w(m,T_b) Psat_w(T_b) =
+Psat_w(T_b - BPE) by Newton on the package's own Psat (it used the
+linearised -(R T_b^2/dHvap) ln a_w, which overstates a 40 K rise by 6-11 K
+at 50 wt % NaOH).  Theory Guide `sec:evap-exact-bpe`.
+
+**Temperature validity of a molecular pair (NRTL, Wilson, UNIQUAC; PO-01..03, 2026-11-12).**
+A catalogue pair outside its declared span prints ONE `[pair-span]` line per pair per run
+and is recorded in the caveat block; no number changes.  Three rules: (i) a pair is "used"
+when both components are present, except in `activityCoefficients`, whose subject is the
+value at exactly the composition given -- a component at zero is the infinite-dilution
+coefficient and the pair is announced when either component is present; (ii) a
+bubble-point search's advisories at the temperatures it VISITS (its start is the
+mole-weighted normal boiling point) are filed as the solver's path, and only the converged
+state speaks as a caveat about the answer; (iii) a record that declares NO span (three
+UNIQUAC records of Popken et al.) says so when it is used -- silence there would read as
+"inside the span".
+
+**Weak organic acids (carboxylic) in aqueous chemistry** (C372, 2026-11-12).
+Families that exist, each a neutral master plus its ions and one ionisation record
+per ion (declare the neutral master, or the fully dissociated ion, as the analytical
+total with `totalsBasis stoichiometric; pH solve;`):
+acetic (`Acetate`, `HAc-formation`), formic (`Formate`, `HFo-formation`, logK and dH
+DERIVED from the NBS rows: theoryGuide `sec:carboxylic-ionisation`), tartaric
+(`H2Tart`/`HTart`/`Tart`, Goldberg 2002 Table 7.63), **citric** (`H3Cit`/`H2Cit`/`HCit`/`Cit`;
+Goldberg 2002 Table 7.22; ion hfAq Kochergina 2006), **malic** (`H2Malic`/`HMalic`/`Malic`,
+Eden & Bates 1959, racemic acid; note `Malic*`, not `Mal*`), **lactic** (`HLac`/`Lac`, Nims &
+Smith 1936), **succinic** (`H2Succ`/`HSucc`/`Succ`), **oxalic** (`H2Ox`/`HOx`/`Ox`),
+**maleic** (`H2Male`/`HMale`/`Male`), **fumaric** (`H2Fumar`/`HFumar`/`Fumar`, Miller & Smith-Magowan 1990 Table 6),
+**glycolic** (`HGlyc`/`Glyc`, Miller Table 6; formation data from Shock 1995 since C376).  C373 (2026-11-12) put formation data on the ions
+of succinic, fumaric, malic and lactic acids from Miller & Smith-Magowan 1990 (`hfAq`, and `sAq` for succinate and
+fumarate; derived from the acid's aqueous enthalpy plus the printed step enthalpies, theoryGuide
+`sec:evaluated-ionisation-families`) and built the crystal components `succinicAcid`, `fumaricAcid`, `malicAcid` (d,l)
+and `lacticAcid` with their heat-of-solution pairs.  The citrate family keeps Kochergina's ions; maleate, oxalate,
+glycolate and tartrate are unchanged (maleate has none, oxalate NBS, glycolate from Shock 1995 since C376, where the crystal route closes).
+The neutral masters carry no `hfAq` (their datum is component + solution pair); a balance that needs an ion
+without one refuses by name.  No component carries a Cp or an entropy.  Malonic, gluconic, ascorbic,
+gallic, propionic, butyric and benzoic acids have no ionisation record.  Inorganic ladders from Goldberg et al. 2002 (C373 phase 2): **pyrophosphate**
+(`H4P2O7`/`H3P2O7`/`H2P2O7`/`HP2O7`/`P2O7`, navigation family `phosphate`), **arsenate** (`H3AsO4`/`H2AsO4`/`HAsO4`/`AsO4`),
+**sulfite** (`H2SO3`/`Bisulfite`/`Sulfite`) and **hydrazine** (`N2H6`/`N2H5`/`Hydrazine`); ionisation records from
+Goldberg.  Formation data (C376, route 1, NBS tables Wagman et al. 1982, read from page images): H2PO4, HPO4, all
+five pyrophosphates, H2SO3, H3AsO4, AsO4, Hydrazine, N2H5 and the methylamine pair carry `hfAq`/`sAq`; the pyrophosphate ladder
+and the two new arsenic species are ONE scale from the evaluated steps (the NBS rows disagree with Goldberg beyond the
+Gibbs-identity tolerance of `check_logk_crosscheck`, both readings are tabulated in
+`data/curation/batches/species_c373/formation_compare.tsv`); `N2H6` (no NBS row) still refuses an energy balance by name.  Carbonate, phosphate, hydrogensulfate, ammonia and borate keep their PHREEQC records (compared in the design note;
+hydrogensulfate's ionisation enthalpy is 6.3 kJ/mol off Goldberg's).  Case: `inorganicLadders01_goldberg`.
+Phase 3 (C373): **amines and amino acids** -- master = the compound AS WEIGHED (the base or the zwitterion), so a case
+declares it directly and HCl or NaOH is the titrant: `Tris`/`HTris`, `TEOA`/`HTEOA` (triethanolamine), `TEA`/`HTEA`
+(triethylamine), `AMP`/`HAMP`, `AMPD`/`HAMPD`, `DEA`/`HDEA`, `MEA`/`HMEA`, `MeNH2`/`HMeNH2`, `Piz` (piperazine: `HPiz`,
+`H2Piz`), `Imz`/`HImz`, `MImz`/`HMImz`, `NEM`/`HNEM`, `GlyAmd`/`HGlyAmd`, glycylglycine `HGlyGly` (`H2GlyGly`, `GlyGly`),
+triglycine `HGly3`, histidine `HHis` (`H3His`, `H2His`, `His`), cysteine `H2Cys`, and the amino acids with formation data
+from Miller & Smith-Magowan 1990: glycine `HGly` (`H2Gly`, `Gly`), alanine `HAla`, aspartic `H2Aspt` (`H3Aspt`, `HAspt`,
+`Aspt`), glutamic `H2Glu` (`H3Glu`, `HGlu`, `Glu`); zwitterions carry the printed aqueous enthalpy and entropy; crystal components
+`glycine`, `alanine` (L), `asparticAcid`, `glutamicAcid` with heat-of-solution pairs.  The neutral amine species and the
+volatile component of the same name (monoethanolamine, diethanolamine, triethanolamine, triethylamine, methylamine,
+piperazine) are two identities, not linked by any gas-liquid record.  Case: `aminoBuffers01_tris_glycine`.
+C376 route 2a: the four histidine species (`H3His`..`His`) and the four cysteine species (`H3Cys`..`Cys`) carry `hfAq`/`sAq` from
+Amend & Helgeson 1997 Table 1 (kcal x 4.184; histidine on Goldberg's steps to 0.7 kJ/mol, cysteine's differ by up to 6.9 and the family is
+held at tolerance 7.0, both stated in the design note); glycine, alanine, aspartic and glutamic acids keep Miller's values (Amend's
+compared, differences listed); glycylglycine and triglycine have no formation datum in any work in hand.
+C376 route 2b (Shock 1995, scan read from images): propionic, n-butyric, benzoic, malonic and glutaric acids are new ladders
+(`HPropn`/`Propn`, `HBut`/`But`, `HBenz`/`Benz`, `H2Maln`/`HMaln`/`Maln`, `H2Glut`/`HGlut`/`Glut`; the neutral master carries its own `hfAq`/`sAq`);
+glycolic acid carries DfH -648.06 kJ/mol (the crystal route) and lactic acid/lactate an entropy.  An entropy or an anion enthalpy the
+paper marks as estimated has a per-value `provenance { sAq { origin estimated; method ...; } }` block in the record: the engine does NOT
+yet announce a species' estimated datum on use (design note section 7.3), so treat these as flagged data, not as measurements.
+C376 route 4 (Alberty 2003, Table 3.2, read from images): glycylglycine (`H2GlyGly`/`HGlyGly`/`GlyGly`) carries DfH -734.25 kJ/mol and an
+entropy-equivalent for the zwitterion from DfG and DfH (CODATA element entropies), the ions by Goldberg's steps.  Alberty's other families are
+compared against the catalogue and not entered (citrate differs by 8 to 13 kJ/mol from Kochergina's; Alberty's phosphate and pyrophosphate differ from
+the NBS rows the catalogue keeps; malate has a blank DfH); the table has no entropy column and no blank is ever filled from another work.
+Phase 4 (C373): **laboratory buffers**, every other section of Goldberg 2002 (ACES, ADA, AMPSO, APSA, barbital, BES, Bicine,
+Bis-tris, Bis-tris propane, cacodylate, CAPS, CAPSO, CHES, diglycolate, 3,3-dimethylglutarate, DIPSO, glycerol 2-phosphate,
+HEPES, HEPPS, HEPPSO, 2-mercaptoethanol, MES, MOPS, MOPSO, phthalate, PIPES, POPSO, TAPS, TAPSO, TES, Tricine): species
+`H<acronym>` (the zwitterion or acid, the master) and `<acronym>` (the anion), `H2<acronym>` for a cationic acid; pK, dH and
+the evaluation grade, NO formation data (the compilation prints none), the printed dCp not carried.  CABS, HEPBS, MOBS
+and TABS have no evaluated data and are absent.  Case: `goodsBuffers01_hepes_mes` (HEPES and MES at 25 and 37 C).  Inventory, readings,
+consistency checks and the works still missing: `docs/design/organic-acids-in-the-catalogue.md` and
+`docs/design/species-from-evaluated-compilations.md`; the records are written by `bin/curate/species_c373.py` from
+`data/curation/batches/species_c373/*.tsv` and held by `check_species_c373`.
+Cases: `volatileAcids01_acetic_formic`, `citricAcid01_speciation`, `wineAcids01_tartaric_malic`.
+
 **The REACTIVE shape** (a speciation network + volatiles, as in the
 brine-CO₂ and sour-water flashes) declares its IONIC rung inside
 `aqueous {}` and the engine serves what its speciation kernel serves:
