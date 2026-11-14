@@ -539,13 +539,52 @@ Pick by need:
 | Gas viscosity (low pressure) | **`Chung`** — uses Tc/Pc/ω/MW, zero new data (non-polar truncation, Vc estimated, both announced); or **`ChapmanEnskog`** — kinetic theory over the record's `lennardJones { sigma [0 1 0 0 0] <m>; epsOverK <K> K; provenance {…} }` block (REFUSES by name without it; `bin/curate/propose_lennard_jones.py` drafts the block from Svehla 1962 into `data/local/`, a case may adopt it locally). |
 | Gas thermal conductivity | **`Eucken`** — `λ = (Cp+5R/4)·μ/M`, no extra data (exact for a monatomic gas, an approximation for polyatomics, flagged); or **`modifiedEucken`** — Svehla 1962 eq. (2), `λ = (R/M)[15/4 + 1.32(Cp/R − 5/2)]·μ`, the internal modes weighted 1.32. |
 | Gas binary diffusivity | **`Fuller`** — needs `diffusionVolume` on each component (water/N2/O2/CO2/CH4/H2/CO ship it). |
-| Liquid viscosity | **`Vogel`** (3-param `ln μ = A+B/(T-C)`, water 0.2 % RMS) or **`Andrade`** (2-param). |
+| Liquid viscosity | **no word** — each constituent on its record's preferred law (`viscosity { }`; C398 slice (b)); or **`Vogel`** / **`Andrade`** / **`chemsepEq101`** — the law of that NAME for every constituent (refuses a record without it). |
 | Liquid thermal conductivity | **`SatoRiedel`** (parameter-free, organics). |
 | Liquid binary diffusivity | **`WilkeChang`** (needs `associationFactor`). |
 | Surface tension | **`BrockBird`** (corresponding states). |
 
 When a unit op needs a transport property the system doesn't supply, the
 solver throws a clear error naming the missing slot.
+
+### One law per constituent, the legacy words, and a pin (C398 slice (b))
+
+For liquid viscosity, liquid thermal conductivity and surface tension the
+package holds ONE law per constituent, from its own record; the block's
+`mixingRule` combines the pure values.  The block may name NO model:
+
+```
+transport { liquid { viscosity { } } }      // methanol vogel, 2-propanol chemsepEq101, water vogel
+```
+
+A word still reads as before: `Andrade` / `Vogel` / `chemsepEq101` /
+`chemsepEq16` = a pin of the law of that NAME for every constituent;
+`SatoRiedel` / `BrockBird` = predictive, no record law; `StoredCorrelation` =
+the record's `tauPower` law, else Brock-Bird for that component (announced).
+A CASE PIN of one constituent's law sits beside the property:
+
+```
+transport { liquid { viscosity { pin ( { component water; law andrade; reason "..."; } ); } } }
+equilibrium { vaporPressure { pin ( { component water; law SR1; reason "..."; } ); } }
+caloric { liquidHeatCapacity { pin ( ... ); } }     // idealGasHeatCapacity, solidHeatCapacity too
+```
+
+Refused: an unknown component, a law the record does not hold (the error
+lists the laws it has), a component pinned twice, a pin without `law` or
+`reason`.  A pin reaches every copy of the component a formulation takes
+(the reactive electrolyte engine's included); a formulation that could not
+apply it is refused, never printed as applied (gate `check_record_law_pins`).
+The time-integrated binaries (choupoBatch, choupoCtrl, choupoSemiContinuous)
+refuse a unit's `thermo`: declare the change in the case's system.  The law is chosen ONCE per constituent, printed in the resolved
+view (law, type, who chose it, window), never switched by the state; its
+object is built at first evaluation, so a constituent at x = 0 is never
+refused.  NO factory default answers for a block without a word: a vapour
+property block must name its model (no record law exists for it), and a
+`transport {}` with no vapour viscosity has NONE (a consumer is refused,
+naming the line to write).  A `propertyPoint` whose package cannot supply a
+gas viscosity, gas conductivity or surface tension omits that key and says
+so in one line.  Witnesses: `props/transport/purelaws01_methanol_isopropanol_water`,
+`props/thermo/purelaws02_water_two_vapour_pressure_laws`.
 
 ### Liquid mixing rules (`mixingRule`, C331)
 
@@ -600,6 +639,71 @@ declared: `Sutherland` — no record carries a Sutherland constant; and a
 Chapman-Enskog binary DIFFUSIVITY — the Ω(1,1)* collision-integral fit is not
 citable from any source in the tree (record:
 `docs/design/transport-correlations-as-objects.md` §8).
+
+## variants — named variants of the system, and the resolved view (C398)
+
+`constant/thermoPhysPropDict` is the ONE place a case declares its
+properties.  Its blocks are the case's system; `variants {}` adds named
+variants, each stating ONLY what differs and deriving DIRECTLY from the
+system (one base: no chain, no cycle).  A unit or a props operation selects
+one with `thermo <name>;`; an inline `thermo { ... }` still reads, as an
+unnamed variant.  Grammar, refusals and a worked example:
+[`dict-syntax.md`](https://www.choupo.org/llm/reference/dict-syntax.md) → "Named variants".
+
+- **The atom inside `transport` is the PROPERTY BLOCK**
+  (`transport.<phase>.<property>`); a variant, an inline fragment and a
+  sector's `inherits` all replace that much and keep the rest.  Inside
+  `volumetric` a sector's `inherits` replaces the phase block; a variant or
+  an inline fragment that names `volumetric` is REFUSED by name (until
+  slice (c)).  `equilibrium` and `caloric` are replaced as
+  before (a variant that changes them is a model boundary).  A transport
+  name outside `vapour/liquid/interface` × {`viscosity`,
+  `thermalConductivity`, `diffusivity`, `surfaceTension`} — e.g. the flat
+  `liquidViscosity {}` — is REFUSED, not dropped.
+- **THE RESOLVED VIEW**: before the solve (verbosity ≥ 2) the engine prints,
+  for the system, each sector dictionary a unit uses, each named variant and
+  each inline fragment, every property the package can be asked with two
+  columns — CHOICE (where it was decided: system, sector file, parent via
+  `inherits`, `variants.<name>`, a unit's inline block) and DATA (the law per
+  constituent, the mixing rule — marked "default" when the case wrote none —
+  the interaction pairs it reads or misses, the density routes, the energy
+  basis and enthalpy routes).  Every line starts `[properties]`; a
+  fingerprint heads each view, and a `selected by` line names the units or
+  operations that use it (a sector's units, a variant's selectors, an
+  operation's inline block, an empty variant's units).  An equilibrium
+  fragment with the base's formulation is attributed per slot, never as the
+  whole block; the K-value world is printed for gammaPhi and phiPhi only.
+  Since the review of slices (a)+(b) every line comes from the objects the
+  package calls: its own activity model's pairs (never the run's log); a
+  pure fluid's formulation per property; each law's window WITH its type's
+  built-in one (RowlinsonBondi Tr 0.25-0.85, AmbroseWalton to Tc), the
+  law's own provenance and where its record was read (catalogue, sealed
+  case copy); and, for a formulation the view does not describe
+  (electrolyteGammaPhi, diluteSolution), "view not built for X: the
+  resolver lines are the record" instead of content.  The gate
+  check_view_matches_calls compares each law's own description at its first
+  evaluation (`CHOUPO_LAW_TRACE=1` prints them as `[law-call]`) with the
+  view.  choupoBatch, choupoCtrl and choupoSemiContinuous print the
+  system's view too.  Read it before asking "which viscosity did this unit
+  use?".
+- The factory defaults the view names when no `mixingRule` is written:
+  Grunberg–Nissan (liquid viscosity), Li (liquid conductivity), Butler
+  (surface tension).  A `transport {}` block with no vapour viscosity has no
+  gas viscosity since slice (b) (the Chung default was deleted, SL-04).
+- Since slice (b) the view prints, per constituent, each record law the run
+  uses (vapour pressure, the heat capacities, the liquid transport laws) —
+  name, type, who chose it, window, source, record — and every law type's
+  form with its coefficient units.
+- A law has a SOFT window only (its type's `Trange` / `Tmin` `Tmax` /
+  `Tlow` `Thigh`), announced once when left.  A hard window is not supported
+  yet: `domain (lo hi);` in a record is REFUSED by name ("a hard window is not
+  supported yet ... declare the law's soft window").  It was built and
+  withdrawn after five review rounds; it gets its own slice.
+- A pure fluid's VAPOUR viscosity and conductivity (`viscosity`,
+  `thermal_conductivity` of propertyPoint/scans) are evaluated at the vapour
+  state at (T, P), refused where the formulation places the state in the
+  liquid; ask `viscosity_liquid` / `thermal_conductivity_liquid` there.
+  Until the review they returned the saturated LIQUID's values.
 
 ## The three-tier model-parameter rule
 
@@ -708,9 +812,12 @@ The five binaries all hand the authored dict to
 The builder **assembles, never estimates** — a missing datum is a curation
 problem solved before the run (`curation-protocol.md`), not a runtime guess.
 After assembly the package is passed to every unit op's `solve(dict, thermo,
-verbosity)`.  Units consume only the slice they need.  A per-unit
-`thermo {}` override REPLACES the models for that unit only (components stay
-global) — the boundary is announced, see `energy.md` §model boundaries.
+verbosity)`.  Units consume only the slice they need.  A unit (or a props
+operation) that selects a variant -- `thermo <name>;`, or an inline `thermo
+{}` -- gets that variant's package for itself only (components stay global);
+a variant that changes `equilibrium` or `caloric` is a model boundary, see
+`energy.md` §model boundaries.  Before the solve the engine prints the
+RESOLVED VIEW of every property context the run uses (see "variants" above).
 
 ## Enthalpy reference state (the `phase` field in `standardThermochemistry`)
 
