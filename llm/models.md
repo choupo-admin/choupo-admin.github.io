@@ -176,7 +176,7 @@ Generated from `generated/modelsCatalogue.json` (the same data the interactive p
 | `parameters.EdwardsPitzer` | Edwards et al. (1978) truncated-Pitzer pairs | 34 | `data/standards/parameters/EdwardsPitzer/` |
 | `parameters.SRK` | SRK binary interaction parameters | 1 | `data/standards/parameters/SRK/` |
 | `parameters.adsorption` | Adsorption isotherm parameter records | 15 | `data/standards/parameters/adsorption/` |
-| `parameters.solution` | Solution-property parameter records | 11 | `data/standards/parameters/solution/` |
+| `parameters.solution` | Solution-property parameter records | 12 | `data/standards/parameters/solution/` |
 | `mixtures` | Named mixture records | 3 | `data/standards/mixtures/` |
 | `assets` | Plant assets, flat with a `kind` field: construction materials, membranes, membrane classes, membrane modules, feed spacers, electrodialysis stacks, adsorbents, ion-exchange media | 33 | `data/standards/assets/` |
 | `utilities` | Plant utility services | 10 | `data/standards/utilities/` |
