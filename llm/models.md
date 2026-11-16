@@ -22,6 +22,7 @@ Generated from `generated/modelsCatalogue.json` (the same data the interactive p
 |---|---|---|---|---|---|
 | `idealGas` | Ideal gas | all | vapour | `src/thermo/equationOfState/IdealGas.cpp` | `tutorials/steady/flash/adiabaticFlash01_benzene_toluene`, `tutorials/steady/absorption/absorber01_NH3_water` |
 | `PR` | Peng-Robinson (alias PengRobinson) | all | vapour/liquid | `src/thermo/equationOfState/PR.cpp` |  |
+| `LeeKeslerPloecker` | Lee-Kesler corresponding-states equation with the Ploecker-Knapp-Prausnitz mixing rules | all | vapour/liquid | `src/thermo/equationOfState/LeeKeslerPloecker.cpp` | `tutorials/props/molecular/lkp01_lee_kesler_tables`, `tutorials/props/compare/lkp02_n2_ch4_ar_112K` |
 | `SRK` | Soave-Redlich-Kwong | all | vapour/liquid | `src/thermo/equationOfState/SRK.cpp` | `tutorials/steady/flowsheets/ammonia01_synthesis_loop`, `tutorials/plant/ammonia02_full_plant`, `tutorials/steady/gibbs/gibbs10_ammonia_fugacity` |
 
 ## vaporPressure
@@ -177,8 +178,9 @@ Generated from `generated/modelsCatalogue.json` (the same data the interactive p
 | `parameters.eNRTL` | eNRTL electrolyte pairs | 48 | `data/standards/parameters/eNRTL/` |
 | `parameters.EdwardsPitzer` | Edwards et al. (1978) truncated-Pitzer pairs | 34 | `data/standards/parameters/EdwardsPitzer/` |
 | `parameters.SRK` | SRK binary interaction parameters | 1 | `data/standards/parameters/SRK/` |
+| `parameters.LKP` | Lee-Kesler-Ploecker binary kappa, as printed in Ploecker, Knapp & Prausnitz 1978 Table I | 131 | `data/standards/parameters/LKP/` |
 | `parameters.adsorption` | Adsorption isotherm parameter records | 15 | `data/standards/parameters/adsorption/` |
-| `parameters.solution` | Solution-property parameter records | 12 | `data/standards/parameters/solution/` |
+| `parameters.solution` | Solution-property parameter records | 13 | `data/standards/parameters/solution/` |
 | `mixtures` | Named mixture records | 3 | `data/standards/mixtures/` |
 | `assets` | Plant assets, flat with a `kind` field: construction materials, membranes, membrane classes, membrane modules, feed spacers, electrodialysis stacks, adsorbents, ion-exchange media, column packings | 35 | `data/standards/assets/` |
 | `utilities` | Plant utility services | 10 | `data/standards/utilities/` |
