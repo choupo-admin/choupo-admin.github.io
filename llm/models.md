@@ -12,6 +12,7 @@ Generated from `generated/modelsCatalogue.json` (the same data the interactive p
 | `ideal` | Ideal solution (Raoult, gamma=1) | all | liquid | `src/thermo/activityCoefficient/IdealSolution.cpp` |  |
 | `NRTL` | NRTL (non-random two-liquid) | all | liquid | `src/thermo/activityCoefficient/NRTL.cpp` | `tutorials/steady/flash/bubbleT01_ethanol_water`, `tutorials/steady/distillation/column03_azeotrope_mesh`, `tutorials/steady/crystallisation/crystalliser09_KHT_KCl_series` |
 | `UNIFAC` | UNIFAC (group contribution) | all | liquid | `src/thermo/activityCoefficient/UNIFAC.cpp` | `tutorials/steady/distillation/column05_reactive_methylacetate`, `tutorials/steady/absorption/extract01_ethanol_water_benzene`, `tutorials/props/scan/ternary03_lle_water_ethanol_benzene` |
+| `UNIFACDortmund` | Modified UNIFAC (Dortmund; Gmehling, Li & Schiller 1993 parameters only) | all | liquid | `src/thermo/activityCoefficient/UNIFACDortmund.cpp` | `tutorials/props/compare/unifacDortmund01_ethanol_water_reduced_pressure`, `tutorials/props/compare/unifacDortmund02_butanol_water_gamma_infinity` |
 | `UNIQUAC` | UNIQUAC (universal quasi-chemical) | all | liquid | `src/thermo/activityCoefficient/UNIQUAC.cpp` | `tutorials/batch/reactor/batch07_lhhw_methylAcetate`, `tutorials/props/scan/binary01_lle_water_nbutanol`, `tutorials/steady/flash/bubbleT02_uniquac_ethanol_water` |
 | `Wilson` | Wilson (local-composition) | all | liquid | `src/thermo/activityCoefficient/Wilson.cpp` | `tutorials/steady/flash/flash03_wilson_ethanol_water` |
 
@@ -170,6 +171,7 @@ Generated from `generated/modelsCatalogue.json` (the same data the interactive p
 | `parameters.NRTL` | NRTL binary-interaction pairs (public catalogue) | 793 | `data/standards/parameters/NRTL/` |
 | `parameters.UNIQUAC` | UNIQUAC binary-interaction pairs (public catalogue) | 374 | `data/standards/parameters/UNIQUAC/` |
 | `parameters.UNIFAC` | UNIFAC group-interaction tables | 2 | `data/standards/parameters/UNIFAC/` |
+| `parameters.UNIFACDortmund` | Modified UNIFAC (Dortmund) group tables, as printed in Gmehling, Li & Schiller 1993 | 2 | `data/standards/parameters/UNIFACDortmund/` |
 | `parameters.Henry` | Henry's-law gas-solvent pairs | 486 | `data/standards/parameters/Henry/` |
 | `parameters.Pitzer` | Pitzer (Harvie-Moller-Weare) ion-interaction pairs | 182 | `data/standards/parameters/Pitzer/` |
 | `parameters.eNRTL` | eNRTL electrolyte pairs | 48 | `data/standards/parameters/eNRTL/` |
