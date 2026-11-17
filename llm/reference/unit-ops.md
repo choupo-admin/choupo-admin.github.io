@@ -2646,7 +2646,9 @@ identity, the printed Sigma formula evaluated by hand).
 Hardware: wheel atomiser geometry + chamber.  Atomisation by
 Friedman, drying kinetics by Ranz-Marshall + Lewis falling rate,
 equilibrium by GAB sorption isotherm.  A solid with no `rho_p` REFUSES by name
-(no 1500 kg/m3 default); a `sorption {}` block must carry Xm, C and K.
+(no 1500 kg/m3 default); a solvent with no liquid molar volume `Vliq` REFUSES by name
+(the droplet density is read from it; no 1000 kg/m3 default), and so does a drying-air
+temperature of 0 K or below (no 1.2 kg/m3 air); a `sorption {}` block must carry Xm, C and K.
 
 Selectable chamber `model`s (an unrecognised word REFUSES, naming these):
 - `marshall` (**default**, alias `lumped`).  The inlet/outlet short-cut plus a
@@ -3765,7 +3767,7 @@ by what leaves, so the answer depends on the time step; the driver REFUSES it
 by name, listing the loop's units and streams and the remedies above.  The
 test is structural (a cycle of the routes, the declared `in`/`inputs`/
 `outputs`, and `DynamicUnitOperation::setsOutletFlow()`), not a reading of the
-numbers.  Held by `bin/curate/check_time_integrated.py`, which also runs the
+numbers.  Held by `bin/curate/check_time_integrated_layout.py`, which also runs the
 shipped loops to show they are not refused.
 
 ```
