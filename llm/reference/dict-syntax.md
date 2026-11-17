@@ -605,7 +605,8 @@ keys:
 
 ```
 recordType     thermophysicalPropertySystem;   // typed record marker
-schemaVersion  2;
+schemaVersion  1;                               // the one stamp of every record type; a 2 (releases
+                                                // up to Choupo-2608) still runs and is announced once
 
 components     ( water CO2 );
 

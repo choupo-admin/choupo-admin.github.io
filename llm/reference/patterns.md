@@ -738,7 +738,7 @@ was a round).
 
 ```
 recordType    thermophysicalPropertySystem;
-schemaVersion 2;
+schemaVersion 1;
 
 components ( water  NaCl  CO2 );
 

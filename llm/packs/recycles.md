@@ -189,7 +189,7 @@ recycleMaxIter   50;
 `constant/thermoPhysPropDict`
 ```
 recordType    thermophysicalPropertySystem;
-schemaVersion 2;
+schemaVersion 1;
 
 components ( N2  propane  nButane );
 

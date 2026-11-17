@@ -299,7 +299,7 @@ reports { streamTable {} massBalance {} energyBalance {} }
 `constant/thermoPhysPropDict`
 ```
 recordType    thermophysicalPropertySystem;
-schemaVersion 2;
+schemaVersion 1;
 components ( water lactoseMonohydrate magnesiumStearate );
 equilibrium
 {

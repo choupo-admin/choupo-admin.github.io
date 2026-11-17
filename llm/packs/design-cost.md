@@ -261,7 +261,7 @@ reports { streamTable {} massBalance {} energyBalance {} }
 `constant/thermoPhysPropDict`
 ```
 recordType    thermophysicalPropertySystem;
-schemaVersion 2;
+schemaVersion 1;
 components ( ethanol water );
 equilibrium
 {
