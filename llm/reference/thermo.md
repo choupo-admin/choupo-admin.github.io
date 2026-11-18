@@ -122,6 +122,43 @@ binaryParameters
 }
 ```
 
+A pair record of the activity models (`NRTL`, `UNIQUAC`, `Wilson`) may hold
+SEVERAL NAMED PARAMETER SETS -- the same pair fitted for two purposes (a
+partially miscible pair: `fittedTo vle` and `fittedTo lle`).  A record with a
+plain `parameters { }` block has ONE set, named `default`, and reads as it
+always did.  A record with sets looks like
+
+```
+recordType binaryInteractionParameters;  model NRTL;  components ( A B );
+preferred lle;
+sets
+{
+    lle { parameters { i A; j B; a_ij ..; b_ij ..; a_ji ..; b_ji ..; alpha ..; }
+          provenance { origin fitted; ... }   validity { temperature { min 288 K; max 366 K; } }
+          fittedTo lle; }
+    vle { parameters { ... }  provenance { ... }  fittedTo vle; }
+}
+```
+
+and a case picks one beside the pair's `source`:
+
+```
+binaryParameters { A-B { source "data/standards/parameters/NRTL/<pair>.dat"; set vle; } }
+```
+
+No `set` = the record's `preferred`.  An unknown name is REFUSED, listing the
+record's sets; `set` without a `source` (an inline pair) is refused.  The run
+prints `[builder] binary pair A-B  --- <file>  set vle` and the resolved view
+line ends `, set vle`.  A curator adds a second set by moving the record's
+`parameters` and `provenance` into a named set, adding `preferred <name>;`
+(required once there are two), and a top-level `parameters` beside `sets` is
+refused.  The writers (choupoProps `fitParameters` proposals,
+`bin/curate` importers) keep writing the single-block form.  The Henry, Pitzer,
+eNRTL and EoS-kij records have their own record types and are not covered: each
+would need the same `sets` / `preferred` reader at ITS loader (the one place it
+reads `parameters`).  The contract is held by a probe in `bin/curate/check_record_form.py` (arm
+`pair-sets`) on a temporary copy of a catalogue record; no shipped tutorial carries a made-up set.
+
 Every declared file is loaded and verified at assembly — a
 declared-but-missing file REFUSES loudly, naming the entry to add.
 
@@ -699,6 +736,28 @@ on the publication's datum, valid only where the phase is effectively pure
 point without a flowsheet, use the props op `referenceEoS`.  Theory Guide:
 "Reference equations of state (Helmholtz energy)".
 
+**Who governs, and the datum contract (K1, K2; design record 7b).**  Beside an
+`equilibrium` block a `pureFluids` component is answered by two objects, and
+the resolved view prints which, before the solve, as the row "who governs a
+pure-fluid component":
+
+- the PHASE BOUNDARY (Psat, the K-value, the liquid reference fugacity) is the
+  method's own curve, whatever the composition, inside its saturation window
+  (IF97: 273.15-647.096 K); outside it the record's correlation answers,
+  announced once;
+- ENTHALPY, ENTROPY, DENSITY, vapour and liquid viscosity and thermal
+  conductivity, and surface tension are the method's when the phase is pure in
+  it (x >= 0.999, `pureFluidRoute`); absent (x <= 1e-12) the generic chain
+  answers; BETWEEN the two the call is REFUSED by name (the generic chain does
+  not answer in between); diffusivity is never supplied by the pure-fluid route;
+- the method's h and s sit on its own datum, not the elements datum.  A stream
+  that joins a package with `pureFluids` to one without (two sectors, or a unit
+  that selects a variant `thermo <name>;` adding `pureFluids`) is a DATUM FLIP,
+  refused by name in the model-boundary audit (stream, producer, consumer);
+  a closed single-package loop is not.  Gate `check_datum_flip_refused`.
+  The bridge between the datums is not built; it is the declared way to lift
+  the refusal.
+
 ## transport  (optional; for unit ops that need μ / k / D / σ)
 
 Which unit takes which liquid property from where -- the property kernel or
@@ -907,6 +966,24 @@ caloric { liquidHeatCapacity { pin ( { component water; table crcWaterCp; interp
   `props/heat/table02_water_liquid_cp_points`, `props/heat/table03_trial_state_refused`
   (EXPECTED-FAIL lesson), `steady/flowsheets/table05_sector_table_pins` (two
   sectors, one pin text, one file each).  Gate `check_table_laws`.  Theory Guide `sec:record-law-table`.
+
+### A liquid's FLOW CURVE: the door's third form (C421 (7))
+A liquid whose viscosity depends on the shear is declared in the property dictionary,
+Newtonian BY ABSENCE: `transport { liquid { rheology { measured { <name> { use method;
+interpolation logLog | linear; reason "..."; [fit { model powerLaw | Bingham | HerschelBulkley; }] } } } } }`,
+citing `constant/experiments/<name>.dat`: `property flowCurve;`, `provenance { citation; kind
+measured|adopted|estimated; basis; }`, `system`/`solvent`, `conditions { instrument <word>; corrected ( ... );
+T ...; w { ... }; [viscoelastic yes|no; timeDependent yes|no;] }`, two columns of `gamma` (1/s), `tau` (Pa),
+`mu` (Pa s), an optional `yieldStress { value; how; }` (a DATUM, never read off a fit) and an optional
+`authorised { gamma (lo hi); T (lo hi); w[c] (lo hi); reason }`.  READINGS THAT DO NOT DECLARE THE
+INSTRUMENT AND ITS CORRECTIONS ARE REFUSED as a flow curve (capillary: RabinowitschMooney, endEffects,
+slipChecked, laminarOnly; ...; `instrument model` = rows generated from a stated equation, `kind adopted`).
+A `fit` is a DERIVED view (fitted at load, parameters and residuals printed, nothing stored); Bingham and
+HerschelBulkley need the yield stress datum.  Support = the rows' span; authorised = the record's wider
+domain (the end chord, excursion announced); outside it, and outside the T/composition box: refused.
+The unit supplies the shear; `liquidProperty::apparentViscosity(thermo, T, P, x, Shear::rate(g) | Shear::stress(t))`
+returns `mu_app = tau/gamma`.  The Newtonian question (`viscosityLiquid`) is REFUSED for such a liquid.
+Consumers: `pipe` (laminar, wall stress from the curve), `agitatedVessel` (`gamma_avg = k_s N`).  Guide: `sec:flow-curve`.
 
 ### A measured MIXTURE table: many rows over T and w (C421 slice (8))
 

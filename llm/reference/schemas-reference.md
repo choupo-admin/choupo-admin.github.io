@@ -19,7 +19,7 @@ person.  For prose, groupings and worked examples instead of an
 alphabetical dump, read [`unit-ops.md`](https://www.choupo.org/llm/reference/unit-ops.md) beside it; to be
 taught rather than to look something up, read the User Guide.
 
-*120 of 120 registered operations carry a schema and are documented below.*
+*121 of 121 registered operations carry a schema and are documented below.*
 
 ## `FUG`  (FUG operation)
 
@@ -77,6 +77,17 @@ Adiabatic flash (Q = 0). The feed flashes to the outlet pressure; outlet tempera
 | Field | Required | Type | Unit | Description |
 |---|:-:|---|---|---|
 | `P` | ✓ | number | Pa | Pressure at which the flash is solved. |
+
+## `agitatedVessel`  (agitatedVessel operation)
+
+A stirred vessel whose shaft power is computed from the Metzner-Otto average shear rate (Chhabra & Richardson, Ch. 8) and enters the energy balance as the Work item W_shaft_kW.  The liquid's flow curve is the property dictionary's (Newtonian by absence); the impeller's k_s and K_p are an asset record of kind impeller; the vessel and the speed are this block's.  Refused by name: a yield-stress, shear-thickening, viscoelastic or time-dependent fluid; a transitional Reynolds number.
+
+| Field | Required | Type | Unit | Description |
+|---|:-:|---|---|---|
+| `vessel` | ✓ | object | — |  |
+| `impeller` | ✓ | object | — | The impeller is an asset record (kind impeller) in constant/assets/ or data/standards/assets/.  Give ONE speed: N or tipSpeed. |
+| `thermalMode` |   | string | — | isothermal (default): the jacket removes the dissipated shaft power, T_out = T_in, the duty Q_kW = -W_shaft_kW is published.  adiabatic: … |
+| `outsideCorrelationWindow` |   | object | — | Declares, with a reason, that the impeller geometry is outside the data range of the correlation that gives K_p (eq. 8.7).  Without it su… |
 
 ## `bagFilter`  (bagFilter operation)
 
@@ -176,16 +187,12 @@ Bubble-point temperature at fixed pressure: the T at which the first vapour bubb
 
 ## `cakeFilter`  (cakeFilter operation)
 
-A cake filter on a slurry, constant pressure, two-resistance law (Geankoplis, Hersel & Lepek 5th ed. section 24.2): t/V = K_p V/2 + B with K_p = mu alpha c_S/(A^2 dp), B = mu R_m/(A dp); a compressible cake alpha = alpha0 dp^s. Model rotaryDrum is continuous (declare cycleTime or area, the other is the result; eq. 24.2-26); batchPress is cyclic (declare area, filtratePerCycle and cleaningTime; the cycle time and the number of presses are results). The streams are cycle-averaged flows. Inlets (slurry [wash]), outlets (cake filtrate [spentWash]). The liquid viscosity is the package's and its model must be declared by the case.
+A cake filter on a slurry, constant pressure, two-resistance law (Geankoplis, Hersel & Lepek 5th ed. section 24.2): t/V = K_p V/2 + B with K_p = mu alpha c_S/(A^2 dp), B = mu R_m/(A dp); a compressible cake alpha = alpha0 dp^s. The cake law, the medium resistance and the wet-to-dry ratio are the SAMPLE's: `sample <name>;` names the record that holds them. Model rotaryDrum is continuous (declare cycleTime or area, the other is the result; eq. 24.2-26); batchPress is cyclic (declare area, filtratePerCycle and cleaningTime; the cycle time and the number of presses are results). The streams are cycle-averaged flows. Inlets (slurry [wash]), outlets (cake filtrate [spentWash]). The liquid viscosity is the package's and its model must be declared by the case.
 
 | Field | Required | Type | Unit | Description |
 |---|:-:|---|---|---|
 | `pressureDrop` | ✓ | number | Pa | -dp, constant over the cycle. |
-| `specificCakeResistance` |   | number | m/kg | Use this OR alpha0 with compressibility, never both. |
-| `alpha0` |   | number | SI | Read in SI (m/kg with dp in Pa); its dimensions have no integer form. Give with compressibility. |
-| `compressibility` |   | number | - | The exponent s of alpha = alpha0 dp^s (Geankoplis eq. 24.2-11). Give with alpha0. |
-| `mediumResistance` | ✓ | number | 1/m | 0 is a declaration (the medium neglected). |
-| `wetToDryCakeRatio` | ✓ | number | - | kg wet cake per kg dry cake: the cake moisture, declared (Geankoplis eq. 24.2-10). |
+| `sample` | ✓ | string | — | The name of the record in constant/experiments/<name>.dat that holds the cake law, the medium resistance and the wet-to-dry ratio m (kind… |
 | `submergence` |   | number | - | The fraction of each revolution in which cake forms. |
 | `cycleTime` |   | number | s | Declare this XOR area; the other is the result. |
 | `area` |   | number | m2 | batchPress: declared. rotaryDrum: declare this XOR cycleTime. |
@@ -1039,6 +1046,7 @@ Pipe-segment pressure drop. Single-phase by default (Darcy-Weisbach with the fri
 | `geometry` | ✓ | object | — | The physical line. Diameter, length and roughness are required; elevation change and fittings are optional. |
 | `viscosity` |   | number | Pa.s | Use the declared liquid viscosity instead of the package's model. An explicit, announced aid for the case where a trace dissolved compone… |
 | `twoPhase` |   | object | — | Present = solve the segment as gas-liquid flow. Absent = single-phase. |
+| `turbulent` |   | object | — | For a liquid that declares a flow curve (transport.liquid.rheology): the method used past the laminar limit (Re_MR >= 2100, Chhabra & Ric… |
 
 ## `pitzerActivity`  (pitzerActivity operation)
 

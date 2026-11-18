@@ -273,6 +273,11 @@ reactions ( r1 r2 ... );       // MULTI
 ```
 For a SERIES network the PFR beats the CSTR (no back-mixing keeps the intermediate):
 `pfr03_series_selectivity` gives 79 % of B where `cstr03` gives 53 %, same τ.
+**Where its liquid properties come from (C421).**  The liquid basis of a concentration law
+(`Q = F v`, `tau_s = V_R / Q`) is `v = M / rho`, `rho` the property door's liquid density of
+the feed at the feed's own T, P and composition -- no longer the sum of each component's stored
+25 C `Vliq`.  The run's liquid-properties table names the unit and the method.  The bed's gas
+side (Ergun) was never on the liquid basis.  A property typed in `operation` is not read.
 
 **Non-isothermal** (multi-reaction path).  `thermalMode isothermal` (default — T imposed,
 duty a result) · `adiabatic` · `heatExchange` (with flat `U;`, `areaPerVolume;` and
@@ -1095,12 +1100,12 @@ booster + one SW30HR-380 stage, the specific energy decomposed.  Record:
 **What `pressureExchanger` accepts** (generated from `choupoSolve --describe-units`; judged on each process inlet, before any unit runs when the inlet is authored, else at the unit's own solve):
 
 * **Models:**
-  * Every component the two streams carry, each with a liquid molar volume or an aqueous bridge (a dissolved solute, whose volume is then the solvent's).
+  * Every component the two streams carry, in a liquid whose density the property door can price at the inlet's state.
 * **May pass through:**
   * Nothing: no pass-through is offered, so every component it is handed enters its equations or is refused.
 * **Refuses:**
   * A feed that is not a liquid -- The exchanger moves pressure between two LIQUIDS by displacement in a duct: its balances are volumetric on the liquid molar volume, and a vapour has no duct volume to exchange.
-  * A feed carrying no aqueous solvent -- the device is the seawater-RO energy-recovery device: both streams are aqueous solutions, the salinity it moves between them is the solute mass fraction on the aqueous solvent, and a dissolved solute's volume is taken as the solvent's.
+  * A feed carrying no aqueous solvent -- the device is the seawater-RO energy-recovery device: both streams are aqueous solutions, the salinity it moves between them is the solute mass fraction on the aqueous solvent, and the stream's volume is its liquid density's (the property door's).
 * **Needs:**
   * No package capability beyond the components' own records.
 <!-- END GENERATED unit-acceptance pressureExchanger -->
@@ -1109,6 +1114,10 @@ booster + one SW30HR-380 stage, the specific energy decomposed.  Record:
 A stream-less sink for the shaft work a turbine produces (or any `work`
 energy port).  No material streams; it just consumes the wired W.
 ```
+**Liquid properties (C421).**  Each inlet's volume per mole is `M / rho`, `rho` the property
+door's liquid density of THAT inlet at its own T, P and composition; a dissolved salt's volume
+is in the solution's density (the old dilute-solution sum, which gave a salt no volume, is
+gone), and a state the door cannot price refuses by name.
 { name G1; type electricLoad;
   operation   { eta  0.97; }                       // generator efficiency
   energyInputs ( { from turbine01.shaft;  kind work;  target W_shaft; } ) }
@@ -2500,7 +2509,25 @@ on the finest class).
 A cake filter on a SLURRY (a liquid carrying solids; not a gas-borne powder),
 constant pressure, the two-resistance law of Geankoplis, Hersel & Lepek 5th ed.
 section 24.2: `t/V = K_p V/2 + B`, `K_p = mu alpha c_S/(A^2 dp)`,
-`B = mu R_m/(A dp)`; a compressible cake `alpha = alpha0 dp^s`.  A negative
+`B = mu R_m/(A dp)`; a compressible cake `alpha = alpha0 dp^s`.  THE CAKE LAW,
+THE MEDIUM RESISTANCE AND `m` ARE THE SAMPLE'S, NOT THE UNIT'S: `operation {
+sample <name>; }` names a record `constant/experiments/<name>.dat` (property
+`filtrationTest`) and the unit asks it at its `pressureDrop`; typing
+`specificCakeResistance`, `alpha0`, `compressibility`, `mediumResistance` or
+`wetToDryCakeRatio` in the unit is REFUSED by name with the line to write.  The
+record (src/samples/SampleBehaviour.H, design R6): `provenance { citation;
+kind measured|adopted|estimated; basis }` (kind REQUIRED, printed in the run),
+`subject { suspension; medium }`, `conditions { ... }` (pH, flocculant, age ...,
+printed), then EITHER `tests ( { pressureDrop; area; solidsMassFraction;
+wetToDryRatio; filtrateViscosity; filtrateDensity; linearRegion { fromRow;
+toRow; reason }; columns ( {name t; unit s;} {name V; unit m3;} ); data ( ... ) } )`
+(`measured`: the raw t-V rows; alpha and R_m are DERIVED by the line t/V against
+V, Wakeman & Tarleton Ex 4.1) OR `stated { specificResistance | (alpha0
+compressibility); mediumResistance; wetToDryRatio }` (`adopted` or `estimated`:
+the values a source prints), and `authorised { pressureDrop { min; max }; rule
+nearest; reason }` (required for a stated record; wider than the rows' support
+only with a reason; outside it the service REFUSES).  A different medium is a
+different sample: a different record.  A negative
 `compressibility` is REFUSED by name (alpha would fall as dp rises); s above 1
 runs and is ANNOUNCED (K_p then grows as dp^(s-1): where the cake dominates the
 medium, a higher pressure drop gives LESS filtrate); 0 <= s <= 1 is silent.  Inlets
@@ -2509,8 +2536,8 @@ is continuous (declare `cycleTime` XOR `area`; the other is the result, eq.
 24.2-26); `model batchPress` is cyclic (declare `area`, `filtratePerCycle`,
 `cleaningTime`; the filtration, washing and cycle times and `pressesRequired` are
 results).  THE STREAMS ARE CYCLE-AVERAGED FLOWS: the cycle is a design result on
-the steady balance, never a second time axis.  The cake moisture is DECLARED
-(`wetToDryCakeRatio` m, kg wet per kg dry); the liquid viscosity and density are
+the steady balance, never a second time axis.  The cake moisture is the SAMPLE's, never predicted
+(`wetToDryRatio` m, kg wet per kg dry); the liquid viscosity and density are
 the package's (a case that declares no liquid viscosity model is refused).  A
 wash is a real second inlet and the spent wash a real third outlet: the solute
 left in the cake is the washing law's answer, `washing { model displacement; }`
@@ -2528,14 +2555,11 @@ operation
     pressureDrop      67.0 kPa;
     submergence       0.33;
     cycleTime         250 s;
-    alpha0            4.37e9;        // m/kg with dp in Pa: read in SI
-    compressibility   0.3;
-    mediumResistance  [0 -1 0 0 0] 0;
-    wetToDryCakeRatio 2.0;
+    sample            caco3_geankoplis_ex24_2_4;   // the cake law, R_m, m: constant/experiments/
 }
 ```
 A press with a through-washed cake: `model batchPress; inputs ( slurry washWater );
-outputs ( cake filtrate spentWash );` with `area`, `filtratePerCycle`,
+outputs ( cake filtrate spentWash );` with `sample caco3_geankoplis_ex24_2_1;`, `area`, `filtratePerCycle`,
 `cleaningTime`, `washFlowPath throughWashing;` (one quarter of the final rate,
 eq. 24.2-20; `sameAsFiltrate` is eq. 24.2-19) and a `washing { }` block.
 KPIs: `alpha_m_kg`, `cS_kg_m3` (beside `cS_eq24_2_10_kg_m3`), `filtrate_m3_s`,
@@ -2548,6 +2572,9 @@ Theory: `sec:cakeFilter` (`sec:cakeFilter-rotaryDrum`, `sec:cakeFilter-batchPres
 all four rows anchored, area 6.6434 vs 6.60 m2) and
 `tutorials/steady/solids/filter02_caco3_pressWashing` (Examples 24.2-1 to 24.2-3:
 five rows anchored, -0.16 to -0.58 %, one cause: the package's water viscosity);
+`tutorials/steady/solids/filter05_calciumSilicate_measuredTest` (a `measured` sample:
+the raw t-V rows of Wakeman & Tarleton Example 4.1, alpha 7.43e9 vs 7.4e9 m/kg and
+R_m 1.538e10 vs 1.54e10 1/m derived from them at 69 kPa, anchored);
 `tutorials/steady/solids/filter03_drum_area_medium_tabulatedWash` (a drum with a
 declared `area`, `mediumResistance` > 0 and a `tabulated` wash) and
 `tutorials/steady/solids/filter04_leafFilter_sameAsFiltrateWash` (`washFlowPath
@@ -2796,6 +2823,13 @@ antisolvent drowning-out supersaturation), not only a solubility curve.  The
 population balance then operates on `S = c/c_sat` regardless.  See
 `crystalliser08_nacl_antisolvent_msmpr` (a continuous antisolvent NaCl MSMPR
 that returns the PSD the equilibrium model cannot).
+
+**Liquid properties (C421).**  The residence time of `MSMPR` and `FVM` is `tau = V / Q`, `Q = F M / rho`
+with `rho` the property door's liquid density of the feed liquor at `operatingTemperature`, the
+unit's pressure and the liquor's composition (it was the sum of each component's stored 25 C
+`Vliq`, which gave a dissolved salt with none a zero volume).  The antisolvent's molar volume in
+the mixed-solvent activity term is `M / rho` of the pure antisolvent at `operatingTemperature`,
+also from the door.
 
 **Multiple feeds** — declare `inputs (brine antisolvent);` and the
 crystalliser combines them internally (no separate `mixer` node), e.g. a
@@ -3096,6 +3130,26 @@ KPIs: `deltaP`, `dP_friction`, `dP_fittings`, `dP_elevation`, `P_in`,
 `P_out`, `velocity`, `reynolds`, `frictionFactor`, `regime` (0 laminar /
 1 transition / 2 turbulent), `head_loss_m`, `density`, `viscosity`.
 
+**A NON-NEWTONIAN liquid (C421 (7); Theory Guide `sec:pipe-nonnewtonian`).**  When the
+property dictionary declares the liquid's flow curve (`transport { liquid { rheology {
+measured { <name> { use method; interpolation logLog; fit { model powerLaw; } } } } } }`,
+an experiment record of kind `flowCurve`; Newtonian by ABSENCE) the pipe takes the LAMINAR
+non-Newtonian path.  The wall stress `tau_w` that carries the flow is the root of the
+generalised Rabinowitsch-Mooney integral `V = (R/tau_w^3) * integral tau^2 f(tau) dtau`
+(eq. 3.46, `f` = the curve's inverse, 0 below a yield stress), found from the curve itself;
+`-dP/L = 4 tau_w / D`; the Metzner-Reed `Re_MR = rho V^(2-n') D^n' / (8^(n'-1) m')`
+(eq. 3.57) with `n' = d ln tau_w / d ln(8V/D)`; laminar `f_Fanning = 16/Re_MR`.  The door's
+form 3 is asked at the wall stress (state, time dependence and domain refused there).  The laminar line ends at `Re_MR = 2100`
+(book p. 133).  PAST IT THE PIPE REFUSES unless `operation { turbulent { method DodgeMetzner; } }`
+(eqs. 3.70-3.73, window `2900 <= Re_MR <= 36000`, `0.36 <= n' <= 1`; the book: methods differ by
++-50 %).  Fittings take the Newtonian K with a warning.  Extra KPIs: `wallShearStress`,
+`wallShearRate`, `nPrime`, `mPrime`, `viscosityApparentWall`, `tailShare` (the part of the flow
+standing on the chord below the lowest measured rate); `viscosity` is the effective `tau_w D/(8V)`,
+`reynolds` is `Re_MR`, `frictionFactor` stays the Darcy factor.  Witnesses:
+`tutorials/steady/hydraulics/pipe04_powerlaw_polymer_solution` (Example 3.1),
+`pipe05_herschelbulkley_clay_slurry` (Example 3.3).
+
+
 **Gas-liquid two-phase flow (Layer 1).**  When the feed flashes two-phase at
 `(T,P)` (i.e. `0 < V/F < 1` — the inlet vapour fraction the flowsheet resolves;
 a feed that DECLARES a single phase, `phase liquid;` / `phase gas;`, is not
@@ -3154,6 +3208,35 @@ contract a steady unit declares, and each declaring vessel's section below
 carries it, generated.  choupoBatch has no pre-solve pass, so a vessel that
 declares one judges its initial holdup in its own `initialise`, before any
 vessel takes a step.
+
+### `agitatedVessel`
+A stirred vessel whose SHAFT POWER is computed and enters the energy balance (C421 (7), R7-R10;
+Theory Guide `sec:agitated-vessel`).  One liquid in, one out, mixed; no reaction.  The power
+belongs to the UNIT (not the `stirredTank` sizer, which runs after the pass): it publishes
+`W_shaft_kW`, an energy item of kind Work exactly as a pump's, and leaves as heat in the
+contents (`thermalMode isothermal`, default: `T_out = T_in`, the jacket's duty `Q_kW = -W` is
+published; `adiabatic`: the outlet warms).  Who owns what: the FLUID's flow curve is the property
+dictionary's (Newtonian by absence); the impeller's `k_s` (with its stated uncertainty) and `K_p`
+(or `Po_t`) are an ASSET record of kind `impeller` (`constant/assets/` or
+`data/standards/assets/`); the speed and `D_T` are the unit's.  Metzner-Otto: `gamma_avg = k_s N`
+(eq. 8.9); `mu_app` from the door (form 3); `Re = rho N D^2 / mu_app`; laminar `Po Re = K_p`,
+`P = K_p mu_app N^2 D^3`; the laminar line ends at the record's `Re_cr` (eq. 8.24); above it the
+record's `Po_t` from `Re = 6370 Po_t^-1/3` (eq. 8.8), refused in between.  The printed power
+carries `k_s`'s uncertainty and `K_p`'s as `P_low_W .. P_high_W`.  REFUSED BY NAME: a yield stress
+(unyielded regions), a shear-thickening curve, a viscoelastic or time-dependent fluid, a
+transitional `Re`, a helical-ribbon geometry outside eq. 8.7's data unless
+`outsideCorrelationWindow { reason "..."; }`.  `cstr` takes no agitator in this slice.
+```
+{ name M1;  type agitatedVessel;  in feed;  outputs ( stirred );
+  operation {
+    vessel   { D_T 2.2 m; }
+    impeller { record helicalRibbonEx85;  tipSpeed 1.0 m/s; }   // or N 9.1 rpm;   D defaults to D_T/(1+clearanceRatio)
+    thermalMode isothermal;                                      // | adiabatic
+  } }
+```
+KPIs: `W_shaft`, `W_shaft_kW`, `Q_kW` (isothermal), `P_low_W`, `P_high_W`, `Re`, `Po`, `Kp`,
+`gamma_avg`, `mu_app`, `N`, `D`, `tipSpeed`, `k_s`, `T_out`, `density`.
+Witness: `tutorials/steady/hydraulics/agitation01_helical_ribbon_polymer_melt` (Example 8.5).
 
 ### `batchReactor`
 Closed vessel, RK4 in time.  `mode isothermal` (T held) or `adiabatic`
