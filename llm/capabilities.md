@@ -219,6 +219,14 @@ batch plan, sizing, clean utilities, costing and economics on top
   `reports/lines/lineList.csv`.  Every rule is a declared block with its
   `source` and `reason` (`origin assumed` where no book in the literature
   folder gives it); a two-phase line is listed not sized.
+* THE NOZZLE SCHEDULE (`key:nozzleDesign` in `system/layoutDict`, beside
+  `lineDesign`): every placed item's equipment sheet gains a `nozzles {}` block --
+  one row per line that ends on it (mark, service, stream, line, nominal size =
+  the line's or the item's own criterion with a reducer printed, flange class and
+  facing from the case's pressure-temperature table per material (Perry Table
+  10-42 in the shipped cases), orientation, design P and T) and the manways or
+  inspection openings by the case's rule per equipment kind (Towler and Sinnott
+  p. 714, p. 1062).  Nothing defaulted; a material with no table is NOT RATED.
 * Missing: utility-line sizing, the two-phase drop, nozzle entrance and exit
   losses, the pump a line needs, steam and nitrogen lines, structures; no
   spacing or zoning table is shipped (every distance is the case's).
@@ -266,6 +274,12 @@ batch plan, sizing, clean utilities, costing and economics on top
   `constant/economics`, utilities from their records, labour, and the cost of
   manufacture; for a batch plant the year's flows come from the plan
   (`key:streamFactor` `fromBatchPlan`).
+* Prices print with their origin (C389): each priced stream and the labour
+  rate appear in the run's "Prices and where they came from" table, in
+  `reports/economics/prices.csv` and in the GUI Reports view, with the case's
+  `provenance { origin "..."; kind published|quote|assumption; }` (labour:
+  `labourProvenance { }`).  A stream price with no `origin` is refused by name;
+  an absent `kind` prints `undeclared`.  Theory Guide, `par:price-origin`.
 * Missing: waste treatment cost (it is zero in the cost of manufacture);
   a raw-material inlet you do not price is left out, so price every inlet.
 * Witness: `tutorials/batch/plant/apalutamide01_tablets`.
@@ -335,7 +349,7 @@ batch plan, sizing, clean utilities, costing and economics on top
 | Absorption, stripping, extraction | outlet compositions of the contactor.  Film and overall mass-transfer coefficients, Henry's-law constants in their many forms, and the enhancement factor of a reaction in the liquid film are taught by the EduTool `one-flux-many-units` (page arithmetic on cited textbook formulas; the engine's absorbers do not use film coefficients).  Extraction: a Kremser shortcut CHECK beside the rigorous stage count, a column height from a DECLARED HETS, the package's LLE read against measured tie lines (`op:lleTieLines`), the shortcut on declared numbers (`op:extractionShortcut`).  Missing: packed / rotating-disc / pulsed / mixer-settler models, flooding and diameter, stage efficiency | `unit:absorber`, `unit:stripper`, `unit:extractor`, `op:lleTieLines`, `op:extractionShortcut` | `tutorials/steady/absorption/stripper01_NH3_water`, `tutorials/steady/absorption/extract03_acetic_acid_mibk_perry`, `tutorials/props/compare/lle01_acetic_mibk_perry` |
 | Reactors (CSTR, PFR, conversion, equilibrium, Gibbs) | kinetics, equilibrium, adiabatic T | `unit:cstr`, `unit:pfr`, `unit:conversionReactor`, `unit:equilibriumReactor`, `unit:gibbsReactor` (`pack:reactors`) | `tutorials/steady/reactors/cstr01_first_order` |
 | Heat exchange (heater, cooler, exchanger, condenser, pinch) | duty, outlet T, area when sized; pinch targets | `unit:heater`, `unit:heatExchanger` (`model BellDelaware;` rates the shell side by the Bell-Delaware method), `op:bellDelawareBench`, `unit:phaseChanger`, `pass:pinchPass` | `tutorials/steady/heat/heatExchanger01_water_water`, `tutorials/steady/heat/heatExchanger04_bell_delaware_rating`, `tutorials/steady/heat/pinch01_four_stream_classic` |
-| Pumps, compressors, pipes (pressure drop, hydraulics) | shaft work, outlet state, friction loss | `unit:pump`, `unit:compressor`, `unit:pipe` (`pack:pressure`) | `tutorials/steady/hydraulics/pipe01_water_line` |
+| Pumps, compressors, pipes (pressure drop, hydraulics) | shaft work, outlet state, friction loss.  The EduTool `compression` teaches the work, the efficiencies, the discharge-temperature limit on one stage, staging with intercooling (equal ratios derived) and the real-gas Z and exponent, on the engine's staged compressor design (page arithmetic on cited Brown 2005 formulas, anchored to the sheet's section 1) | `unit:pump`, `unit:compressor`, `unit:pipe` (`pack:pressure`) | `tutorials/steady/hydraulics/pipe01_water_line` |
 | Gas-solid (cyclone, bag filter, conveying) | collection efficiency, pressure drop | `unit:cyclone`, `unit:bagFilter`, `unit:pneumaticConveyor` | `tutorials/steady/gas-solid/bagFilter01_dust` |
 | Particle-size distribution on one grid (sieve classes, PSD, d50, d80, Sauter mean, specific surface, blending powders) | every inlet's distribution put on the case's declared geometric grid (a fitted law integrated, a sieve table re-binned, mass exact and printed), blends class by class, d10/d50/d80/d90, Sauter d32 and S_v published per stream.  Checks: a grid leaving > 1 % of a powder above its top refused; two different grids refused.  Missing: one distribution per solid species (a multi-mineral feed is ONE material); the time-integrated binaries | `key:sizeGrid`, `unit:mixer` | `tutorials/steady/solids/psd01_grid_and_moments` |
 | Size reduction (milling, grinding, comminution, ball mill, Bond work index, breakage) | a breakage population balance on the size grid: selection function `austin`, `herbstFuerstenau` (energy-specific) or `vogelPeukert` (impact, with a threshold), breakage function `austin`, plug flow or perfectly mixed; product distribution, T rise from the shaft work, Bond's energy printed beside.  Checks: mass closure per class printed; a feed off the grid, a rate law without a residence time, two energy specs refused.  Missing: residence-time distributions between the two limits other than two mixers in series (two perfectly mixed mills at half the power each), mill sizing and cost | `unit:mill` | `tutorials/steady/solids/mill01_limestone_herbstFuerstenau`, `tutorials/steady/solids/mill02_bond_crosscheck` |

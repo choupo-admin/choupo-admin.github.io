@@ -347,7 +347,10 @@ propertyManifest
   (comments and unit spellings are cosmetic), or `relevant:<hash>` for a registry directory.  A pin lists what the
   run CONSUMED: a registry parses a whole directory (562 files for flash01), so a
   scanned one contributes only the names the case selects -- the Henry and
-  solution pairs among its components, the assets and utilities it names, the
+  solution pairs among its components, the reference equations (`parameters/Helmholtz/`)
+  whose `fluid` is one of its components by name or alias (C390: a new reference
+  equation for another fluid touches no manifest, and the directory has no set line:
+  a new equation for one of the case's fluids is a consumed, unpinned record), the assets and utilities it names, the
   adsorption equilibria of a named adsorbent -- pinned one by one, plus ONE line
   per scanned directory (`"parameters/Henry/" "relevant:<hash of the sorted
   relevant names that exist>"`).  A relevant pair that arrives is a drift
@@ -575,6 +578,7 @@ starters to compare against when answering "write me a case for X":
 | Stripper | `stripper01_NH3_water` |
 | Heat exchanger (eps-NTU) | `heatExchanger01_water_water` |
 | Compressor | `compressor01_air` |
+| Compressor, staged and intercooled design | `compressor03_staged_design` |
 | DesignSpec (size area) | `designSpec01_triple_equal_areas` |
 | Triple-effect evaporator | `evaporator02_triple_effect_sugar` |
 | Counter-current evaporator | `evaporator05_counter_current` |
@@ -1371,7 +1375,7 @@ utility a duty of this run is allocated to -- a steam CREDIT scales too),
 `labourRate`, `discountRate`, `taxRate`, `streamFactor`.  An unknown input, a
 price the case does not declare, a utility with no bill, a bare list, both or
 neither form, or an end outside what the input can be (a stream factor above 1)
-each REFUSE by name.  Published: a console table sorted by NPV swing, headed by
+each REFUSE by name.  (Each price of `constant/economics` also prints with its origin and kind: see pitfalls.md, "A price with no origin".)  Published: a console table sorted by NPV swing, headed by
 the statement that a sensitivity is NOT an uncertainty analysis (no probability,
 no correlation between inputs); `kpis.economics.sens_<input>_NPV_low/_high`,
 `_IRR_low/_high`, `_payback_low/_high`, `_value_low/_high` (the input's value
@@ -1511,9 +1515,11 @@ particulateSteps
 ```
 
 Absent, `P = 0` -- and where the flowsheet holds a unit whose type handles
-particulate solids (`sprayDryer`, `solidDryer`, `convectiveDryer`,
-`evaporativeDryer`, `crystalliser`, `pneumaticConveyor`, `cyclone`,
-`bagFilter`, `gasSolidSplitter`) the run ANNOUNCES the undeclared zero (its
+particulate solids -- read from each unit's own declaration (it carries a size
+distribution, or states `particulateSolids`: the dryers, `crystalliser`,
+`pneumaticConveyor`, `cyclone`, `bagFilter`, `gasSolidSplitter`, `mill`,
+`classifier`, `screen`, `hydrocyclone`, `thickener`, `cakeFilter`,
+`sedimentingCentrifuge`; not the generic `mixer`/`splitter`) -- the run ANNOUNCES the undeclared zero (its
 site, the caveat block, the result JSON's advisories), naming those units.
 A declared count announces nothing.  The console line prints the P term
 either way.  A flat `particulateSteps 6;`, a fractional or negative count,
@@ -1889,6 +1895,27 @@ plot { margin 10 m; reason "..."; }   // optional; absent: 0 m, announced
   `transport { liquid { viscosity { } } }` (dissolved gases left out, announced), the
   gas viscosity `transport { vapour { viscosity { model Chung; } } }`.  Witnesses:
   `tutorials/plant/line01_pumped_drum` (hand calculation in its README),
+  `tutorials/plant/greenAmmoniaPEQ_baseCase`.
+* THE NOZZLE SCHEDULE (C444): a `nozzleDesign { ... }` block in `system/layoutDict`,
+  beside `lineDesign` (a nozzle's size is the end of its line; with no `lineDesign` declare `nominalSizes { sizes ( ... ); source; reason; }` in `nozzleDesign` and the nozzles are sized by the items' own criteria alone), adds a
+  `nozzles {}` block to every placed item's equipment sheet (`design/<unit>/<tag>`):
+  mark (N1.. process, M1.. manway, H1.. inspection opening), service (the layout's
+  port word), stream, line, nominal size (the line's, or the item's own criterion
+  `d_nozzle_<port>` where larger, a difference printed as a reducer), flange class and
+  facing, orientation, design pressure (the item's `pressureDesign`, else the line's)
+  and temperature (hottest connected stream + margin).  Nothing is defaulted; each
+  block carries `source` and `reason`: `designTemperature { margin <K>; }`,
+  `facing { default RF; [ringJointFromClass <n>;] }`, `flangeRating { tables ( {
+  material <record>; group; source; minF -20; classes ( 150 300 ... ); rows ( { upToF
+  <F>; psig ( ... ); } ... ); } ... ); }` (one table per construction material: the
+  shipped cases read Perry 9th ed. Table 10-42a, c, d), `manway { entryMinDiameter;
+  diameter; nominalSize; inspection { nominalSize; } openings ( { equipment vessel |
+  columnShell | storageTank; where shell | roof; count; source; reason; } ... ); }`.  A
+  vessel under the entry limit gets an inspection opening instead of a manway; a
+  material with no table is listed NOT RATED.  Out: the sheet's `nozzles {}`,
+  `layout.nozzles` in the result (golden rows `layout nozzle:<item>:<mark> ...`).
+  Not modelled: reinforcement, minimum metal temperature, flange dimensions, bolting,
+  instrument and drain connections.  Witnesses: `tutorials/plant/line01_pumped_drum`,
   `tutorials/plant/greenAmmoniaPEQ_baseCase`.
 * THE PLOT (C82): the engine publishes the plot area -- the axis-aligned
   envelope of every declared sector area, every placed footprint, every
@@ -2452,3 +2479,26 @@ exits **1** and `converged/` is not written.  The tear's initial guess lives
 in its `0/` file, like any other stream.  Declare `tearStreams` in
 `system/solverDict` (the numerical home); the flowsheetDict is still read for
 older cases.
+
+## A README number that quotes a run carries a marker (DEV.md 4c C447)
+
+A tutorial's `README.md` is the first text a student reads, and the golden
+(`expected`) pins what the RUN prints, not what the prose says.  So a README
+number that quotes the run is written with an HTML comment directly after it
+(invisible when rendered) naming the row of the case's `expected` it comes
+from, the first three columns of that row:
+
+```
+V/F = **0.7685**<!--golden: kpi flash02 V_over_F-->
+conversion 50.75 %<!--golden: kpi cstr01 X_limiting *100-->
+```
+
+`*F` multiplies the row (a unit change), `+O` adds after it, `&` sums two rows,
+`&-` subtracts, and a first word `@steady/flash/flash01_x` reads a sister
+case's `expected`.  `bin/curate/check_readme_numbers.py` (gate
+`readme-numbers-gate`, every mode) fails when a marked number does not round to
+its row at the digits written, when the row is gone, or when a marker is not
+directly after a number.  A moved golden row therefore fails the README it
+feeds.  A number that is NOT the run's (a paper's value, a hand calculation, an
+input) carries no marker and is not checked; a number the golden does not hold
+(a log line, a probe) cannot be marked and is read, not gated.
