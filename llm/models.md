@@ -165,7 +165,7 @@ Generated from `generated/modelsCatalogue.json` (the same data the interactive p
 
 | key | name | records | source |
 |---|---|---|---|
-| `components` | Pure-component property records | 696 | `data/standards/components/` |
+| `components` | Pure-component property records | 690 | `data/standards/components/` |
 | `species` | Aqueous / gas / solid model-species records | 250 | `data/standards/species/` |
 | `chemistry` | Equilibrium reaction records (dissolution, association, gas-liquid) | 233 | `data/standards/chemistry/` |
 | `conventions` | Versioned convention profiles (identity of a parameterisation) | 4 | `data/standards/conventions/` |
