@@ -72,6 +72,16 @@ the incipient-vapour test decide, and when only one fires the narrower LL or
 VL solve is used, announced (C173).  `phaseSet auto` on a package with no
 vapour goes to LL (one stable liquid, or the split).
 
+**A FLAT RACHFORD-RICE FUNCTION** (a nearly pure feed, or K-values all close to
+1: a close boiler or near-azeotrope) can satisfy the residual test at the seed
+while V/F is far from the root (|dg/dV| 8e-9 at the seed, 1.3e-8 at the root,
+in the review's z = 1e-8 benzene state).  The flash requires the Newton step
+on V to be <= 1e-10 and otherwise bisects g(V); it prints and records the
+warning "the Rachford-Rice function g(V) is nearly flat" only when the V the
+residual test had accepted moved by more than 1e-6.  A close boiler Newton
+solved well (alpha 1.02, |dg/dV| ~ 1e-4) prints nothing.  Theory Guide
+`sec:rr-ill-conditioned`.
+
 **When the answer is SINGLE-PHASE** (the (T, P) sits outside the two-phase
 band), the flash does not refuse: it reports the regime (`Regime:
 superheated vapor` / `subcooled liquid`), the absent phase leaves with
