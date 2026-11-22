@@ -296,6 +296,20 @@ reversible reaction: one stoichiometry entry with `nu` = the net, `order` = its 
 SRI fall-off: `sri ( a b c [d e] );` instead of `troe` (F = d [a e^(-b/T) + e^(-T/c)]^X T^e).  Explicit (FORD) orders: a declared
 `order` on an IRREVERSIBLE reaction, a species outside the reaction listed with `nu 0`; A converts by the sum of the orders.
 Gate `check_elementary_rates` (s, d, b, B).
+**THE REACTION LIBRARY (C458 slice 1; Theory Guide `sec:kinetics-library`).**  One record per elementary gas-phase reaction under
+`data/standards/kinetics/` (`recordType elementaryReaction`; the file name is the CANONICAL EQUATION -- species sorted within each side,
+reversible oriented smaller side first, `+M` / `(+M)` suffix, `~` for an irreversible one, `@1`/`@2` for a summed duplicate:
+`H+O2=O+OH.dat`, `H+O2(+M)=HO2(+M).dat`), in the same `stoichiometry` / `kinetics` grammar as a case, WITHOUT `order` (derived = -nu; an
+`order` is refused unless the record says `global true;`), plus `sets { OConaire2004 R1_H_O2_O_OH; }` (the set and the mechanism's own
+label), `source { citation; doi; table; page; }` and `provenance`.  A case asks for a set in its `constant/reactions`:
+`reactionSet OConaire2004;` (or `reactionSets ( A B );`, or `reactionRecords ( { record "H+O2=O+OH"; name myR1; } );`) and its units list
+the labels (`reactions ( R1_H_O2_O_OH ... )`) exactly as before -- inline entries beside it stay legal.  Precedence: the case's
+`constant/kinetics/` (a record there declares `variationOf "<stem>";`), then `data/standards/kinetics/`, then `data/local/kinetics/`
+(UNVERIFIED).  Sets seeded: `OConaire2004` (21 entries, Table I, journal p. 607) and `Glarborg2018` (Zeldovich and N2O, page unrecorded).
+Read by `batchReactor`, `dynamicCSTR`, the flowsheet reactors and `reactionGibbs`.  The run prints the sets used and, for a set whose
+declared thermo is a catalogue home, K_c(set)/K_c(run) per reaction; for an explicit reverse (`A_rev`/`Ea_rev`, or two irreversible
+entries that are each other's reverse) k_f/k_r against K_c(T) in `batchReactor`.  Witnesses: `ignition01_h2o2` and its variants,
+`nox01_zeldovich_postflame` (two sets); `kinetics01_oh_decay` keeps its reactions inline.  Gate `check_kinetics_library`.
 
 ### `pfr`
 Plug-flow reactor.  Manual RK4 along the axial coordinate; supports reversible
@@ -3386,6 +3400,8 @@ adsorption denominator means.  With `basis activity` it needs an activity model.
 Example: `batch07_lhhw_methylAcetate` (Pöpken 2000 Eq 16 on UNIQUAC activities;
 X → 76.6 %, the activity equilibrium the steady CSTR also reaches).
 
+**`integrator seulex;`** (batchReactor, BatchAdsorber; the fixed bed and `sensitivity` refuse it by name): the extrapolated linearly-implicit Euler method of Hairer & Wanner (1996, IV.9), variable order 1-12, the default of OpenFOAM's chemistry (Theory Guide `sec:seulex`, `src/solver/ODE/Seulex.cpp`).  It reads the same analytic Jacobian (dense or sparse, audited) and positivity guard as the Rosenbrock integrators, but tolerates an OLD Jacobian: a convergence monitor theta rebuilds it only when it has aged (threshold min(1e-4, rtol) as in Hairer's seulex.f; on chemistry that is nearly every step, on a linear problem once), where Rodas4 builds one per step; W = I - h_j J is factored once per extrapolation column and step.  Measured (nox03, 235 reactions): at step-end accuracy 4e-7 it is 4.5x cheaper (CPU) than Rodas4, at 4e-5 1.4x, at rtol 1e-6 it is 300x less accurate; on nox02 (17 vessels) 1.7-3.9x cheaper, on ignition01 equal; the rows the driver writes BETWEEN steps come from a cubic Hermite interpolant that limits seulex's big steps inside an induction period.  `CHOUPO_ODE_STATS=1` prints steps, Jacobians, factorisations, right-hand sides and their timers.  Cases: `nox03_millerbowman_large_seulex`, `ignition01_h2o2_seulex`; gate `check_seulex`.  Missing: the extrapolated dense output, order carried across output intervals, factor reuse when H repeats.
+
 **Jacobian of the stiff integrators** `solver { integrator Rosenbrock23 | Rodas4; jacobian analytic | finiteDifference; }`.
 Absent `jacobian`: ANALYTIC when every reaction's law has a derivative (the vessel's `Arrhenius`,
 `modifiedArrhenius`, `thirdBody`, `falloff`, and the factory's `plog`/ElementaryRate words), else the
@@ -3405,7 +3421,7 @@ or on a fixed-step run left on the default RK4, is refused by name.  Theory Guid
 `sparse` = the in-house SparseLU on the mechanism's pattern (minimum-degree ordering and symbolic
 factorisation once, a left-looking numeric factorisation on diagonal pivots with row
 equilibration every step, each factor accepted on its backward error (<= 1e-12 on W x = 1) or
-refactored dense, counted at verbosity 4; a constant-P gas's rank-one term by Sherman-Morrison); it needs the analytic
+refactored dense, counted at verbosity 4; a constant-P gas's rank-one term by Sherman-Morrison); in a run of several vessels W is factored on the union of their patterns (`dense` on any vessel wins), and the adaptive sweep steps the declared `integrator Rosenbrock23 | Rodas4` (two vessels declaring different ones are refused); it needs the analytic
 Jacobian and is refused by name beside the finite difference.  `auto` = sparse from 100 packed
 rows (the break-even measured on synthetic networks; on AramcoMech 1.3, 254 rows, the sparse factor
 costs 7.3x fewer multiply-adds and 5.8x less linear-algebra time), dense below, so every small
