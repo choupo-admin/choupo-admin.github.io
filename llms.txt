@@ -26,13 +26,20 @@ Two questions, one path each.  To answer whether Choupo does something (a unit, 
 
 - [batch-plant.md](https://www.choupo.org/llm/packs/batch-plant.md): Pack: a batch plant (tablets): batch plan, machines, clean utilities, quotes, crew
 - [design-cost.md](https://www.choupo.org/llm/packs/design-cost.md): Pack: equipment sizing, costing and economics (CAPEX, OPEX, NPV)
+- [drivers.md](https://www.choupo.org/llm/packs/drivers.md): Pack: drivers (sweeps, design specs, optimisation, Pareto fronts: `system/outerDict`)
+- [electrolytes.md](https://www.choupo.org/llm/packs/electrolytes.md): Pack: electrolytes (salts in water: activity, speciation, precipitation, evaporation and crystallisation of brines)
+- [heat.md](https://www.choupo.org/llm/packs/heat.md): Pack: heat transfer (heaters, exchangers, boilers and condensers, utilities, pinch)
 - [layout.md](https://www.choupo.org/llm/packs/layout.md): Pack: plant layout (plot plan) and the GMP building interior
+- [membranes.md](https://www.choupo.org/llm/packs/membranes.md): Pack: membranes (NF, RO, UF modules, plants of stages, energy recovery, electrodialysis)
 - [pharmaceutical.md](https://www.choupo.org/llm/packs/pharmaceutical.md): Pack: a tablet plant from a drug and a dose
 - [pressure.md](https://www.choupo.org/llm/packs/pressure.md): Pack: pressure changers (pump, compressor, turbine, valve, pipe)
 - [properties.md](https://www.choupo.org/llm/packs/properties.md): Pack: properties -- a component or a binary pair Choupo does not have
+- [props.md](https://www.choupo.org/llm/packs/props.md): Pack: props bench (choupoProps: evaluate, scan and verify properties, no flowsheet)
 - [reactors.md](https://www.choupo.org/llm/packs/reactors.md): Pack: reactors and kinetics
 - [recycles.md](https://www.choupo.org/llm/packs/recycles.md): Pack: recycles (loops in a steady flowsheet)
 - [separations.md](https://www.choupo.org/llm/packs/separations.md): Pack: separations (columns, absorbers, strippers, extraction, drums)
+- [solids.md](https://www.choupo.org/llm/packs/solids.md): Pack: solids (gas-solid separation, size distributions, milling, solid-liquid separation, drying, crystallisation)
+- [transient.md](https://www.choupo.org/llm/packs/transient.md): Pack: transient simulation (batch vessels and recipes, start-up and disturbance, control)
 
 ## Optional: reference documents
 
