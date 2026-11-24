@@ -57,6 +57,7 @@ Two questions, one path each.  To answer whether Choupo does something (a unit, 
 - [overview.md](https://www.choupo.org/llm/reference/overview.md): Choupo — Overview for an LLM helping a user
 - [patterns.md](https://www.choupo.org/llm/reference/patterns.md): Patterns — recipes for common case shapes
 - [pitfalls.md](https://www.choupo.org/llm/reference/pitfalls.md): Pitfalls — common mistakes when authoring a Choupo case
+- [registry-reference.md](https://www.choupo.org/llm/reference/registry-reference.md): Registry reference -- every unit type, operation, key and model, one line each
 - [schemas-reference.md](https://www.choupo.org/llm/reference/schemas-reference.md): Schemas reference — the shipped operations that carry a JSON schema
 - [stream-state.md](https://www.choupo.org/llm/reference/stream-state.md): Stream state — what a `0/<stream>` file may say
 - [thermo.md](https://www.choupo.org/llm/reference/thermo.md): thermoPhysPropDict — declaring the thermophysical system
