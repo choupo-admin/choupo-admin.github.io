@@ -331,8 +331,8 @@
       ]
     }
   ],
-  "liveTools": 109,
-  "registryTools": 109,
+  "liveTools": 110,
+  "registryTools": 110,
   "tools": [
     {
       "id": "what-is-temperature",
@@ -792,7 +792,7 @@
       "label": "Which dryer for which product",
       "blurb": "Choose a dryer type from the feed, heat sensitivity, scale and mode.",
       "discipline": "Separations & phase equilibria",
-      "teaches": "The seven dryer types that do most of the drying (spray, rotary, fluidised bed, tray, belt, drum, freeze), each drawn as a schematic; a selection tree from the feed form, the heat sensitivity, the scale and the batch or continuous mode to one or two types with the reason and the page of Mujumdar, Perry or van 't Land or Towler it was read from; a comparison table of residence time, energy per kg of water and typical products with \"not cited\" where the books are silent; the habitual tables transcribed at their pages (Mujumdar's feed-form table with its eleven columns, ha and temperature differences and vendor checklist, van 't Land's lists, Towler's Table 10.7, the drum dryer in Perry and Mujumdar); the tutorial cases of the types the engine models; and co-current, counter-current and cross-flow, each drawn, with the moisture, humidity and gas temperature along the dryer and the three outlets read from the engine's own run of the three convective-dryer cases, and where each is used with the page of Perry, van 't Land and Mujumdar that says so.",
+      "teaches": "The nine dryer types that do most of the drying (spray, rotary, fluidised bed, tray, belt, drum, freeze, flash, agitated vacuum), each drawn as a schematic; a selection tree from the feed form, the heat sensitivity, the scale and the batch or continuous mode to one or two types with the reason and the page of Mujumdar, Perry or van 't Land or Towler it was read from; a comparison table of residence time, energy per kg of water and typical products with \"not cited\" where the books are silent; the habitual tables transcribed at their pages (Mujumdar's feed-form table with its eleven columns, ha and temperature differences and vendor checklist, van 't Land's lists, Towler's Table 10.7, the drum dryer in Perry and Mujumdar); the tutorial cases of the types the engine models; and co-current, counter-current and cross-flow, each drawn, with the moisture, humidity and gas temperature along the dryer and the three outlets read from the engine's own run of the three convective-dryer cases, and where each is used with the page of Perry, van 't Land and Mujumdar that says so.",
       "origins": [
         "engine",
         "page",
@@ -1725,6 +1725,19 @@
         "page"
       ],
       "href": "/app/?workspace=methods&tool=filter-press-cycle"
+    },
+    {
+      "id": "gas-line",
+      "label": "How far can a gas line go?",
+      "blurb": "See how a gas line chokes, and where the textbook shortcut fails.",
+      "discipline": "Hydraulics & control",
+      "teaches": "The compressible isothermal gas line of the engine's pipe: the pressure along the line from the exact equation and from the mean-density shortcut, the shortcut's error against the length with the engine's own 40 % flag level marked as a flag and not a bound, and the isothermal Mach number with the choking pressure and the longest line the flow can use, beyond which the engine stops the run.  Two sliders (flow and length), numbers equal to the recorded run of pipe09_isothermal_gas_line at the case's own flow and length.",
+      "origins": [
+        "engine",
+        "page",
+        "assumption"
+      ],
+      "href": "/app/?workspace=methods&tool=gas-line"
     }
   ]
 }

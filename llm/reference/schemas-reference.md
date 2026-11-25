@@ -135,6 +135,7 @@ The drying curve as a batch vessel (choupoBatch): a tray of wet solid losing its
 | `k_Y` | ✓ | number | kg/(m2.s) | Mass flux per unit humidity-ratio driving force, kg/(m2 s) per (kg moisture / kg dry gas). SAMPLE/EQUIPMENT data (air velocity, tray geom… |
 | `criticalMoisture` | ✓ | number | kg/kg dry solid | The break between the constant-rate and the falling-rate periods, on the dry-solid basis. A MEASURED property of this sample, not derivab… |
 | `dryingCurve` |   | object | — | The shape of the falling-rate period on van Meel's (1958) normalised coordinates: Phi = (X - X_eq)/(X_c - X_eq) and f = R/R_c, so R = R_c… |
+| `solidTemperature` |   | string | - | `held` (default): the surface sits at the air's wet bulb for the whole run, the solid's temperature is not integrated. `integrated`: the … |
 | `moisture` |   | string | - | Which component is the moisture. Needed only when the tray holds more than one volatile besides the declared carrier — otherwise the sing… |
 | `air` | ✓ | object | — | The drying air, declared CONSTANT and not integrated — the FixedBedAdsorber's constant-carrier posture. `T` its temperature [K], `Y` its … |
 
@@ -235,6 +236,7 @@ Multistage distillation column with constant molar overflow. Solved by the seque
 | `distillateRecovery` |   | object | — | Send this fraction of the named component's FEED overhead, instead of a fixed rate. Solved as an announced outer secant on the rate, so i… |
 | `P` |   | number | Pa | Column pressure, constant across all stages. Falls back to the feed-stream pressure if omitted. |
 | `newton` |   | string | — | Which Newton the simultaneous MESH runs: `bounded` (default; Armijo line search, bounds on x and T, infeasible trials refused -- DEV.md 4… |
+| `seed` |   | string | — | Starting profile of the simultaneous / full MESH Newton: `default` (the feed-temperature ramp and the feed composition on every stage) or… |
 | `feedQuality` |   | number | — | Feed thermal condition: q = 1 saturated liquid, q = 0 saturated vapour. |
 | `method` |   | string | — | WangHenke (sequential bubble-point, the default, fine for ideal systems) or simultaneous (rigorous MESH Newton, stable through an azeotro… |
 | `feeds` |   | array[object] | — | Maps each input stream to a stage — REQUIRED once the column has more than one input, since positional binding cannot say which stream en… |
@@ -414,6 +416,7 @@ Multistage distillation column with constant molar overflow. Solved by the seque
 | `distillateRecovery` |   | object | — | Send this fraction of the named component's FEED overhead, instead of a fixed rate. Solved as an announced outer secant on the rate, so i… |
 | `P` |   | number | Pa | Column pressure, constant across all stages. Falls back to the feed-stream pressure if omitted. |
 | `newton` |   | string | — | Which Newton the simultaneous MESH runs: `bounded` (default; Armijo line search, bounds on x and T, infeasible trials refused -- DEV.md 4… |
+| `seed` |   | string | — | Starting profile of the simultaneous / full MESH Newton: `default` (the feed-temperature ramp and the feed composition on every stage) or… |
 | `feedQuality` |   | number | — | Feed thermal condition: q = 1 saturated liquid, q = 0 saturated vapour. |
 | `method` |   | string | — | WangHenke (sequential bubble-point, the default, fine for ideal systems) or simultaneous (rigorous MESH Newton, stable through an azeotro… |
 | `feeds` |   | array[object] | — | Maps each input stream to a stage — REQUIRED once the column has more than one input, since positional binding cannot say which stream en… |
@@ -1246,8 +1249,8 @@ Psychrometric chart for ANY carrier + condensable pair, generated from the packa
 | `TminC` |   | number | - | Chart span start, in degrees CELSIUS (this op's axis convention); defaults to 0. |
 | `TmaxC` |   | number | - | Chart span end, degrees Celsius; defaults to 150. |
 | `grid` |   | object | — | `{ n <points>; }` — how finely the domain is sampled. |
-| `relativeHumidity` |   | array[number] | — | Which constant-RH curves to draw. |
-| `wetBulb` |   | array[number] | — | Which wet-bulb temperature lines to draw. |
+| `relativeHumidity` |   | array[number] | % | Which constant-RH curves to draw, in PERCENT (20 means 20 % relative humidity; the engine divides by 100).  Default 10 20 ... 90.  A frac… |
+| `wetBulb` |   | array[number] | degC | Which adiabatic-saturation / wet-bulb temperature lines to draw, in degrees Celsius.  Decimals are kept (20.1 and 20.9 are two curves). |
 | `output` |   | object | — | `{ file <name>.csv; }` — where the per-row results are written, relative to the case directory. |
 
 ## `pump`  (pump operation)
@@ -1482,6 +1485,7 @@ Single-stage rotary-atomiser spray dryer producing powder and exhaust air. Compu
 | `chamberDiameter` |   | number | m | Diameter of the drying chamber; sets the gas superficial velocity v_gas = Q_gas/(pi D^2/4) and hence the residence time. |
 | `chamberHeight` |   | number | m | Height the particle falls through; residence time = chamberHeight / particle fall velocity, which sets the residual moisture. |
 | `flow` |   | string | — | Co-current (v_particle = v_gas + v_terminal) or counter-current (v_particle = v_terminal - v_gas). |
+| `carryOver` |   | object | — | Absent: every particle leaves in the powder (the cyclone behind the dryer is idle). Declared, a share c of the dry solid leaves on the ex… |
 | `atomiser` |   | object | — | Selects HOW the feed is broken into droplets, which sets the droplet size and therefore the drying time. Absent, the rotary-wheel keys ar… |
 
 ## `steamTables`  (steamTables operation)

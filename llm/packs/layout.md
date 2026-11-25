@@ -2,7 +2,7 @@
 
 > **Version.** This document describes the development line `Choupo-dev`, which https://www.choupo.org/app runs and which every assistant document here describes.  The latest stable release is `Choupo-2608`; the one page that describes that release instead of the development line is the model catalogue, https://www.choupo.org/models/ (static copy: https://www.choupo.org/llm/models.md).
 
-budget: 3150 words (~5000 tokens)
+budget: 3200 words (~5080 tokens)
 
 Read this pack when the design must say WHERE things stand: a plot plan with
 the sized equipment, a pipe rack, roads, a fence, hazardous-area zones; or,
@@ -148,7 +148,10 @@ building { ... }                                           // §4
   sector area; an ignition source inside a zone or DOWNWIND of a release
   source; a site with ONE gate; a gate, building or item with no road within
   `access`; a road in a closed zone; an unlabelled fence crossing; a liquid
-  item no bund encloses (`unbundedLiquid`).
+  item no bund encloses (`unbundedLiquid`).  Also: a shell-and-tube bundle that cannot be pulled (`serviceClearance`: clear
+  length at the declared channel end under the sheet's `tubeLength` plus your
+  `clearance`; declare `serviceClearance { clearance <m>; source; reason; items (
+  { item "X"; channelEnd west; reason; } ); }`; none shipped; undeclared = NOT checked).
 * A draft: `bin/choupo-layout --draft <case>` solves the case and writes a
   PROPOSAL `system/layoutDict`: the sized items in flow order along one line
   with a drafting gap, one area per sector, each separation you already
