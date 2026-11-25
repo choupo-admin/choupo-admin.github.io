@@ -1,23 +1,23 @@
 {
  "definition": "every line (comments and blanks included) of every git-tracked UTF-8 text file",
- "totalFiles": 62487,
- "totalLines": 5641358,
+ "totalFiles": 62510,
+ "totalLines": 5644133,
  "groupEstimateCompounds": 28447,
  "buckets": {
   "engineCpp": {
    "label": "engine C++ (src/)",
-   "files": 1093,
-   "lines": 335367
+   "files": 1095,
+   "lines": 336100
   },
   "gui": {
    "label": "browser GUI (TypeScript/React)",
    "files": 1252,
-   "lines": 398223
+   "lines": 398306
   },
   "tutorials": {
    "label": "tutorial cases (dictionaries)",
-   "files": 10217,
-   "lines": 496114
+   "files": 10227,
+   "lines": 496497
   },
   "groupEstimates": {
    "label": "group-contribution estimate records",
@@ -26,8 +26,8 @@
   },
   "curatedData": {
    "label": "curated data records (data/standards)",
-   "files": 5094,
-   "lines": 503257
+   "files": 5099,
+   "lines": 503530
   },
   "otherData": {
    "label": "other data files",
@@ -36,23 +36,23 @@
   },
   "tools": {
    "label": "gates and curation tools",
-   "files": 663,
-   "lines": 267761
+   "files": 666,
+   "lines": 268511
   },
   "manuals": {
    "label": "manuals (LaTeX)",
    "files": 28,
-   "lines": 92116
+   "lines": 92309
   },
   "docs": {
    "label": "design records and docs",
-   "files": 1073,
-   "lines": 240580
+   "files": 1075,
+   "lines": 240789
   },
   "rest": {
    "label": "build, scripts, site and the rest",
-   "files": 299,
-   "lines": 126544
+   "files": 300,
+   "lines": 126695
   }
  }
 }

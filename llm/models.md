@@ -182,6 +182,6 @@ Generated from `generated/modelsCatalogue.json` (the same data the interactive p
 | `parameters.adsorption` | Adsorption isotherm parameter records | 15 | `data/standards/parameters/adsorption/` |
 | `parameters.solution` | Solution-property parameter records | 13 | `data/standards/parameters/solution/` |
 | `mixtures` | Named mixture records | 3 | `data/standards/mixtures/` |
-| `assets` | Plant assets, flat with a `kind` field: construction materials, membranes, membrane classes, membrane modules, feed spacers, electrodialysis stacks, adsorbents, ion-exchange media, column packings | 35 | `data/standards/assets/` |
+| `assets` | Plant assets, flat with a `kind` field: construction materials, membranes, membrane classes, membrane modules, feed spacers, electrodialysis stacks, adsorbents, ion-exchange media, column packings | 40 | `data/standards/assets/` |
 | `utilities` | Plant utility services | 10 | `data/standards/utilities/` |
 | `groupEstimative` | Choupo's own open group-contribution estimates (Joback / Lee-Kesler), flagged as estimates | 28563 | `data/groupEstimative/` |

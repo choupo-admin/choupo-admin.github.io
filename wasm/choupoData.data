@@ -1764,7 +1764,7 @@ provenance
 name           BeS;
 formula        BeS;
 CAS            n/a;
-MW             41.07718;       // kg/kmol, appendix D record line
+MW             41.072;       // kg/kmol, = sum of the engine's atomic weights (C517; was 41.0772)
 role           gasData;       // closed-shell molecule (or noble gas): ideal-gas data only, no liquid model
 tags           ( gasPhase thermoTable );
 nasaEntry      "BeS";
@@ -4327,7 +4327,7 @@ provenance
 name           S2O;
 formula        S2O;
 CAS            n/a;
-MW             80.1294;       // kg/kmol, appendix D record line
+MW             80.119;       // kg/kmol, = sum of the engine's atomic weights (C517; was 80.1294)
 role           gasData;       // closed-shell molecule (or noble gas): ideal-gas data only, no liquid model
 tags           ( gasPhase thermoTable );
 nasaEntry      "S2O";
@@ -4647,7 +4647,7 @@ provenance
 name           Mo;
 formula        Mo;
 CAS            n/a;
-MW             95.94;       // kg/kmol, appendix D record line
+MW             95.95;       // kg/kmol, = sum of the engine's atomic weights (C517; was 95.94)
 role           gasData;       // free metal atom: a liquid or solid metal exists, no liquid model here
 tags           ( gasPhase thermoTable );
 nasaEntry      "Mo";
@@ -6188,7 +6188,7 @@ provenance
 name           S3;
 formula        S3;
 CAS            n/a;
-MW             96.195;       // kg/kmol, appendix D record line
+MW             96.18;       // kg/kmol, = sum of the engine's atomic weights (C517; was 96.195)
 role           gasData;       // closed-shell molecule (or noble gas): ideal-gas data only, no liquid model
 tags           ( gasPhase thermoTable );
 nasaEntry      "S3";
@@ -6380,7 +6380,7 @@ provenance
 name           S5;
 formula        S5;
 CAS            n/a;
-MW             160.325;       // kg/kmol, appendix D record line
+MW             160.3;       // kg/kmol, = sum of the engine's atomic weights (C517; was 160.325)
 role           gasData;       // closed-shell molecule (or noble gas): ideal-gas data only, no liquid model
 tags           ( gasPhase thermoTable );
 nasaEntry      "S5";
@@ -7918,7 +7918,7 @@ provenance
 name           SiS2;
 formula        SiS2;
 CAS            n/a;
-MW             92.2155;       // kg/kmol, appendix D record line
+MW             92.205;       // kg/kmol, = sum of the engine's atomic weights (C517; was 92.2155)
 role           gasData;       // closed-shell molecule (or noble gas): ideal-gas data only, no liquid model
 tags           ( gasPhase thermoTable );
 nasaEntry      "SiS2";
@@ -11825,7 +11825,7 @@ provenance
 name           S6;
 formula        S6;
 CAS            n/a;
-MW             192.39;       // kg/kmol, appendix D record line
+MW             192.36;       // kg/kmol, = sum of the engine's atomic weights (C517; was 192.39)
 role           gasData;       // closed-shell molecule (or noble gas): ideal-gas data only, no liquid model
 tags           ( gasPhase thermoTable );
 nasaEntry      "S6";
@@ -13491,7 +13491,7 @@ provenance
 name           HBS;
 formula        HBS;
 CAS            n/a;
-MW             43.88394;       // kg/kmol, appendix D record line
+MW             43.878;       // kg/kmol, = sum of the engine's atomic weights (C517; was 43.8839)
 role           gasData;       // closed-shell molecule (or noble gas): ideal-gas data only, no liquid model
 tags           ( gasPhase thermoTable );
 nasaEntry      "HBS";
@@ -15092,7 +15092,7 @@ provenance
 name           LiH;
 formula        LiH;
 CAS            n/a;
-MW             7.94894;       // kg/kmol, appendix D record line
+MW             7.948;       // kg/kmol, = sum of the engine's atomic weights (C517; was 7.94894)
 role           gasData;       // closed-shell molecule (or noble gas): ideal-gas data only, no liquid model
 tags           ( gasPhase thermoTable );
 nasaEntry      "LiH";
@@ -17398,7 +17398,7 @@ provenance
 name           BS;
 formula        BS;
 CAS            n/a;
-MW             42.876;       // kg/kmol, appendix D record line
+MW             42.87;       // kg/kmol, = sum of the engine's atomic weights (C517; was 42.876)
 role           gasOnly;       // free radical (odd electron count 21)
 tags           ( gasPhase thermoTable );
 nasaEntry      "BS";
@@ -17783,7 +17783,7 @@ provenance
 name           GeCL2;
 formula        GeCl2;
 CAS            n/a;
-MW             143.546;       // kg/kmol, appendix D record line
+MW             143.53;       // kg/kmol, = sum of the engine's atomic weights (C517; was 143.546)
 role           gasData;       // closed-shell molecule (or noble gas): ideal-gas data only, no liquid model
 tags           ( gasPhase thermoTable );
 nasaEntry      "GeCL2";
@@ -18680,7 +18680,7 @@ provenance
 name           GeCL;
 formula        GeCl;
 CAS            n/a;
-MW             108.093;       // kg/kmol, appendix D record line
+MW             108.08;       // kg/kmol, = sum of the engine's atomic weights (C517; was 108.093)
 role           gasOnly;       // free radical (odd electron count 49)
 tags           ( gasPhase thermoTable );
 nasaEntry      "GeCL";
@@ -19450,7 +19450,7 @@ provenance
 name           B2S;
 formula        B2S;
 CAS            n/a;
-MW             53.687;       // kg/kmol, appendix D record line
+MW             53.68;       // kg/kmol, = sum of the engine's atomic weights (C517; was 53.687)
 role           gasData;       // closed-shell molecule (or noble gas): ideal-gas data only, no liquid model
 tags           ( gasPhase thermoTable );
 nasaEntry      "B2S";
@@ -22720,7 +22720,7 @@ provenance
 name           SH;
 formula        SH;
 CAS            n/a;
-MW             33.07294;       // kg/kmol, appendix D record line
+MW             33.068;       // kg/kmol, = sum of the engine's atomic weights (C517; was 33.0729)
 role           gasOnly;       // free radical (odd electron count 17)
 tags           ( gasPhase thermoTable );
 nasaEntry      "SH";
@@ -24194,7 +24194,7 @@ provenance
 name           SCL;
 formula        SCl;
 CAS            n/a;
-MW             67.518;       // kg/kmol, appendix D record line
+MW             67.51;       // kg/kmol, = sum of the engine's atomic weights (C517; was 67.518)
 role           gasOnly;       // free radical (odd electron count 33)
 tags           ( gasPhase thermoTable );
 nasaEntry      "SCL";
@@ -24387,7 +24387,7 @@ provenance
 name           SCL2;
 formula        SCl2;
 CAS            n/a;
-MW             102.971;       // kg/kmol, appendix D record line
+MW             102.96;       // kg/kmol, = sum of the engine's atomic weights (C517; was 102.971)
 role           gasData;       // closed-shell molecule (or noble gas): ideal-gas data only, no liquid model
 tags           ( gasPhase thermoTable );
 nasaEntry      "SCL2";
@@ -25092,7 +25092,7 @@ provenance
 name           BS2;
 formula        BS2;
 CAS            n/a;
-MW             74.941;       // kg/kmol, appendix D record line
+MW             74.93;       // kg/kmol, = sum of the engine's atomic weights (C517; was 74.941)
 role           gasOnly;       // free radical (odd electron count 37)
 tags           ( gasPhase thermoTable );
 nasaEntry      "BS2";
@@ -26245,7 +26245,7 @@ provenance
 name           S;
 formula        S;
 CAS            n/a;
-MW             32.065;       // kg/kmol, appendix D record line
+MW             32.06;       // kg/kmol, = sum of the engine's atomic weights (C517; was 32.065)
 role           gasOnly;       // free atom
 tags           ( gasPhase thermoTable );
 nasaEntry      "S";
@@ -26886,7 +26886,7 @@ provenance
 name           S4;
 formula        S4;
 CAS            n/a;
-MW             128.26;       // kg/kmol, appendix D record line
+MW             128.24;       // kg/kmol, = sum of the engine's atomic weights (C517; was 128.26)
 role           gasData;       // closed-shell molecule (or noble gas): ideal-gas data only, no liquid model
 tags           ( gasPhase thermoTable );
 nasaEntry      "S4";
@@ -28617,7 +28617,7 @@ provenance
 name           SN;
 formula        SN;
 CAS            n/a;
-MW             46.0717;       // kg/kmol, appendix D record line
+MW             46.067;       // kg/kmol, = sum of the engine's atomic weights (C517; was 46.0717)
 role           gasOnly;       // free radical (odd electron count 23)
 tags           ( gasPhase thermoTable );
 nasaEntry      "SN";
@@ -29963,7 +29963,7 @@ provenance
 name           C2S2;
 formula        C2S2;
 CAS            n/a;
-MW             88.1514;       // kg/kmol, appendix D record line
+MW             88.142;       // kg/kmol, = sum of the engine's atomic weights (C517; was 88.1514)
 role           gasData;       // closed-shell molecule (or noble gas): ideal-gas data only, no liquid model
 tags           ( gasPhase thermoTable );
 nasaEntry      "C2S2";
@@ -30091,7 +30091,7 @@ provenance
 name           Li2;
 formula        Li2;
 CAS            n/a;
-MW             13.882;       // kg/kmol, appendix D record line
+MW             13.88;       // kg/kmol, = sum of the engine's atomic weights (C517; was 13.882)
 role           gasData;       // closed-shell molecule (or noble gas): ideal-gas data only, no liquid model
 tags           ( gasPhase thermoTable );
 nasaEntry      "Li2";
@@ -30220,7 +30220,7 @@ provenance
 name           GeS;
 formula        GeS;
 CAS            n/a;
-MW             104.705;       // kg/kmol, appendix D record line
+MW             104.69;       // kg/kmol, = sum of the engine's atomic weights (C517; was 104.705)
 role           gasData;       // closed-shell molecule (or noble gas): ideal-gas data only, no liquid model
 tags           ( gasPhase thermoTable );
 nasaEntry      "GeS";
@@ -30668,7 +30668,7 @@ provenance
 name           B2S3;
 formula        B2S3;
 CAS            n/a;
-MW             117.817;       // kg/kmol, appendix D record line
+MW             117.8;       // kg/kmol, = sum of the engine's atomic weights (C517; was 117.817)
 role           gasData;       // closed-shell molecule (or noble gas): ideal-gas data only, no liquid model
 tags           ( gasPhase thermoTable );
 nasaEntry      "B2S3";
@@ -30860,7 +30860,7 @@ provenance
 name           Zn;
 formula        Zn;
 CAS            n/a;
-MW             65.39;       // kg/kmol, appendix D record line
+MW             65.38;       // kg/kmol, = sum of the engine's atomic weights (C517; was 65.39)
 role           gasData;       // free metal atom: a liquid or solid metal exists, no liquid model here
 tags           ( gasPhase thermoTable );
 nasaEntry      "Zn";
@@ -33038,7 +33038,7 @@ provenance
 name           S7;
 formula        S7;
 CAS            n/a;
-MW             224.455;       // kg/kmol, appendix D record line
+MW             224.42;       // kg/kmol, = sum of the engine's atomic weights (C517; was 224.455)
 role           gasData;       // closed-shell molecule (or noble gas): ideal-gas data only, no liquid model
 tags           ( gasPhase thermoTable );
 nasaEntry      "S7";
@@ -39030,7 +39030,7 @@ provenance
 name           SO;
 formula        SO;
 CAS            n/a;
-MW             48.0644;       // kg/kmol, appendix D record line
+MW             48.059;       // kg/kmol, = sum of the engine's atomic weights (C517; was 48.0644)
 role           gasOnly;       // listed (biradical or transient): sulfur monoxide, triplet ground state, a transient that disproportionates when condensed
 tags           ( gasPhase thermoTable );
 nasaEntry      "SO";
@@ -39158,7 +39158,7 @@ provenance
 name           ALS2;
 formula        AlS2;
 CAS            n/a;
-MW             91.11154;       // kg/kmol, appendix D record line
+MW             91.102;       // kg/kmol, = sum of the engine's atomic weights (C517; was 91.1115)
 role           gasOnly;       // free radical (odd electron count 45)
 tags           ( gasPhase thermoTable );
 nasaEntry      "ALS2";
@@ -40248,7 +40248,7 @@ provenance
 name           S8;
 formula        S8;
 CAS            n/a;
-MW             256.52;       // kg/kmol, appendix D record line
+MW             256.48;       // kg/kmol, = sum of the engine's atomic weights (C517; was 256.52)
 role           gasData;       // closed-shell molecule (or noble gas): ideal-gas data only, no liquid model
 tags           ( gasPhase thermoTable );
 nasaEntry      "S8";
@@ -40504,7 +40504,7 @@ provenance
 name           Li;
 formula        Li;
 CAS            n/a;
-MW             6.941;       // kg/kmol, appendix D record line
+MW             6.94;       // kg/kmol, = sum of the engine's atomic weights (C517; was 6.941)
 role           gasData;       // free metal atom: a liquid or solid metal exists, no liquid model here
 tags           ( gasPhase thermoTable );
 nasaEntry      "Li";
@@ -41274,7 +41274,7 @@ provenance
 name           SD;
 formula        SD;
 CAS            n/a;
-MW             34.0791;       // kg/kmol, appendix D record line
+MW             34.074;       // kg/kmol, = sum of the engine's atomic weights (C517; was 34.0791)
 role           gasOnly;       // free radical (odd electron count 17)
 tags           ( gasPhase thermoTable );
 nasaEntry      "SD";
@@ -43006,7 +43006,7 @@ provenance
 name           GeO;
 formula        GeO;
 CAS            n/a;
-MW             88.6394;       // kg/kmol, appendix D record line
+MW             88.629;       // kg/kmol, = sum of the engine's atomic weights (C517; was 88.6394)
 role           gasData;       // closed-shell molecule (or noble gas): ideal-gas data only, no liquid model
 tags           ( gasPhase thermoTable );
 nasaEntry      "GeO";
@@ -44160,7 +44160,7 @@ provenance
 name           GeF;
 formula        GeF;
 CAS            n/a;
-MW             91.6384;       // kg/kmol, appendix D record line
+MW             91.628;       // kg/kmol, = sum of the engine's atomic weights (C517; was 91.6384)
 role           gasOnly;       // free radical (odd electron count 41)
 tags           ( gasPhase thermoTable );
 nasaEntry      "GeF";
@@ -45251,7 +45251,7 @@ provenance
 name           B2S2;
 formula        B2S2;
 CAS            n/a;
-MW             85.752;       // kg/kmol, appendix D record line
+MW             85.74;       // kg/kmol, = sum of the engine's atomic weights (C517; was 85.752)
 role           gasData;       // closed-shell molecule (or noble gas): ideal-gas data only, no liquid model
 tags           ( gasPhase thermoTable );
 nasaEntry      "B2S2";
@@ -45893,7 +45893,7 @@ provenance
 name           Ge;
 formula        Ge;
 CAS            n/a;
-MW             72.64;       // kg/kmol, appendix D record line
+MW             72.63;       // kg/kmol, = sum of the engine's atomic weights (C517; was 72.64)
 role           gasOnly;       // free atom
 tags           ( gasPhase thermoTable );
 nasaEntry      "Ge";
@@ -46662,7 +46662,7 @@ provenance
 name           GeO2;
 formula        GeO2;
 CAS            n/a;
-MW             104.6388;       // kg/kmol, appendix D record line
+MW             104.628;       // kg/kmol, = sum of the engine's atomic weights (C517; was 104.639)
 role           gasData;       // closed-shell molecule (or noble gas): ideal-gas data only, no liquid model
 tags           ( gasPhase thermoTable );
 nasaEntry      "GeO2";
@@ -47878,7 +47878,7 @@ provenance
 name           D2S;
 formula        D2S;
 CAS            n/a;
-MW             36.0932;       // kg/kmol, appendix D record line
+MW             36.088;       // kg/kmol, = sum of the engine's atomic weights (C517; was 36.0932)
 role           gasData;       // closed-shell molecule (or noble gas): ideal-gas data only, no liquid model
 tags           ( gasPhase thermoTable );
 nasaEntry      "D2S";
@@ -50444,7 +50444,7 @@ provenance
 name           S2CL2;
 formula        S2Cl2;
 CAS            n/a;
-MW             135.036;       // kg/kmol, appendix D record line
+MW             135.02;       // kg/kmol, = sum of the engine's atomic weights (C517; was 135.036)
 role           gasData;       // closed-shell molecule (or noble gas): ideal-gas data only, no liquid model
 tags           ( gasPhase thermoTable );
 nasaEntry      "S2CL2";
@@ -50636,7 +50636,7 @@ provenance
 name           CS;
 formula        CS;
 CAS            n/a;
-MW             44.0757;       // kg/kmol, appendix D record line
+MW             44.071;       // kg/kmol, = sum of the engine's atomic weights (C517; was 44.0757)
 role           gasData;       // closed-shell molecule (or noble gas): ideal-gas data only, no liquid model
 tags           ( gasPhase thermoTable );
 nasaEntry      "CS";
@@ -51020,7 +51020,7 @@ provenance
 name           GeCL4;
 formula        GeCl4;
 CAS            n/a;
-MW             214.452;       // kg/kmol, appendix D record line
+MW             214.43;       // kg/kmol, = sum of the engine's atomic weights (C517; was 214.452)
 role           gasData;       // closed-shell molecule (or noble gas): ideal-gas data only, no liquid model
 tags           ( gasPhase thermoTable );
 nasaEntry      "GeCL4";
@@ -51214,7 +51214,7 @@ provenance
 name           Ge2;
 formula        Ge2;
 CAS            n/a;
-MW             145.28;       // kg/kmol, appendix D record line
+MW             145.26;       // kg/kmol, = sum of the engine's atomic weights (C517; was 145.28)
 role           gasData;       // closed-shell molecule (or noble gas): ideal-gas data only, no liquid model
 tags           ( gasPhase thermoTable );
 nasaEntry      "Ge2";
@@ -56794,7 +56794,7 @@ provenance
 name           GeCL3;
 formula        GeCl3;
 CAS            n/a;
-MW             178.999;       // kg/kmol, appendix D record line
+MW             178.98;       // kg/kmol, = sum of the engine's atomic weights (C517; was 178.999)
 role           gasOnly;       // free radical (odd electron count 83)
 tags           ( gasPhase thermoTable );
 nasaEntry      "GeCL3";
@@ -57882,7 +57882,7 @@ provenance
 name           GeS2;
 formula        GeS2;
 CAS            n/a;
-MW             136.77;       // kg/kmol, appendix D record line
+MW             136.75;       // kg/kmol, = sum of the engine's atomic weights (C517; was 136.77)
 role           gasData;       // closed-shell molecule (or noble gas): ideal-gas data only, no liquid model
 tags           ( gasPhase thermoTable );
 nasaEntry      "GeS2";
@@ -61802,6 +61802,168 @@ provenance
         notes         "the active leaf length without glue strips (854 mm) of the FilmTec FT30 SW2540 element, Schock & Miquel, Desalination 64 (1987) 339-352, Tab. 3, p. 344; applied to every 40-inch class because the axial dimension is set by the element length; to be verified by unrolling a leaf of the element installed";
     }
 }
+/*--------------------------------*- Choupo -----------------------*\
+  PACKING: Pall ring, plastic, 25 mm, a RANDOM (dumped) packing
+
+  WHAT THIS RECORD IS.  The nominal geometry and the six constants of one
+  random packing under the Billet & Schultes correlation, for a column's
+  `packing { record PallRing-plastic-25; model BilletSchultes; ... }` (kind packing,
+  read by src/unitOperations/distillation/PackingRecord.cpp; Theory Guide
+  sec:packing-record and sec:billetSchultes; design record
+  docs/design/random-packings.md).
+
+  EVERY VALUE, AND WHERE IT WAS READ (primary read 2026-11-25 on the page
+  image, twice): Billet & Schultes, Trans IChemE 77 Part A (1999) 498-504,
+  Table 2a, p. 501, row "Pall ring", "Plastic", size 25 mm:
+  a 225.0 m2/m3, void fraction 0.887,
+  C_S 2.696, C_Fl 2.064, C_h 0.528, C_P,0 0.865, C_L 0.905, C_V 0.446.
+
+  IN-SAMPLE.  The authors fitted the six constants to their own database
+  (over 3500 points, 70 packings, p. 498): every number here is a value of
+  that fit, so this packing cannot be a held-out test of the law.  The paper's
+  stated accuracy is Table 3 (p. 503): 5 % loading/flooding, 6.7 % holdup,
+  9.1 % pressure drop, 12.4 % absorption, 14.1 % rectification (their data).
+
+  WHAT IT SERVES.  `model BilletSchultes;` only (hydraulics and mass transfer).
+  Not Rocha-Bravo-Fair or Delft: those are models of a corrugated structured
+  packing.
+\*-----------------------------------------------------------------*/
+
+name              PallRing-plastic-25;
+kind              packing;
+arrangement       random;
+
+specificArea      225.0;          // m2/m3 (Table 2a)
+voidFraction      0.887;          // (Table 2a)
+
+correlations
+{
+    BilletSchultes
+    {
+        CS   2.696;     // loading point (Table 2a)
+        CFl  2.064;     // flooding point
+        Ch   0.528;     // hydraulic area, holdup
+        CP0  0.865;     // dry pressure drop
+        CL   0.905;     // liquid film
+        CV   0.446;     // gas film
+    }
+}
+
+provenance
+{
+    source  "R. Billet, M. Schultes, Prediction of mass transfer columns with dumped and arranged packings: updated summary of the calculation method of Billet and Schultes, Trans IChemE 77 Part A (1999) 498-504, Table 2a, p. 501, row Pall ring Plastic 25 mm";
+    specificArea  { origin literature; method "Table 2a (p. 501), a"; }
+    voidFraction  { origin literature; method "Table 2a (p. 501), eps"; }
+    BilletSchultes { origin literature; method "Table 2a (p. 501), columns C_S, C_Fl, C_h, C_P,0, C_L, C_V of the row"; }
+}
+/*--------------------------------*- Choupo -----------------------*\
+  PACKING: Pall ring, plastic, 50 mm, a RANDOM (dumped) packing
+
+  WHAT THIS RECORD IS.  The nominal geometry and the six constants of one
+  random packing under the Billet & Schultes correlation, for a column's
+  `packing { record PallRing-plastic-50; model BilletSchultes; ... }` (kind packing,
+  read by src/unitOperations/distillation/PackingRecord.cpp; Theory Guide
+  sec:packing-record and sec:billetSchultes; design record
+  docs/design/random-packings.md).
+
+  EVERY VALUE, AND WHERE IT WAS READ (primary read 2026-11-25 on the page
+  image, twice): Billet & Schultes, Trans IChemE 77 Part A (1999) 498-504,
+  Table 2a, p. 501, row "Pall ring", "Plastic", size 50 mm:
+  a 111.1 m2/m3, void fraction 0.919,
+  C_S 2.816, C_Fl 1.757, C_h 0.593, C_P,0 0.698, C_L 1.239, C_V 0.368.
+
+  IN-SAMPLE.  The authors fitted the six constants to their own database
+  (over 3500 points, 70 packings, p. 498): every number here is a value of
+  that fit, so this packing cannot be a held-out test of the law.  The paper's
+  stated accuracy is Table 3 (p. 503): 5 % loading/flooding, 6.7 % holdup,
+  9.1 % pressure drop, 12.4 % absorption, 14.1 % rectification (their data).
+
+  WHAT IT SERVES.  `model BilletSchultes;` only (hydraulics and mass transfer).
+  Not Rocha-Bravo-Fair or Delft: those are models of a corrugated structured
+  packing.
+\*-----------------------------------------------------------------*/
+
+name              PallRing-plastic-50;
+kind              packing;
+arrangement       random;
+
+specificArea      111.1;          // m2/m3 (Table 2a)
+voidFraction      0.919;          // (Table 2a)
+
+correlations
+{
+    BilletSchultes
+    {
+        CS   2.816;     // loading point (Table 2a)
+        CFl  1.757;     // flooding point
+        Ch   0.593;     // hydraulic area, holdup
+        CP0  0.698;     // dry pressure drop
+        CL   1.239;     // liquid film
+        CV   0.368;     // gas film
+    }
+}
+
+provenance
+{
+    source  "R. Billet, M. Schultes, Prediction of mass transfer columns with dumped and arranged packings: updated summary of the calculation method of Billet and Schultes, Trans IChemE 77 Part A (1999) 498-504, Table 2a, p. 501, row Pall ring Plastic 50 mm";
+    specificArea  { origin literature; method "Table 2a (p. 501), a"; }
+    voidFraction  { origin literature; method "Table 2a (p. 501), eps"; }
+    BilletSchultes { origin literature; method "Table 2a (p. 501), columns C_S, C_Fl, C_h, C_P,0, C_L, C_V of the row"; }
+}
+/*--------------------------------*- Choupo -----------------------*\
+  PACKING: Raschig ring, ceramic, 25 mm, a RANDOM (dumped) packing
+
+  WHAT THIS RECORD IS.  The nominal geometry and the six constants of one
+  random packing under the Billet & Schultes correlation, for a column's
+  `packing { record Raschig-ceramic-25; model BilletSchultes; ... }` (kind packing,
+  read by src/unitOperations/distillation/PackingRecord.cpp; Theory Guide
+  sec:packing-record and sec:billetSchultes; design record
+  docs/design/random-packings.md).
+
+  EVERY VALUE, AND WHERE IT WAS READ (primary read 2026-11-25 on the page
+  image, twice): Billet & Schultes, Trans IChemE 77 Part A (1999) 498-504,
+  Table 2a, p. 501, row "Raschig ring", "Ceramic", size 25 mm:
+  a 190.0 m2/m3, void fraction 0.68,
+  C_S 2.454, C_Fl 1.899, C_h 0.577, C_P,0 1.329, C_L 1.361, C_V 0.412.
+
+  IN-SAMPLE.  The authors fitted the six constants to their own database
+  (over 3500 points, 70 packings, p. 498): every number here is a value of
+  that fit, so this packing cannot be a held-out test of the law.  The paper's
+  stated accuracy is Table 3 (p. 503): 5 % loading/flooding, 6.7 % holdup,
+  9.1 % pressure drop, 12.4 % absorption, 14.1 % rectification (their data).
+
+  WHAT IT SERVES.  `model BilletSchultes;` only (hydraulics and mass transfer).
+  Not Rocha-Bravo-Fair or Delft: those are models of a corrugated structured
+  packing.
+\*-----------------------------------------------------------------*/
+
+name              Raschig-ceramic-25;
+kind              packing;
+arrangement       random;
+
+specificArea      190.0;          // m2/m3 (Table 2a)
+voidFraction      0.68;          // (Table 2a)
+
+correlations
+{
+    BilletSchultes
+    {
+        CS   2.454;     // loading point (Table 2a)
+        CFl  1.899;     // flooding point
+        Ch   0.577;     // hydraulic area, holdup
+        CP0  1.329;     // dry pressure drop
+        CL   1.361;     // liquid film
+        CV   0.412;     // gas film
+    }
+}
+
+provenance
+{
+    source  "R. Billet, M. Schultes, Prediction of mass transfer columns with dumped and arranged packings: updated summary of the calculation method of Billet and Schultes, Trans IChemE 77 Part A (1999) 498-504, Table 2a, p. 501, row Raschig ring Ceramic 25 mm";
+    specificArea  { origin literature; method "Table 2a (p. 501), a"; }
+    voidFraction  { origin literature; method "Table 2a (p. 501), eps"; }
+    BilletSchultes { origin literature; method "Table 2a (p. 501), columns C_S, C_Fl, C_h, C_P,0, C_L, C_V of the row"; }
+}
 /*--------------------------------*- Choupo -*-----------------------*\
   Membrane: NF270-style loose-NF
   (DuPont FilmTec NF270-400 archetype)
@@ -62730,6 +62892,60 @@ provenance
     massTransfer     { origin literature; method "Eq. (30), p. 347; window: Fig. 9's Reynolds axis, p. 348 (primary read 2026-10-24)"; }
     pressureDrop     { origin literature; method "Eq. (24) and its stated window 100 < Re < 1000, p. 345 (primary read 2026-10-24)"; }
 }
+/*--------------------------------*- Choupo -----------------------*\
+  PACKING: Pall ring, metal, 50 mm, a RANDOM (dumped) packing
+
+  WHAT THIS RECORD IS.  The nominal geometry and the six constants of one
+  random packing under the Billet & Schultes correlation, for a column's
+  `packing { record PallRing-metal-50; model BilletSchultes; ... }` (kind packing,
+  read by src/unitOperations/distillation/PackingRecord.cpp; Theory Guide
+  sec:packing-record and sec:billetSchultes; design record
+  docs/design/random-packings.md).
+
+  EVERY VALUE, AND WHERE IT WAS READ (primary read 2026-11-25 on the page
+  image, twice): Billet & Schultes, Trans IChemE 77 Part A (1999) 498-504,
+  Table 2a, p. 501, row "Pall ring", "Metal", size 50 mm:
+  a 112.6 m2/m3, void fraction 0.951,
+  C_S 2.725, C_Fl 1.58, C_h 0.784, C_P,0 0.763, C_L 1.192, C_V 0.41.
+
+  IN-SAMPLE.  The authors fitted the six constants to their own database
+  (over 3500 points, 70 packings, p. 498): every number here is a value of
+  that fit, so this packing cannot be a held-out test of the law.  The paper's
+  stated accuracy is Table 3 (p. 503): 5 % loading/flooding, 6.7 % holdup,
+  9.1 % pressure drop, 12.4 % absorption, 14.1 % rectification (their data).
+
+  WHAT IT SERVES.  `model BilletSchultes;` only (hydraulics and mass transfer).
+  Not Rocha-Bravo-Fair or Delft: those are models of a corrugated structured
+  packing.
+\*-----------------------------------------------------------------*/
+
+name              PallRing-metal-50;
+kind              packing;
+arrangement       random;
+
+specificArea      112.6;          // m2/m3 (Table 2a)
+voidFraction      0.951;          // (Table 2a)
+
+correlations
+{
+    BilletSchultes
+    {
+        CS   2.725;     // loading point (Table 2a)
+        CFl  1.58;     // flooding point
+        Ch   0.784;     // hydraulic area, holdup
+        CP0  0.763;     // dry pressure drop
+        CL   1.192;     // liquid film
+        CV   0.41;     // gas film
+    }
+}
+
+provenance
+{
+    source  "R. Billet, M. Schultes, Prediction of mass transfer columns with dumped and arranged packings: updated summary of the calculation method of Billet and Schultes, Trans IChemE 77 Part A (1999) 498-504, Table 2a, p. 501, row Pall ring Metal 50 mm";
+    specificArea  { origin literature; method "Table 2a (p. 501), a"; }
+    voidFraction  { origin literature; method "Table 2a (p. 501), eps"; }
+    BilletSchultes { origin literature; method "Table 2a (p. 501), columns C_S, C_Fl, C_h, C_P,0, C_L, C_V of the row"; }
+}
 /*--------------------------------*- Choupo -*-----------------------*\
   Material: Stainless steel 304 (AISI 304 / UNS S30400, 18Cr-8Ni austenitic)
 
@@ -62865,6 +63081,60 @@ provenance
     porosity         { origin literature; method "Tab. 1, p. 343, eps (primary read 2026-10-24)"; }
     massTransfer     { origin literature; method "Eq. (30), p. 347; window: Fig. 9's Reynolds axis, p. 348 (primary read 2026-10-24)"; }
     pressureDrop     { origin literature; method "Eq. (24) and its stated window 100 < Re < 1000, p. 345 (primary read 2026-10-24)"; }
+}
+/*--------------------------------*- Choupo -----------------------*\
+  PACKING: Pall ring, metal, 25 mm, a RANDOM (dumped) packing
+
+  WHAT THIS RECORD IS.  The nominal geometry and the six constants of one
+  random packing under the Billet & Schultes correlation, for a column's
+  `packing { record PallRing-metal-25; model BilletSchultes; ... }` (kind packing,
+  read by src/unitOperations/distillation/PackingRecord.cpp; Theory Guide
+  sec:packing-record and sec:billetSchultes; design record
+  docs/design/random-packings.md).
+
+  EVERY VALUE, AND WHERE IT WAS READ (primary read 2026-11-25 on the page
+  image, twice): Billet & Schultes, Trans IChemE 77 Part A (1999) 498-504,
+  Table 2a, p. 501, row "Pall ring", "Metal", size 25 mm:
+  a 223.5 m2/m3, void fraction 0.954,
+  C_S 2.627, C_Fl 2.083, C_h 0.719, C_P,0 0.957, C_L 1.44, C_V 0.336.
+
+  IN-SAMPLE.  The authors fitted the six constants to their own database
+  (over 3500 points, 70 packings, p. 498): every number here is a value of
+  that fit, so this packing cannot be a held-out test of the law.  The paper's
+  stated accuracy is Table 3 (p. 503): 5 % loading/flooding, 6.7 % holdup,
+  9.1 % pressure drop, 12.4 % absorption, 14.1 % rectification (their data).
+
+  WHAT IT SERVES.  `model BilletSchultes;` only (hydraulics and mass transfer).
+  Not Rocha-Bravo-Fair or Delft: those are models of a corrugated structured
+  packing.
+\*-----------------------------------------------------------------*/
+
+name              PallRing-metal-25;
+kind              packing;
+arrangement       random;
+
+specificArea      223.5;          // m2/m3 (Table 2a)
+voidFraction      0.954;          // (Table 2a)
+
+correlations
+{
+    BilletSchultes
+    {
+        CS   2.627;     // loading point (Table 2a)
+        CFl  2.083;     // flooding point
+        Ch   0.719;     // hydraulic area, holdup
+        CP0  0.957;     // dry pressure drop
+        CL   1.44;     // liquid film
+        CV   0.336;     // gas film
+    }
+}
+
+provenance
+{
+    source  "R. Billet, M. Schultes, Prediction of mass transfer columns with dumped and arranged packings: updated summary of the calculation method of Billet and Schultes, Trans IChemE 77 Part A (1999) 498-504, Table 2a, p. 501, row Pall ring Metal 25 mm";
+    specificArea  { origin literature; method "Table 2a (p. 501), a"; }
+    voidFraction  { origin literature; method "Table 2a (p. 501), eps"; }
+    BilletSchultes { origin literature; method "Table 2a (p. 501), columns C_S, C_Fl, C_h, C_P,0, C_L, C_V of the row"; }
 }
 /*--------------------------------*- Choupo -*-----------------------*\
   ELECTRODIALYSIS STACK: Eurodia Industrie EUR2C-7P18 bench unit
@@ -63294,8 +63564,11 @@ a correlation that reads a field the record lacks is refused naming the field
 not Rocha-Bravo-Fair).  The `surface` is the product's and belongs to the
 record alone; F_SE may be borrowed but never installed.  A record's `name` is
 its file name (the seal copies it by that name), and every value is
-range-checked wherever it is written.  No random-packing correlation is implemented yet; the
-kind admits one.  Theory Guide: sec:packing-record.
+range-checked wherever it is written.  The five RANDOM packings shipped (`PallRing-metal-50`, `PallRing-metal-25`,
+`PallRing-plastic-50`, `PallRing-plastic-25`, `Raschig-ceramic-25`; `arrangement random;`) state, under
+`correlations { BilletSchultes { CS CFl Ch CP0 CL CV } }`, the six constants of Billet & Schultes 1999 Table 2a
+(their source, in-sample for that law) and serve `model BilletSchultes;` alone.  Theory Guide: sec:packing-record,
+sec:billetSchultes.
 
 ## `kind catalyst` — why this folder holds none yet
 
@@ -123532,7 +123805,7 @@ CAS         7783-06-4;
 // HenrysLaw/H2S-water.dat instead of Antoine/Raoult.
 role        solute;
 
-MW          34.082;            // kg/kmol
+MW          34.076;       // kg/kmol, = sum of the engine's atomic weights (C517; was 34.082)
 Tc          373.40;             // K
 Pc          89.63;              // bar
 omega       0.090;              // [-]
@@ -139702,7 +139975,7 @@ CAS         7446-09-5;
 // HenrysLaw/SO2-water.dat instead of Antoine/Raoult.
 role        solute;
 
-MW          64.065;            // kg/kmol
+MW          64.058;       // kg/kmol, = sum of the engine's atomic weights (C517; was 64.065)
 Tc          430.75;             // K
 Pc          78.84;              // bar
 omega       0.245;              // [-]
@@ -179483,7 +179756,7 @@ reviewReason   importedFromCoolProp720_notCheckedAgainstPrimaries;
 formula     C3H4;
 CAS         74-99-7;
 
-MW          40.0600;        // kg/kmol  [CoolProp]
+MW          40.065;       // kg/kmol, = sum of the engine's atomic weights (C517; was 40.06)
 Tc          402.7011;        // K        [CoolProp EOS]
 Pc          56.57503;        // bar      [CoolProp EOS]
 omega       0.20400;        // [-]      [CoolProp EOS]
@@ -500320,7 +500593,7 @@ schemaVersion 1;
 name    Li;
 formula     "Li+";
 charge  +1;
-MW { value 6.941; unit g/mol;}
+MW { value 6.94; unit g/mol;}
 aqueousThermo
 {
 hfAq { value -278490; unit J/mol;}
