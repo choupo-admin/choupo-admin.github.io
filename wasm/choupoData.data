@@ -69002,7 +69002,7 @@ routes
         (
             { route "alkaline / PEM electrolyser, system"; band ( 50 55 ); unit "kWh per kg H2"; origin assumed; reason "the specific electricity consumption usually quoted for today's alkaline and PEM systems; the IEA hydrogen report carries the figure in its technology annex, not read back here"; }
         );
-        cases    ( "tutorials/plant/greenAmmonia03_basicDesign" "tutorials/plant/greenAmmoniaPEQ_baseCase" "tutorials/steady/reactors/ammoniaRoutes01_screening" );
+        cases    ( "tutorials/plant/ammoniaPEQ03_basicDesign" "tutorials/plant/ammoniaPEQ_baseCase" "tutorials/steady/reactors/ammoniaRoutes01_screening" );
         provenance
         (
             { source ieaHydrogen2019; locus "electrolytic hydrogen and its cost"; }
@@ -72822,7 +72822,7 @@ routes
             { route "best available technology, coal"; band ( 36 36 ); unit "GJ per t NH3"; origin literature; locus "ieaAmmonia2021: 36 GJ/t for coal-based production"; }
             { route "direct CO2, global average"; band ( 2.4 2.4 ); unit "t CO2 per t NH3"; origin literature; locus "ieaAmmonia2021: 'around 2.4 t CO2 per tonne of production'"; }
         );
-        cases    ( "tutorials/plant/ammonia02_full_plant" "tutorials/steady/reactors/ammonia03_quench_converter" "tutorials/steady/flowsheets/ammonia01_synthesis_loop" "tutorials/steady/reactors/ammoniaReactor04_kineticSizing" "tutorials/steady/reactors/ammoniaRoutes01_screening" "tutorials/plant/greenAmmonia03_basicDesign" "tutorials/plant/greenAmmoniaPEQ_baseCase" "tutorials/props/gibbs/landscape01_ammonia_synthesis" "tutorials/props/kinetics/ammoniaRate01_dyson_simon" );
+        cases    ( "tutorials/plant/ammonia02_full_plant" "tutorials/steady/reactors/ammonia03_quench_converter" "tutorials/steady/flowsheets/ammonia01_synthesis_loop" "tutorials/steady/reactors/ammoniaReactor04_kineticSizing" "tutorials/steady/reactors/ammoniaRoutes01_screening" "tutorials/plant/ammoniaPEQ03_basicDesign" "tutorials/plant/ammoniaPEQ_baseCase" "tutorials/props/gibbs/landscape01_ammonia_synthesis" "tutorials/props/kinetics/ammoniaRate01_dyson_simon" );
         provenance
         (
             { source ieaAmmonia2021; locus "executive summary: energy intensity, routes and emissions"; }
@@ -321809,7 +321809,7 @@ Trange      ( 273  373 );
 
   PROMOTED to the standard catalogue 2026-09-08 on Vitor's decision, from the
   case it was curated in.  Reproduce the whole fit with
-  tutorials/plant/greenAmmoniaPEQ_baseCase/curation/Ar-NH3/fit-Ar-NH3.py.
+  tutorials/plant/ammoniaPEQ_baseCase/curation/Ar-NH3/fit-Ar-NH3.py.
 
   The ammonia cases REFERENCE this record through their pins; none holds a
   copy (C421, 2026-11-18).
